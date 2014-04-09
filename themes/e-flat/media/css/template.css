@@ -1,0 +1,66 @@
+body{ background-image: url(../img/bg-e-flat-fat.jpg); background-position:top center; background-repeat:no-repeat; font-size:13px; }
+:focus {outline:none;}
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto;}
+.warp{width:1000px; margin:0 auto;}
+.clearfix{clear:both;}
+
+#login{float:left;display:inline-block;background:url(../img/icon-login.png) no-repeat;width:90px; height:27px ; cursor:pointer; margin-right:30px;}
+#register{float:left; display:inline-block;background:url(../img/icon-regis.png) no-repeat;width:113px; height:27px ; cursor:pointer; margin-right:10px;}
+
+
+#topmenu{margin-left:155px; margin-top:170px; z-index:1; }
+#topmenu ul{padding:0; list-style:none; margin:0;}
+#topmenu ul li{float:left; display:inline; margin:0; padding-right:22px; list-style:none;}
+#topmenu ul li a{ font-weight:bold; color:black;  text-decoration:none;}
+
+	#menu1 a{display:block;background:url(../img/menu_01.png) bottom no-repeat; width:67px; height:29px ;}
+	#menu1 a:hover{ background:url(../img/menu_01.png) no-repeat;width:67px; height:29px ;}
+	#menu1 a.active{background:url(../img/menu_01.png) no-repeat;}
+
+	#menu2 a{display:block;background:url(../img/menu_02.png) bottom no-repeat; width:109px; height:29px ;}
+	#menu2 a:hover{ background:url(../img/menu_02.png) no-repeat;}
+
+	#menu3 a{display:block;background:url(../img/menu_03.png) bottom no-repeat; width:63px; height:29px ;}
+	#menu3 a:hover{ background:url(../img/menu_03.png) no-repeat;}
+
+	#menu4 a{display:block;background:url(../img/menu_04.png) bottom no-repeat; width:101px; height:29px ;}
+	#menu4 a:hover{ background:url(../img/menu_04.png) no-repeat;}
+
+	#menu5 a{display:block;background:url(../img/menu_05.png) bottom no-repeat; width:90px; height:29px ;}
+	#menu5 a:hover{ background:url(../img/menu_05.png) no-repeat;}
+
+	#menu6 a{display:block;background:url(../img/menu_06.png) bottom no-repeat; width:30px; height:29px ;}
+	#menu6 a:hover{ background:url(../img/menu_06.png) no-repeat;}
+
+	#menu7 a{display:block;background:url(../img/menu_07.png) bottom no-repeat; width:42px; height:29px ;}
+	#menu7 a:hover{ background:url(../img/menu_07.png) no-repeat;}
+
+	#menu8 a{display:block;background:url(../img/menu_08.png) bottom no-repeat; width:84px; height:29px ;}
+	#menu8 a:hover{ background:url(../img/menu_08.png) no-repeat;}
+
+	#menu9 a{display:block;background:url(../img/menu_09.png) bottom no-repeat; width:80px; height:29px ;}
+	#menu9 a:hover{ background:url(../img/menu_09.png) no-repeat;}
+
+	#menu10 a{display:block;background:url(../img/menu_10.png) bottom no-repeat; width:77px; height:29px ;}
+	#menu10 a:hover{ background:url(../img/menu_10.png) no-repeat;}
+
+	#menu11 a{display:block;background:url(../img/menu_11.png) bottom no-repeat; width:73px; height:29px ;}
+	#menu11 a:hover{ background:url(../img/menu_11.png) no-repeat;}
+
+#title1{font-size:15px; font-weight:bold;margin-top:115px;margin-left:75px;}
+#btn-menu{margin-left:75px;margin-top:35px;}
+#form{margin-top:50px; padding:10px; background:#f5f4f4;}
+#formbg{margin-top:10px; padding:10px; background-color:#f1fedd;}
+#line{border-top:1px solid #c3dd9c; height:1px;}
+#tbform{margin-top:10px;}
+#tb1{border:1px solid #99bcd4; background:#f6fefe; }
+#tb1 tr td {padding:3px;border:1px solid #99bcd4}
+#tb2{border:1px solid #c5c2c2; background:#f7f5f5; }
+#tb2 tr td {padding:3px;border:1px solid #c5c2c2}
+#tb3{border:1px solid #e5be6a; background:#fefde1; }
+#tb3 tr td {padding:3px;border:1px solid #e5be6a}
+#tb4{border:1px solid #97c26b; background:#f5ffea; }
+#tb4 tr td {padding:3px;border:1px solid #97c26b}
+
+#breadcrumb{text-align:right; width:1200px; margin-top:15px;} 
+#readmore a{color:#017cb5;position:absolute; right:0; top:15px; font-size:13px; font-weight:bold; background:#eaf8fe; padding:3px;}

@@ -1,0 +1,2 @@
+<div id="logoFooter"><img src="media/img/logo-raipoong.png" width="191" height="46" style="margin-right:80px;"/><img src="media/img/logo-nutritionthailand.png" width="65" height="86" /></div>
+<div id="footer">สำนักโภชนาการ กรมอนามัย กระทรวงสาธารณสุข ถ.ติวานนท์ ต.ตลาดขวัญ อ.เมือง จ.นนทบุรี 11000, โทร. 02-590-4327,  E-mail: nutrition.flatbelly@gmail.com<br><span class="copyright">COPYRIGHT 214 e-flat belly ALL RIGHT RESERVED.</span></div>
