@@ -27,8 +27,8 @@
 		                <li style="width:400px;"><a href="report/index/province">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายองค์กร)</a></li>
 		                <li style="width:400px;"><a href="report/index/area">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายจังหวัด)</a></li>
 		                <li style="width:400px;"><a href="report/index/overview">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายเขต)</a></li>
-		                <li style="width:400px;"><a href="report/index/height">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายเขต)</a></li>
-		                <li style="width:400px;"><a href="report/index/waist">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายเขต)</a></li>
+		                <li style="width:400px;"><a href="report/index/height">รายงานภาวะโรคอ้วนลงพุง (Ht/2)</a></li>
+		                <li style="width:400px;"><a href="report/index/waist">รายงานภาวะโรคอ้วนลงพุง (BMI)</a></li>
 		            </ul>
 		        </li>
 		    </ul>

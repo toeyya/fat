@@ -18,13 +18,14 @@
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>
 </div>
+<?php if(!empty($_GET)){ ?>
 <div class="right" style="margin-bottom: 10px;">
 
 	<a href="report/index/province/export<?=GetCurrentUrlGetParameter();?>" class="btn btn-default"><i class="fa fa-arrow-down"></i>ดาวน์โหลด excel</a>
-	<a href="report/index/province/preview<?=GetCurrentUrlGetParameter();?>" class="btn btn-default">พิมพ์ข้อมูล</a>
+	<a href="report/index/province/preview<?=GetCurrentUrlGetParameter();?>" class="btn btn-default" target="_blank">พิมพ์ข้อมูล</a>
 </div>
 <div class="clearfix"></div>
-<?php if(!empty($_GET)){ ?>
+
 <div id="Rform">
 	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
 	<h3>รายงานสรุปผลการประเมินรอบเอวในศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h3>
@@ -78,30 +79,27 @@
 	<td class="title"><?php echo $item['agency_type_name'] ?></td>
 	<td><?php echo $user_total[] = $item['user_total'] ?></td>
 	<td><?php $t = $item['total']; echo number_format($t); $total[$key] = $t; ?></td>
-	<td><?php echo round(($item['total']*100)/$item['user_total'],2) ?>%</td>
-	<?php /*<td class="<?php echo $fat_mean[$fatmean[$item['user_id']][1]] ?>"><?php echo $fatmean[$item['user_id']][1];
-				   $f[$key] = (empty($fat[$item['user_id']]['อ้วนลงพุง'][1])) ? 0 :$fat[$item['user_id']]['อ้วนลงพุง'][1] ?></td>*/ ?>
+	<td><?php echo number_format(($item['total']*100)/$item['user_total'],1) ?>%</td>
 	<td><?php echo $f[$key] = (empty($fat[$item['user_id']]['อ้วนลงพุง'][1])) ? 0 :$fat[$item['user_id']]['อ้วนลงพุง'][1] ?></td>
-	<td><?php echo $f_percent =(empty($f) || empty($total[$key])) ? 0 :round(($f[$key]*100)/$item['total'],2)."%"?></td>
-	<td><?php echo $w = (empty($waistline[$item['user_id']][1])) ? 0 :$waistline[$item['user_id']][1] ?></td>
+	<td><?php echo $f_percent =(empty($f) || empty($total[$key])) ? 0 :number_format(($f[$key]*100)/$item['total'],1)."%"?></td>
+	<td><?php echo $w[$key] = (empty($waistline[$item['user_id']][1])) ? 0 :$waistline[$item['user_id']][1] ?></td>
 	<td><?php echo $b[$key] = (empty($weight[$item['user_id']]['sum'][1])) ? 0:$weight[$item['user_id']]['sum'][1]?></td>
-	<td><?php echo $b_percent = (empty($weight[$item['user_id']]['avg'][1])) ? 0 :round($weight[$item['user_id']]['avg'][1],2)?></td>
-	<td><?php echo (empty($sd[$item['user_id']][1])) ? 0 : round($sd[$item['user_id']][1],2)?></td>
+	<td><?php echo $b_percent[$key] = (empty($weight[$item['user_id']]['avg'][1])) ? 0 :number_format($weight[$item['user_id']]['avg'][1],1)?></td>
+	<td><?php echo $sd1[$key]=(empty($sd[$item['user_id']][1])) ? 0 : number_format($sd[$item['user_id']][1],1)?></td>
+
 	<td><?php echo $user_total2[$key] = (empty($user_total[$item['user_id']][2])) ? 0 :$user_total[$item['user_id']][2] ?></td>
 	<td><?php echo $total2[$key] = (empty($total[$item['user_id']][2])) ? 0 : $total[$item['user_id']][2]?></td>
-	<td><?php echo ($user_total2[$key]==0 || $total2[$key]==0) ? 0 : round(($total2[$key]*100)/$user_total2[$key],2)."%"?></td>
-	<?php /*<td class="<?php echo $fat_mean[$fatmean[$item['user_id']][2]] ?>"><?php echo (empty($fatmean[$item['user_id']][2])) ? 0 :$fatmean[$item['user_id']][2];
-			  	   $f2[$key] = (empty($fat[$item['user_id']]['อ้วนลงพุง'][2])) ? 0 :$fat[$item['user_id']]['อ้วนลงพุง'][2] ?></td>*/ ?>
+	<td><?php echo ($user_total2[$key]==0 || $total2[$key]==0) ? 0 : number_format(($total2[$key]*100)/$user_total2[$key],1)."%"?></td>
 	<td><?php echo $f2[$key] = (empty($fat[$item['user_id']]['อ้วนลงพุง'][2])) ? 0 :$fat[$item['user_id']]['อ้วนลงพุง'][2] ?></td>
-	<td><?php echo $f_percent2 = ($f2[$key]==0 || $total2[$key]==0) ? 0 :round(($f2[$key]*100)/ $total2[$key],2)."%"?></td>
-	<td><?php echo $w2 = (empty($waistline[$item['user_id']][2])) ? 0 :$waistline[$item['user_id']][2] ?></td>
+	<td><?php echo $f_percent2 = ($f2[$key]==0 || $total2[$key]==0) ? 0 :number_format(($f2[$key]*100)/ $total2[$key],1)."%"?></td>
+	<td><?php echo $w2[$key] = (empty($waistline[$item['user_id']][2])) ? 0 :$waistline[$item['user_id']][2] ?></td>
 	<td><?php echo $b2[$key] = (empty($weight[$item['user_id']]['sum'][2])) ? 0:$weight[$item['user_id']]['sum'][2]?></td>
-	<td><?php echo $b_percent2 = (empty($weight[$item['user_id']]['avg'][2])) ? 0 :round($weight[$item['user_id']]['avg'][2],2)?></td>
-	<td><?php echo (empty($sd[$item['user_id']][2])) ? 0 :round($sd[$item['user_id']][2],2)?></td>
+	<td><?php echo $b_percent2[$key] = (empty($weight[$item['user_id']]['avg'][2])) ? 0 :number_format($weight[$item['user_id']]['avg'][2],1)?></td>
+	<td><?php echo $sd2[$key]=(empty($sd[$item['user_id']][2])) ? 0 :number_format($sd[$item['user_id']][2],1)?></td>
 	<td><?php echo $fat_avg[] =abs($f[$key]-$f2[$key]);?></td>
 	<td><?php echo ($f_percent-$f_percent2==0) ? 0 :abs($f_percent-$f_percent2)."%"?></td>
-	<td><?php echo $bmi_avg[] = abs($b[$key]-$b2[$key]);?></td>
-	<td><?php echo ($b_percent-$b_percent2==0) ? 0 :abs($b_percent-$b_percent2)."%"?></td>
+	<td><?php echo $bmi_avg[] = number_format(abs($b[$key]-$b2[$key]),1);?></td>
+	<td><?php echo ($b_percent[$key]-$b_percent2[$key]==0) ? 0 :number_format(abs($b_percent[$key]-$b_percent2[$key]),1)."%"?></td>
 </tr>
 <?php $i++; endforeach; ?>
 <tr><td colspan="3">รวม</td>
@@ -110,19 +108,19 @@
 	<td></td>
 	<td><?php echo number_format(array_sum($f));?></td>
 	<td></td>
-	<td></td>
+	<td><?php echo number_format(array_sum($w))?></td>
 	<td><?php echo number_format(array_sum($b)) ?></td>
-	<td></td>
-	<td></td>
+	<td><?php echo number_format(array_sum($b_percent),1) ?></td>
+	<td><?php echo number_format(array_sum($sd1),1) ?></td>
 	<td><?php echo number_format(array_sum($user_total2)) ?></td>
 	<td><?php echo number_format(array_sum($total2)) ?></td>
 	<td></td>
 	<td><?php echo number_format(array_sum($f2)) ?></td>
 	<td></td>
-	<td></td>
+	<td><?php echo number_format(array_sum($w2))?></td>
 	<td><?php echo number_format(array_sum($b2))?></td>
-	<td></td>
-	<td></td>
+	<td><?php echo number_format(array_sum($b_percent2),1) ?></td>
+	<td><?php echo number_format(array_sum($sd2),1) ?></td>
 	<td><?php echo number_format(array_sum($fat_avg)) ?></td>
 	<td></td>
 	<td><?php echo number_format(array_sum($bmi_avg)) ?></td>
@@ -130,7 +128,7 @@
 
 </tr>
 </table>
-<div class="span3 pull-right">ออกรายงาน ณ วันที่ <?php echo db_to_th(date('Y-m-d')) ?></div>
+<div class="span3 pull-right text-right">ออกรายงาน ณ วันที่ <?php echo db_to_th(date('Y-m-d')) ?></div>
 </div>
 <!--</div>-->
 <?php }  // $_GET?>

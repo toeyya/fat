@@ -100,7 +100,10 @@ $(function () {
 	});
     $('#container_grp').highcharts({
         chart: {
-            type: 'bar'
+            type: 'bar',
+            marginBottom: 120,
+            marginLeft: 100,
+            width: 1000
         },
         title: {
             text: 'กราฟคะแนนความถี่  องค์กร  :<?php echo $user_name; ?>  ปีงบประมาณ :<?php echo $yearth; ?> '
@@ -112,14 +115,20 @@ $(function () {
         yAxis: {
             min: 0,
             title: {
-                text: 'ร้อยละ'
+                text: 'ร้อยละ',
+                offset:30
             },
 
         },
         credits: {enabled: false},
         legend: {
             backgroundColor: '#FFFFFF',
-            reversed: true
+            reversed: true,
+            borderColor: '#FFFFFF',
+            itemWidth:80,
+            x:70,
+            y:-20
+
         },
 
         tooltip: {

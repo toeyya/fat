@@ -1,18 +1,16 @@
-
-<?php if(!empty($_GET)){ ?>
 <div id="Rform">
 
 	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
 	<h3>รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง (Ht/2)</h3>
 	<div style="text-align: center">
-	<label class="caption">หน่วยงาน</label><?php echo $user_name ?><label class="caption">ครั้งที่</label><?php echo $time; ?>
+	<span style="margin-left:5px;">หน่วยงาน : </span>  <?php echo $user_name ?>  <span style="margin:0px 5px;">ครั้งที่  : </span> <?php echo $time; ?>
 	</div>
 </div>
 <!--<div class="span20">-->
-<table width="80%" border="1">
+<table border="1" style="width:1000px">
 <thead>
-<tr class="success">
-	<th rowspan="3" height="10px">ความสูงหารสอง</th>
+<tr>
+	<th rowspan="2">ความสูงหารสอง</th>
 </tr>
 <tr>
 	<th colspan="2">ชาย</th>
@@ -63,4 +61,3 @@
 	</tr>
 </tbody>
 </table>
-<?php } ?>

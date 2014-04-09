@@ -99,6 +99,7 @@ class Report extends  Flat_Controller{
 			$this->template->build('behavior/report',$data);
 		}else if($data['print']=="export"){
 			$filename= "ประเมินพฤติกรรม_".date("Y-m-d_H_i_s").".xls";
+			$this->template->set_layout('report');
 			$this->template->build('behavior/export',$data);
 			header("Content-Disposition: attachment; filename=".$filename);
 			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
@@ -119,6 +120,7 @@ class Report extends  Flat_Controller{
 			$this->template->build('weight/person/report',$data);
 		}else if($data['print']=="export"){
 			$filename= "รายงานแบบฟอร์มการบันทึก รอบเอง น้ำหนัก ส่วนสูง ของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง_".date("Y-m-d_H_i_s").".xls";
+			$this->template->set_layout('report');
 			$this->template->build('weight/person/export',$data);
 			header("Content-Disposition: attachment; filename=".$filename);
 			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
@@ -220,15 +222,18 @@ class Report extends  Flat_Controller{
 			$data['weight'][$item['user_id']]['sum'][2] =$item['sum_weight'];
 			$data['weight'][$item['user_id']]['avg'][2] =$item['avg_weight'];
 		}
-
 		if($data['print']=="preview"){
-
+			$this->template->set_layout('report');
+			$this->template->build('weight/province/report',$data);
 		}else if($data['print']=="export"){
-
+			$filename= "รายงานแบบฟอร์มการบันทึก รอบเอง น้ำหนัก ส่วนสูง [รายองค์กร]_".date("Y-m-d_H_i_s").".xls";
+			$this->template->set_layout('report');
+			$this->template->build('weight/province/export',$data);
+			header("Content-Disposition: attachment; filename=".$filename);
+			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
 		}else{
 			$this->template->build('weight/province/index',$data);
 		}
-
 	}
 	function area($data,$wh=FALSE)
 	{
@@ -397,8 +402,12 @@ class Report extends  Flat_Controller{
 	function height($data,$wh)
 	{
 		$user_id = (!empty($_GET['user_id'])) ? $_GET['user_id'] :$this->session->userdata('id');
-		$time = (empty($_GET['time'])) ? '' : "and time= ".$_GET['time'];
-		$data['time'] = $_GET['time'];
+		$time="";
+		$data['time'] = "1";
+		if(!empty($_GET['time'])){
+			$time ="and time= ".$_GET['time'];
+			$data['time'] = $_GET['time'];
+		}
 		$sql= " select gender,time,count(gender) as cnt from f_weight
 				left join f_weight_detail on f_weight.id = f_weight_detail.weight_id
 				left join f_users on f_weight.user_id = f_users.id

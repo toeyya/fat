@@ -1,4 +1,3 @@
-<?php if(!empty($_GET)){ ?>
 <div class="contentBlank">
 <div id="Rform">
 
@@ -90,4 +89,3 @@
 </table>
 <div class="aligncenter"><button name="btn_print" onclick="window.print();" class="btn btn-default btn-large">พิมพ์งาน</button></div>
 </div>
-<?php } ?>

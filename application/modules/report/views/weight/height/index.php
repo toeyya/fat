@@ -12,10 +12,9 @@
 		<span>องค์กร</span>
 		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร'); ?>
 		<span>ครั้งที่</span>
-		<select name="time">
-			<option value="1" <?php if(@$_GET['time']==1){echo 'checked="checked"';} ?>>1</option>
-			<option value="2" <?php if(@$_GET['time']==2){echo 'checked="checked"';} ?>>2</option>
-		</select>
+		<?php  $arr = array("1"=>'1',"2"=>'2');
+			echo form_dropdown('time',$arr,@$_GET['time'],'class="search-query input-mini"');
+		 ?>
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>
 </div>
@@ -58,24 +57,24 @@
 	<tr>
 		<td class="title">ปกติ (รอบเอวน้อยกว่า ht/2)</td>
 		<td><?php $n=(empty($normal[1])) ? 0 : $normal[1]; echo number_format($n);$male[1]=$n; ?></td>
-		<td><?php $ab_m1 = ($n==0 || $total[1][$time]==0) ? 0 :($n*100)/$total[1][$time];echo number_format($ab_m1,1)."%"; ?></td>
+		<td><?php $ab_m1 = ($n==0 || $total[1][$time]==0) ? 0 :number_format(($n*100)/$total[1][$time],1);echo number_format($ab_m1,1)."%"; ?></td>
 		<td><?php $n= (empty($normal[2])) ? 0 : $normal[2];echo number_format($n);$female[1]=$n?></td>
-		<td><?php $ab_f1 = ($n==0 || $total[2][$time]==0) ? 0 :($n*100)/$total[2][$time];echo number_format($ab_f1,1)."%" ?></td>
+		<td><?php $ab_f1 = ($n==0 || $total[2][$time]==0) ? 0 :number_format(($n*100)/$total[2][$time],1);echo number_format($ab_f1,1)."%" ?></td>
 		<td><?php $sum = $male[1] + $female[1]; echo number_format($sum);$s[1]=$sum ?></td>
 		<td><?php $total1 = (empty($normal))  ? 0 : array_sum($normal);
 				  $total2 = (empty($abnormal)) ? 0 : array_sum($abnormal);
 				  $user_total = $total1 + $total2;
-				  $sum_per1 = ($sum==0) ? 0 : ($sum*100)/$user_total;echo number_format($sum_per1,1)."%";
+				  $sum_per1 = ($sum==0) ? 0 : number_format(($sum*100)/$user_total,1);echo number_format($sum_per1,1)."%";
 		?></td>
 	</tr>
 	<tr>
 		<td class="title">อ้วน (รอบเอวมากกว่า ht/2)</td>
 		<td><?php $n =(empty($abnormal[1])) ? 0 : $abnormal[1];echo number_format($n);$male[2]=$n; ?></td>
-		<td><?php $ab_m2 = ($n==0 || $total[1][$time]==0) ? 0 :($n*100)/$total[1][$time];echo number_format($ab_m2,1)."%"; ?></td>
+		<td><?php $ab_m2 = ($n==0 || $total[1][$time]==0) ? 0 :number_format(($n*100)/$total[1][$time],1);echo number_format($ab_m2,1)."%"; ?></td>
 		<td><?php $n =(empty($abnormal[2])) ? 0 : $abnormal[2];echo number_format($n);$female[2]=$n; ?></td>
-		<td><?php $ab_f2 = ($n==0 || $total[2][$time]==0) ? 0 :($n*100)/$total[2][$time];echo number_format($ab_f2,1)."%" ?></td>
+		<td><?php $ab_f2 = ($n==0 || $total[2][$time]==0) ? 0 :number_format(($n*100)/$total[2][$time],1);echo number_format($ab_f2,1)."%" ?></td>
 		<td><?php $sum = $male[2] + $female[2]; echo number_format($sum);$s[2]=$sum ?></td>
-		<td><?php $sum_per2 = ($sum==0) ? 0 : ($sum*100)/$user_total;
+		<td><?php $sum_per2 = ($sum==0) ? 0 : number_format(($sum*100)/$user_total,1);
 				  echo number_format($sum_per2,1)."%"; ?></td>
 	</tr>
 	<tr>
@@ -90,5 +89,82 @@
 </tbody>
 </table>
 <div class="aligncenter"><button type="button" name="show" class="btn btn-info btn-large " id="btn-show" >เปิด - ปิด กราฟ</button></div>
+<div id="container_grp"  style="height:500px;margin-left:20px;margin-top:10px;margin-bottom: 20px;" class="hide"></div>
 </div>
+<script type="text/javascript">
+$(function () {
+	$('#btn-show').click(function(){
+			$('#container_grp').toggleClass("hide show");
+	});
+    $('#container_grp').highcharts({
+        chart: {
+            type: 'column',
+            marginBottom: 120,
+            marginLeft: 100,
+            width: 1000
+        },
+        title: {
+            text: 'รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง (Ht/2)'
+        },
+        subtitle: {
+            text: 'หน่วยงาน <?php echo $user_name ?> ครั้งที่ <?php echo $time; ?>'
+        },
+        xAxis: {
+            categories: ['ปกติ (รอบเอวน้อยกว่า ht/2)', 'อ้วน (รอบเอวมากกว่า ht/2)'],
+            title: {
+                text: 'ความสูงหารสอง',
+                offset: '30'
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'ร้อยละ',
+                offset: '30'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' %'
+        },
+
+        legend: {
+            align: 'center',
+            x:50, // = marginLeft - default spacingLeft
+            y:-30,
+            symbolHeight:30,
+            borderColor: '#FFFFFF',
+            itemWidth: 70
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                column: 'percent',
+                 dataLabels: {
+                    enabled: true,
+                    x: -10,
+                    y: -15,
+                     style: {
+                        color: '#626262'
+                    }
+                }
+            }
+
+
+        },
+        series: [{
+            name: 'ชาย',
+            data: [<?php echo $ab_m1.",".$ab_m2 ?>]
+        }, {
+            name: 'หญิง',
+            data: [<?php echo $ab_f1.",".$ab_f2 ?>]
+        }, {
+            name: 'รวม',
+            data: [<?php echo $sum_per1.",".$sum_per2 ?>]
+        }]
+    });
+});
+
+</script>
 <?php } ?>

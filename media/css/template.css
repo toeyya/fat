@@ -60,15 +60,7 @@ behavior: url(pie/PIE.htc);
 #row4 { margin:0 auto; width:1040px;}
 #row5 { margin:0 auto; width:1225px;}
 
-/*HIGHLIGHT*/
-#highlight{float:left; position:relative; margin:0 auto; text-align:center; margin-top:90px; margin-left:30px; width:495px;}
-#highlight ul{padding:0; margin:0; list-style:none;}
-#highlight ul li {display:inline-block; padding:0; margin:0; width:421px; height:250px; }
-#highlight ul li a {display: inline-block; }
-	#arrowleft a{position:absolute; left:0px; top:100px; display:block; background:url(../img/arrow-left.png) bottom no-repeat; width:21px; height:39px; margin-right:10px; }
-	#arrowleft a:hover{background:url(../img/arrow-left-hot.png) bottom no-repeat;}
-	#arrowright a{position:absolute; right:0px; top:100px; display:block; background:url(../img/arrow-right.png) bottom no-repeat; width:21px; height:39px; margin-left:10px;}
-	#arrowright a:hover{background:url(../img/arrow-right-hot.png) bottom no-repeat;}
+
 
 /*BMI*/
 #bmi{float:right; width:279px; height:244px;  background:url(../img/bg-BMI.png)no-repeat; margin-top:90px; margin-right:40px;}
