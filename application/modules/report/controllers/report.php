@@ -380,8 +380,18 @@ class Report extends  Flat_Controller{
 			$data['waist'][$item['gender']][$item['bmi_mean']] = $item['cnt'];
 		}
 		$data['user_total'] = array_sum($data['waist']);
+		if($data['print']=="preview"){
+			$this->template->set_layout('report');
+			$this->template->build('weight/waist/report',$data);
+		}else if($data['print']=="export"){
+			$filename= "รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง BMI_".date("Y-m-d_H_i_s").".xls";
+			$this->template->build('weight/waist/export',$data);
+			header("Content-Disposition: attachment; filename=".$filename);
+			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
+		}else{
+			$this->template->build('weight/waist/index',$data);
+		}
 
-		$this->template->build('weight/waist/index',$data);
 	}
 	function height($data,$wh)
 	{

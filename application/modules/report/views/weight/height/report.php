@@ -1,5 +1,5 @@
-<div class="contentBlank">
 <?php if(!empty($_GET)){ ?>
+<div class="contentBlank">
 <div id="Rform">
 
 	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
