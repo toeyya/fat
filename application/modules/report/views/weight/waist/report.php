@@ -13,12 +13,12 @@
 <tr class="success">
 	<th rowspan="3" style="vertical-align: middle">วัดรอบเอว</th>
 </tr>
-<tr>
+<tr class="success">
 	<th colspan="2">ชาย</th>
 	<th colspan="2">หญิง</th>
 	<th colspan="2">รวม</th>
 </tr>
-<tr>
+<tr class="success">
 	<th>จำนวน</th>
 	<th>%ชาย</th>
 	<th>จำนวน</th>

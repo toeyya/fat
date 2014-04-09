@@ -385,6 +385,7 @@ class Report extends  Flat_Controller{
 			$this->template->build('weight/waist/report',$data);
 		}else if($data['print']=="export"){
 			$filename= "รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง BMI_".date("Y-m-d_H_i_s").".xls";
+			$this->template->set_layout('report');
 			$this->template->build('weight/waist/export',$data);
 			header("Content-Disposition: attachment; filename=".$filename);
 			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
@@ -418,14 +419,24 @@ class Report extends  Flat_Controller{
 				where (agency_type <> 7 or agency_type <>8)
 				and user_id= $user_id $time ";
 		$result = $this->db->GetArray($sql);
-		$i=0;$j=0;
+		$i=0;$j=0;$m=0;$k=0;
 		foreach($result as $item){
-			if($item['waistline'] < $item['divide']){
-				$i++;
-				$data['normal'][$item['gender']] = $i;
+			if($item['waistline'] <= $item['divide']){
+				if($item['gender']=="1"){
+					$m++;
+					$data['normal'][$item['gender']] = $m;
+				}else{
+					$i++;
+					$data['normal'][$item['gender']] = $i;
+				}
 			}else if($item['waistline'] > $item['divide']){
-				$j++;
-				$data['abnormal'][$item['gender']] = $j;
+				if($item['gender']=="1"){
+					$k++;
+					$data['abnormal'][$item['gender']] = $k;
+				}else{
+					$j++;
+					$data['abnormal'][$item['gender']] = $j;
+				}
 			}
 		}
 
@@ -434,6 +445,7 @@ class Report extends  Flat_Controller{
 			$this->template->build('weight/height/report',$data);
 		}else if($data['print']=="export"){
 			$filename= "รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง Ht_".date("Y-m-d_H_i_s").".xls";
+			$this->template->set_layout('report');
 			$this->template->build('weight/height/export',$data);
 			header("Content-Disposition: attachment; filename=".$filename);
 			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';

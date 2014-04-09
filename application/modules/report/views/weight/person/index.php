@@ -18,12 +18,13 @@
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>
 </div>
+<?php if(!empty($_GET)){ ?>
 <div class="right" style="margin-bottom: 10px;">
 	<a href="report/index/person/export<?=GetCurrentUrlGetParameter();?>"  class="btn btn-default"><i class="fa fa-arrow-down"></i>ดาวน์โหลด excel</a>
 	<a href="report/index/person/preview<?=GetCurrentUrlGetParameter();?>" class="btn btn-default" target="_blank">พิมพ์ข้อมูล</a>
 </div>
 <div class="clearfix"></div>
-<?php if(!empty($_GET)){ ?>
+
 <div id="Rform">
 	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
 	<h3>รายงานแบบฟอร์มการบันทึก รอบเอง น้ำหนัก ส่วนสูง ของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h3>

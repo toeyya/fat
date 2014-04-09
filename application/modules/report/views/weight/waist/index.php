@@ -19,12 +19,13 @@
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>
 </div>
+<?php if(!empty($_GET)){ ?>
 <div class="right" style="margin-bottom: 10px;">
-	<a href="report/index/waist/export<?=GetCurrentUrlGetParameter();?>"  class="btn btn-default">ดาวน์โหลด excel</a>
+	<a href="report/index/waist/export<?=GetCurrentUrlGetParameter();?>"  class="btn btn-default"><i class="fa fa-arrow-down"></i>ดาวน์โหลด excel</a>
 	<a href="report/index/waist/preview<?=GetCurrentUrlGetParameter();?>" class="btn btn-default" target="_blank">พิมพ์ข้อมูล</a>
 </div>
 <div class="clearfix"></div>
-<?php if(!empty($_GET)){ ?>
+
 <div id="Rform">
 
 	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
@@ -38,12 +39,12 @@
 <tr class="success">
 	<th rowspan="3" style="vertical-align: middle">วัดรอบเอว</th>
 </tr>
-<tr>
+<tr class="success">
 	<th colspan="2">ชาย</th>
 	<th colspan="2">หญิง</th>
 	<th colspan="2">รวม</th>
 </tr>
-<tr>
+<tr class="success">
 	<th>จำนวน</th>
 	<th>%ชาย</th>
 	<th>จำนวน</th>
@@ -62,8 +63,8 @@
 		<td><?php $sum_horizontal[1] = $male1[1] + $female1[1];echo number_format($male1[1] + $female1[1]) ?></td>
 		<td><?php  $waist1 = (empty($waist[1])) ? 0 : array_sum($waist[1]);
 				   $waist2 = (empty($waist[2])) ? 0 : array_sum($waist[2]);
-			 $user_total = $waist1 + $waist2;
-			 $sum_percent[1] = ($sum_horizontal[1]==0) ? 0: ($sum_horizontal[1]*100)/$user_total;echo number_format($sum_percent[1],1)."%";
+			 	   $user_total = $waist1 + $waist2;
+			 	   $sum_percent[1] = ($sum_horizontal[1]==0) ? 0: ($sum_horizontal[1]*100)/$user_total;echo number_format($sum_percent[1],1)."%";
 			?></td>
 	</tr>
 	<tr>
@@ -114,5 +115,7 @@
 </tbody>
 </table>
 <div class="aligncenter"><button type="button" name="show" class="btn btn-info btn-large " id="btn-show" >เปิด - ปิด กราฟ</button></div>
+
+
 </div>
 <?php } ?>
