@@ -351,11 +351,86 @@ class Report extends  Flat_Controller{
 	function overview($data,$wh=FALSE){
 		$this->template->build('weight/overview/index');
 	}
-	function waist($data,$wh){
-		$this->template->build('weight/waist/index');
+	function waist($data,$wh)
+	{
+		$user_id = (!empty($_GET['user_id'])) ? $_GET['user_id'] :$this->session->userdata('id');
+		$time = (empty($_GET['time'])) ? '' : "and time= ".$_GET['time'];
+		$data['time'] = $_GET['time'];
+		$sql= " select gender,time,count(gender) as cnt from f_weight
+				left join f_weight_detail on f_weight.id = f_weight_detail.weight_id
+				left join f_users on f_weight.user_id = f_users.id
+				left join f_agency_type ON f_agency_type.id = f_users.agency_type
+				where (agency_type <> 7 or agency_type <>8)
+				and user_id= $user_id
+				group by gender ,time";
+
+		$result = $this->db->GetArray($sql);
+		foreach($result as $item){
+			$data['total'][$item['gender']][$item['time']] = $item['cnt'];
+		}
+		$sql = "select gender,bmi_mean,count(bmi_mean) as cnt from f_weight
+				left join f_weight_detail on f_weight.id = f_weight_detail.weight_id
+				left join f_users on f_weight.user_id = f_users.id
+				left join f_agency_type ON f_agency_type.id = f_users.agency_type
+				where (agency_type <> 7 or agency_type <>8)
+				and user_id= $user_id $time
+				group by bmi_mean,gender";
+		$result = $this->db->GetArray($sql);
+		foreach($result as $item){
+			$data['waist'][$item['gender']][$item['bmi_mean']] = $item['cnt'];
+		}
+		$data['user_total'] = array_sum($data['waist']);
+
+		$this->template->build('weight/waist/index',$data);
 	}
-	function height($data,$wh){
-		$this->template->build('weight/height/index');
+	function height($data,$wh)
+	{
+		$user_id = (!empty($_GET['user_id'])) ? $_GET['user_id'] :$this->session->userdata('id');
+		$time = (empty($_GET['time'])) ? '' : "and time= ".$_GET['time'];
+		$data['time'] = $_GET['time'];
+		$sql= " select gender,time,count(gender) as cnt from f_weight
+				left join f_weight_detail on f_weight.id = f_weight_detail.weight_id
+				left join f_users on f_weight.user_id = f_users.id
+				left join f_agency_type ON f_agency_type.id = f_users.agency_type
+				where (agency_type <> 7 or agency_type <>8)
+				and user_id= $user_id
+				group by gender ,time";
+
+		$result = $this->db->GetArray($sql);
+		foreach($result as $item){
+			$data['total'][$item['gender']][$item['time']] = $item['cnt'];
+		}
+
+		$sql = "select gender,height,height/2 as divide,waistline from f_weight
+				left join f_weight_detail on f_weight.id = f_weight_detail.weight_id
+				left join f_users on f_weight.user_id = f_users.id
+				left join f_agency_type ON f_agency_type.id = f_users.agency_type
+				where (agency_type <> 7 or agency_type <>8)
+				and user_id= $user_id $time ";
+		$result = $this->db->GetArray($sql);
+		$i=0;$j=0;
+		foreach($result as $item){
+			if($item['waistline'] < $item['divide']){
+				$i++;
+				$data['normal'][$item['gender']] = $i;
+			}else if($item['waistline'] > $item['divide']){
+				$j++;
+				$data['abnormal'][$item['gender']] = $j;
+			}
+		}
+
+		if($data['print']=="preview"){
+			$this->template->set_layout('report');
+			$this->template->build('weight/height/report',$data);
+		}else if($data['print']=="export"){
+			$filename= "รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง Ht_".date("Y-m-d_H_i_s").".xls";
+			$this->template->build('weight/height/export',$data);
+			header("Content-Disposition: attachment; filename=".$filename);
+			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
+		}else{
+			$this->template->build('weight/height/index',$data);
+		}
+
 	}
 
 }
