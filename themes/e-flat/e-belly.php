@@ -19,8 +19,8 @@
 			<div class="titleGroup"><img src="media/img/title-poll.png" width="393" height="79" /></div>
 			<div id="menuPoll">
 				<ul>
-			    <li class="btn-poll1"><a href="f_behavior/index/1" style="width:212px;height:32px;">&nbsp;</a></li>
-				<li class="btn-poll2"><a href="f_behavior/index/2">&nbsp;</a></li>
+			    <li class="btn-poll1"><a href="f_behavior/index/1"  style="display:inline-block;width:212px;">&nbsp;</a></li>
+				<li class="btn-poll2"><a href="f_behavior/index/2"  style="display:inline-block;width:212px;">&nbsp;</a></li>
 			    <li class="menuPoll1"><a href="#">&nbsp;</a>
 			        <ul class="ReportPoll">
 			            <li style="width:400px;"><a href="report/index/behavior">รายงานผลการประเมินพฤติกรรม</a></li>

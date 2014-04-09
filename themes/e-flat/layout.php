@@ -19,8 +19,8 @@
 		<div class="titleGroup"><img src="media/img/title-person.png" width="397" height="96"></div>
 		<div id="topmenuPerson">
 			<ul>
-		    	<li class="topmenuPerson1"><a href="f_weight/index/1">&nbsp;</a></li>
-		        <li class="topmenuPerson2"><a href="f_weight/index/2">&nbsp;</a></li>
+		    	<li class="topmenuPerson1"><a href="f_weight/index/1" style="display:inline-block;width:150px;">&nbsp;</a></li>
+		        <li class="topmenuPerson2"><a href="f_weight/index/2" style="display:inline-block;width:150px;">&nbsp;</a></li>
 		        <li class="topmenuPerson7"><a href="#">&nbsp;</a>
 		        	<ul class="sub-topmenuPerson7">
 		                <li style="width:400px;"><a href="report/index/person/1">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายบุคคล)</a></li>
@@ -28,7 +28,8 @@
 		                <li style="width:400px;"><a href="report/index/area">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายจังหวัด)</a></li>
 		                <li style="width:400px;"><a href="report/index/overview">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายเขต)</a></li>
 		                <li style="width:400px;"><a href="report/index/height">รายงานภาวะโรคอ้วนลงพุง (Ht/2)</a></li>
-		                <li style="width:400px;"><a href="report/index/waist">รายงานภาวะโรคอ้วนลงพุง (BMI)</a></li>
+		                <li style="width:400px;"><a href="report/index/bmi">รายงานภาวะโรคอ้วนลงพุง (BMI)</a></li>
+		                 <li style="width:400px;"><a href="report/index/waist">รายงานภาวะโรคอ้วนลงพุง (รอบเอว)</a></li>
 		            </ul>
 		        </li>
 		    </ul>

@@ -67,6 +67,9 @@ class Report extends  Flat_Controller{
 			case "height":
 				$this->height($data, $wh);
 				break;
+			case "bmi":
+				$this->bmi($data, $wh);
+				break;
 		}
 
 	}
@@ -356,11 +359,15 @@ class Report extends  Flat_Controller{
 	function overview($data,$wh=FALSE){
 		$this->template->build('weight/overview/index');
 	}
-	function waist($data,$wh)
+	function bmi($data,$wh)
 	{
 		$user_id = (!empty($_GET['user_id'])) ? $_GET['user_id'] :$this->session->userdata('id');
-		$time = (empty($_GET['time'])) ? '' : "and time= ".$_GET['time'];
-		$data['time'] = $_GET['time'];
+		$time="";
+		$data['time'] = "1";
+		if(!empty($_GET['time'])){
+			$time ="and time= ".$_GET['time'];
+			$data['time'] = $_GET['time'];
+		}
 		$sql= " select gender,time,count(gender) as cnt from f_weight
 				left join f_weight_detail on f_weight.id = f_weight_detail.weight_id
 				left join f_users on f_weight.user_id = f_users.id
@@ -387,15 +394,15 @@ class Report extends  Flat_Controller{
 		$data['user_total'] = array_sum($data['waist']);
 		if($data['print']=="preview"){
 			$this->template->set_layout('report');
-			$this->template->build('weight/waist/report',$data);
+			$this->template->build('weight/bmi/report',$data);
 		}else if($data['print']=="export"){
 			$filename= "รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง BMI_".date("Y-m-d_H_i_s").".xls";
 			$this->template->set_layout('report');
-			$this->template->build('weight/waist/export',$data);
+			$this->template->build('weight/bmi/export',$data);
 			header("Content-Disposition: attachment; filename=".$filename);
 			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
 		}else{
-			$this->template->build('weight/waist/index',$data);
+			$this->template->build('weight/bmi/index',$data);
 		}
 
 	}
