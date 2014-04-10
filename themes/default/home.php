@@ -17,13 +17,9 @@
 
            <div id="row1">
 <!--------------------------------------------------------------------------highlight-------------------------------------------------------------->
-                <div id="highlight">
-                    <div id="arrowleft"><a href="#"> </a></div>
-                    <ul>
-                      <li><a href="#"><img src="img/hilight-pic1_.png" width="421" height="250" /></a></li>
-                    </ul>
-                    <div id="arrowright"><a href="#"> </a></div>
-                </div>
+
+				<?php echo modules::run('hilights/index'); ?>
+
 <!--------------------------------------------------------------------------BMI-------------------------------------------------------------->
                 <div id="bmi">
                    <div id="formBMI">
@@ -79,29 +75,7 @@
 				<div class="line2"> </div>
 	  </div>
  <!--------------------------------------------------------------------------สื่อ-------------------------------------------------------------->
-            <div id="books">
-                <div class="tomatoes"></div>
-                <div class="titleBook">สื่อสิ่งพิมพ์ :
-                    <ul>
-                      <li><a href="#" class="active">โปสเตอร์</a></li>
-                      <li><a href="#">หนังสือ</a></li>
-                      <li><a href="#">คู่มือ</a></li>
-                    </ul>
-              </div>
-         			<br>
-        		<div id="shelf">
-                    <div id="arrowleftbook"><a href="#"> </a></div>
-                      <ul>
-                        <li><a href="#"><img src="img/book1.jpg" width="90" height="128" border="0"></a></li>
-                        <li><a href="#"><img src="img/book2.jpg" width="90" height="128" border="0"></a></li>
-                        <li><a href="#"><img src="img/book3.jpg" width="90" height="128" border="0"></a></li>
-                        <li><a href="#"><img src="img/book4.jpg" width="90" height="128" border="0"></a></li>
-                        <li><a href="#"><img src="img/book5.jpg" width="90" height="128" border="0"></a></li>
-                      </ul>
-                     <div id="arrowrightbook"><a href="#"> </a></div>
-                     <div class="btn-moreBooks"><a href="#">&nbsp;</a></div>
-       		  </div>
-      </div>
+		<?php echo modules::run('download/index'); ?>
 <!-----------------------Start row2-------------------------------->
            <br>
            <div id="row2">

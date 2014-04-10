@@ -60,10 +60,12 @@ behavior: url(pie/PIE.htc);
 #row4 { margin:0 auto; width:1040px;}
 #row5 { margin:0 auto; width:1225px;}
 
-
+/*HIGHLIGHT*/
+#highlight{float:left;margin:0 auto; text-align:center; margin-top:70px; margin-left:100px;margin-bottom:-79px; width:495px;}
+.border-hilight{background:url(../img/hilight-border.png) no-repeat;width:600px;height:250px; display:inline-block;padding:20px;z-index:10}
 
 /*BMI*/
-#bmi{float:right; width:279px; height:244px;  background:url(../img/bg-BMI.png)no-repeat; margin-top:90px; margin-right:40px;}
+#bmi{float:right; width:279px; height:244px;  background:url(../img/bg-BMI.png)no-repeat; margin-top:70px; margin-right:82px;}
 #formBMI {margin-top:115px;margin-left:42px; line-height:26px;}
 #formBMI label{font-weight:normal;}
 #formBMI input{font-weight:normal;border:1px solid #8a8a8a; width:90px; height:23px;}
@@ -238,5 +240,7 @@ behavior: url(pie/PIE.htc);
 
 .menuPoll1{display:block;background:url(../img/btn-reportPoll.png) no-repeat; width:107px; height:32px; cursor:pointer;margin-left:5px;}
 .menuPoll1:hover{background:url(../img/btn-reportPoll-hot.png) no-repeat;
+
+
 
 
