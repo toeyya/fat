@@ -137,7 +137,9 @@ class F_weight extends flat_Controller
 		}
 		$this->template->build('olderfund/upload');
 	}
+	function bmi()
+	{
+		$this->load->view('bmi');
+	}
 }
-
-
 ?>

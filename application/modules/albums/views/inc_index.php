@@ -1,8 +1,6 @@
 <style>
 #slide-gallery .flex-direction-nav .flex-next{background: url(../../../fat/media/img/arrow-purple-right.png) no-repeat;width:29px; height:29px;top:75%;right:26px}
 #slide-gallery .flex-direction-nav .flex-prev{background: url(../../../fat/media/img/arrow-purple-left.png)no-repeat;width:29px; height:29px;top:75%;}
-/*#slide-gallery  ul.ul-gallery{ padding:0; margin:0;   text-align:center; list-style:none;}
-#slide-gallery  ul li{ display:inline-block;}*/
 </style>
 <div id="gallery">
 <span class="titleGallery">รูปภาพกิจกรรม</span> <div class="line4"> </div>
@@ -69,20 +67,12 @@
 		 </div>
 	 </li>
  </ul>
-
-
 </div>
-     <div class="btn-gallery-viewall"><a href="#">&nbsp;</a></div>
 </div>
 <script type="text/javascript">
 $(window).load(function() {
   $('#slide-gallery').flexslider({
-    slideshow: false,
-    animation: "slide",
-    animationLoop: false,
-    itemWidth:500,minItems: 1,maxItems: 2,reverse: false,
-    controlNav: false,prevText: "",nextText: "",
-	slideshowSpeed: 7000,
+    slideshow: false,animation: "slide",animationLoop: false,itemWidth:500,minItems: 1,maxItems: 2,reverse: false,controlNav: false,prevText: "",nextText: "",slideshowSpeed: 7000,
   });
 });
 </script>

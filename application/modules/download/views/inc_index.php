@@ -1,6 +1,6 @@
 <style>
 #shelf .flex-direction-nav .flex-next{right:223px;background: url(../../../fat/media/img/arrowbook-right.png) no-repeat;width:21px; height:39px;}
-#shelf .flex-direction-nav .flex-prev {left:223px;background: url(../../../fat/media/img/arrowbook-left.png)no-repeat;width:21px; height:39px;}
+#shelf .flex-direction-nav .flex-prev{left:223px;background: url(../../../fat/media/img/arrowbook-left.png)no-repeat;width:21px; height:39px;}
 </style>
        <div id="books">
             <div class="tomatoes"></div>
@@ -34,13 +34,7 @@
 <script type="text/javascript">
 $(window).load(function() {
   $('#slider').flexslider({
-    slideshow: false,
-    animation: "slide",
-    animationLoop: false,
-    itemWidth: 120,
-    itemMargin:60,minItems: 3,maxItems: 5,reverse: false,
-    controlNav: false,prevText: "",nextText: "",
-	slideshowSpeed: 7000,
+    slideshow: false,animation: "slide",animationLoop: false,itemWidth: 120,itemMargin:60,minItems: 3,maxItems: 5,reverse: false,controlNav: false,prevText: "",nextText: "",slideshowSpeed: 3000,
   });
 });
 </script>

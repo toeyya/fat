@@ -1,19 +1,12 @@
 <div id="highlight">
 	<div class="flexslider" style="width:421px;">
 	  <ul class="slides">
+	  	<?php foreach($result as $item): ?>
 	  	<li  class="flex-active-slide">
-	  		<a href="f_weight/ebelly">
-	  		<img src="media/img/hilight-pic1_.png" width=" 421px" height="250px"></a>
-	  		<!--<p class="flex-caption">Flexslider by WooThemes.</p>-->
+	  		<a href="<?php echo $item['url'] ?>"><img src="uploads/hilight/<?php echo $item['image'] ?>" width="421px" height="250px"></a>
+	  		<p class="flex-caption"><?php echo $item['title'] ?></p>
 	  	</li>
-	  	<li>
-	  		<a href="#">
-	  			<img src="http://woothemes.wpengine.netdna-cdn.com/wp-content/themes/woo/images/flex/flexslider_b.jpg"></a>
-	  		<!--<p class="flex-caption">This image is wrapped in a link.</p>-->
-	  	</li>
-	  	<li>
-	  		<img src="media/img/hilight-pic1.png" width=" 421px" height="250px">
-	  	</li>
+	  	<?php endforeach; ?>
 	  </ul>
 	</div>
 <ul class="flex-direction-nav"><li><a class="flex-prev" href="#"></a></li><li><a class="flex-next" href="#"></a></li></ul>

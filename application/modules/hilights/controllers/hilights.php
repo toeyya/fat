@@ -7,10 +7,8 @@ class Hilights extends  Public_Controller{
 	function index()
 	{
 		$data['result'] = $this->hilight->where("active =1")->sort("created")->order("desc")->limit(5)->get();
-		$this->load->view('inc_index');
+		$this->load->view('inc_index',$data);
 	}
-	function test(){
-		$this->template->build('test');
-	}
+
 }
 ?>

@@ -21,17 +21,7 @@
 				<?php echo modules::run('hilights/index'); ?>
 
 <!--------------------------------------------------------------------------BMI-------------------------------------------------------------->
-                <div id="bmi">
-                   <div id="formBMI">
-                    <label>น้ำหนัก :</label>
-                    <input type="">
-                    <label>กิโลกรัม</label><br>
-                    <label style="margin-left:1px;">ส่วนสูง :</label>
-                    <input type="">
-                    <label>เซ็นติเมตร</label>
-                   <button type="submit" value="" class="btn-bmi"> </button>
-                  </div>
-                </div>
+				<?php echo modules::run('f_weight/bmi'); ?>
 
            </div>
 <!-----------------------End row1-------------------------------->

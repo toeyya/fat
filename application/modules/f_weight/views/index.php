@@ -10,7 +10,7 @@
 </div>
 <div class="right" style="margin-bottom: 10px;">
 	<a href="#" class="btn btn-default"><i class="fa fa-arrow-up"></i>นำเข้า  excel</a>
-	<a href="f_weight/index/<?php echo $time ?>/export<?=GetCurrentUrlGetParameter();?>" class="btn btn-default"><i class="fa fa-arrow-down"></i>ดาวน์โหลด  excel</a>
+	<a href="f_weight/index/<?php echo $time ?>/export<?=GetCurrentUrlGetParameter();?>"  class="btn btn-default"><i class="fa fa-arrow-down"></i>ดาวน์โหลด  excel</a>
 	<a href="f_weight/index/<?php echo $time ?>/preview<?=GetCurrentUrlGetParameter();?>" class="btn btn-default" target="_blank">พิมพ์ข้อมูล</a>
  	<?php if($time=="1"): ?>
  	<button  name="btn_add" class="btn_add  btn btn-info">เพิ่มทีละหลายคน</button>
