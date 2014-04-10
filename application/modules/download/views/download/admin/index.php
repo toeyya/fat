@@ -39,7 +39,7 @@
 						  	<td><?php echo $item['title']?></td>
 						  	<td><?php echo $item['agency_name']?></td>
 						  	<td>
-								<a class="btn btn-info btn-sm" href="download/admin/download/form/<?php echo $item['id']?>/<?php $type_id ?>">
+								<a class="btn btn-info btn-sm" href="download/admin/download/form/<?php echo $item['id']?>/<?php echo $type_id ?>">
 									<i class="fa fa-edit "></i>
 								</a>
 								<a class="btn btn-danger btn-sm" href="download/admin/download/delete/<?php echo $item['id'] ?>/<?php echo $type_id ?>">

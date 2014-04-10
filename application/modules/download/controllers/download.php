@@ -6,10 +6,12 @@ class Download extends Public_Controller{
 		$this->load->model("download_model",'download');
 		$this->load->model('type_model','type');
 	}
-	function index()
+	function index($type_id=1)
 	{
-		$this->load->view('inc_index');
-		//$this->template->build('inc_index');
+		$data['type'] = $this->type->get();
+		$data['type_id'] = $type_id;
+		$data['result'] = $this->download->where("type_id = $type_id and active=1")->limit(5)->sort('created')->order('desc')->get();
+		$this->load->view('inc_index',$data);
 	}
 
 }

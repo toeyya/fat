@@ -6,26 +6,23 @@
             <div class="tomatoes"></div>
             <div class="titleBook">สื่อสิ่งพิมพ์ :
                 <ul>
-                  <li><a href="#" class="active">โปสเตอร์</a></li>
-                  <li><a href="#">หนังสือ</a></li>
-                  <li><a href="#">คู่มือ</a></li>
+                <?php foreach($type as $key =>$t): ?>
+                  <li><a href="download/index/<?php echo $t['id'] ?>" class="<?php if($key==0){ echo "active";} ?>"><?php echo $t['name'] ?></a></li>
+                  <?php endforeach; ?>
                 </ul>
           </div>
      			<br>
     		<div id="shelf" style="width:600px;padding-left:32px;padding:right:32px;">
 			<div id="slider" >
                   <ul class="slides">
-                    <li class="flex-active-slide"><a href="#"><img src="media/img/book1.jpg" width="90" height="128" border="0"></a></li>
-                    <li><a href="#"><img src="media/img/book2.jpg" width="90" height="128" border="0"></a></li>
-                    <li><a href="#"><img src="media/img/book3.jpg" width="90" height="128" border="0"></a></li>
-                    <li><a href="#"><img src="media/img/book4.jpg" width="90" height="128" border="0"></a></li>
-                    <li><a href="#"><img src="media/img/book5.jpg" width="90" height="128" border="0"></a></li>
-                    <li><a href="#"><img src="media/img/book2.jpg" width="90" height="128" border="0"></a></li>
-                    <li><a href="#"><img src="media/img/book2.jpg" width="90" height="128" border="0"></a></li>
-                    <li><a href="#"><img src="media/img/book3.jpg" width="90" height="128" border="0"></a></li>
-                    <li><a href="#"><img src="media/img/book4.jpg" width="90" height="128" border="0"></a></li>
-                    <li><a href="#"><img src="media/img/book5.jpg" width="90" height="128" border="0"></a></li>
-                    <li><a href="#"><img src="media/img/book2.jpg" width="90" height="128" border="0"></a></li>
+                  	<?php foreach($result as $key =>$item): ?>
+                    <li class="<?php if($key==0){ echo 'flex-active-slide';} ?>">
+                    	<a href="uploads/download/<?php echo $type_id ?>/file/<?php echo $item['files'] ?>">
+                    	<img src="uploads/download/<?php echo $type_id ?>/<?php echo $item['image'] ?>" width="90" height="128" border="0">
+                    	</a>
+                    </li>
+
+                    <?php endforeach; ?>
                   </ul>
 			</div>
    		  </div>
