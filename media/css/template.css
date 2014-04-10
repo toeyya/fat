@@ -62,7 +62,7 @@ behavior: url(pie/PIE.htc);
 
 /*HIGHLIGHT*/
 #highlight{float:left;margin:0 auto; text-align:center; margin-top:70px; margin-left:100px;margin-bottom:-79px; width:495px;}
-.border-hilight{background:url(../img/hilight-border.png) no-repeat;width:600px;height:250px; display:inline-block;padding:20px;z-index:10}
+
 
 /*BMI*/
 #bmi{float:right; width:279px; height:244px;  background:url(../img/bg-BMI.png)no-repeat; margin-top:70px; margin-right:82px;}
@@ -90,8 +90,8 @@ behavior: url(pie/PIE.htc);
 /*BOOKS*/
 #books{margin-top:30px;margin-left:30px; position:relative;}
 #shelf{margin:0 auto; background-image: url("../img/shelf.png");background-repeat: no-repeat;background-position: bottom; height:191px;}
-#shelf ul{ padding:0; margin:0; margin-left:13px;  text-align:center; list-style:none;}
-#shelf ul li{padding-right:13px; display:inline; }
+#shelf ul{ padding:0; margin:0; margin-left:10px;  text-align:center; list-style:none;width:580px;}
+#shelf ul li{padding-right:13px; display:inline;}
 .titleBook{font-family:tushand; font-size:34px; font-weight:bolder; color:#5c9502;margin-bottom:30px; margin-left:70px;}
 .titleBook ul{margin-top:-45px; margin-left:150px; padding:0;  list-style:none;}
 .titleBook ul li a{display:inline; float:left;font-size:27px; color:#929292; padding-right:20px; }
@@ -120,7 +120,7 @@ behavior: url(pie/PIE.htc);
 	#arrowGallery-right a:hover{background:url(../img/arrow-purple-right-hot.png)no-repeat; text-decoration:none; }
 .line4{ border-bottom:1px solid #bcbdbb; margin-bottom:30px;}
 .titleGallery{ text-align: center; font-size:43px; font-family:tushand; font-weight:bolder; color:#a801aa;}
-#col1-gallery{float:left; width:50%;position:relative;}
+#col1-gallery{float:left; width:100%;position:relative;}
 .title-ogan{background-color:#f7dafc; padding:4px; display:block; color:#8e03a3;  border-radius:10px; margin-bottom:15px; width:85%;}
 	.boximg{float:left; background:url(../img/bg-picgallery.png)no-repeat; width:284px;height:224px; border:0; padding-top:12px;}
 	.info-ogan{float:left; text-align:left; margin-left:20px; margin-top:10px;  }

@@ -172,49 +172,7 @@
           <div id="banner-webboard"><a href="#"><img src="media/img/banner-webboard2.png" width="956" height="122" /></a></div><div class="clearfix"> </div>
 
  <!--------------------------------------------------------------------------Gallery------------------------------------------------------------->
-
-          <div id="gallery">
-          	<span class="titleGallery">รูปภาพกิจกรรม</span> <div class="line4"> </div>
-            <div id="arrowGallery-left"><a href="#">&nbsp;</a></div>
-                  <div id="col1-gallery">
-                  <div class="title-ogan"><strong>องค์กร :</strong> อบต. แม่ลาด อ.คลอขลุง จ.กำแพงเพชร</div>
-                  <div class="boximg"><a href="#"><img src="img/pic1.jpg" width="259" height="197" /></a></div>
-                  <div class="info-ogan">
-                    <ul>
-                        <li><a href="#">ประวัติองค์กร</a></li>
-                        <li><a href="#">วิสัยทัศน์/พันธกิจ</a></li>
-                        <li><a href="#">Item 3</a></li>
-                        <li><a href="#">Item 4</a></li>
-                        <li><a href="#">Item 5</a></li>
-                        <li><a href="#">Item 6</a></li>
-                        <li><a href="#">Item 7</a></li>
-                        <li><a href="#">Item 8</a></li>
-                        <li><a href="#">Item 9</a></li>
-                        <li><a href="#">Item 10</a></li>
-                    </ul>
-                  </div>
-             </div>
-             <div id="col1-gallery">
-                  <div class="title-ogan"><strong>องค์กร :</strong> บริษัทผลิตไฟฟ้าราชบุรี จำกัด อ.เมือง จ.ราชบุรี</div>
-                  <div class="boximg"><a href="#"><img src="img/pic2.jpg" width="259" height="197" /></a></div>
-                  <div class="info-ogan">
-                    <ul>
-                        <li><a href="#">ประวัติองค์กร</a></li>
-                        <li><a href="#">วิสัยทัศน์/พันธกิจ</a></li>
-                        <li><a href="#">Item 3</a></li>
-                        <li><a href="#">Item 4</a></li>
-                        <li><a href="#">Item 5</a></li>
-                        <li><a href="#">Item 6</a></li>
-                        <li><a href="#">Item 7</a></li>
-                        <li><a href="#">Item 8</a></li>
-                        <li><a href="#">Item 9</a></li>
-                        <li><a href="#">Item 10</a></li>
-                    </ul>
-                  </div>
-             </div>
-                 <div id="arrowGallery-right"><a href="#">&nbsp;</a></div>
-                 <div class="btn-gallery-viewall"><a href="#">&nbsp;</a></div>
-           </div>
+		<?php echo modules::run('albums/index'); ?>
     </div>
 <!-----------------------End row2-------------------------------->
 	<div class="clearfix"> </div>

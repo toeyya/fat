@@ -9,6 +9,7 @@ class Download extends Public_Controller{
 	function index()
 	{
 		$this->load->view('inc_index');
+		//$this->template->build('inc_index');
 	}
 
 }
