@@ -47,7 +47,7 @@ class Albums extends Admin_Controller{
 					$this->picture->save($data);
 				}
 			}
-			set_notify('success', SAVE_DATE_COMPLETE);
+			set_notify('success', SAVE_DATA_COMPLETE);
 		}
 		redirect('albums/admin/albums/form/'.$album_id);
 	}
