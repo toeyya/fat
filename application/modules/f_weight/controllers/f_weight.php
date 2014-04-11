@@ -18,7 +18,6 @@ class F_weight extends flat_Controller
 	function ebelly()
 	{
 		$this->template->set_layout('home');
-		//$this->template->set_layout('index_bac');
 		$this->template->build('e-belly');
 	}
 	function index($time,$print=FALSE)
@@ -137,9 +136,6 @@ class F_weight extends flat_Controller
 		}
 		$this->template->build('olderfund/upload');
 	}
-	function bmi()
-	{
-		$this->load->view('bmi');
-	}
+
 }
 ?>

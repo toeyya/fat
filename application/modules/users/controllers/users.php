@@ -31,6 +31,12 @@ class Users extends  Public_Controller{
 		logout();
 		redirect('home');
 	}
+	function save(){
+		if($_POST){
+			set_notify('success',SAVE_DATA_COMPLETE);
+		}
+		redirect('users/register');
+	}
 }
 
 ?>

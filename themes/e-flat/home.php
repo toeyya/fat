@@ -27,7 +27,6 @@
           <div id="blank">
                 <br><br>
                 <div class="title-eflat">ระบบสารสนเทศ e-flat belly<div class="line7"> </div> </div><br><br>
-
                       	<a href="criteria/index"><img src="media/img/banner1.png" width="298" height="229" border="0" style="margin-left:45px;"></a>
                     	<a href="f_weight/index/1"><img src="media/img/banner2.png" width="298" height="229" border="0" style="margin-left:25px;"></a>
                     	<a href="f_behavior/index/1"><img src="media/img/banner3.png" width="298" height="229" border="0" style="margin-left:25px;"></a>

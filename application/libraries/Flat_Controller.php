@@ -4,7 +4,11 @@ class Flat_Controller extends Controller
 	function __construct()
 	{
 		parent::__construct();
-
+		if(!is_login()){
+			//logout();
+			set_notify('error','กรุณาเข้าสู่ระบบ');
+			redirect('home');
+		}
 		//set theme
 		$this->template->set_theme('e-flat');
 		//set layout

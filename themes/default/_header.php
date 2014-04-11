@@ -16,7 +16,7 @@
           <div class="clearfix"></div>
 		  <?php if( $this->session->userdata('name')): ?>
 		  <div id="user_login" style="position:relative;width:300px;float:right;">
-		  	ยืนดีต้อนรับ : <?php echo $this->session->userdata('name'); ?> <a href="users/logout" class="label label-danger">ออกจากระบบ</a>
+		  	ยืนดีต้อนรับ : <?php echo $this->session->userdata('name'); ?> <a href="users/logout" class="label label-danger" onclick="return confirm('ยืนยันการออกจากระบบ ')">ออกจากระบบ</a>
 		  </div>
 		  <?php endif; ?>
           <!--<div id="searchbox">
