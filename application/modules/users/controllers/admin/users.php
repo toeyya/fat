@@ -16,9 +16,9 @@ class Users extends Admin_Controller
 		$this->template->build('admin/users/index',$data);
 
 	}
-	function form($id=FALSE)
+	function form($id=FALSE,$profiles=FALSE)
 	{
-
+		$data['title'] =(empty($profiles)) ? "สมาชิก":"ประวัติส่วนตัว";
 		$data['rs'] = $this->user->get_row("f_users.id",$id);
 		$this->template->build('admin/users/form',$data);
 	}

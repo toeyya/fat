@@ -5,7 +5,6 @@ class Public_Controller extends Controller
 	function __construct()
 	{
 		parent::__construct();
-
 		//set theme
 		$this->template->set_theme('default');
 		//set layout
@@ -15,9 +14,8 @@ class Public_Controller extends Controller
 		$this->template->title('ระบบรายงานผู้สัมผัสโรคพิษสุนัขบ้า');
 		//Set js
 		$this->template->append_metadata(js_notify());
-
 	}
-	/*function captcha()
+	function captcha()
 	{
 		$this->load->library('session');
 		$this->load->library('captcha');
@@ -26,6 +24,6 @@ class Public_Controller extends Controller
 		$captcha->chars = '0123456789';
 		$captcha->session = "captcha";
 		$captcha->display();
-	}*/
+	}
 }
 ?>

@@ -9,13 +9,13 @@ class Users extends  Public_Controller{
 		$this->template->build('login');
 	}
 	function login()
-	{
+	{//$this->db->debug =true;
 		if($_POST)
 		{
-			if(login($this->input->post('username'),$this->input->post('password')))
+			if(login($this->input->post('email'),$this->input->post('password')))
 			{
 				set_notify('success', 'ยินดีต้อนรับเข้าสู่ระบบ');
-					redirect('home');
+				redirect('home');
 			}else{
 				set_notify('error', 'อีเมล์หรือรหัสผ่านผิดพลาด');
 				redirect('users/index');

@@ -32,12 +32,14 @@
 				</ul>
 			</li>-->
 			<li><a href="content/admin/content/index/4"><i class="fa fa-bullhorn"></i><span class="hidden-sm"> ประชาสัมพันธ์</span></a></li>
+			<li><a href="content/admin/content/index/4"><i class="fa fa-bullhorn"></i><span class="hidden-sm"> การวางแผนการกิน</span></a></li>
+			<li><a href="content/admin/content/index/4"><i class="fa fa-bullhorn"></i><span class="hidden-sm"> ลดน้ำหนัก ลดรอบเอว</span></a></li>
+			<li><a href="content/admin/content/index/4"><i class="fa fa-bullhorn"></i><span class="hidden-sm"> การออกกำลังกาย</span></a></li>
 			<li><a href="albums/admin/albums"><i class="fa fa-picture-o"></i><span class="hidden-sm"> ภาพกิจกรรม</span></a></li>
 			<li><a href="km/admin/type/index"><i class="fa fa-align-justify"></i><span class="hidden-sm"> KM</span></a></li>
 			<li><a href="calendar.html"><i class="fa fa-calendar"></i><span class="hidden-sm"> M&E</span></a></li>
 			<li><a href="file-manager.html"><i class="fa fa-comment-o"></i><span class="hidden-sm"> เว็บบอร์ด</span></a></li>
-			<li><a href="content/admin/content/index/6"><i class="fa fa-eye"></i><span class="hidden-sm">แบนเนอร์</span></a></li>
-			<li><a href="#"><i class="fa fa-book"></i><span class="hidden-sm">ถาม -ตอบ</span></a></li>
+			<li><a href="#"><i class="fa  fa-info-circle"></i><span class="hidden-sm">ถาม -ตอบ</span></a></li>
 			<li><a href="content/admin/content/index/5"><i class="fa  fa-info-circle"></i><span class="hidden-sm">ติดต่อเรา</span></a></li>
 		</ul>
 	</div><!--/.well -->

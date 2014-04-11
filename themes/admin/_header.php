@@ -241,8 +241,8 @@
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="submenu.html#"><i class="fa fa-user"></i> Profile</a></li>
-							<li><a href="login.html"><i class="fa fa-off"></i> Logout</a></li>
+							<li><a href="users/admin/users/form/<?php echo $this->session->userdata('id') ?>/profile"><i class="fa fa-user"></i> ประวัติส่วนตัว</a></li>
+							<li><a href="users/admin/users/logout"><i class="fa fa-off"></i> ออกจากระบบ</a></li>
 						</ul>
 					</li>
 					<!-- end: User Dropdown -->

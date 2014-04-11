@@ -4,9 +4,7 @@
 		<li>
 			<a href="admin">หน้าแรก</a>
 		</li>
-		<li>
-			<a href="users/admin/users/index">สมาชิก</a>
-		</li>
+		<li class="active"><?php echo $title ?></li>
 	</ul>
 	<hr>
 </div>
@@ -14,7 +12,7 @@
 	<div class="col-lg-12">
 		<div class="box">
 			<div class="box-header">
-				<h2><i class="fa fa-align-justify"></i><span class="break"></span>สมาชิก</h2>
+				<h2><i class="fa fa-align-justify"></i><span class="break"></span><?php echo $title; ?></h2>
 			</div>
 			<div class="box-content">
 			<form class="form-horizontal" role="form" method="post" action="users/admin/users/save">

@@ -1,9 +1,11 @@
-﻿<ul class="breadcrumb">
-	<li><a href="home">หน้าแรก</a><span class="divider">/</span></li> 	
-	<li><a href="content/index/<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a></li> 
-</ul>
-<h1><img src="themes/default/media/images/title_aboutUs.png" width="167" height="34"></h1>
-<div class="view">
+﻿     	  <div id="Breadcrumbs">
+          	<ol id="path-breadcrumb">
+              <li><a href="#">หน้าแรก</a></li>
+              <li class="active"><?php echo $category['name'] ?></li>
+            </ol>
+          </div>
+
+<div class="titleBlank"><?php echo $category['name'] ?><div class="line5"> </div> </div>
+<div class="contentBlank">
 	<?php echo @$contents['detail']?>
-</div>
 </div>

@@ -13,10 +13,10 @@ class Content extends Public_Controller
 	}
 	function index($category_id,$layout=FALSE)
 	{
-
-		$data['contents']=$this->content->select("contents.*,CONVERT(VARCHAR(10), start_date, 120) AS [start_date]")
-							   ->where("category_id='".$category_id."' and start_date <= CONVERT(date, getdate()) and (end_date >= CONVERT(date, getdate()) or end_date is null) and active = '1'")
-							   ->sort("")->order("id desc ")->limit(20)->get();
+		$data['contents'] = $this->content->select('contents.*,firstname,lastname')
+										->join("LEFT JOIN f_profiles on f_profiles.user_id=contents.user_id")
+										->where(" category_id='".$category_id."'")
+										->sort("")->order("queue")->get();
 		$data['pagination']=$this->content->pagination();
 		$data['category_id']=$category_id;
 		$data['category']=$this->cat->get_row($category_id);

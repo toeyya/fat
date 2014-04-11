@@ -3,7 +3,7 @@
 function login($username=FALSE,$password=FALSE)
 {
 	$CI =& get_instance();
-	$CI->db->debug= true;
+	//$CI->db->debug= true;
 	$session_id = session_id();
 	$sql="SELECT user_id,user_type,agency_name,firstname,lastname FROM f_users LEFT JOIN f_profiles ON f_users.id = f_profiles.user_id WHERE email= ?  AND password= ? and active='1' ";
 	$rs = $CI->db->GetRow($sql,array($username,$password));
@@ -11,11 +11,11 @@ function login($username=FALSE,$password=FALSE)
 	{
 		$CI->session->set_userdata('id',$rs['user_id']);
 		$CI->session->set_userdata('user_type',$rs['user_type']);
-		if($CI->session->userdata('user_type')!= 7 || $CI->session->userdata('user_type')!= 8){
+		if($rs['user_type']==1){
 			$CI->session->set_userdata('name',$rs['agency_name']);
 		}else{
 			$fullname = $rs['firstname']." ".$rs['lastname'];
-			$CI->session->userdata('name',$fullname);
+			$CI->session->set_userdata('name',$fullname);
 		}
 
 		//save_log("login");
@@ -27,11 +27,10 @@ function login($username=FALSE,$password=FALSE)
 	}
 
 }
-
 function is_login()
 {
 	$CI =& get_instance();
-	$sql="SELECT * FROM f_users  WHERE active='1' and uid = ? ";
+	$sql="SELECT * FROM f_users  WHERE active='1' and id = ? ";
 	$id = $CI->db->GetOne($sql,$CI->session->userdata('id'));
 	return ($id) ? true : false;
 }
@@ -53,7 +52,8 @@ function login_data($field)
 	$sql = 'select '.$field.' from f_users  where id  = ?';
 
 	$name = $CI->db->GetOne($sql,$CI->session->userdata('id'));
-	return ThaiToUtf8($name);
+	return $name;
+	//return ThaiToUtf8($name);
 }
 
 function logout()

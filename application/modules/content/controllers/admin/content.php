@@ -65,7 +65,8 @@ class Content extends Admin_Controller
 
 			if(!empty($_POST['start_date']))$_POST['start_date'] = Date2DB($_POST['start_date']);	 else $_POST['start_date'] = date('Y-m-d');
 			if(!empty($_POST['end_date']))$_POST['end_date'] = Date2DB($_POST['end_date']);	else $_POST['end_date'] = null;
-			if($_POST['user_id']=="")$_POST['user_id'] = $this->session->userdata('R36_UID');
+			if($_POST['user_id']=="")$_POST['user_id'] = $this->session->userdata('id');
+			$_POST['category_id'] = $category_id;
 			$id = $this->content->save($_POST);
 			if(@$_FILES['image']['name'])
 			{
@@ -74,23 +75,22 @@ class Content extends Admin_Controller
 				$this->content->delete_file($id,'uploads/content/','image');
 				$this->content->delete_file($id,'uploads/content/thumbnail/','image');
 
-				$this->content->save(array('id' => $id, 'image' => $this->content->upload($_FILES['image'],'uploads/content/',false,600,300)));
+				$this->content->save(array('id' => $id, 'image' => $this->content->upload($_FILES['image'],'uploads/content/')));
 				$this->content->thumb('uploads/content/thumbnail/',92,67,'x');
 				}
 
 			}
-			if(@$_FILES['file']['name'])
+			if(@$_FILES['files']['name'])
 			{
-				if(file_extension(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION))){
+				if(file_extension(pathinfo($_FILES['files']['name'], PATHINFO_EXTENSION))){
 					$this->content->delete_file($id,'uploads/content','files');
-					$this->content->delete_file($id,'uploads/content/download','files');
-					$this->content->save(array('id'=>$id,'files'=>$this->content->upload($_FILES['file'],'uploads/content')));
+					$this->content->save(array('id'=>$id,'files'=>$this->content->upload($_FILES['files'],'uploads/content')));
 				}
 			}
 
 			set_notify('success', SAVE_DATA_COMPLETE);
 		}
-		redirect('content/admin/content/index/'.$_POST['category_id']);
+		redirect('content/admin/content/index/'.$category_id);
 
 	}
 
@@ -120,6 +120,8 @@ class Content extends Admin_Controller
 	{
 		$this->content->delete_file($_POST['id'],'uploads/content/',$_POST['field']);
 		$this->content->save(array('id'=>$_POST['id'],$_POST['field']=>''));
+		//$this->content->delete_file($id,'uploads/content/',$field);
+		//$this->content->save(array('id'=>$id,$field=>''));
 	}
 	function search()
 	{

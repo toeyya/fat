@@ -120,6 +120,7 @@
 </form>
 </div>
 </div>
+
 <script type="text/javascript">
 $(document).ready(function(){
 	var tr_last = $('.table-bordered tr:last');

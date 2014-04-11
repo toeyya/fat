@@ -1,5 +1,5 @@
 <?php
-class Person extends Public_Controller
+class Person extends Flat_Controller
 {
 	function __construct()
 	{
@@ -19,7 +19,7 @@ class Person extends Public_Controller
 		//var_dump($data['behavior']);
 		$profile = $this->profile->get_row("user_id",$user_id);
 		$data['gender'] = $profile['gender'];
-
+		$this->template->set_layout('blank');
 		$this->template->build('person/index',$data);
 	}
 	function save()
