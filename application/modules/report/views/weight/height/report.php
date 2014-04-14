@@ -62,6 +62,83 @@
 	</tr>
 </tbody>
 </table>
+<div id="container_grp"  style="height:500px;margin-left:20px;margin-top:10px;margin-bottom: 20px;" class="show"></div>
 <div class="aligncenter"><button name="btn_print" onclick="window.print();" class="btn btn-default btn-large">พิมพ์งาน</button></div>
 </div>
+<script type="text/javascript">
+$(function () {
+	$('#btn-show').click(function(){
+			$('#container_grp').toggleClass("hide show");
+	});
+    $('#container_grp').highcharts({
+        chart: {
+            type: 'column',
+            marginBottom: 120,
+            marginLeft: 100,
+            width: 1000
+        },
+        title: {
+            text: 'รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง (Ht/2)'
+        },
+        subtitle: {
+            text: 'หน่วยงาน <?php echo $user_name ?> ครั้งที่ <?php echo $time; ?>'
+        },
+        xAxis: {
+            categories: ['ปกติ (รอบเอวน้อยกว่า ht/2)', 'อ้วน (รอบเอวมากกว่า ht/2)'],
+            title: {
+                text: 'ความสูงหารสอง',
+                offset: '30'
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'ร้อยละ',
+                offset: '30'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' %'
+        },
+
+        legend: {
+            align: 'center',
+            x:50, // = marginLeft - default spacingLeft
+            y:-30,
+            symbolHeight:30,
+            borderColor: '#FFFFFF',
+            itemWidth: 70
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                column: 'percent',
+                 dataLabels: {
+                    enabled: true,
+                    x: -10,
+                    y: -15,
+                     style: {
+                        color: '#626262'
+                    }
+                }
+            }
+
+
+        },
+        series: [{
+            name: 'ชาย',
+            data: [<?php echo $ab_m1.",".$ab_m2 ?>]
+        }, {
+            name: 'หญิง',
+            data: [<?php echo $ab_f1.",".$ab_f2 ?>]
+        }, {
+            name: 'รวม',
+            data: [<?php echo $sum_per1.",".$sum_per2 ?>]
+        }]
+    });
+});
+
+</script>
 <?php } ?>

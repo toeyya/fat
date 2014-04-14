@@ -1,17 +1,6 @@
 <div id="login-container">
-
-	<div id="logo">
-		<a href="home">
-			<img src="./img/logos/logo-login.png" alt="Logo">
-		</a>
-	</div>
-
 	<div id="login">
-
-		<h3>ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h3>
-
-		<h5>Please sign in to get access.</h5>
-
+		<h1>ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
 		<form id="login-form" method="post" action="users/admin/auth/login" class="form">
 
 			<div class="form-group">
@@ -30,9 +19,7 @@
 
 			</div>
 		</form>
-
-
-		<a href="javascript:;" class="btn btn-default">Forgot Password?</a>
+		<!--<a href="javascript:;" class="btn btn-default">Forgot Password?</a>-->
 
 	</div> <!-- /#login -->
 

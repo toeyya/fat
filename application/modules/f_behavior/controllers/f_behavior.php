@@ -15,14 +15,15 @@ class F_behavior extends Flat_Controller
 		$data['year'] = date('Y')+543;
 		$data['gender']  = array('1'=>'ชาย','2'=>'หญิง');
 		$wh ="";
-		$year = date('Y');$yy = $year-1;$yy_end = $year;
+		/*$year = date('Y');$yy = $year-1;$yy_end = $year;
 		if(!empty($_GET['year'])){
 			$yy = $_GET['year']-1;
 			$yy_end = $_GET['year'];
 			$data['year_search'] = $_GET['year']+543;
 		}
 		$data['year_search'] = $year+543;
-		$wh =" and date(f_behavior_detail.created) between '$yy-10-01' and '$yy_end-09-30'";
+		$wh =" and date(f_behavior_detail.created) between '$yy-10-01' and '$yy_end-09-30'";*/
+		$wh = (empty($_GET['year'])) ?  " and year=".$data['year']: " and year =".$_GET['year'];
 		if(empty($print)){
 			$result = $this->behavior->where("user_id = $user_id and time= $time $wh")->get();
 		}else{
@@ -58,6 +59,7 @@ class F_behavior extends Flat_Controller
 	 //$this->db->debug = true;
 		if($_POST){
 			$data['time'] = $time;
+			$data['year'] = $_POST['year'];
 			$data['user_id'] = $this->session->userdata('id');
 			$cnt = count(array_filter($_POST['fullname']));
 			for($i=0;$i<$cnt;$i++)

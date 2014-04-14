@@ -2,6 +2,8 @@
 class Users extends  Public_Controller{
 	function __construct(){
 		parent::__construct();
+		$this->load->model('user_model','user');
+		$this->load->model('profile_model','profile');
 	}
 	function index()
 	{
@@ -11,13 +13,16 @@ class Users extends  Public_Controller{
 	function login()
 	{//$this->db->debug =true;
 		if($_POST)
-		{
-			if(login($this->input->post('email'),$this->input->post('password')))
+		{ $rtn = login($this->input->post('email'),$this->input->post('password'));
+			if($rtn =="normal")
 			{
 				set_notify('success', 'ยินดีต้อนรับเข้าสู่ระบบ');
 				redirect('home');
-			}else{
+			}else if($rtn =="wrong"){
 				set_notify('error', 'อีเมล์หรือรหัสผ่านผิดพลาด');
+				redirect('users/index');
+			}else if($rtn =="email"){
+				set_notify('error', 'คุณยังไม่ได้ยืนยันการลงทะเบียน');
 				redirect('users/index');
 			}
 		}
@@ -31,11 +36,49 @@ class Users extends  Public_Controller{
 		logout();
 		redirect('home');
 	}
+	function confirm_email($id,$gen_id)
+	{//$this->db->debug=true;
+		$id=clean_url($id);
+		$data['result'] = $this->user->get_one("id","id = $id and gen_id",$gen_id);
+		$this->user->save(array('id'=>$id,'confirm_email'=>'1'));
+		$this->template->build('confirm_email',$data);
+
+	}
 	function save(){
 		if($_POST){
+			$_POST['gen_id'] = generate_password(20);
+			$_POST['user_id'] = $this->user->save($_POST);
+			$_POST['active'] ="1";
+			$this->profile->save($_POST);
+	  		$subject = "ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง - ยืนยันการลงทะเบียน";
+		    $message='<div><img src="'.base_url().'media/img/name.png" width="500px" height="127px"></di>';
+		    $message.='<hr>';
+			$message.='<p>เรียนคุณ'.$_POST['firstname'].' '.$_POST['lastname'].', </p>';
+			$message.='<p>ขอบคุณสำหรับการลงทะเบียนค่ะ  </p>';
+			$message.='<p>กรุณาคลิกลิงค์ด้านล่างเพื่อยืนยันการลงทะเบียน แล้วบัญชีผู้ใช้ของคุณจะสามารถใช้งานได้ค่ะ</p>';
+			$message.='<a href="'.base_url().'users/confirm_email/'.$_POST['user_id'].'/'.$_POST['gen_id'].'">'.base_url().'users/confirm_email/'.$_POST['user_id'].'/'.$_POST['gen_id'].'</a>';
+			phpmail($subject,$_POST['email'],$message);
 			set_notify('success',SAVE_DATA_COMPLETE);
 		}
 		redirect('users/register');
+	}
+    function check_captcha()
+    {
+        if($this->session->userdata('captcha')==$_GET['captcha'])
+        {
+            echo "true";
+        }
+        else
+        {
+            echo "false";
+        }
+    }
+	function profile($id)
+	{
+		$data['user'] = $this->user->get_row("f_users.id",$id);
+		$data['profile'] = "บันทึก";
+		$this->template->build('profile',$data);
+
 	}
 }
 

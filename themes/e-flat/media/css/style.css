@@ -50,8 +50,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', end
 .table-striped tbody tr:nth-child(odd) td.orange,input.orange,.orange{background-color:#FBBE99;color:#626262;}
 .table-striped tbody tr:nth-child(odd) td.green,input.green,.green{background-color:#BDFBC5;color:#626262;}
 .table-striped tbody tr:nth-child(odd) td.yellow,input.yellow,.yellow{background-color:#F8EA82;color:#626262;}
-input.red,.red{background-color:#FFA29B;}
-input.grey,.grey{background-color:#BCBCBC;}
+.table-striped tbody tr:nth-child(odd) td.red,input.red,.red{background-color:#FFA29B;color:#626262;}
+input.grey,.grey{background-color:#BCBCBC;color:#626262;}
 
 
 #container{

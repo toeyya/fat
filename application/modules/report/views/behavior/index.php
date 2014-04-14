@@ -1,5 +1,15 @@
 <div class="titleGroup2">ผลการประเมินพฤติกรรมและกราฟความถี่</div>
+
 <div class="contentBlank">
+	<div id="Breadcrumbs">
+  	<ol id="path-breadcrumb">
+      <li><a href="home">หน้าแรก</a></li>
+      <li><a href="f_weight/ebelly">ระบบสารสนเทศ e-flat belly</a></li>
+       <li><a href="f_behavior/index/1">รประเมินพฤติกรรม</a></li>
+      <li class="active">รายงานผลการประเมินพฤติกรรม</li>
+    </ol>
+</div>
+
 <div id="search" class="form-search">
 	<form action="report/index/behavior" class="form-search">
 		<span>องค์กร</span>
@@ -49,19 +59,19 @@
 	<tr>
 		<td class="title"><?php echo $t ?></td>
 		<td><?php echo $remainder1 =(!empty($score1[$key][2]['cnt'])) ? $score1[$key][2]['cnt']:0; ?></td>
-		<td class="orange"><?php echo $graph1['5'][$key]= ($remainder1!=0) ? (($remainder1*5)/($total1*5))*100:0; ?></td>
+		<td class="orange"><?php echo $graph1['5'][$key]= ($remainder1!=0 && $total1!=0) ? (($remainder1*5)/($total1*5))*100:0; ?></td>
 		<td><?php echo $remainder2 =(!empty($score1[$key][1]['cnt'])) ? $score1[$key][1]['cnt']:0; ?></td>
-		<td class="green"><?php echo $graph1['3'][$key]= ($remainder2!=0) ? (($remainder2*3)*100)/($total1*3):0; ?></td>
+		<td class="green"><?php echo $graph1['3'][$key]= ($remainder2!=0 && $total1!=0) ? (($remainder2*3)*100)/($total1*3):0; ?></td>
 		<td><?php echo $remainder3 =(!empty($score1[$key][0]['cnt'])) ? $score1[$key][0]['cnt']:0; ?></td>
-		<td class="yellow"><?php echo $graph1['1'][$key]= ($remainder3!=0) ? (($remainder3*1)*100)/($total1*1):0; ?></td>
+		<td class="yellow"><?php echo $graph1['1'][$key]= ($remainder3!=0 && $total1!=0) ? (($remainder3*1)*100)/($total1*1):0; ?></td>
 		<td><?php echo $sum1[$key]=($remainder1+$remainder2+$remainder3) ?></td>
 
 		<td><?php echo $remainder4 =(!empty($score2[$key][2]['cnt'])) ? $score2[$key][2]['cnt']:0; ?></td>
-		<td class="orange"><?php echo $graph2['5'][$key]= ($remainder4!=0) ? (($remainder4*5)/($total2*5))*100:0; ?></td>
+		<td class="orange"><?php echo $graph2['5'][$key]= ($remainder4!=0 && $total2!=0) ? (($remainder4*5)/($total2*5))*100:0; ?></td>
 		<td><?php echo $remainder5 =(!empty($score2[$key][1]['cnt'])) ? $score2[$key][1]['cnt']:0; ?></td>
-		<td class="green"><?php echo $graph2['3'][$key]= ($remainder5!=0) ? (($remainder5*3)*100)/($total2*3):0; ?></td>
+		<td class="green"><?php echo $graph2['3'][$key]= ($remainder5!=0 && $total2!=0) ? (($remainder5*3)*100)/($total2*3):0; ?></td>
 		<td><?php echo $remainder6 =(!empty($score2[$key][0]['cnt'])) ? $score2[$key][0]['cnt']:0; ?></td>
-		<td class="yellow"><?php echo $graph2['1'][$key]= ($remainder6!=0) ? (($remainder6*1)*100)/($total2*1):0; ?></td>
+		<td class="yellow"><?php echo $graph2['1'][$key]= ($remainder6!=0 && $total2!=0) ? (($remainder6*1)*100)/($total2*1):0; ?></td>
 		<td><?php echo $sum2[$key]=($remainder4+$remainder5+$remainder6) ?></td>
 		<td><?php echo abs($sum1[$key]-$sum2[$key])?></td>
 		<td><?php echo (abs($sum1[$key]-$sum2[$key]))?></td>

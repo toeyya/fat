@@ -15,6 +15,19 @@
 			</div>
 			<div class="box-content">
 			<form class="form-horizontal" role="form" method="post" action="content/admin/content/save" enctype="multipart/form-data">
+	<?php if(is_file('uploads/content/thumbnail/'.$rs['image'])): ?>
+	<tr><th></th><td><img class="img" src="<?php echo 'uploads/content/thumbnail/'.$rs['image'] ?>"  /></td></tr>
+	<?php endif ?>
+
+			 <div class="form-group">
+			    <label for="title" class="col-sm-2 control-label">รูปภาพ</label>
+			    <div class="col-sm-3">
+				<small>อนุญาติเฉพาะ .gif .jpg .jpeg</small></br>
+				<input type="file" name="image" id="load" />
+			    </div>
+			  </div>
+
+
 			  <div class="form-group">
 			    <label for="title" class="col-sm-2 control-label">หัวข้อ</label>
 			    <div class="col-sm-3">

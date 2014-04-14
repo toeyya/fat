@@ -1926,6 +1926,9 @@ select[multiple].input-lg {
   margin-bottom: 10px;
   color: #737373;
 }
+form {
+margin: 0 0 20px;
+}
 @media (min-width: 768px) {
   .form-inline .form-group {
     display: inline-block;
@@ -1961,6 +1964,14 @@ select[multiple].input-lg {
     top: 0;
   }
 }
+.form-horizontal .controls {
+margin-left: 180px;
+
+}
+
+.span9 {
+  width: 700px;
+}
 .form-horizontal .control-label,
 .form-horizontal .radio,
 .form-horizontal .checkbox,
@@ -1970,6 +1981,16 @@ select[multiple].input-lg {
   margin-top: 0;
   margin-bottom: 0;
 }
+.form-horizontal .control-label {
+float: left;
+width: 160px;
+padding-top: 5px;
+text-align: right;
+}
+.form-horizontal .control-group {
+margin-bottom: 20px;
+}
+
 .form-horizontal .radio,
 .form-horizontal .checkbox {
   min-height: 27px;
@@ -5783,3 +5804,21 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+.input-mini {
+  width: 60px;
+}
+.input-small {
+  width: 90px;
+}
+.input-medium {
+  width: 150px;
+}
+.input-large {
+  width: 210px;
+}
+.input-xlarge {
+  width: 270px;
+}
+.input-xxlarge {
+  width: 530px;
+}

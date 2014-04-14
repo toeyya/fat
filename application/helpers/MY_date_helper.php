@@ -9,7 +9,7 @@ if(!function_exists('get_year_option'))
 		$data = array();
 		for($year;$year >= $start;$year--)
 		{
-			$data[$year_eng] = $year;
+			$data[$year] = $year;
 			--$year_eng;
 		}
 		return $data;

@@ -87,5 +87,80 @@
 	</tr>
 </tbody>
 </table>
+<div id="container_grp"  style="height:500px;margin-left:20px;margin-top:10px;margin-bottom: 20px;" class="show"></div>
 <div class="aligncenter"><button name="btn_print" onclick="window.print();" class="btn btn-default btn-large">พิมพ์งาน</button></div>
 </div>
+<script type="text/javascript">
+$(function () {
+    $('#container_grp').highcharts({
+        chart: {
+            type: 'column',
+            marginBottom: 120,
+            marginLeft: 80,
+            width: 1000
+        },
+        title: {
+            text: 'รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง (BMI)'
+        },
+        subtitle: {
+            text: 'หน่วยงาน <?php echo $user_name ?> ครั้งที่ <?php echo $time; ?>'
+
+        },
+        xAxis: {
+            categories: ['ผอม ( BMI < 18.50)', 'ปกติ (18.51 <= BMI<= 22.99)', 'ท้วม (23.00<= BMI<= 24.99)', 'อ้วน ( 25.0 <= BMI <= 29.9)', 'อ้วนมาก ( BMI >= 30.0)'],
+            title: {
+                text: 'วัดรอบเอว',
+                offset: '30'
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'ร้อยละ',
+                offset: '30'
+            },
+
+        },
+        tooltip: {
+            valueSuffix: ' %'
+        },
+        legend: {
+            align: 'center',
+            x:50, // = marginLeft - default spacingLeft
+            y:-30,
+            symbolHeight:30,
+            borderColor: '#FFFFFF',
+            itemWidth: 70
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                column: 'percent',
+                 dataLabels: {
+                    enabled: true,
+                    x: -10,
+                    y: -15,
+                     style: {
+                        color: '#626262'
+                    }
+                }
+            }
+
+
+        },
+        series: [{
+            name: 'ชาย',
+            data: [<?php echo implode(",",$percent); ?>]
+        }, {
+            name: 'หญิง',
+            data: [<?php echo implode(",",$fpercent); ?>]
+        }, {
+            name: 'รวม',
+            data: [<?php echo implode(",",$sum_percent); ?>]
+        }]
+    });
+});
+
+</script>

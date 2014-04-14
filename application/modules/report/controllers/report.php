@@ -20,20 +20,22 @@ class Report extends  Flat_Controller{
 	public $fat_mean = array('ปกติ'=>'green','อ้วนลงพุง'=>'red');
 	public $fat_mean_export = array('ปกติ'=>'background-color:#BDFBC5;color:#626262;','อ้วนลงพุง'=>'background-color:#FFA29B;color:#626262;');
 	function index($report,$print=FALSE)
-	{	$data['fat_mean'] = $this->fat_mean;
+	{//$this->db->debug=true;
+		$data['fat_mean'] = $this->fat_mean;
 		$data['fat_mean_export'] = $this->fat_mean_export;
 		$data['bmi_mean'] = $this->bmi_mean;
 		$data['bmi_mean_export'] = $this->bmi_mean_export;
 		$year = date('Y');$yy = $year-1;$yy_end = $year;
 		$data['yearth']= $year+543;
-		if(!empty($_GET['year'])){
+		/*if(!empty($_GET['year'])){
 			$yy = $_GET['year']-1;
 			$yy_end = $_GET['year'];
 			$data['yearth'] = $_GET['year']+543;
 		}
 		$table = ($report=="behavior")? "behavior": "weight";
 		$wh =" and date(f_".$table."_detail.created) between '$yy-10-01' and '$yy_end-09-30'";
-
+		*/
+		$wh = (empty($_GET['year'])) ?  " and year=".$data['yearth']: " and year =".$_GET['year'];
 		$user_id = (!empty($_GET['user_id'])) ? $_GET['user_id'] :$this->session->userdata('id');
 		$wh.=" and user_id=".$user_id;
 		$data['user_name'] = (!empty($user_id)) ? $this->user->get_one("agency_name","f_users.id",$user_id):"ทุกองค์กร";
@@ -75,7 +77,7 @@ class Report extends  Flat_Controller{
 	}
 	function behavior($data,$wh=FALSE)
 	{
-
+		//$this->db->debug = true;
 		if(!empty($data))
 		{
 			$data['total1'] = $this->db->GetOne("select count(f_behavior_detail.id)as total from f_behavior left join f_behavior_detail on f_behavior.id = behavior_id
@@ -83,6 +85,7 @@ class Report extends  Flat_Controller{
 			$data['total2'] = $this->db->GetOne("select count(f_behavior_detail.id)as total from f_behavior left join f_behavior_detail on f_behavior.id = behavior_id
 											    where time=2 $wh");
 			$data['title'] = title();
+			$data['titleName'] = "รายงานผลการประเมินพฤติกรรม";
 			for($i=1;$i<=20;$i++){
 				$sql="select score_$i,count(score_$i)as cnt from f_behavior
 					  left join f_behavior_detail on f_behavior.id = behavior_id
@@ -114,6 +117,7 @@ class Report extends  Flat_Controller{
 	}
 	function person($data,$wh=FALSE)
 	{
+		$data['color'] = array('ปกติ'=>'green','อ้วนลงพุง'=>'red');
 		$select ="fullname,age,gender,ifnull(waistline,0) as waistline,fat,ifnull(weight,0) as weight,ifnull(height,0) as height,ifnull(bmi_value,0.00) as bmi_value";
 		$data['res1'] = $this->weight->select($select)
 							         ->join("LEFT JOIN f_weight_detail ON f_weight.id = weight_id")->where("time=1 $wh")->sort("f_weight.id")->order("asc")->get();
@@ -240,14 +244,16 @@ class Report extends  Flat_Controller{
 	}
 	function area($data,$wh=FALSE)
 	{
-		$sql = "select count(agency_type) as cnt,abbr
-			  ,people_fiveteen_male1+people_fiveteen_female1 as user_total,province_id,province_name
+
+	    $wh =(!empty($_GET['year'])) ? "and year =".$_GET['year']: " and year=".$data['yearth'];
+
+		$sql = "select count(agency_type) as cnt,abbr,province_id,province_name
 			 from f_weight
 			 left join f_weight_detail ON f_weight.id = f_weight_detail.weight_id
 			 left join f_users ON f_weight.user_id = f_users.id
 			 left join f_agency_type ON f_users.agency_type = f_agency_type.id
 			 left join f_province ON f_province.id = f_users.province_id
-			 where (agency_type <> 7 or agency_type <>8)
+			 where (agency_type <> 7 or agency_type <>8) $wh
 			 group by province_id,agency_type order by province_name";
 		$result = $this->db->GetArray($sql);
 		foreach($result as $item){
@@ -255,12 +261,18 @@ class Report extends  Flat_Controller{
 		}
 		$data['result'] = $result;
 		// ทั้งหมดครั้งที่ 1 และ ครั้งที่ 2
-		$sql = "select province_id,sum(people_fiveteen_female1+people_fiveteen_male1) as total1, sum(people_fiveteen_female2+people_fiveteen_male2) as total2
-		 		from f_users group by province_id ";
+		/*$sql = "select province_id,sum(people_fiveteen_female1+people_fiveteen_male1) as total1
+					  ,sum(people_fiveteen_female2+people_fiveteen_male2) as total2
+		 		from f_users group by province_id ";*/
+		$sql ="select province_id,sum(f_people.people_fiveteen_male1+f_people.people_fiveteen_female1) as total1,
+				sum(f_people.people_fiveteen_male2+f_people.people_fiveteen_female2) as total2
+				from f_people left join f_users ON f_users.id = f_people.user_id
+				group by province_id";
 		$result = $this->db->GetArray($sql);
 		foreach($result as $item){
 			$data['total'][$item['province_id']][1] = $item['total1'];
 			$data['total'][$item['province_id']][2] = $item['total2'];
+
 		}
 		// จำนวนที่วัดเอว ครั้งที่ 1 และ ครั้งที่ 2
 		$sql = "select count(user_id) as cnt,province_id,time
@@ -268,7 +280,7 @@ class Report extends  Flat_Controller{
 				left join f_weight_detail on f_weight.id = weight_id
 				left join f_users on f_weight.user_id = f_users.id
 				left join f_agency_type ON f_agency_type.id = f_users.agency_type
-				where (agency_type <> 7 or agency_type <>8)
+				where (agency_type <> 7 or agency_type <>8) $wh
 				group by province_id,time order by province_id,time";
 		$result = $this->db->GetArray($sql);
 		foreach($result as $item){
@@ -281,7 +293,7 @@ class Report extends  Flat_Controller{
 				left join f_users ON f_weight.user_id = f_users.id
 				left join f_agency_type ON f_users.agency_type = f_agency_type.id
 				left join f_province ON f_province.id = f_users.province_id
-				where (agency_type <> 7 or agency_type <>8) and time = 1
+				where (agency_type <> 7 or agency_type <>8) and time = 1 $wh
 				group by province_id,agency_type order by province_name";
 		$result = $this->db->Execute($sql);
 		foreach($result as $item){
@@ -294,7 +306,7 @@ class Report extends  Flat_Controller{
 				left join f_users ON f_weight.user_id = f_users.id
 				left join f_agency_type ON f_users.agency_type = f_agency_type.id
 				left join f_province ON f_province.id = f_users.province_id
-				where (agency_type <> 7 or agency_type <>8) and time = 2
+				where (agency_type <> 7 or agency_type <>8) and time = 2 $wh
 				group by province_id,agency_type order by province_name";
 		$result = $this->db->Execute($sql);
 		foreach($result as $item){
@@ -308,7 +320,7 @@ class Report extends  Flat_Controller{
 				left join f_users ON f_weight.user_id = f_users.id
 				left join f_agency_type ON f_users.agency_type = f_agency_type.id
 				left join f_province ON f_province.id = f_users.province_id
-				where (agency_type <> 7 or agency_type <>8) and time=1
+				where (agency_type <> 7 or agency_type <>8) and time=1 $wh
 				group by province_id,fat order by province_name";
 		$result = $this->db->GetArray($sql);
 		foreach($result as $item){
@@ -319,7 +331,7 @@ class Report extends  Flat_Controller{
 				left join f_weight_detail on f_weight.id = weight_id
 				left join f_users on f_weight.user_id = f_users.id
 				left join f_agency_type ON f_agency_type.id = f_users.agency_type
-				where (agency_type <> 7 or agency_type <>8)
+				where (agency_type <> 7 or agency_type <>8) $wh
 				group by  province_id,time order by  province_id,time";
 		$result = $this->db->GetArray($sql);
 		foreach($result as $item){
@@ -334,7 +346,7 @@ class Report extends  Flat_Controller{
 				left join f_users ON f_weight.user_id = f_users.id
 				left join f_agency_type ON f_users.agency_type = f_agency_type.id
 				left join f_province ON f_province.id = f_users.province_id
-				where (agency_type <> 7 or agency_type <>8) and time = 2
+				where (agency_type <> 7 or agency_type <>8) and time = 2 $wh
 				group by province_id,fat order by province_name";
 		$result = $this->db->GetArray($sql);
 		foreach($result as $item){
@@ -345,16 +357,25 @@ class Report extends  Flat_Controller{
 				left join f_weight_detail ON f_weight.id = weight_id
 				left join f_users on f_weight.user_id = f_users.id
 				left join f_agency_type ON f_agency_type.id = f_users.agency_type
-				where (agency_type <> 7 or agency_type <>8)
+				where (agency_type <> 7 or agency_type <>8) $wh
 				group by province_id,time order by province_id";
 		$result = $this->db->GetArray($sql);
 		foreach($result as $item){
 			$data['weight'][$item['province_id']]['sum'][$item['time']] = $item['sum_weight'];
 			$data['weight'][$item['province_id']]['avg'][$item['time']] = $item['avg_weight'];
 		}
-
-
-		$this->template->build('weight/area/index',$data);
+		if($data['print']=="preview"){
+			$this->template->set_layout('report');
+			$this->template->build('weight/area/report',$data);
+		}else if($data['print']=="export"){
+			$filename= "รายงานแบบฟอร์มการบันทึก รอบเอง น้ำหนัก ส่วนสูง _รายจังหวัด_".date("Y-m-d_H_i_s").".xls";
+			$this->template->set_layout('report');
+			$this->template->build('weight/area/export',$data);
+			header("Content-Disposition: attachment; filename=".$filename);
+			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
+		}else{
+			$this->template->build('weight/area/index',$data);
+		}
 	}
 	function overview($data,$wh=FALSE){
 		$this->template->build('weight/overview/index');
@@ -467,6 +488,60 @@ class Report extends  Flat_Controller{
 			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
 		}else{
 			$this->template->build('weight/height/index',$data);
+		}
+
+	}
+	function waist($data,$wh)
+	{
+		//$this->db->debug = true;
+		$user_id = (!empty($_GET['user_id'])) ? $_GET['user_id'] :$this->session->userdata('id');
+		$time="";
+		$data['time'] = "1";
+		if(!empty($_GET['time'])){
+			$time ="and time= ".$_GET['time'];
+			$data['time'] = $_GET['time'];
+		}
+		$sql  = "select people_fiveteen_male1 + people_fiveteen_female1 as total from f_people where 1=1 $wh ";
+		$data['total'] = $this->db->GetOne($sql);
+		$sql = "select count(user_id)as cnt,sum(weight) as sum_weight
+					  ,avg(weight) as avg_weight,time,avg(waistline) as avg_waist,sum(waistline) as sum_waist
+		        from f_weight
+				left join f_weight_detail ON f_weight.id = weight_id
+				left join f_users on f_weight.user_id = f_users.id
+				left join f_agency_type ON f_agency_type.id = f_users.agency_type
+				where (agency_type <> 7 or agency_type <>8) $wh
+				group by time";
+		$result = $this->db->GetArray($sql);
+		foreach($result as $item){
+			$data['cnt'][$item['time']] =$item['cnt'];
+			$data['sum_weight'][$item['time']] = $item['sum_weight'];
+			$data['avg_weight'][$item['time']] = $item['avg_weight'];
+			$data['sum_waist'][$item['time']]  = $item['sum_waist'];
+			$data['avg_waist'][$item['time']]  = $item['avg_waist'];
+		}
+ 		$sql = "select count(fat) as cnt,fat,gender,time
+ 				from f_weight left join f_weight_detail ON f_weight.id = f_weight_detail.weight_id
+ 				left join f_users ON f_weight.user_id = f_users.id
+ 				left join f_agency_type ON f_users.agency_type = f_agency_type.id
+ 				left join f_province ON f_province.id = f_users.province_id
+ 				where (agency_type <> 7 or agency_type <>8) $wh
+ 				group by fat,gender,time order by fat,gender,time";
+
+		$result = $this->db->GetArray($sql);
+		foreach($result as $item){
+			$data['fat'][$item['fat']][$item['gender']][$item['time']] = $item['cnt'];
+		}
+		if($data['print']=="preview"){
+			$this->template->set_layout('report');
+			$this->template->build('weight/waist/report',$data);
+		}else if($data['print']=="export"){
+			$filename= "รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง รอบเอว_".date("Y-m-d_H_i_s").".xls";
+			$this->template->set_layout('report');
+			$this->template->build('weight/waist/export',$data);
+			header("Content-Disposition: attachment; filename=".$filename);
+			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
+		}else{
+			$this->template->build('weight/waist/index',$data);
 		}
 
 	}

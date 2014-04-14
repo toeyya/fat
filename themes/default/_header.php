@@ -14,9 +14,14 @@
             <img src="media/img/logo-anamai.png" width="70" height="69" style="margin-left:30px;">
           </div>
           <div class="clearfix"></div>
-		  <?php if( $this->session->userdata('name')): ?>
+		  <?php if(login_data('confirm_email')): ?>
 		  <div id="user_login" style="position:relative;width:300px;float:right;">
-		  	ยืนดีต้อนรับ : <?php echo $this->session->userdata('name'); ?> <a href="users/logout" class="label label-danger" onclick="return confirm('ยืนยันการออกจากระบบ ')">ออกจากระบบ</a>
+		  	 ยืนดีต้อนรับ : <span style="padding-right:20px;"><?php echo $this->session->userdata('name'); ?></span>
+		  	<?php if($this->session->userdata('user_type')==2): ?>
+		  		<br/>
+		  		<a href="users/profile/<?php echo  $this->session->userdata('id')?>" class="label label-primary">ประวัติส่วนตัว</a>
+		  	<?php endif; ?>
+		  	<a href="users/logout" class="label label-danger" onclick="return confirm('ยืนยันการออกจากระบบ ')">ออกจากระบบ</a>
 		  </div>
 		  <?php endif; ?>
           <!--<div id="searchbox">

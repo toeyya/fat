@@ -13,7 +13,7 @@ class Person extends Flat_Controller
 	function index(){
 		$data['title'] = title();
 		$user_id = $this->session->userdata('id');
-		$user_id = 2665;
+		//$user_id = 2665;
 		$data['weight'] = $this->weight->get_row("f_weight.user_id",$user_id);
 		$data['behavior'] = $this->behavior->get_row("f_behavior.user_id",$user_id);
 		//var_dump($data['behavior']);
@@ -23,7 +23,7 @@ class Person extends Flat_Controller
 		$this->template->build('person/index',$data);
 	}
 	function save()
-	{ $this->db->debug = true;
+	{ //$this->db->debug = true;
 		if($_POST)
 		{
 			$_POST['user_id'] = $this->session->userdata('id');

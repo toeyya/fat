@@ -18,9 +18,11 @@
     <label class="control-label" for="inputPassword">Password</label>
     <div class="controls">
       <input type="password" id="inputPassword" placeholder="Password" name="password">
+      <div style="margin-top:20px;"><button type="submit" class="btn btn-primary btn-large">ตกลง</button></div>
     </div>
+
   </div>
-<div><button type="submit" class="btn btn-primary btn-large">ตกลง</button></div>
+
 </form>
 </div>
 </div>

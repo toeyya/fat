@@ -34,14 +34,16 @@ class F_weight extends flat_Controller
 		$data['time'] = $time;
 		$user_id = $this->session->userdata('id');
 		$data['user_id'] = $user_id;
-		$year = date('Y');$yy = $year-1;$yy_end = $year;
+		/*$year = date('Y');$yy = $year-1;$yy_end = $year;
 		if(!empty($_GET['year'])){
 			$yy = $_GET['year']-1;
 			$yy_end = $_GET['year'];
 			$data['year_search'] = $_GET['year']+543;
 		}
 		$data['year_search'] = $year+543;
-		$wh =" and date(f_weight_detail.created) between '$yy-10-01' and '$yy_end-09-30'";
+		$wh =" and date(f_weight_detail.created) between '$yy-10-01' and '$yy_end-09-30'"; */
+		$wh = (empty($_GET['year'])) ?  " and year=".$data['year']: " and year =".$_GET['year'];
+
 		if(empty($print)){
 			$result = $this->weight->where("user_id=$user_id and time=$time $wh")->get();
 		}else{
@@ -50,7 +52,8 @@ class F_weight extends flat_Controller
 
 		if($time=="2"){
 			if(empty($result)){
-				$result = $this->weight->where("user_id = $user_id $wh")->get();
+				$this->load->model('f_weight_model','weight1');
+				$result = $this->weight1->where("user_id = $user_id $wh")->get();
 			}
 		}
 		$data['result'] = $result;
@@ -75,6 +78,7 @@ class F_weight extends flat_Controller
 	{//var_dump($_POST);exit;
 		if($_POST){
 			$data['time'] = $time;
+			$data['year'] = $_POST['year'];
 			$data['user_id'] = $this->session->userdata('id');
 			$cnt = count(array_filter($_POST['fullname']));
 			for($i=0;$i<$cnt;$i++){
@@ -122,7 +126,7 @@ class F_weight extends flat_Controller
 	}
 	function upload()
 	{
-		$this->older->delete('YEAR',$_POST['year_data']);
+		$this->f_weight->delete('YEAR',$_POST['year_data']);
 		$ext = pathinfo($_FILES['fl_import']['name'], PATHINFO_EXTENSION);
 		$file_name = 'olderfund_'.date("Y_m_d_H_i_s").'.'.$ext;	$uploaddir = 'import_file/elder/olderfund/';
 		move_uploaded_file($_FILES['fl_import']['tmp_name'], $uploaddir.$file_name);
@@ -141,6 +145,10 @@ class F_weight extends flat_Controller
 		}
 		$this->template->build('olderfund/upload');
 	}
+	function import(){
+		$this->template->build('import');
+	}
+
 
 }
 ?>

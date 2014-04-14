@@ -15,7 +15,6 @@
 	<?php include('themes/default/_header.php'); ?>
 	<?php include('themes/default/_menu.php'); ?>
 	 <div id="row4">
-
 		<?php echo $template['body']; ?>
 	 </div>
 	</div>

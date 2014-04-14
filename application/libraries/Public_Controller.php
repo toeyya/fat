@@ -17,7 +17,6 @@ class Public_Controller extends Controller
 	}
 	function captcha()
 	{
-		$this->load->library('session');
 		$this->load->library('captcha');
 		$captcha = new Captcha();
 		$captcha->size = 4;

@@ -30,7 +30,7 @@
 	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
 	<h3>รายงานสรุปผลการประเมินรอบเอวในศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h3>
 	<div style="text-align: center">
-	<label class="caption">ปีงบประมาณ</label> ..............<label class="caption">ศูนย์อนามัยที่</label>.........
+	<label class="caption">ปีงบประมาณ</label> <?php echo $yearth ?><label class="caption">ศูนย์อนามัยที่</label><?php echo $hpc; ?>
 	</div>
 </div>
 <!--<div class="span20">-->
@@ -147,7 +147,7 @@
 	<td><?php echo number_format(array_sum($diff4),1);?></td>
 </tr>
 </table>
-<p class="text-right">ออกรายงาน ณ วันที่...................</p>
+<p class="text-right">ออกรายงาน ณ วันที่ <?php echo db_to_th(date('Y-m-d')) ?></p>
 </div>
 <!--</div>-->
 <?php } // $_GET ?>

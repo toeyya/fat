@@ -41,3 +41,26 @@ $('.btn_clear').click(function(){
 	$('input[type=radio]').removeAttr('checked');
 	$("select option").filter(function() {return $(this).val() == "0";}).prop('selected', true);
 });
+$('select[name=province_id]').change(function(){
+	$("#district").html('<select name="district_id"><option value="">โปรดระบุ</option></select>');
+	$.get('setting/getAmphur',{
+			'province_id' : $(this).val()
+		},function(data){
+			$("#amphur").html(data);
+	});
+});
+$('select[name=province]').change(function(){
+	$("#agency").html('<select name="agency_id"><option value="">โปรดระบุ</option></select>');
+	$.get('setting/getAgency',{
+			'province_id' : $(this).val()
+		},function(data){
+			$("#agency").html(data);
+	});
+});
+$('select[name=amphur_id]').live('change',function(){
+	$.get('setting/getDistrict',{
+			'amphur_id' : $(this).val()
+		},function(data){
+			$("#district").html(data);
+	});
+});

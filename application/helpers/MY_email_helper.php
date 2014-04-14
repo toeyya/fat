@@ -61,7 +61,7 @@ if ( ! function_exists('send_email'))
 }
 if(!function_exists('phpmail')){
 	function phpmail($subject,$address,$message,$bcc=FALSE){
-		require_once("PHPMailer_v5.1/class.phpmailer.php");  // ประกาศใช้ class phpmailer กรุณาตรวจสอบ ว่าประกาศถูก path
+		require_once("include/PHPMailer_v5.1/class.phpmailer.php");  // ประกาศใช้ class phpmailer กรุณาตรวจสอบ ว่าประกาศถูก path
 		//require_once("include/PHPMailer_v5.1/class.smtp.php");  // ประกาศใช้ class phpmailer กรุณาตรวจสอบ ว่าประกาศถูก path
 		$mail = new PHPMailer();
 		$mail->CharSet = "utf-8";  // ในส่วนนี้ ถ้าระบบเราใช้ tis-620 หรือ windows-874 สามารถแก้ไขเปลี่ยนได้
@@ -73,8 +73,8 @@ if(!function_exists('phpmail')){
 		$mail->Port       = 25;
 		$mail->Username   = "admin@thaigcd.ddc.moph.go.th";
 		$mail->Password   = "th@1gcd*";
-		$mail->From       = "admin@thaigcd.ddc.moph.go.th";  //  account e-mail ของเราที่ใช้ในการส่งอีเมล
-		$mail->FromName   = "ระบบฐานข้อมูลครุภัณฑ์คอมพิวเตอร์"; //  ชื่อผู้ส่งที่แสดง เมื่อผู้รับได้รับเมล์ของเรา
+		$mail->From       = "admin@favouritedesign.com";  //  account e-mail ของเราที่ใช้ในการส่งอีเมล
+		$mail->FromName   = "ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง"; //  ชื่อผู้ส่งที่แสดง เมื่อผู้รับได้รับเมล์ของเรา
 
 		$mail->AddAddress($address);
 		if(!empty($bcc)){

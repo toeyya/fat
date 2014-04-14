@@ -1,15 +1,22 @@
 
-<div class="titleGroup2">แก้ไข /กรอก รอบเอวและน้ำหนักตัวของประชาชนในหน่วยงาน/องค์กรต้นแบบ ครั้งที่ <?php echo $time ?></div>
+
 <div class="contentBlank">
+<div id="Breadcrumbs">
+  	<ol id="path-breadcrumb">
+      <li><a href="home">หน้าแรก</a></li>
+      <li><a href="f_weight/ebelly">ระบบสารสนเทศ e-flat belly</a></li>
+      <li class="active">รอบเอวและน้ำหนักตัว  ครั้งที่ <?php echo $time ?></li>
+    </ol>
+</div>
 <div id="search">
 	<form action="f_weight/index/<?php echo $time ?>" class="form-search">
-		<span>ข้อมูลปีงบประมาณ </span>
-		<?php echo form_dropdown('year',get_year_option("2556"),'class="search-query"','',''); ?>
+		<span>ปีงบประมาณ </span>
+		<?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="search-query"',''); ?>
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>
 </div>
 <div class="right" style="margin-bottom: 10px;">
-	<a href="#" class="btn btn-default"><i class="fa fa-arrow-up"></i>นำเข้า  excel</a>
+	<a href="f_weight/import" class="btn btn-default"><i class="fa fa-arrow-up"></i>นำเข้า  excel</a>
 	<a href="f_weight/index/<?php echo $time ?>/export<?=GetCurrentUrlGetParameter();?>"  class="btn btn-default"><i class="fa fa-arrow-down"></i>ดาวน์โหลด  excel</a>
 	<a href="f_weight/index/<?php echo $time ?>/preview<?=GetCurrentUrlGetParameter();?>" class="btn btn-default" target="_blank">พิมพ์ข้อมูล</a>
  	<?php if($time=="1"): ?>
@@ -18,6 +25,7 @@
 </div>
 <div id="span7">
 	<form action="f_weight/save/<?php echo $time; ?>"  method="post">
+	<div><span class="alertred">*</span><span>ปีงบประมาณ </span> <?php echo form_dropdown('year',get_year_option("2556"),$year,'',''); ?></div>
 	<table class="table table-bordered table-condensed">
 		<tr class="success">
 			<th>ชื่อ-นามสกุล</th>

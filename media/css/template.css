@@ -151,7 +151,7 @@ behavior: url(pie/PIE.htc);
 
 /*องค์กรต้นแบบไร้พุง*/
 .titleGroup{margin-left:35px;margin-top:35px;}
-.titleGroup2{ margin-left:45px; padding-left:65px; padding-top:8px; height:42px; background-image:url(../img/waist-measure2.png); background-repeat:no-repeat; font-weight:bold; font-size:17px;}
+.titleGroup2{z-index:1;  margin-left:24px; padding-left:65px;position:relative;margin-top:54px; padding-top:8px; height:42px; background-image:url(../img/waist-measure2.png); background-repeat:no-repeat; font-weight:bold; font-size:17px;}
 .contentGroup{margin-top:50px;padding:20px; border-top:0px solid #3ec5bd; border-bottom:4px solid #3ec5bd; border-left:1px solid #3ec5bd;border-right:1px solid #3ec5bd; border-radius:20px; background:white; }
 .line5{ z-index:1 ;position:relative; border-top:1px dashed #bcbdbb;margin-left:-55px; margin-top:-8px; width:865px; }
 .listname{position:absolute; left:525px; top:50px;  background-image:url(../img/title-listname.png); background-repeat:no-repeat;width:454px; height:125px; padding-top:75px; text-align:center;}
@@ -192,7 +192,7 @@ behavior: url(pie/PIE.htc);
 	#topmenuPerson ul li:hover > ul {display: block; margin-top:12px; margin-left:-5px;  padding:0; }
 #topmenuPerson ul {	position: relative;	 display: block;}
 	#topmenuPerson ul:after {content: ""; clear: both; display: block;}
-	.sub-topmenuPerson7 li {float: left; color:white; font-weight:bold; display: block; line-height:32px; text-indent:8px; width:100px; background:#fe43b5; border-radius:6px;margin-top:5px; margin-left:5px;}
+	.sub-topmenuPerson7 li {position:relative;z-index:5; float: left; color:white; font-weight:bold; display: block; line-height:32px; text-indent:8px; width:100px; background:#fe43b5; border-radius:6px;margin-top:5px; margin-left:5px;}
 	.sub-topmenuPerson7 li a{color:white; font-weight:bold; border-radius:6px;}
 	.sub-topmenuPerson7 li a:hover{display: block; text-decoration:none; color:white; font-weight:bold;  background:#fc87c1; border-radius:6px;}
 
@@ -243,5 +243,13 @@ behavior: url(pie/PIE.htc);
 .thumbnails{margin-left: -20px;list-style: none;}
 .thumbnails > li {float: left;margin-bottom: 20px;margin-left: 20px;}
 .span4 {width: 300px;}
+label.alertred {
+color: red;
+}
 
-
+.span2 {
+width: 140px;
+float: left;
+min-height: 1px;
+margin-left: 20px;
+}
