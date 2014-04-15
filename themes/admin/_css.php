@@ -4,7 +4,8 @@
 <link rel="stylesheet" href="themes/admin/media/css/style.min.css">
 <link rel="stylesheet" href="themes/admin/media/css/font-awesome.min.css">
 <link rel="stylesheet" href="themes/admin/media/css/jquery.gritter.css">
-
+<link rel="stylesheet" href="themes/admin/media/js/tag/jquery.tag.css">
+<link rel="stylesheet" href="media/css/jquery.notifyBar.css" type="text/css"/>
 
 	<!--[if lt IE 9 ]>
 		<link href="assets/css/style-ie.css" rel="stylesheet">

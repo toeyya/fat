@@ -13,11 +13,11 @@
 				<h2><i class="fa fa-align-justify"></i><span class="break"></span><?php echo $category['name'] ?></h2>
 			</div>
 			<div class="box-content">
-			<form class="form-horizontal" role="form" method="post" action="download/admin/type/save">
+			<form class="form-horizontal" role="form" method="post" action="content/admin/content/save/<?php echo $category_id ?>">
 			  <div class="form-group">
 			    <label for="detail" class="col-sm-2 control-label">รายละเอียด</label>
 			    <div class="col-sm-5">
-			    	 <textarea class="form-control" name="detail" rows="3"></textarea>
+			    	 <textarea class="form-control" name="detail" rows="3"><?php echo @$result[0]['detail'] ?></textarea>
 			    </div>
 			  </div>
 
@@ -26,8 +26,8 @@
 			    <div class="col-sm-offset-2 col-sm-10">
 			      <button type="submit" class="btn btn-primary btn-sm">บันทึก</button>
 			      <button type="submit" class="btn btn-default btn-sm">ย้อนกลับ</button>
-			      <input type="hidden" name="id" value="">
-			      <?php echo (!empty($rs['id'])) ? form_hidden('updated',date('Y-m-d H:i:s')) : form_hidden('created',date('Y-m-d H:i:s'))?>
+			      <input type="hidden" name="id" value="<?php echo @$result[0]['id']?>">
+			      <?php echo (!empty($result[0]['id'])) ? form_hidden('updated',date('Y-m-d H:i:s')) : form_hidden('created',date('Y-m-d H:i:s'))?>
 			    </div>
 			  </div>
 

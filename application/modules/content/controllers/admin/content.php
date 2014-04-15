@@ -40,6 +40,7 @@ class Content extends Admin_Controller
 
 	function form($category_id = FALSE,$id=FALSE)
 	{
+		//$this->db->debug = true;
 		$data['rs'] = $this->content->get_row($id);
 		$data['category_id']=$category_id;
 		$data['category_name']=$this->category->get_one("name","id",$category_id);
@@ -47,7 +48,7 @@ class Content extends Admin_Controller
 	}
 
 	function save($category_id=FALSE)
-	{
+	{//$this->db->debug= true;
 		if($_GET)
 		{
 			if(isset($_GET['queue'])){
@@ -65,7 +66,7 @@ class Content extends Admin_Controller
 
 			if(!empty($_POST['start_date']))$_POST['start_date'] = Date2DB($_POST['start_date']);	 else $_POST['start_date'] = date('Y-m-d');
 			if(!empty($_POST['end_date']))$_POST['end_date'] = Date2DB($_POST['end_date']);	else $_POST['end_date'] = null;
-			if($_POST['user_id']=="")$_POST['user_id'] = $this->session->userdata('id');
+			if(empty($_POST['user_id']))$_POST['user_id'] = $this->session->userdata('id');
 			$_POST['category_id'] = $category_id;
 			$id = $this->content->save($_POST);
 			if(@$_FILES['image']['name'])

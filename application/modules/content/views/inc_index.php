@@ -1,36 +1,24 @@
-﻿<ul class="breadcrumb" > 
-	<li><a href="home">หน้าแรก</a><span class="divider">/</span></li> 
-	<li><a href="content/index/<?php echo $category['id'] ?>"><?php echo $category['name'] ?></a></li> 
-</ul>
-<div <?php echo  ($category['id']=="6") ? 'id="news-pr"':'class="pic"'; ?>>
-	<ul>
-		<?php foreach($contents as $content): ?>
-		 <li>
-		 	<? if($category['id']!="6"): ?>
-		 	<?php if($content['image']): ?>
-        		<img  class="content-img img-polaroid" src="uploads/content/thumbnail/<?php echo $content['image'] ?>" width="89px" height="67px" />         
-    		<?php else: ?>
-       			<img class="content-img img-polaroid" style="float:left;margin-right:10px;" src="themes/default/media/images/logo89x67.png" width="89px" height="67px"/>    	
-        	<?php endif; ?>
-        	<?php endif; ?>
-        	<a href="content/view/<?php echo $category['id'] ?>/<?php echo $content['id']?>"/><?php echo $content['title'] ?></a><br/>
-        	<span class="textNews">      		
-        		<?php echo $content['intro']; ?>
-        	</span> 
-        	<span class="dataNew">(<?php echo  db_to_th($content['start_date']); ?>)</span>
-			<?php if( $content['file']): ?>
-			<div class= "download" id="download" >
-				<a href="document/download/<?php echo  $content['id']; ?>">
-					<span class="btn btn-mini">
-					<i class="icon-file"></i> <?php echo  $content['doc'] ?>
-					</span>
-				</a>
-			</div>
-			<?php endif; ?>
+﻿     	  <div id="Breadcrumbs">
+          	<ol id="path-breadcrumb">
+              <li><a href="#">หน้าแรก</a></li>
+              <li class="active"><?php echo $category['name'] ?></li>
+            </ol>
+          </div>
 
-        </li>
-        <div class="clr"></div><hr class="hr1">    
+<div class="titleBlank"><?php echo $category['name'] ?><div class="line5"> </div> </div>
+<div class="contentBlank">
+	<div id="news">
+		<?php foreach($result as $item): ?>
+			<div>
+			<a class="pull-left" href="content/view/<?php echo $category['id'] ?>/<?php echo $item['id'] ?>"><img src="uploads/content/thumbnail/<?php echo $item['image'] ?>" width="86px" height="67px" class="pic-news"></a>
+			<a href="content/view/<?php echo $category['id'] ?>/<?php echo $item['id'] ?>" class="linknews">
+		    	<h4 class="list-group-item-heading" id="titlenews"><?php echo $item['title'] ?></h4>
+				<p class="list-group-item-text"><?php echo $item['intro'] ?></p>
+		    </a>
+			<div class="clearfix"></div><div class="line"> </div>
+			</div>
 		<?php endforeach; ?>
-	</ul>
+	</div>
+	<div class="clearfix"></div>
 </div>
 <?php echo $pagination; ?>

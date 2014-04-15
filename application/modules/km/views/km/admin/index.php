@@ -6,7 +6,7 @@
 	<ul class="breadcrumb">
 		 <li><a href="#">หน้าแรก</a></li>
 		<li><a href="km/admin/type/index">KM</a></li>
-		<li><a href="km/admin/type/form/<?php echo  $type_id;?>"><?php echo $type_name; ?></a></li>
+		<li><a href="km/admin/type/form/<?php echo  $type_id;?>"><?php echo $type['name']; ?></a></li>
 	</ul>
 	<hr>
 </div>
@@ -25,7 +25,7 @@
 							  <th>แสดง</th>
 							  <th>หัวข้อ</th>
 							  <th>โดย</th>
-							  <th><a class="btn btn-success btn-sm" href="km/admin/km/form"> <i class="fa fa-plus "></i> เพิ่มรายการ</a> </th>
+							  <th><a class="btn btn-success btn-sm" href="km/admin/km/form/<?php echo $type_id ?>"> <i class="fa fa-plus "></i> เพิ่มรายการ</a> </th>
 						  </tr>
 						  <?php $i=(@$_GET['page'] > 1)? (((@$_GET['page'])* 20)-20)+1:1;?>
 						  <?php foreach($result as $item): ?>
@@ -40,7 +40,7 @@
 						  	<td><?php echo $item['title']?></td>
 						  	<td><?php echo $item['agency_name']?></td>
 						  	<td>
-								<a class="btn btn-info btn-sm" href="km/admin/km/form/<?php echo $item['id']?>">
+								<a class="btn btn-info btn-sm" href="km/admin/km/form/<?php echo $item['type_id']?>/<?php echo $item['id']?>">
 									<i class="fa fa-edit "></i>
 								</a>
 								<a class="btn btn-danger btn-sm" href="km/admin/km/delete/<?php echo $item['id'] ?>">

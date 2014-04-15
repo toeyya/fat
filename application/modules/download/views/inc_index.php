@@ -1,6 +1,6 @@
 <style>
-#shelf .flex-direction-nav .flex-next{right:223px;background: url(../../../fat/media/img/arrowbook-right.png) no-repeat;width:21px; height:39px;}
-#shelf .flex-direction-nav .flex-prev{left:223px;background: url(../../../fat/media/img/arrowbook-left.png)no-repeat;width:21px; height:39px;}
+#shelf .flex-direction-nav .flex-next{right:186px;background: url(../../../fat/media/img/arrowbook-right.png) no-repeat;width:21px; height:39px;}
+#shelf .flex-direction-nav .flex-prev{left:186px;background: url(../../../fat/media/img/arrowbook-left.png)no-repeat;width:21px; height:39px;}
 </style>
        <div id="books">
             <div class="tomatoes"></div>

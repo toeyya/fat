@@ -93,7 +93,7 @@
 	<td><?php $u = $user_total[$item['province_id']][1]; echo number_format($u);$user_total1[] =$u; ?></td>
 	<td><?php echo (empty($t) || empty($u)) ? 0 : round(($u*100)/$t) ?></td>
 	<td><?php $f = (empty($fat[$item['province_id']]['อ้วนลงพุง'][1])) ? 0 : $fat[$item['province_id']]['อ้วนลงพุง'][1]; echo number_format($f); $f1[]=$f; ?></td>
-	<td><?php echo $f_percnet[$key] =(empty($f) || empty($u)) ? 0 : round(($f*100)/$u) ?></td>
+	<td><?php echo $f_percnet[$key] =(empty($f) || empty($u)) ? 0 : number_format(($f*100)/$u,1) ?></td>
 	<td><?php $w[$key]  =(empty($waistline[$item['province_id']][1])) ? 0 : $waistline[$item['province_id']][1]; echo number_format($w[$key],1); $waist1[] = $w[$key]; ?></td>
 	<td><?php $we1[$key] = (empty($weight[$item['province_id']]['sum'][1])) ? 0 : $weight[$item['province_id']]['sum'][1]; echo number_format($we1[$key],1); $w_sum1[] = $we1[$key]; ?></td>
 	<td><?php $we_avg[$key] = (empty($weight[$item['province_id']]['avg'][1])) ? 0 : $weight[$item['province_id']]['avg'][1]; echo number_format($we_avg[$key],1); $w_avg1[] = $we_avg[$key]; ?></td>

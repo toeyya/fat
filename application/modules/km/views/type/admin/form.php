@@ -21,7 +21,12 @@
 			     	<input type="text" class="form-control"  name="name" value="<?php echo $rs['name'] ?>">
 			    </div>
 			  </div>
-
+			  <div class="form-group">
+			    <label for="name" class="col-sm-2 control-label">ลักษณะ</label>
+			    <div class="col-sm-3">
+			     	<?php echo form_dropdown('structure',array('list'=>'list','page'=>'page'),$rs['structure'],'class="form-control"');  ?>
+			    </div>
+			  </div>
 
 			  <div class="form-group">
 			    <div class="col-sm-offset-2 col-sm-10">

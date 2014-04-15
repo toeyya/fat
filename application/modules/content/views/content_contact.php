@@ -1,10 +1,11 @@
-<ul class="breadcrumb">
-	<li><a href="home">หน้าแรก</a><span class="divider">/</span></li> 	
-	<li><a href="content/index/<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a></li> 
-</ul>
+     	  <div id="Breadcrumbs">
+          	<ol id="path-breadcrumb">
+              <li><a href="home">หน้าแรก</a></li>
+              <li class="active"><?php echo $category['name'] ?></li>
+            </ol>
+          </div>
 
-<div class="view">
-	<?php echo @$contents['detail']?>
-	
-</div>
+<div class="titleBlank"><?php echo $category['name'] ?><div class="line5"> </div> </div>
+<div class="contentBlank">
+	<?php echo @$contents[0]['detail']?>
 </div>

@@ -72,13 +72,13 @@
 	<td><?php echo (!empty($item['gender'])) ? $gender[$item['gender']]:''?></td>
 	<td><?php echo $item['age']; ?></td>
 	<td><?php echo $item['waistline']  ?></td>
-	<td class="<?php echo $color[trim($item['fat'])] ?>"><?php echo $item['fat']  ?></td>
+	<td class="<?php echo $color[@trim($item['fat'])] ?>"><?php echo $item['fat']  ?></td>
 	<td><?php echo $item['weight'] ?></td>
 	<td><?php echo $item['height'] ?></td>
 	<td><?php echo $item['bmi_value']  ?></td>
 
 	<td><?php echo (!empty($res2[$key]['waistline'])) ? $res2[$key]['waistline']:'';  ?></td>
-	<td class="<?php echo $color[trim($res2[$key]['fat'])] ?>"><?php echo (!empty($res2[$key]['fat'])) ? $res2[$key]['fat']:''; ?></td>
+	<td class="<?php echo $color[@$res2[$key]['fat']] ?>"><?php echo (!empty($res2[$key]['fat'])) ? $res2[$key]['fat']:''; ?></td>
 	<td><?php echo (!empty($res2[$key]['weight'])) ? $res2[$key]['weight']:'' ?></td>
 	<td><?php echo (!empty($res2[$key]['height'])) ? $res2[$key]['height']:''?></td>
 	<td><?php echo (!empty($res2[$key]['bmi_value'])) ? $res2[$key]['bmi_value']:''?></td>

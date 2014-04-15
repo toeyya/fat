@@ -230,7 +230,7 @@ class MY_Model extends Model{
 	function counter($id,$field = 'counter',$table = FALSE)
 	{
 		$table = $table ? $table : $this->table;
-		$this->db->execute('update '.$table.' set '.$field.' = '.$field.' + 1 where id = ?',$id);
+		$this->db->execute('update '.$table.' set '.$field.' = ifnull('.$field.',0) + 1 where id = ?',$id);
 	}
 	function decounter($id,$field = 'counter',$table = FALSE)
 	{

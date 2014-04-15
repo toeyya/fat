@@ -14,14 +14,13 @@
 			</div>
 			<div class="box-content">
 			<form class="form-horizontal" role="form" method="post" action="hilights/admin/hilights/save" enctype="multipart/form-data">
-			  <?php if(!empty($pic['image'])): ?>
-				    	<a href="uploads/hilight/<?php echo $pic['image'] ?>" rel="lightbox">
-							<img style="width:50px; vertical-align:middle;" src="uploads/hilight/thumbnail/<?php echo $pic['image'] ?>">
-						</a>
-			  <?php endif;?>
+
 			  <div class="form-group pic">
 				    <label for="name" class="col-sm-2 control-label">รูปภาพ</label>
 				    <div class="col-sm-3">
+			  <?php if(!empty($rs['image'])): ?>
+				<p><?php echo thumb("uploads/hilight/".$rs['image'],300,false,1)?></p>
+			  <?php endif;?>
 				      <input type="file" class="form-control" name="image">
 				      <span>ขนาด   418x246 พิกเซล</span>
 				    </div>

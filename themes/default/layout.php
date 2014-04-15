@@ -11,14 +11,10 @@
 <body>
 <div class="row" id="bg1-theme">
     <div class="container">
-	<?php include('_header.php'); ?>
-	<?php include('_menu.php'); ?>
-<!-----------------------Start row1-------------------------------->
-<?php echo $template['body']; ?>
-
-<!-----------------------End row2-------------------------------->
-	<div class="clearfix"> </div>
-
+		<?php include('_header.php'); ?>
+		<?php include('_menu.php'); ?>
+		<?php echo $template['body']; ?>
+		<div class="clearfix"> </div>
     </div>
 <!-------End container----------->
 

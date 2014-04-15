@@ -5,7 +5,7 @@
 			      <span class="icon-bar"></span>
 			      <span class="icon-bar"></span>
 			</button>
-			<a href="home"><i class="fa fa-home icon"></i> <span class="hidden-sm"> ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</span></a>
+			<a href="home" target="_blank"><i class="fa fa-home icon"></i> <span class="hidden-sm"> ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</span></a>
 
 
 			<!-- start: Header Menu -->
@@ -242,7 +242,7 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="users/admin/users/form/<?php echo $this->session->userdata('id') ?>/profile"><i class="fa fa-user"></i> ประวัติส่วนตัว</a></li>
-							<li><a href="users/admin/users/logout"><i class="fa fa-off"></i> ออกจากระบบ</a></li>
+							<li><a href="users/admin/auth/logout"><i class="fa fa-off"></i> ออกจากระบบ</a></li>
 						</ul>
 					</li>
 					<!-- end: User Dropdown -->

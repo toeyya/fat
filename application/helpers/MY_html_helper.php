@@ -88,7 +88,7 @@ function file_extension($val){
 	return in_array($val, $ext);
 }
 function image_extension($val){
-	$ext=array('gif','jpg', 'jpeg');
+	$ext=array('gif','jpg', 'jpeg','png');
 	return in_array($val, $ext);
 }
 

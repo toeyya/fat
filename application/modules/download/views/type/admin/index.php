@@ -20,6 +20,7 @@
 				<table class="table table-striped">
 					  <thead>
 						  <tr>
+							  <th>แสดง</th>
 							  <th>ลำดับ</th>
 							  <th>ประเภท</th>
 							  <th>โดย</th>
@@ -28,6 +29,12 @@
 						  <?php $i=(@$_GET['page'] > 1)? (((@$_GET['page'])* 20)-20)+1:1;?>
 						  <?php foreach($result as $item): ?>
 						  <tr>
+						  	<td><label class="switch switch-primary">
+								      <input type="checkbox"  name ="active" class="switch-input" value="<?php echo $item['id'] ?>" <?php if($item['active']=="1"){echo 'checked="checked"';} ?>>
+								      <span class="switch-label"  data-off="Off" data-on="On"></span>
+								      <span class="switch-handle"></span>
+								</label>
+							</td>
 						  	<td><?php echo $i;?></td>
 						  	<td><?php echo $item['name']?></td>
 						  	<td><?php echo $item['agency_name']?></td>

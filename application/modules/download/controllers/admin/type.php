@@ -8,7 +8,7 @@ class Type extends Admin_Controller{
 	}
 
 	function index()
-	{
+	{	$this->template->append_metadata(js_checkbox());
 		$data['result'] = $this->type->select("f_download.*,agency_name")
 									 ->join("LEFT JOIN f_users ON f_users.id = user_id")->sort("")->order("f_download.id desc")->get();
 		$data['pagination'] = $this->type->pagination();

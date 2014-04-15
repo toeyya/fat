@@ -1,27 +1,26 @@
-<ul class="breadcrumb">
-	<li><a href="home">หน้าแรก</a><span class="divider">/</span></li>
-	<li><a href="content/index/<?php echo $category['id'] ?>"><?php echo $category['name'] ?></a></li>
-</ul>
-<?php if($category['id']=="6"): ?>
-<img src="themes/default/media/images/title_pr.png" width="141" height="25" />
-<?php elseif($category['id']=="7"): ?>
-<img src="themes/default/media/images/title_2.png" width="69" height="25" />
-<?php endif; ?>
-<hr class="hr1">
-<div id="contentNewsPR">
-<h5><?php echo $content['title'];?></h5>
-<div style="background-color:#F5F5F5;padding:3px;font-size:11px;color:#969696;padding-left:10px">
-	<span style="margin:0 5px;"><i class="icon-tags"></i> <?php echo $content['tag'];?></span>
-	<span style="margin:0 5px;"><i class="icon-calendar"></i> <? echo db_to_th($content['created']) ?><span>
+<div id="Breadcrumbs">
+  	<ol id="path-breadcrumb">
+      <li><a href="#">หน้าแรก</a></li>
+      <li><a href="content/view_all/<?php echo $category['id'] ?>"><?php echo $category['name'] ?></a></li>
+    </ol>
 </div>
-	<?php if($content['image']): ?>
-		<div style="text-align: center; margin:10px auto;"><img src="uploads/content/<?php echo $content['image'] ?>"></div>
+
+<div class="titleBlank"><?php echo $category['name'] ?><div class="line5"></div></div>
+<div class="contentBlank">
+<h4 class="list-group-item-heading" id="titlenews"><?php echo $result['title'] ?></h4>
+<div class="sub-name">
+	<span class="calender"></span><span><? echo db_to_th($result['created']) ?></span>
+	<span class="divider">|</span>
+	<span class="counter"></span><span><?php echo number_format($result['counter']) ?> ครั้ง</span>
+</div>
+	<?php if($result['image']): ?>
+		<div style="text-align: center; margin:10px auto;"><img src="uploads/content/<?php echo $result['image'] ?>" width="200px" height="200px"></div>
 	<?php endif; ?>
-	<?php echo $content['detail'];?>
-	<?php if($content['file']):  ?>
+	<?php echo $result['detail'];?>
+	<?php if($result['files']):  ?>
 		<div class="attach">
-		<h2>เอกสารแนบ</h2>
-		<a href="uploads/content/download/<?php echo $content['file']; ?>" target="_blank"><span class="btn btn-mini"><i class="icon-file"></i> <?php echo $content['doc'] ?></span></a>
+		<p class="label label-default">เอกสารแนบ</p>
+		<a href="content/download/<?php echo $result['id']; ?>" class="btn btn-default btn-sm" target="_blank"><?php echo $result['files'] ?></a>
 		</div>
 	<?php endif; ?>
 </div>

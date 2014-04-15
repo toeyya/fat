@@ -116,8 +116,9 @@ class Report extends  Flat_Controller{
 
 	}
 	function person($data,$wh=FALSE)
-	{
-		$data['color'] = array('ปกติ'=>'green','อ้วนลงพุง'=>'red');
+	{	//$this->db->debug= true;
+		$wh .=(!empty($_GET['fullname'])) ? " and fullname = '".$_GET['fullname']."'":'';
+		$data['color'] = array('ปกติ'=>'green','อ้วนลงพุง'=>'red',''=>'');
 		$select ="fullname,age,gender,ifnull(waistline,0) as waistline,fat,ifnull(weight,0) as weight,ifnull(height,0) as height,ifnull(bmi_value,0.00) as bmi_value";
 		$data['res1'] = $this->weight->select($select)
 							         ->join("LEFT JOIN f_weight_detail ON f_weight.id = weight_id")->where("time=1 $wh")->sort("f_weight.id")->order("asc")->get();
@@ -138,7 +139,7 @@ class Report extends  Flat_Controller{
 	}
 	function province($data,$wh=FALSE)
 	{
-		//$wh.=" and province_id = ".$_GET['province_id'];
+		$wh.=(empty($_GET['province_id'])) ? '':" and province_id = ".$_GET['province_id'];
 		//$this->db->debug =true;
 		// ทั้งหมด
 		$sql="select user_id,count(user_id) as total ,f_agency_type.name as agency_type_name,agency_name
@@ -147,8 +148,9 @@ class Report extends  Flat_Controller{
 			 left join f_weight_detail ON f_weight.id = f_weight_detail.weight_id
 			 left join f_users ON f_weight.user_id = f_users.id
 			 left join f_agency_type ON f_users.agency_type = f_agency_type.id
-			 where (agency_type <> 7 or agency_type <>8) and time=1 and (waistline<>'' or waistline <> null)
+			 where user_type='1' and time=1 and (waistline<>'' or waistline <> null) $wh
 			 group by user_id order by user_id";
+		echo $sql;
 		$data['result'] = $this->db->GetArray($sql);
 		$data['pagination'] = $this->weight->pagination();
 	   // ทั้งหมด
@@ -158,7 +160,7 @@ class Report extends  Flat_Controller{
 			 left join f_weight_detail ON f_weight.id = f_weight_detail.weight_id
 			 left join f_users ON f_weight.user_id = f_users.id
 			 left join f_agency_type ON f_users.agency_type = f_agency_type.id
-			 where (agency_type <> 7 or agency_type <>8) and time=2 and (waistline<>'' or waistline <> null)
+			 where user_type='1' and time=2 and (waistline<>'' or waistline <> null) $wh
 			 group by user_id order by user_id";
 		$result = $this->db->GetArray($sql);
 		foreach($result as $item){
@@ -377,8 +379,97 @@ class Report extends  Flat_Controller{
 			$this->template->build('weight/area/index',$data);
 		}
 	}
-	function overview($data,$wh=FALSE){
-		$this->template->build('weight/overview/index');
+	function overview($data,$wh=FALSE)
+	{
+		$wh =(!empty($_GET['year'])) ? "and year =".$_GET['year']: " and year=".$data['yearth'];
+		$sql="select area_no
+			 ,sum(f_people.people_fiveteen_male1+f_people.people_fiveteen_female1) as total1
+			 ,sum(f_people.people_fiveteen_male2+f_people.people_fiveteen_female2) as total2
+			  from f_people
+			  left join f_users ON f_users.id = f_people.user_id
+		  	  left join f_area_detail  ON f_users.province_id = f_area_detail.province_id
+      		  where area_id=2
+			  group by area_no";
+		$result = $this->db->GetArray($sql);
+		foreach($result as $item){
+			$data['total'][$item['area_no']][1] = $item['total1'];
+			$data['total'][$item['area_no']][2] = $item['total2'];
+
+		}
+		$data['result'] = $result;
+		$sql = "select count(agency_type) as cnt,abbr,area_no,f_users.province_id
+			 from f_weight
+			 left join f_weight_detail ON f_weight.id = f_weight_detail.weight_id
+			 left join f_users ON f_weight.user_id = f_users.id
+			 left join f_agency_type ON f_users.agency_type = f_agency_type.id
+			 left join f_area_detail ON f_area_detail.province_id = f_users.province_id
+			 where (agency_type <> 7 or agency_type <>8)  and area_id =2 $wh
+			 group by area_no,agency_type order by area_no";
+		$result = $this->db->GetArray($sql);
+		foreach($result as $item){
+			$data['area'][$item['area_no']][$item['abbr']] = $item['cnt'];
+		}
+
+		// จำนวนคน
+		$sql ="select count(f_weight.user_id) as cnt,area_no,time
+			from f_weight
+			left join f_weight_detail on f_weight.id = weight_id
+			left join f_users on f_weight.user_id = f_users.id
+			left join f_area_detail ON f_users.province_id  = f_area_detail.province_id
+			where user_type='1'  and area_id = 2 $wh
+			group by area_no,time order by area_no,time";
+		$result  = $this->db->GetArray($sql);
+		foreach($result as $item){
+			$data['user_total'][$item['area_no']][$item['time']] = $item['cnt'];
+		}
+
+		$sql = "select count(fat) as cnt,area_no,fat,time
+			from f_weight
+			left join f_weight_detail ON f_weight.id = f_weight_detail.weight_id
+			left join f_users ON f_weight.user_id = f_users.id
+			left join f_area_detail ON f_users.province_id = f_area_detail.province_id
+			where user_type='1' and area_id='2'
+			group by area_no,fat,time order by area_no,fat,time";
+		$result = $this->db->GetArray($sql);
+		foreach($result as $item){
+			$data['fat'][$item['area_no']][$item['fat']][$item['time']] = $item['cnt'];
+		}
+		$sql ="select area_no,avg(waistline) as cnt,time,STDDEV(waistline) as sd FROM f_weight
+			left join f_weight_detail on f_weight.id = weight_id
+			left join f_users on f_weight.user_id = f_users.id
+			left join f_area_detail ON f_users.province_id = f_area_detail.province_id
+			where   user_type='1' and area_id='2' $wh
+			group by  area_no,time order by  area_no,time";
+		$result = $this->db->GetArray($sql);
+		foreach($result as $item){
+			$data['waistline'][$item['area_no']][$item['time']] = $item['cnt'];
+			$data['sd'][$item['area_no']][$item['time']]         = $item['sd'];
+		}
+
+		$sql ="select area_no,sum(weight) as sum_weight,avg(weight) as avg_weight,time from f_weight
+				left join f_weight_detail ON f_weight.id = weight_id
+				left join f_users on f_weight.user_id = f_users.id
+				left join f_area_detail on f_users.province_id = f_area_detail.province_id
+				where user_type='1' and area_id=2 $wh
+				group by area_no,time order by area_no,time";
+		$result = $this->db->GetArray($sql);
+		foreach($result as $item){
+			$data['weight'][$item['area_no']]['sum'][$item['time']] = $item['sum_weight'];
+			$data['weight'][$item['area_no']]['avg'][$item['time']] = $item['avg_weight'];
+		}
+		if($data['print']=="preview"){
+			$this->template->set_layout('report');
+			$this->template->build('weight/overview/report',$data);
+		}else if($data['print']=="export"){
+			$filename= "รายงานแบบฟอร์มการบันทึก รอบเอง น้ำหนัก ส่วนสูง _รายเขต_".date("Y-m-d_H_i_s").".xls";
+			$this->template->set_layout('report');
+			$this->template->build('weight/overview/export',$data);
+			header("Content-Disposition: attachment; filename=".$filename);
+			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
+		}else{
+			$this->template->build('weight/overview/index',$data);
+		}
+
 	}
 	function bmi($data,$wh)
 	{

@@ -29,7 +29,7 @@ body{background-color:white; padding-top:7px; background-repeat:repeat; font-siz
 /*TOPMENU*/
 #topmenu { margin-top:7px; text-align: center; font-size:22px; font-family:thaisanlite; font-weight:900; color:#007462;}
 #topmenu  ul ul {display: none; }
-	#topmenu  ul li:hover > ul {display: block;	}
+#topmenu  ul li:hover > ul {display: block;	}
 #topmenu  ul {  border:1px solid #c2e0d1; border-radius: 30px; 	background: #FFFFFF;
 background: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#e6e6e6));
 background: -webkit-linear-gradient(#FFFFFF, #e6e6e6);
@@ -61,11 +61,11 @@ behavior: url(pie/PIE.htc);
 #row5 { margin:0 auto; width:1225px;}
 
 /*HIGHLIGHT*/
-#highlight{float:left;margin:0 auto; text-align:center; margin-top:70px; margin-left:100px;margin-bottom:-79px; width:495px;}
+#highlight{float:left;margin:0 auto; text-align:center; margin-top:64px; margin-left:90px;margin-bottom:-79px; width:495px;}
 
 
 /*BMI*/
-#bmi{float:right; width:279px; height:244px;  background:url(../img/bg-BMI.png)no-repeat; margin-top:70px; margin-right:82px;}
+#bmi{float:right; width:279px; height:244px;  background:url(../img/bg-BMI.png)no-repeat; margin-top:58px;}
 #formBMI {margin-top:115px;margin-left:42px; line-height:26px;}
 #formBMI label{font-weight:normal;}
 #formBMI input{font-weight:normal;border:1px solid #8a8a8a; width:90px; height:23px;}
@@ -107,7 +107,7 @@ behavior: url(pie/PIE.htc);
 /*PLAN*/
 #plan{margin-top:70px;}
 .line3{padding-top:15px; border-bottom:1px dashed #bcbdbb; width:80%;margin:0 auto;}
-
+.line{padding-top:15px; border-bottom:1px dashed #3EC5BD; width:100%;margin:0 auto;}
 #weight{margin-top:40px;}
 
 #banner-webboard{ border:0; text-align:center; padding-left:99px;margin-top:134px; }
@@ -192,7 +192,7 @@ behavior: url(pie/PIE.htc);
 	#topmenuPerson ul li:hover > ul {display: block; margin-top:12px; margin-left:-5px;  padding:0; }
 #topmenuPerson ul {	position: relative;	 display: block;}
 	#topmenuPerson ul:after {content: ""; clear: both; display: block;}
-	.sub-topmenuPerson7 li {position:relative;z-index:5; float: left; color:white; font-weight:bold; display: block; line-height:32px; text-indent:8px; width:100px; background:#fe43b5; border-radius:6px;margin-top:5px; margin-left:5px;}
+	.sub-topmenuPerson7 li {position:relative;z-index:5; float: left; color:white; font-weight:bold; display: block; line-height:32px; text-indent:8px; width:100px; background:#fe43b5; border-radius:6px; margin-left:5px;}
 	.sub-topmenuPerson7 li a{color:white; font-weight:bold; border-radius:6px;}
 	.sub-topmenuPerson7 li a:hover{display: block; text-decoration:none; color:white; font-weight:bold;  background:#fc87c1; border-radius:6px;}
 
@@ -239,17 +239,33 @@ behavior: url(pie/PIE.htc);
 	.ReportPoll li a:hover{display: block; text-decoration:none; color:white; font-weight:bold;  background:#cc99ff; border-radius:6px;}
 
 .menuPoll1{display:block;background:url(../img/btn-reportPoll.png) no-repeat; width:107px; height:32px; cursor:pointer;margin-left:5px;}
-.menuPoll1:hover{background:url(../img/btn-reportPoll-hot.png) no-repeat;
+.menuPoll1:hover{background:url(../img/btn-reportPoll-hot.png) no-repeat;}
 .thumbnails{margin-left: -20px;list-style: none;}
 .thumbnails > li {float: left;margin-bottom: 20px;margin-left: 20px;}
 .span4 {width: 300px;}
-label.alertred {
-color: red;
+.sub-name{
+background-color:#F5F5F5;padding:3px;font-size:11px;color:#969696;padding-left:10px;text-align:right;
 }
-
+.sub-name span{
+	margin:0 5px;
+}
 .span2 {
 width: 140px;
 float: left;
 min-height: 1px;
 margin-left: 20px;
+}
+.calender{background:url(../img/calendar.png) no-repeat;width:16px; height:16px;display:inline-block;vertical-align: middle;}
+.counter{background:url(../img/users16.png) no-repeat;width:16px; height:16px;display:inline-block;vertical-align: middle;}
+.attach{
+margin:10px;
+font-size:14px;
+}
+.alertred{color:red;}
+.km_content ul{
+	list-style-image: url(../img/bullet_blue.png);;
+	margin-top:17px;
+}
+.km_content ul li a{
+	vertical-align:top;padding:30px 0px;
 }

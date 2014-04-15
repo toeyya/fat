@@ -1,6 +1,6 @@
 <style>
-#slide-gallery .flex-direction-nav .flex-next{background: url(../../../fat/media/img/arrow-purple-right.png) no-repeat;width:29px; height:29px;top:75%;right:26px}
-#slide-gallery .flex-direction-nav .flex-prev{background: url(../../../fat/media/img/arrow-purple-left.png)no-repeat;width:29px; height:29px;top:75%;left:-3px;}
+#slide-gallery .flex-direction-nav .flex-next{background: url(../../../fat/media/img/arrow-purple-right.png) no-repeat;width:29px; height:29px;top:75%;}
+#slide-gallery .flex-direction-nav .flex-prev{background: url(../../../fat/media/img/arrow-purple-left.png)no-repeat;width:29px; height:29px;top:75%;}
 </style>
 <div id="gallery">
 <span class="titleGallery">รูปภาพกิจกรรม</span> <div class="line4"> </div>

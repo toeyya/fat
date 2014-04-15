@@ -32,9 +32,9 @@
 				</ul>
 			</li>-->
 			<li><a href="content/admin/content/index/4"><i class="fa fa-bullhorn"></i><span class="hidden-sm"> ประชาสัมพันธ์</span></a></li>
-			<li><a href="content/admin/content/index/4"><i class="fa fa-bullhorn"></i><span class="hidden-sm"> การวางแผนการกิน</span></a></li>
-			<li><a href="content/admin/content/index/4"><i class="fa fa-bullhorn"></i><span class="hidden-sm"> ลดน้ำหนัก ลดรอบเอว</span></a></li>
-			<li><a href="content/admin/content/index/4"><i class="fa fa-bullhorn"></i><span class="hidden-sm"> การออกกำลังกาย</span></a></li>
+			<li><a href="content/admin/content/index/7"><i class="fa fa-bullhorn"></i><span class="hidden-sm"> การวางแผนการกิน</span></a></li>
+			<li><a href="content/admin/content/index/8"><i class="fa fa-bullhorn"></i><span class="hidden-sm"> ลดน้ำหนัก ลดรอบเอว</span></a></li>
+			<li><a href="content/admin/content/index/9"><i class="fa fa-bullhorn"></i><span class="hidden-sm"> การออกกำลังกาย</span></a></li>
 			<li><a href="albums/admin/albums"><i class="fa fa-picture-o"></i><span class="hidden-sm"> ภาพกิจกรรม</span></a></li>
 			<li><a href="km/admin/type/index"><i class="fa fa-align-justify"></i><span class="hidden-sm"> KM</span></a></li>
 			<li><a href="calendar.html"><i class="fa fa-calendar"></i><span class="hidden-sm"> M&E</span></a></li>

@@ -21,8 +21,6 @@
 					  <thead>
 					  	<tr>
 							  <th>แสดง</th>
-							  <th>ลำดับ</th>
-							  <th>รูปภาพ</th>
 							  <th>หัวข้อ</th>
 							  <th>โดย</th>
 							  <th><a class="btn btn-success btn-sm" href="content/admin/content/form/<?php echo $category_id ?>"> <i class="fa fa-plus "></i> เพิ่มรายการ</a> </th>
@@ -36,12 +34,11 @@
 								      <span class="switch-handle"></span>
 								</label>
 							</td>
-							<td></td>
-							<td></td>
+
 						  	<td><?php echo $item['title']?></td>
 						  	<td><?php echo $item['firstname']." ".$item['lastname']; ?></td>
 						  	<td>
-								<a class="btn btn-info btn-sm" href="/admin/content/form/<?php echo $item['id']?>">
+								<a class="btn btn-info btn-sm" href="content/admin/content/form/<?php echo $category_id ?>/<?php echo $item['id']?>">
 									<i class="fa fa-edit "></i>
 								</a>
 								<a class="btn btn-danger btn-sm" href="content/admin/content/delete/<?php echo $item['id'] ?>">

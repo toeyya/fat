@@ -8,6 +8,7 @@ class Type extends Admin_Controller{
 	}
 	function index()
 	{
+		$this->template->append_metadata(js_checkbox());
 		$data['result'] = $this->type->select("f_km.*,agency_name")
 									 ->join("LEFT JOIN f_users ON f_users.id = user_id")
 									 ->get();
@@ -21,6 +22,7 @@ class Type extends Admin_Controller{
 	}
 	function save(){
 		if($_POST){
+			if($_POST['active']==''){$_POST['active']=1;}
 			$_POST['user_id'] = $this->session->userdata('id');
 			$this->type->save($_POST);
 			set_notify('success',SAVE_DATA_COMPLETE);

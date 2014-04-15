@@ -1,18 +1,13 @@
-<img src="themes/default/media/images/title_pr.png" width="141" height="25" /><hr class="hr1">
-<div id="news-pr">
-  <ul>
-  	
-  	<?php foreach($contents as $item): ?>
-  		<?if ($item['url']=='') {?>
-  			<li><a href="content/view/<?php echo $item['category_id'] ?>/<?php echo $item['id']?>/<?php echo $item['url']?>"/><?php echo $item['title'] ?></a></li>
-  			<? }
-  			else {?>
-				<li><a href="<?php echo $item['url']?>"><?php echo $item['title'] ?></a></li>  
-			 <? }
-  			?>	                
-  	<?php endforeach; ?>
-  	
-  </ul>
- <a href="content/view_all/<?php echo $category_id ?>" class="btn_readAll"  name="submit" ></a>
- <span class="clear"></span>
+ <div class="btn-viewAll"><a href="content/view_all/<?php echo $category_id; ?>" style="width:78px;height:22px;display:inline-block;">&nbsp;</a></div>
+ <div class="line1"> </div>
+ <div class="clearfix"> </div>
+<?php foreach($result as $item): ?>
+<div class="col-md-6" id="boxnews">
+	<a class="pull-left" href="content/view/<?php echo $category_id ?>/<?php echo $item['id'] ?>"><img src="uploads/content/<?php echo $item['image'] ?>" width="152" height="118" class="pic-news"></a>
+	<a href="content/view/<?php echo $category_id ?>/<?php echo $item['id'] ?>" class="linknews">
+    	<h4 class="list-group-item-heading" id="titlenews"><?php echo $item['title'] ?></h4>
+		<p class="list-group-item-text"><?php echo $item['intro'] ?></p>
+    </a>
 </div>
+<?php endforeach; ?>
+
