@@ -6,13 +6,26 @@ class Download extends Public_Controller{
 		$this->load->model("download_model",'download');
 		$this->load->model('type_model','type');
 	}
-	function index($type_id=1)
+	function index($type_id)
 	{
 		$data['type'] = $this->type->get();
 		$data['type_id'] = $type_id;
 		$data['result'] = $this->download->where("type_id = $type_id and active=1")->limit(5)->sort('created')->order('desc')->get();
 		$this->load->view('inc_index',$data);
 	}
-
+	function view_all($type_id){
+		$data['type'] = $data['type'] = $this->type->get_row($type_id);
+		$data['result'] = $this->download->where("type_id = $type_id and active=1")->sort('created')->order('desc')->get();
+		$this->template->build('view_all',$data);
+	}
+	function download_file($type_id,$id)
+	{//$this->db->debug=true;
+		//$content = new Content($id);
+		$file=$this->download->get_one("files","id",$id);
+		$this->load->helper('download');
+		$data = file_get_contents("uploads/download/1/file/".basename($file));
+		$name = basename($file);
+		force_download($name, $data);
+	}
 }
 ?>

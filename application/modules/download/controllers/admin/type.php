@@ -21,6 +21,7 @@ class Type extends Admin_Controller{
 	function save()
 	{
 		if($_POST){
+			if(empty($_POST['active'])){$_POST['active']="1";}
 			$_POST['user_id'] = $this->session->userdata('id');
 			$this->type->save($_POST);
 			set_notify('success',SAVE_DATA_COMPLETE);
@@ -30,7 +31,7 @@ class Type extends Admin_Controller{
 	function delete($id)
 	{
 		if($id){
-			$this->dowload->delete("type_id",$id);
+			$this->download->delete("type_id",$id);
 			$this->type->delete($id);
 			set_notify('success',DELETE_DATA_COMPLETE);
 		}

@@ -1,4 +1,3 @@
-<div class="contentBlank">
 <?php if(!empty($_GET)){ ?>
 <div id="Rform">
 
@@ -179,7 +178,7 @@
 <div id="container_grp"  style="height:500px;margin-left:20px;margin-top:10px;margin-bottom: 20px;" class="show"></div>
 <div id="container_diff"  style="height:500px;margin-left:20px;margin-top:10px;margin-bottom: 20px;" class="<?php echo ($time=='1') ? 'hide':'show'?>"></div>
 <div class="aligncenter"><button name="btn_print" onclick="window.print();" class="btn btn-default btn-large">พิมพ์งาน</button></div>
-</div>
+
 <script type="text/javascript">
 $(function () {
 	$('#btn-show').click(function(){

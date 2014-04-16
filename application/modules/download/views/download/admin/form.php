@@ -3,6 +3,7 @@
 	<ul class="breadcrumb">
 		<li><a href="admin">หน้าแรก</a></li>
 		 <li><a href="download/admin/type/index">สื่อสิ่งพิมพ์</a></li>
+		 <li class="active"><?php echo $type['name'] ?></li>
 	</ul>
 	<hr>
 </div>
@@ -13,11 +14,11 @@
 				<h2><i class="fa fa-align-justify"></i><span class="break"></span>สื่อสิ่งพิมพ์ </h2>
 			</div>
 			<div class="box-content">
-			<form class="form-horizontal" role="form" method="post" action="download/admin/download/save" enctype="multipart/form-data">
+			<form class="form-horizontal" role="form" method="post" action="download/admin/download/save/<?php echo $type_id ?>" enctype="multipart/form-data">
 			  <div class="form-group">
 			    <label for="name" class="col-sm-2 control-label">ประเภท</label>
 			    <div class="col-sm-3">
-			     	<?php echo form_dropdown('type_id',get_option('id','name','f_download'),$rs['type_id'],'class="form-control"'); ?>
+			     	<?php echo form_dropdown('type_id',get_option('id','name','f_download'),@$_GET['type_id'],'class="form-control"'); ?>
 			    </div>
 			  </div>
 			 <?php if(!empty($rs['image'])): ?>
@@ -25,8 +26,8 @@
  				<label for="name" class="col-sm-2 control-label">รูป</label>
  				 <div class="col-sm-3">
 
-			    	<a href="uploads/download/<?php echo $rs['id'] ?>/<?php echo $rs['image'] ?>" rel="lightbox">
-						<img style="width:71px;height:100px; vertical-align:middle;" src="uploads/download/<?php echo $rs['id'] ?>/thumbnail/<?php echo $rs['image'] ?>">
+			    	<a href="uploads/download/<?php echo $rs['type_id'] ?>/<?php echo $rs['image'] ?>" rel="lightbox">
+						<img style="width:71px;height:100px; vertical-align:middle;" src="uploads/download/<?php echo $rs['type_id'] ?>/thumbnail/<?php echo $rs['image'] ?>">
 					</a>
 			 </div>
 			</div>

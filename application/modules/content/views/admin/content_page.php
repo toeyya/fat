@@ -25,11 +25,11 @@
 			    <label for="name" class="col-sm-2 control-label">ไฟล์</label>
 
 			    <div class="col-sm-3">
-			     <input type="file" class="form-control" name="files">
+			     <input type="file" class="form-control" name="files"><br/>
 			    <p class="showfile">
 			    <?php if(!empty($result[0]['files'])): ?>
-			    	<a href="content/admin/content/download/<?php echo $result[0]['id'] ?>" class="btn btn-primary btn-sm">ดาวน์โหลด <?php echo $result[0]['files'] ?></a>
-			    	<a rel="<?php echo @$result[0]['id'] ?>" class="btn btn-default btn-sm btn_del">ลบ</a>
+			    	<a href="content/admin/content/download/<?php echo $result[0]['id'] ?>" class="btn btn-default btn-sm">ดาวน์โหลด <?php echo $result[0]['files'] ?></a>
+			    	<a rel="<?php echo @$result[0]['id'] ?>" class="btn btn-danger btn-sm btn_del">ลบ</a>
 			    <?php endif; ?>
 			    </p>
 			    </div>
@@ -53,25 +53,23 @@
 <script type="text/javascript" src="media/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript" src="media/tiny_mce/config.js"></script>
 <script type="text/javascript">
-	tiny('detail');
-	$(function(){
-		$('.preview').click(function(){
-			tinyMCE.triggerSave();
-		});
-		$('.btn_del').click(function(){
-			if(confirm('ยืนยันการลย')){
-				var id= $(this).attr('rel');
-				$.ajax({
-					url:'content/admin/content/delete_file',
-					type:'post',
-					data:'id='+id,
-					success:function(){
-						$('.showfile').fadeOut('slow');
-					}
-				});
-			}
-
-
-		});
+tiny('detail');
+$(function(){
+	$('.preview').click(function(){
+	tinyMCE.triggerSave();
+});
+$('.btn_del').click(function(){
+	if(confirm('ยืนยันการลย')){
+		var id= $(this).attr('rel');
+		$.ajax({
+			url:'content/admin/content/delete_file',
+			type:'post',
+			data:'id='+id+'&field=files',
+			success:function(){
+				$('.showfile').fadeOut('slow');
+				}
+			});
+		}
 	});
+});
 </script>

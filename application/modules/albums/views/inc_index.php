@@ -15,27 +15,6 @@
 	 	  </div>
  	 	</li>
  	 	<?php endforeach; ?>
-	 <li>
-		 <div id="col1-gallery">
-		      <div class="title-ogan"><strong>องค์กร :</strong> บริษัทผลิตไฟฟ้าราชบุรี จำกัด อ.เมือง จ.ราชบุรี</div>
-		      <div class="boximg"><a href="#"><img src="media/img/pic2.jpg" width="259" height="197" /></a></div>
-
-		 </div>
-	 </li>
-	 <li>
-		 <div id="col1-gallery">
-		      <div class="title-ogan"><strong>องค์กร :</strong> บริษัทผลิตไฟฟ้าราชบุรี จำกัด อ.เมือง จ.ราชบุรี</div>
-		      <div class="boximg"><a href="#"><img src="media/img/pic2.jpg" width="259" height="197" /></a></div>
-
-		 </div>
-	 </li>
-	 <li>
-		 <div id="col1-gallery">
-		      <div class="title-ogan"><strong>องค์กร :</strong> บริษัทผลิตไฟฟ้าราชบุรี จำกัด อ.เมือง จ.ราชบุรี</div>
-		      <div class="boximg"><a href="#"><img src="media/img/pic2.jpg" width="259" height="197" /></a></div>
-
-		 </div>
-	 </li>
  </ul>
 </div>
 <div class="clearfix"></div>

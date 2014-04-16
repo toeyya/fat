@@ -20,10 +20,12 @@ class Download extends Admin_Controller{
 	}
 	function form($id = FALSE)
 	{
+		$data['type_id'] = $_GET['type_id'];
+		$data['type'] = $this->type->get_row($_GET['type_id']);
 		$data['rs'] = $this->download->get_row($id);
 		$this->template->build('download/admin/form',$data);
 	}
-	function save()
+	function save($type_id)
 	{
 		if($_POST)
 		{
@@ -34,19 +36,19 @@ class Download extends Admin_Controller{
 			{
 
 				if(image_extension(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION))){
-					$this->download->delete_file($id,'uploads/download/'.$id,'image');
-					$this->download->delete_file($id,'uploads/download/'.$id.'/thumbnail/','image');
+					$this->download->delete_file($id,'uploads/download/'.$type_id,'image');
+					$this->download->delete_file($id,'uploads/download/'.$type_id.'/thumbnail/','image');
 
-					$this->download->save(array('id' => $id, 'image' => $this->download->upload($_FILES['image'],'uploads/download/'.$id,false,600,300)));
-					$this->download->thumb('uploads/download/'.$id.'/thumbnail/',275,180);
+					$this->download->save(array('id' => $id, 'image' => $this->download->upload($_FILES['image'],'uploads/download/'.$type_id)));
+					$this->download->thumb('uploads/download/'.$type_id.'/thumbnail/',false,600,300);
 				}
 			}
 
 			if(@$_FILES['files']['name'])
 			{
 				if(file_extension(pathinfo($_FILES['files']['name'], PATHINFO_EXTENSION))){
-					$this->download->delete_file($id,'uploads/download/'.$id.'/file','files');
-					$this->download->save(array('id'=>$id,'files'=>$this->download->upload($_FILES['files'],'uploads/download/'.$id.'/file')));
+					$this->download->delete_file($id,'uploads/download/'.$type_id.'/file','files');
+					$this->download->save(array('id'=>$id,'files'=>$this->download->upload($_FILES['files'],'uploads/download/'.$type_id.'/file')));
 				}
 			}
 

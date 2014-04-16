@@ -25,7 +25,7 @@
 							  <th>แสดง</th>
 							  <th>หัวข้อ</th>
 							  <th>โดย</th>
-							  <th><a class="btn btn-success btn-sm" href="download/admin/download/form"> <i class="fa fa-plus "></i> เพิ่มรายการ</a> </th>
+							  <th><a class="btn btn-success btn-sm" href="download/admin/download/form?type_id=<?php echo $type_id ?>"> <i class="fa fa-plus "></i> เพิ่มรายการ</a> </th>
 						  </tr>
 						  <?php $i=(@$_GET['page'] > 1)? (((@$_GET['page'])* 20)-20)+1:1;?>
 						  <?php foreach($result as $item): ?>
@@ -39,10 +39,10 @@
 						  	<td><?php echo $item['title']?></td>
 						  	<td><?php echo $item['agency_name']?></td>
 						  	<td>
-								<a class="btn btn-info btn-sm" href="download/admin/download/form/<?php echo $item['id']?>/<?php echo $type_id ?>">
+								<a class="btn btn-info btn-sm" href="download/admin/download/form/<?php echo $item['id']?>?type_id=<?php echo $type_id ?>">
 									<i class="fa fa-edit "></i>
 								</a>
-								<a class="btn btn-danger btn-sm" href="download/admin/download/delete/<?php echo $item['id'] ?>/<?php echo $type_id ?>">
+								<a class="btn btn-danger btn-sm" href="download/admin/download/delete/<?php echo $item['id'] ?>?type_id=<?php echo $type_id ?>">
 									<i class="fa fa-trash-o "></i>
 								</a></td>
 						  </tr>

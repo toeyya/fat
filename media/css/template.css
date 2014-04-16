@@ -224,48 +224,34 @@ behavior: url(pie/PIE.htc);
 /*POlls*/
 .score{ margin-left:110px; color:#5ea305;font-weight:bold; font-size:15px;}
 
-	.btn-poll1{float:left;display:block;background:url(../img/btn-poll1.png) no-repeat; width:212px; height:32px; cursor:pointer; margin-right:5px;}
-	.btn-poll1:hover{background:url(../img/btn-poll1-hot.png) no-repeat;}
-	.btn-poll2{float:left;display:block;background:url(../img/btn-poll2.png) no-repeat; width:212px; height:32px; cursor:pointer;}
-	.btn-poll2:hover{background:url(../img/btn-poll2-hot.png) no-repeat;}
+.btn-poll1{float:left;display:block;background:url(../img/btn-poll1.png) no-repeat; width:212px; height:32px; cursor:pointer; margin-right:5px;}
+.btn-poll1:hover{background:url(../img/btn-poll1-hot.png) no-repeat;}
+.btn-poll2{float:left;display:block;background:url(../img/btn-poll2.png) no-repeat; width:212px; height:32px; cursor:pointer;}
+.btn-poll2:hover{background:url(../img/btn-poll2-hot.png) no-repeat;}
 
 #menuPoll ul {	position: relative;	 display: block; margin-bottom:-30px;margin-left:20px;margin-top:20px;}
 #menuPoll ul li{list-style:none; display:inline-block;}
 #menuPoll ul ul {	display: none; margin:0; padding:0;}
-	#menuPoll ul li:hover > ul {display: block; margin-top:12px; margin-left:-5px;  padding:0; }
-	#menuPoll ul:after {content: ""; clear: both; display: block;}
-	.ReportPoll li {float: left; color:white; font-weight:bold; display: block; line-height:32px; text-indent:8px; width:100px; background:#cc66ff; border-radius:6px;margin-top:5px; margin-left:5px;}
-	.ReportPoll li a{color:white; font-weight:bold; border-radius:6px;}
-	.ReportPoll li a:hover{display: block; text-decoration:none; color:white; font-weight:bold;  background:#cc99ff; border-radius:6px;}
+#menuPoll ul li:hover > ul {display: block; margin-top:12px; margin-left:-5px;  padding:0; }
+#menuPoll ul:after {content: ""; clear: both; display: block;}
+.ReportPoll li {float: left; color:white; font-weight:bold; display: block; line-height:32px; text-indent:8px; width:100px; background:#cc66ff; border-radius:6px;margin-top:5px; margin-left:5px;}
+.ReportPoll li a{color:white; font-weight:bold; border-radius:6px;}
+.ReportPoll li a:hover{display: block; text-decoration:none; color:white; font-weight:bold;  background:#cc99ff; border-radius:6px;}
 
 .menuPoll1{display:block;background:url(../img/btn-reportPoll.png) no-repeat; width:107px; height:32px; cursor:pointer;margin-left:5px;}
 .menuPoll1:hover{background:url(../img/btn-reportPoll-hot.png) no-repeat;}
 .thumbnails{margin-left: -20px;list-style: none;}
 .thumbnails > li {float: left;margin-bottom: 20px;margin-left: 20px;}
 .span4 {width: 300px;}
-.sub-name{
-background-color:#F5F5F5;padding:3px;font-size:11px;color:#969696;padding-left:10px;text-align:right;
-}
-.sub-name span{
-	margin:0 5px;
-}
-.span2 {
-width: 140px;
-float: left;
-min-height: 1px;
-margin-left: 20px;
-}
+.sub-name{background-color:#F5F5F5;padding:3px;font-size:11px;color:#969696;padding-left:10px;text-align:right;}
+.sub-name span{margin:0 5px;}
+.span2 {width: 140px;float: left;min-height: 1px;margin-left: 20px;}
 .calender{background:url(../img/calendar.png) no-repeat;width:16px; height:16px;display:inline-block;vertical-align: middle;}
 .counter{background:url(../img/users16.png) no-repeat;width:16px; height:16px;display:inline-block;vertical-align: middle;}
-.attach{
-margin:10px;
-font-size:14px;
-}
+.attach{margin:10px;font-size:14px;}
 .alertred{color:red;}
-.km_content ul{
-	list-style-image: url(../img/bullet_blue.png);;
-	margin-top:17px;
-}
-.km_content ul li a{
-	vertical-align:top;padding:30px 0px;
-}
+.km_content ul{list-style-image: url(../img/bullet_blue.png);margin-top:17px;}
+.km_contett ul li{display:inline-block;background:#00793E;}
+.km_content ul li a{vertical-align:top;padding:30px 0px;}
+#download ul{list-style:none;}
+#download ul li{float:left;border:1px solid #C5C2C2;padding:4px;margin:10px;}

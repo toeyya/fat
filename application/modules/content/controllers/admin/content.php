@@ -20,24 +20,20 @@ class Content extends Admin_Controller
 		$data['pagination']  = $this->content->pagination();
 		$data['category_id'] = $category_id;
 		$data['category']    = $this->category->get_row($category_id);
-
+		$structure = $data['category']['structure'];
 		if($category_id){
 
 			$data['content']=$this->content->get_row("category_id",$category_id);
 		}
-		if($data['category']['structure']=="contact"){
-
+		if($structure=="contact"){
 			$this->template->build('admin/content_contact',$data);
 
-		}else if($data['category']['structure']=="page"){
-
+		}else if($structure=="page"){
 			$this->template->build('admin/content_page',$data);
 		}else{
-
 			$this->template->build('admin/content_index',$data);
 		}
 	}
-
 	function form($category_id = FALSE,$id=FALSE)
 	{
 		//$this->db->debug = true;
@@ -46,7 +42,6 @@ class Content extends Admin_Controller
 		$data['category_name']=$this->category->get_one("name","id",$category_id);
 		$this->template->build('admin/content_form',$data);
 	}
-
 	function save($category_id=FALSE)
 	{//$this->db->debug= true;
 		if($_GET)
@@ -60,7 +55,6 @@ class Content extends Admin_Controller
 			}
 			redirect('content/admin/content/index/'.$category_id);
 		}
-
 		if($_POST)
 		{
 
@@ -94,20 +88,16 @@ class Content extends Admin_Controller
 		redirect('content/admin/content/index/'.$category_id);
 
 	}
-
 	function delete($id)
 	{
 		if($id)
 		{
 			$this->content->delete($id);
-			//$this->type->delete($id);
 			set_notify('success', DELETE_DATA_COMPLETE);
 		}
 		//redirect('content/admin/content/index');
 		redirect($_SERVER['HTTP_REFERER']);
 	}
-
-
 	function download($id,$field="files")
 	{
 		$file = $this->content->get_one($field,"id",$id);
@@ -124,21 +114,5 @@ class Content extends Admin_Controller
 		//$this->content->delete_file($id,'uploads/content/',$field);
 		//$this->content->save(array('id'=>$id,$field=>''));
 	}
-	function search()
-	{
-		$searchs = $_POST['search'];
-		$data['result'] = $this->content->where("title LIKE '%$searchs%' OR title_eng LIKE '%$searchs%'")->limit(20)->get();
-		$data['pagination'] = $this->content->pagination();
-		$this->template->build('admin/content_index',$data);
-	}
-	function category($cat_id = FALSE)
-	{
-		$data['category'] = $this->category->where("id = $cat_id")->get();
-		$this->load->view('admin/category_name',$data);
-	}
-
-
-
-
 }
 ?>

@@ -1,4 +1,3 @@
-<div class="contentBlank">
 <div id="Rform">
 
 	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
@@ -89,7 +88,6 @@
 </table>
 <div id="container_grp"  style="height:500px;margin-left:20px;margin-top:10px;margin-bottom: 20px;" class="show"></div>
 <div class="aligncenter"><button name="btn_print" onclick="window.print();" class="btn btn-default btn-large">พิมพ์งาน</button></div>
-</div>
 <script type="text/javascript">
 $(function () {
     $('#container_grp').highcharts({

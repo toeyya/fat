@@ -1,5 +1,5 @@
 <?php
-class F_weight extends flat_Controller
+class F_weight extends Flat_Controller
 {
 	function __construct()
 	{

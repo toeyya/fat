@@ -12,7 +12,7 @@
 		<span>ศูนย์อนามัย</span>
 		<?php echo form_dropdown('hpc',get_option('id','area_no','f_area_detail where area_id=2 group by area_no'),@$_GEt['hpc'],'class="search-query"','เลือกศูนย์อนามัย'); ?>
 		<span>จังหวัด</span>
-		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
+		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province','','province_name'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
 		<span>ปีงบประมาณ </span>
 		<?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="search-query"',''); ?>
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>

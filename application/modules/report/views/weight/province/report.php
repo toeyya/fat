@@ -1,4 +1,3 @@
-<div class="contentBlank">
 <div id="Rform">
 	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
 	<h3>รายงานสรุปผลการประเมินรอบเอวในศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h3>
@@ -104,4 +103,3 @@
 <div class="span3 pull-right text-right">ออกรายงาน ณ วันที่ <?php echo db_to_th(date('Y-m-d')) ?></div>
 <div class="clearfix"></div>
 <div class="aligncenter"><button name="btn_print" onclick="window.print();" class="btn btn-default btn-large">พิมพ์งาน</button></div>
-</div>

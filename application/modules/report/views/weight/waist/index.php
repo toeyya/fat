@@ -126,12 +126,12 @@
 <tbody>
 <tr>
 	<td><?php echo number_format($total); ?></td>
-	<td><?php echo number_format($cnt[1]); ?></td>
-	<td><?php echo ($cnt[1]!=0 && $total !=0) ? number_format(($cnt[1]*100)/$total,1): 0 ?></td>
-	<td><?php echo number_format($sum_weight[1]) ?></td>
-	<td><?php echo number_format($avg_weight[1]) ?></td>
-	<td><?php echo number_format($sum_waist[1]); ?></td>
-	<td><?php echo number_format($avg_waist[1]); ?></td>
+	<td><?php echo (empty($cnt[1])) ? 0 :number_format($cnt[1]); ?></td>
+	<td><?php echo (!empty($cnt[1]) || !empty($total)) ? number_format(($cnt[1]*100)/$total,1): 0 ?></td>
+	<td><?php echo (empty($sum_weight[1])) ? 0 :number_format($sum_weight[1]) ?></td>
+	<td><?php echo (empty($avg_weight[1])) ? 0 :number_format($avg_weight[1]) ?></td>
+	<td><?php echo (empty($sum_waist[1])) ? 0 :number_format($sum_waist[1]); ?></td>
+	<td><?php echo (empty($avg_waist[1])) ? 0 :number_format($avg_waist[1]); ?></td>
 </tr>
 </tbody>
 
@@ -194,11 +194,11 @@
 	<td>รวม</td>
 	<?php $sum = $normal1+$normal2+$abnormal1+$abnormal2 ?>
 	<td><?php $sum1=$normal1+$abnormal1;echo number_format($sum1); ?></td>
-	<td>100.0</td>
+	<td><?php echo number_format($n_percent[1]+$ab_percent[1],1) ?></td>
 	<td><?php echo number_format($normal2+$abnormal2) ?></td>
-	<td>100.0</td>
+	<td><?php echo number_format($n_percent[2]+$ab_percent[2],1) ?></td>
 	<td><?php echo number_format($sum)?></td>
-	<td><?php echo number_format(($sum*100)/$sum,1) ?></td>
+	<td><?php echo (empty($sum)) ? '0.0' :number_format(($sum*100)/$sum,1) ?></td>
 </tr>
 </tbody>
 </table>

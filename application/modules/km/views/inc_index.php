@@ -10,7 +10,7 @@
 	<div id="km">
 		<?php foreach($result as $item): ?>
 		 <span class="title-news"><?php echo $item['name'] ?></span>
-		 <div class="btn-viewAll"><a href="km/viewall/<?php echo $item['id']; ?>" style="width:78px;height:22px;display:inline-block;">&nbsp;</a></div>
+		 <div class="btn-viewAll"><a href="km/view_all/<?php echo $item['id']; ?>" style="width:78px;height:22px;display:inline-block;">&nbsp;</a></div>
 		 <div class="line1"> </div>
 		 <div class="clearfix"></div>
 		 <div class="km_content">
