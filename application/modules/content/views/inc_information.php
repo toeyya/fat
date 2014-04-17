@@ -3,11 +3,11 @@
  <div class="clearfix"> </div>
 <?php foreach($result as $item): ?>
 <div class="col-md-6" id="boxnews">
-	<a class="pull-left" href="content/view/<?php echo $category_id ?>/<?php echo $item['id'] ?>">
+	<a class="pull-left border-img" href="content/view/<?php echo $category_id ?>/<?php echo $item['id'] ?>">
 		<?php if(!empty($item['image'])){ ?>
 			<img src="uploads/content/<?php echo $item['image'] ?>" width="152" height="118" class="pic-news">
 		<?php }else{ ?>
-			<img class="img-rounded">
+			<img src="media/img/no_image.jpg" width="152px" height="118px">
 		<?php } ?>
 	</a>
 	<a href="content/view/<?php echo $category_id ?>/<?php echo $item['id'] ?>" class="linknews">

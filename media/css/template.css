@@ -105,7 +105,7 @@ behavior: url(pie/PIE.htc);
 .tomatoes{position:absolute; top:20px; right:80px; background:url(../img/tomatoes.png) no-repeat; width:75px; height:46px;}
 
 /*PLAN*/
-#plan{margin-top:70px;}
+#plan{margin-top:47px;}
 .line3{padding-top:15px; border-bottom:1px dashed #bcbdbb; width:80%;margin:0 auto;}
 .line{padding-top:15px; border-bottom:1px dashed #3EC5BD; width:100%;margin:0 auto;}
 #weight{margin-top:40px;}
@@ -255,3 +255,4 @@ behavior: url(pie/PIE.htc);
 .km_content ul li a{vertical-align:top;padding:30px 0px;}
 #download ul{list-style:none;}
 #download ul li{float:left;border:1px solid #C5C2C2;padding:4px;margin:10px;}
+.border-img{background:url(../img/border.png) no-repeat;width:152px;height: 118px;display:inline-block;}

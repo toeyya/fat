@@ -16,7 +16,7 @@
 				<?php if(!empty($item['image'])){ ?>
 				<img src="uploads/content/thumbnail/<?php echo $item['image'] ?>" width="86px" height="67px" class="pic-news">
 				<?php }else{ ?>
-					<img class="img-rounded">
+					<img src="media/img/no_image.jpg" width="152px" height="118px">
 				<?php } ?>
 			</a>
 			<a href="content/view/<?php echo $category['id'] ?>/<?php echo $item['id'] ?>" class="linknews">

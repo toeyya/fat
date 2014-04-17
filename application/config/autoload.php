@@ -51,7 +51,7 @@ $autoload['libraries'] = array('adodb','template','parser','session','user_agent
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','html','form','auth','breadcrumb','date','cookie','email','media','language');
+$autoload['helper'] = array('url','html','form','auth','breadcrumb','date','cookie','email','media');
 
 
 /*
@@ -90,7 +90,7 @@ $autoload['config'] = array();
 |
 |	$autoload['language'] = array('lang1', 'lang2');
 |
-| NOTE: Do not include the "_lang" part of your file.  For example 
+| NOTE: Do not include the "_lang" part of your file.  For example
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */

@@ -25,7 +25,7 @@
 				<?php foreach($module as $key => $item): ?>
 					  <div class="form-group">
 					   <label for="name" class="col-sm-2 control-label"><?php echo $item['label'] ?></label>
-					    <div class="col-sm-4">
+					    <div class="col-sm-5">
 						<?php foreach($item['permission'] as $perm): ?>
 						   <label class="checkbox-inline " for="<?php echo 'checkbox['.$key.']['.$perm.']'; ?>" >
 						   		<input id="<?php echo 'checkbox['.$key.']['.$perm.']'; ?>" type="checkbox" name="<?php echo 'checkbox['.$key.']['.$perm.']'; ?>" value="1" <?php echo (!empty($rs_perm[$key][$perm])) ? 'checked' : ''; ?> >
@@ -42,7 +42,7 @@
 				<div class="form-group">
 				    <div class="col-sm-offset-2 col-sm-12">
 				      <button type="submit" class="btn btn-primary btn-sm">บันทึก</button>
-				      <button type="submit" class="btn btn-default btn-sm">ย้อนกลับ</button>
+				      <button type="submit" class="btn btn-default btn-sm" onclick="history.go(-1);">ย้อนกลับ</button>
 				      <input type="hidden" name="id" id="permission_id" value="<?php echo @$permission['id']?>">
 				      <?php echo (!empty($permission['id'])) ? form_hidden('updated',date('Y-m-d H:i:s')) : form_hidden('created',date('Y-m-d H:i:s'))?>
 				    </div>

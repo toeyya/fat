@@ -53,9 +53,9 @@ class Permission extends Admin_Controller
 
 
 	public function form($id=FALSE)
-	{
+	{//$this->db->debug= true;
 		$data['permission'] = $this->permission->get_row($id);
-		$data['perm'] = $this->permission_row($id);
+		$data['rs_perm'] = $this->permission_row($id);
 		$data['module'] = $this->module;
 		$data['crud'] = $this->crud;
 		$this->template->build('admin/form',$data);
@@ -77,6 +77,7 @@ class Permission extends Admin_Controller
 					'act_download' => $item['act_download']
 				);
 			}
+			//var_dump($perm);
 			return @$perm;
 		}
 		else return NULL;
