@@ -22,9 +22,9 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="name" class="col-sm-2 control-label">เขต</label>
+			    <label for="name" class="col-sm-2 control-label">จำนวนเขต</label>
 			    <div class="col-sm-3">
-			      <input type="text" class="form-control" name="name"  placeholder="เขต" value="<?php echo $rs['name'] ?>">
+			      <input type="text" class="form-control" name="total"  placeholder="จำนวนเขต" value="<?php echo $rs['total'] ?>">
 			    </div>
 			  </div>
 			  <div class="form-group">

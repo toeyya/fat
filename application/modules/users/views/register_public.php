@@ -106,8 +106,10 @@
 		    </div>
 		  </div>
 		  <input type="hidden" name="user_type" value="1">
+		   <input type="hidden" name="permission_id" value="2">
   		  <?php echo (!empty($rs['id'])) ? form_hidden('updated',date('Y-m-d H:i:s')) : form_hidden('created',date('Y-m-d H:i:s'))?>
-		<input type="hidden" name="id" value="<?php echo @$rs['id'] ?>">
+		 <input type="hidden" name="id" value="<?php echo @$rs['id'] ?>">
+
           <?php if(empty($profile)): ?>
           <div class="control-group">
             <label class="control-label" for="inputCaptcha"><label class="alertred">*</label>รหัสลับ</label>

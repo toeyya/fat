@@ -16,7 +16,7 @@ class Content extends Public_Controller
 		$data['contents'] = $this->content->select('contents.*,firstname,lastname')
 										->join("LEFT JOIN f_profiles on f_profiles.user_id=contents.user_id")
 										->where(" category_id='".$category_id."'")
-										->sort("")->order("queue")->get();
+										->sort("id")->order("desc")->get();
 		$data['pagination']=$this->content->pagination();
 		$data['category_id']=$category_id;
 		$data['category']=$this->cat->get_row($category_id);
@@ -57,7 +57,7 @@ class Content extends Public_Controller
 
 	function view_all($id)
 	{//sysdate()
-		$data['result']=$this->content->where("category_id=$id and active = '1'")->sort("")->sort("")->order("id desc")->limit(10)->get();
+		$data['result']=$this->content->where("category_id=$id and active = '1'")->sort("id")->order("desc")->limit(10)->get();
 		$data['category']  = $this->cat->get_row($id);
 		$data['pagination'] = $this->content->pagination();
 		$this->template->build('inc_index',$data);
@@ -65,8 +65,7 @@ class Content extends Public_Controller
 
 	function inc_information($category_id)
 	{//GETDATE()
-		$data['result']=$this->content->where("category_id=$category_id and active = '1'")->sort("")
-										->sort("")->order("queue")->limit(4)->get();
+		$data['result']=$this->content->where("category_id=$category_id and active = '1'")->sort("id")->order("desc")->limit(4)->get();
 		$data['category_id'] =$category_id;
 		$this->load->view('inc_information',$data);
 	}

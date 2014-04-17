@@ -5,9 +5,9 @@
 
           <!--<div id="fb"><a href="#"><img src="img/icon-facebook.png" width="22" height="22" /></a></div>-->
 
-          <div id="register"><a href="users/register" style="width:109px;height:29px;display:inline-block">&nbsp;</a></div>
+          <div id="register"><a href="users/register" style="width:109px;height:29px;display:inline-block"></a></div>
 
-          <div id="login"><a href="users/index" style="width:86px;height:32px;display:inline-block">&nbsp;</a></div>
+          <div id="login"><a href="users/index" style="width:86px;height:32px;display:inline-block"></a></div>
 
           <div id="logo_">
           	<img src="media/img/logo-thaihealth.png" width="97" height="58" />&nbsp;

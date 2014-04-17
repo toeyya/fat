@@ -1,7 +1,7 @@
  <div id="Breadcrumbs">
   	<ol id="path-breadcrumb">
       <li><a href="home">หน้าแรก</a></li>
-      <li><a href="download">สื่อสิ่งพิมพ์</a></li>
+      <li>สื่อสิ่งพิมพ์</li>
       <li class="active"><?php echo $type['name'] ?></li>
     </ol>
  </div>

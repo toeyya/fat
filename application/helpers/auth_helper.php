@@ -3,9 +3,8 @@
 function login($username=FALSE,$password=FALSE)
 {
 	$CI =& get_instance();
-	//$CI->db->debug= true;
-	$session_id = session_id();
-	$sql="SELECT user_id,user_type,agency_name,firstname,lastname,confirm_email FROM f_users LEFT JOIN f_profiles ON f_users.id = f_profiles.user_id WHERE email= ?  AND password= ? and active='1'";
+	$sql="SELECT user_id,user_type,agency_name,firstname,lastname,confirm_email FROM f_users
+		  LEFT JOIN f_profiles ON f_users.id = f_profiles.user_id WHERE email= ?  AND password= ? and active='1'";
 	$rs = $CI->db->GetRow($sql,array($username,$password));
 	if($rs)
 	{

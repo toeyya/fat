@@ -11,7 +11,7 @@ class Public_Controller extends Controller
 		$this->template->set_layout('layout');
 		//$this->template->set_layout('index_bac');
 		//set title
-		$this->template->title('ระบบรายงานผู้สัมผัสโรคพิษสุนัขบ้า');
+		$this->template->title('ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง');
 		//Set js
 		$this->template->append_metadata(js_notify());
 	}

@@ -73,7 +73,6 @@ behavior: url(pie/PIE.htc);
 .btn-bmi:hover{background:url(../img/btn-bmi-hot.png) no-repeat;}
 
 
-
 /*NEWS*/
 #news{ margin-left:15px;}
 .title-news{ font-family:tushand; font-size:34px; font-weight:bolder; color:#5c9502;}
@@ -89,15 +88,16 @@ behavior: url(pie/PIE.htc);
 
 /*BOOKS*/
 #books{margin-top:30px;margin-left:30px; position:relative;}
-#shelf{margin:0 auto; background-image: url("../img/shelf.png");background-repeat: no-repeat;background-position: bottom; height:191px;}
-#shelf ul{ padding:0; margin:0; margin-left:10px;  text-align:center; list-style:none;width:580px;}
-#shelf ul li{padding-right:13px; display:inline;}
-.titleBook{font-family:tushand; font-size:34px; font-weight:bolder; color:#5c9502;margin-bottom:30px; margin-left:70px;}
+.shelf{margin:0 auto; background-image: url("../img/shelf.png");background-repeat: no-repeat;background-position: bottom; height:191px;}
+.shelf ul{ padding:0; margin:0; margin-left:10px;  text-align:center; list-style:none;width:580px;}
+.shelf ul li{padding-right:13px; display:inline;}
+.titleBook{font-family:tushand; font-size:34px; font-weight:bolder; color:#5c9502;margin-bottom:21px; margin-left:70px;}
 .titleBook ul{margin-top:-45px; margin-left:150px; padding:0;  list-style:none;}
 .titleBook ul li a{display:inline; float:left;font-size:27px; color:#929292; padding-right:20px; }
 .titleBook ul li a.active{ color:#07a98c; text-decoration:underline; }
-.btn-moreBooks{ margin:0 auto; position:absolute; left:45%; top:225px; z-index:1; display:block; background-image: url("../img/btn-book-viewall.png");background-repeat: no-repeat; width:97px; height:22px; cursor:pointer;}
-.btn-moreBooks:hover{ background-image: url("../img/btn-book-viewall-hot.png");}
+.btn-moreBooks{text-align:center}
+.btn-moreBooks a{margin-top:20px;display:inline-block; background: url("../img/btn-book-viewall.png") no-repeat; width:97px; height:22px; cursor:pointer;}
+.btn-moreBooks a:hover{ background-image: url("../img/btn-book-viewall-hot.png");}
 	#arrowleftbook a{position:absolute; left:190px; top:100px; display:block; background:url(../img/arrowbook-left.png) bottom no-repeat; width:21px; height:39px; margin-right:10px; }
 	#arrowleftbook a:hover{background:url(../img/arrowbook-left-hot.png) bottom no-repeat;}
 	#arrowrightbook a{position:absolute; right:190px; top:100px; display:block; background:url(../img/arrowbook-right.png) bottom no-repeat; width:21px; height:39px; margin-left:10px;}
