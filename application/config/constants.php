@@ -63,7 +63,7 @@ define('BTN_DELETE','ลบ');
 define('BTN_SUBMIT','ตกลง');
 define('BTN_ANS', 'ตอบกระทู้');
 define('BTN_SENDMAIL', 'ส่งเมลล์');
-define('NOTICE_CONFIRM_DELETE', 'คุณแน่ใจหรือไม่ที่ต้องการลบข้อมูลนี้');
+define('NOTICE_CONFIRM_DELETE', 'ยืนยันการลบ');
 
 define('SAVE_DATA_COMPLETE','บันทึกข้อมูลเรียบร้อย');
 define('DELETE_DATA_COMPLETE', 'ลบข้อมูลเรียบร้อยแล้ว');

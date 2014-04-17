@@ -1,12 +1,9 @@
 <div>
 	<hr>
 	<ul class="breadcrumb">
-		<li>
-			<a href="admin">หน้าแรก</a>
-		</li>
-		 <li><a href="#">ตั้งค่าองค์กรต้นแบบไร้พุง</a></li>
-		<li>ศูนย์องค์กรต้นแบบไร้พุง
-		</li>
+		<li><a href="admin">หน้าแรก</a></li>
+		<li><a href="#">ตั้งค่าองค์กรต้นแบบไร้พุง</a></li>
+		<li class="active">ศูนย์องค์กรต้นแบบไร้พุง</li>
 	</ul>
 	<hr>
 </div>

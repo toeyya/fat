@@ -21,11 +21,19 @@ class Province extends Admin_Controller{
 		$this->template->build('province/admin/form',$data);
 	}
 	function save(){
-
+		if($_POST){
+			$this->province->save($_POST);
+			set_notify('success',SAVE_DATA_COMPLETE);
+		}
+		redirect('setting/admin/province');
 	}
-	function delete()
+	function delete($id)
 	{
-
+		if($id){
+			$this->province->delete($id);
+			set_notify('success',DELETE_DATA_COMPLETE);
+		}
+		redirect('setting/admin/province');
 	}
 }
 ?>

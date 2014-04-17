@@ -15,7 +15,7 @@
 				<h2><i class="fa fa-align-justify"></i><span class="break"></span>จังหวัด </h2>
 			</div>
 			<div class="box-content">
-			<form class="form-horizontal" role="form">
+			<form class="form-horizontal" role="form" method="post" action="setting/admin/province/save">
 			  <div class="form-group">
 			    <label for="province_name" class="col-sm-2 control-label">จังหวัด</label>
 			    <div class="col-sm-3">

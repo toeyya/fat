@@ -36,7 +36,7 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td style="text-align: center;" ><button type="submit" >ยืนยัน</button></td>
+			<td style="text-align: center;" ><button type="submit" class="btn btn-primary" >ยืนยัน</button></td>
 		</tr>
 		<?php endif?>
 	</tbody>

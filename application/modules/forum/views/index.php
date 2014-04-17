@@ -4,9 +4,11 @@
 
 <table class="table table-bordered" >
 	<thead>
+		<?php if(login_data("id")):?>
 		<tr>
 			<th colspan="4" style="text-align: right;" ><a href="#" class="btn btn-primary" >ตั้งคำถามใหม่</a></th>
 		</tr>
+		<?php endif?>
 		<tr style="background: #02947d; color: #ffffff;" >
 			<th style="width: 100px;">#</th>
 			<th>หัวข้อ</th>

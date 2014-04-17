@@ -12,5 +12,23 @@ class Area extends Admin_Controller{
 		$data['result'] = $this->area->get();
 		$this->template->build('area/admin/index',$data);
 	}
+	function form($id=FALSE){
+		$data['rs'] = $this->area->get_row($id);
+		$this->template->build('area/admin/form',$data);
+	}
+	function save(){
+		if($_POST){
+			$this->area->save($_POST);
+			set_notify('success',SAVE_DATA_COMPLETE);
+		}
+		redirect('setting/admin/area');
+	}
+	function delete($id){
+		if($id){
+			$this->area->delete($id);
+			set_notify('success',SAVE_DATA_COMPLETE);
+		}
+		redirect('setting/admin/area');
+	}
 }
 ?>

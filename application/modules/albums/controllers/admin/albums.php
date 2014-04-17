@@ -5,6 +5,7 @@ class Albums extends Admin_Controller{
 		parent::__construct();
 		$this->load->model('album_model','album');
 		$this->load->model('picture_model','picture');
+		$this->load->model("forum/webboard_topic","topic");
 
 	}
 	function index()

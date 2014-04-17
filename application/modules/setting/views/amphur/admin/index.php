@@ -10,6 +10,8 @@
 	<hr>
 </div>
 
+
+</div>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="box">
@@ -32,10 +34,10 @@
 						  	<td><?php echo $item['province_name']?></td>
 						  	<td><?php echo $item['amphur_name']?></td>
 						  	<td>
-								<a class="btn btn-info btn-sm" href="setting/admin/province/form/<?php echo $item['id']?>">
+								<a class="btn btn-info btn-sm" href="setting/admin/amphur/form/<?php echo $item['id']?>">
 									<i class="fa fa-edit "></i>
 								</a>
-								<a class="btn btn-danger btn-sm" href="setting/admin/province/delete/<?php echo $item['id'] ?>">
+								<a class="btn btn-danger btn-sm" href="setting/admin/amphur/delete/<?php echo $item['id'] ?>">
 									<i class="fa fa-trash-o "></i>
 								</a></td>
 						  </tr>
