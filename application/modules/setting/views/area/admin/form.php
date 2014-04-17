@@ -21,7 +21,12 @@
 			      <input type="text" class="form-control" name="name"  placeholder="เขต" value="<?php echo $rs['name'] ?>">
 			    </div>
 			  </div>
-
+			  <div class="form-group">
+			    <label for="name" class="col-sm-2 control-label">เขต</label>
+			    <div class="col-sm-3">
+			      <input type="text" class="form-control" name="name"  placeholder="เขต" value="<?php echo $rs['name'] ?>">
+			    </div>
+			  </div>
 			  <div class="form-group">
 			    <div class="col-sm-offset-2 col-sm-10">
 			      <button type="submit" class="btn btn-info btn-sm">บันทึก</button>

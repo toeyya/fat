@@ -23,9 +23,9 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="province_name" class="col-sm-2 control-label">จังหวัด</label>
+			    <label for="province_name" class="col-sm-2 control-label">อำเภอ</label>
 			    <div class="col-sm-3">
-			      <?php echo form_dropdown('amphur_id',get_option('id','amphur_name','f_amphur','','amphur_name'),@$rs['amphur_id'],'class="form-control"','เลือกอำเภอ'); ?>
+			    	<span class="amphur"><?php echo form_dropdown('amphur_id',get_option('id','amphur_name','f_amphur','','amphur_name'),@$rs['amphur_id'],'class="form-control"','เลือกอำเภอ'); ?></span>
 			    </div>
 			  </div>
 
@@ -49,3 +49,17 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('select[name=province_id]').change(function(){
+		$.ajax({
+			url:'setting/getAmphur',
+			data:'province_id='+$(this).val(),
+			success:function(data){
+				$('.amphur').html(data);
+				$('.amphur').find('select').attr('class','form-control');
+			}
+		});
+	});
+});
+</script>

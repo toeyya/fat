@@ -54,12 +54,8 @@
 							<td><?php echo $item['phone']?></td>
 							<td>
 
-								<a class="btn btn-info btn-sm" href="users/admin/users/form/<?php echo $item['id']?>">
-									<i class="fa fa-edit "></i>
-								</a>
-								<a class="btn btn-danger btn-sm" href="users/admin/users/delete/<?php echo $item['id'] ?>">
-									<i class="fa fa-trash-o "></i>
-								</a>
+								<a class="btn btn-info btn-sm" href="users/admin/users/form/<?php echo $item['id']?>"><i class="fa fa-edit "></i></a>
+								<a class="btn btn-danger btn-sm" href="users/admin/users/delete/<?php echo $item['id'] ?>" onclick="return confirm('<?php echo NOTICE_CONFIRM_DELETE ?>')"><i class="fa fa-trash-o "></i></a>
 							</td>
 						</tr>
 						<?php $i++; endforeach; ?>

@@ -38,7 +38,7 @@
 								<a class="btn btn-info btn-sm" href="hilights/admin/hilights/form/<?php echo $item['id']?>">
 									<i class="fa fa-edit "></i>
 								</a>
-								<a class="btn btn-danger btn-sm" href="hilights/admin/hilights/delete/<?php echo $item['id'] ?>">
+								<a class="btn btn-danger btn-sm" href="hilights/admin/hilights/delete/<?php echo $item['id'] ?>" onclick="return confirm('<?php echo NOTICE_CONFIRM_DELETE ?>')">
 									<i class="fa fa-trash-o "></i>
 								</a></td>
 						  </tr>

@@ -1,8 +1,8 @@
-<div class="titleGroup2">ถาม - ตอบ</div>
+<div class="titleGroup2">เว็บบอร์ด</div>
 
 <div class="contentBlank" >
 
-<form action="forum/save" method="post" >
+<form action="webboard/save" method="post" >
 <table class="table table-bordered" >
 	<tbody>
 		<tr style="background: #02947d; color: #ffffff;" >

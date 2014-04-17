@@ -19,8 +19,7 @@
 						  <tr>
 							  <th>ลำดับ</th>
 							  <th>ชื่อ</th>
-							  <th>จำนวนเขต</th>
-							  <th><a class="btn btn-success btn-sm" href="permission/form"> <i class="fa fa-plus "></i> เพิ่มรายการ</a> </th>
+							  <th><a class="btn btn-success btn-sm" href="permission/admin/permission/form"> <i class="fa fa-plus "></i> เพิ่มรายการ</a> </th>
 						  </tr>
 						  <?php $i=(@$_GET['page'] > 1)? (((@$_GET['page'])* 20)-20)+1:1;?>
 						  <?php foreach($result as $item): ?>
@@ -28,8 +27,8 @@
 						  	<td><?php echo $i;?></td>
 						  	<td><?php echo $item['name']?></td>
 						  	<td>
-								<a class="btn btn-info btn-sm" href="permission/form/<?php echo $item['id']?>"><i class="fa fa-edit "></i></a>
-								<a class="btn btn-danger btn-sm" href="permission/delete/<?php echo $item['id'] ?>" onclick="return confirm('<?php echo NOTICE_CONFIRM_DELETE ?>')"><i class="fa fa-trash-o "></i></a>
+								<a class="btn btn-info btn-sm" href="permission/admin/permission/form/<?php echo $item['id']?>"><i class="fa fa-edit "></i></a>
+								<a class="btn btn-danger btn-sm" href="permission/admin/permission/delete/<?php echo $item['id'] ?>" onclick="return confirm('<?php echo NOTICE_CONFIRM_DELETE ?>')"><i class="fa fa-trash-o "></i></a>
 								</td>
 						  </tr>
 						  <?php $i++; endforeach; ?>

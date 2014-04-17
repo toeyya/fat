@@ -8,42 +8,15 @@
 </ol>
 </div>
 <div class="contentGroup">
-<table width="100%" border="0" cellspacing="0" cellpadding="0" >
-  <tr>
-    <td width="80%" align="center" bgcolor="#F5F3F4" style="border-right:1px solid #DAD8D9;padding:20px; text-align:center;">
-    <select class="form-listFilter">
-          <option>------จำแนก ตาม------</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-      </select>
-    <select class="form-listFilter">
-          <option>------เลือกปี------</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-      </select>
-        <select class="form-listFilter">
-          <option>------อำเภอ------</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-        <select class="form-listFilter">
-          <option>------จังหวัด------</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-	</td>
-    <td width="20%" bgcolor="#F5F3F4" style="padding-left:20px;"><div class="btn-filter"><a href="#">&nbsp;</a></div></td>
-  </tr>
-</table>
-
+<div class="search" style="border-right:1px solid #DAD8D9;padding:20px; text-align:center;background-color:#F5F3F4">
+	<form class="form-search" method="get" action="criteria/index">
+    <span>องค์กร</span>
+    <input type="text" class="search-query">
+	<span>ปีงบประมาณ </span>
+		<?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="search-query"',''); ?>
+		<button name="btn_search" class="btn btn-success">ค้นหา</button>
+	</form>
+</div>
 <table width="100%" cellpadding="1" cellspacing="1">
   <tr>
     <td colspan="3" bgcolor="#f2f8fd" style="border-top:10px solid white; padding:10px;">
@@ -158,8 +131,8 @@
 
 	<td class="title" width="620">1.มีคณะกรรมการการบริหารจัดการองค์กรและชุมชน</td>
 	<td width="100" valign="top">
-		<label class="radio"><input type="radio" name="evidence1" value="1" <?php if(@$rs[$i]['evidence']=="1"){echo 'checked="checked"';} ?>>มี</label>
-		<label class="radio"><input type="radio" name="evidence1" value="2" <?php if(@$rs[$i]['evidence']=="2"){echo 'checked="checked"';} ?>>ไม่มี</label></td>
+		<label class="radio-inline"><input type="radio" name="evidence1" value="1" <?php if(@$rs[$i]['evidence']=="1"){echo 'checked="checked"';} ?>>มี</label>
+		<label class="radio-inline"><input type="radio" name="evidence1" value="2" <?php if(@$rs[$i]['evidence']=="2"){echo 'checked="checked"';} ?>>ไม่มี</label></td>
 	<td style="text-align: left"><input type="text" name="file_name1" value="<?php echo @$rs[$i]['file_name'] ?>" class="input-medium">
 
 		<input type="file" name="file1" >
@@ -171,8 +144,8 @@
 		<?php endif ?>
 		</td>
 	<td width="130">
-		<label class="radio inline"><input type="radio" name="result1" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result1" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+		<label class="radio-inline"><input type="radio" name="result1" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
+		<label class="radio-inline"><input type="radio" name="result1" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id1" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>

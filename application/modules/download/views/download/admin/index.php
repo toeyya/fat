@@ -24,6 +24,7 @@
 						  <tr>
 							  <th>แสดง</th>
 							  <th>หัวข้อ</th>
+							  <th>จำนวนรายการย่อย</th>
 							  <th>โดย</th>
 							  <th><a class="btn btn-success btn-sm" href="download/admin/download/form?type_id=<?php echo $type_id ?>"> <i class="fa fa-plus "></i> เพิ่มรายการ</a> </th>
 						  </tr>
@@ -37,6 +38,7 @@
 								</label>
 							</td>
 						  	<td><?php echo $item['title']?></td>
+						  	<td></td>
 						  	<td><?php echo $item['agency_name']?></td>
 						  	<td>
 								<a class="btn btn-info btn-sm" href="download/admin/download/form/<?php echo $item['id']?>?type_id=<?php echo $type_id ?>">

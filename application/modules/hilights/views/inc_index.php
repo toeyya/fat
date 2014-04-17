@@ -10,7 +10,7 @@
 	  	<?php endforeach; ?>
 	  </ul>
 	</div>
-<ul class="flex-direction-nav"><li><a class="flex-prev" href="#"></a></li><li><a class="flex-next" href="#"></a></li></ul>
+
 </div>
 <script type="text/javascript">
   $(window).load(function() {

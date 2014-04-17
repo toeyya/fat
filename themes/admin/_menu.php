@@ -2,7 +2,7 @@
 <div class="col-sm-2 main-menu-span">
 	<div class="sidebar-nav nav-collapse collapse navbar-collapse">
 		<ul class="nav nav-tabs nav-stacked main-menu">
-			<li><a href="permission/index"><i class="fa fa-users"></i><span class="hidden-sm"> สิทธิ์การใช้งาน</span></a></li>
+			<li><a href="permission/admin/permission"><i class="fa fa-users"></i><span class="hidden-sm"> สิทธิ์การใช้งาน</span></a></li>
 			<li><a href="users/admin/users/index"><i class="fa fa-users"></i><span class="hidden-sm"> สมาชิก</span></a></li>
 			<li>
 				<a class="dropmenu" href="#"><i class="fa fa-cogs"></i><span class="hidden-sm">ตั้งค่าองค์กรต้นแบบไร้พุง</span></a>
@@ -39,7 +39,7 @@
 			<li><a href="albums/admin/albums"><i class="fa fa-picture-o"></i><span class="hidden-sm"> ภาพกิจกรรม</span></a></li>
 			<li><a href="km/admin/type/index"><i class="fa fa-align-justify"></i><span class="hidden-sm"> KM</span></a></li>
 			<li><a href="content/admin/content/index/10"><i class="fa fa-calendar"></i><span class="hidden-sm"> M&E</span></a></li>
-			<li><a href="forum/admin"><i class="fa fa-comment-o"></i><span class="hidden-sm"> เว็บบอร์ด</span></a></li>
+			<li><a href="webboard/admin"><i class="fa fa-comment-o"></i><span class="hidden-sm"> เว็บบอร์ด</span></a></li>
 			<li><a href="content/admin/content/index/5"><i class="fa  fa-info-circle"></i><span class="hidden-sm">ติดต่อเรา</span></a></li>
 		</ul>
 	</div><!--/.well -->

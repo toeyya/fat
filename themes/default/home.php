@@ -55,7 +55,7 @@
      	  		<div class="clearfix"> </div><div class="line3"> </div>
              </div>
  <!--------------------------------------------------------------------------Webboard-------------------------------------------------------------->
-          <div id="banner-webboard"><a href="#"><img src="media/img/banner-webboard2.png" width="956" height="122" /></a></div><div class="clearfix"> </div>
+          <div id="banner-webboard"><a href="webboard/index"><img src="media/img/banner-webboard2.png" width="956" height="122" /></a></div><div class="clearfix"> </div>
  <!--------------------------------------------------------------------------Gallery------------------------------------------------------------->
 		<?php echo modules::run('albums/index'); ?>
     </div>

@@ -6,21 +6,20 @@ class Permission extends Admin_Controller
 		'permissions' => array('label' => 'สิทธิ์การใช้งาน', 'permission' => array('act_read','act_create','act_update','act_delete')),
 		'users' => array('label' => 'สมาชิก', 'permission' => array('act_read','act_create','act_update','act_delete')),
 		'settings' => array('label' => 'ตั้งค่าระบบ', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'abouts' => array('label' => 'ข้อมูลโครงการ', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'identify_places' => array('label' => 'ทำเนียบ', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'researchs' => array('label' => 'เกณฑ์ประเมิน', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'documents' => array('label' => 'ไฮไลท์', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'knowledge' => array('label' => 'สื่อสิ่งพิมพ์', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'project' => array('label' => 'ข้อมูลโครงการ', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'place' => array('label' => 'ทำเนียบ', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'criteria' => array('label' => 'เกณฑ์ประเมิน', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'hilight' => array('label' => 'ไฮไลท์', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'download' => array('label' => 'สื่อสิ่งพิมพ์', 'permission' => array('act_read','act_create','act_update','act_delete')),
 		'informations' => array('label' => 'ข่าวประชาสัมพันธ์', 'permission' =>array('act_read','act_create','act_update','act_delete')),
-
-		'marquee' => array('label' => 'การวางแผนการกิน', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'webboards' => array('label' => 'ลดน้ำหนัก ลดรอบเอว', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'questions' => array('label' => 'การออกกำลังกาย', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'contact' => array('label' => 'ภาพกิจกรรม', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'dashboards' => array('label' => 'KM', 'permission' => array('act_read')),
-		'dashboards' => array('label' => 'M&E', 'permission' => array('act_read')),
-		'logs'=>array('label' => 'เว็บบอร์ด', 'permission' => array('act_read')),
-		'program'=>array('label' => 'ติดด่อเรา', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'eatting' => array('label' => 'การวางแผนการกิน', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'weight' => array('label' => 'ลดน้ำหนัก ลดรอบเอว', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'exercise' => array('label' => 'การออกกำลังกาย', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'album' => array('label' => 'ภาพกิจกรรม', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'km' => array('label' => 'KM', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'M&E' => array('label' => 'M&E', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'webboard'=>array('label' => 'เว็บบอร์ด', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'contact'=>array('label' => 'ติดด่อเรา', 'permission' => array('act_read','act_create','act_update','act_delete')),
 
 	);
 
@@ -35,14 +34,14 @@ class Permission extends Admin_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('users/user_model','user');
+		//$this->load->model('users/user_model','user');
 		$this->load->model('permission_model','permission');
 		$this->load->model('permission_detail_model','detail');
 	}
 
 	public function index()
 	{
-		$data['permission'] = $this->permission->sort("")->order("id asc")->get();
+		$data['result'] = $this->permission->sort("")->order("id asc")->get();
 		$data['pagination'] = $this->permission->pagination();
 		/*$chk_delete = $this->user->select("permission_id")->groupby("userposition")->sort("")->order("userposition asc")->get();
 		foreach($chk_delete as $key=>$item){
@@ -53,22 +52,21 @@ class Permission extends Admin_Controller
 	}
 
 
-	public function form($id=FALSE){
-
-
+	public function form($id=FALSE)
+	{
 		$data['permission'] = $this->permission->get_row($id);
-		$data['rs_perm'] = $this->permission_row($id);
+		$data['perm'] = $this->permission_row($id);
 		$data['module'] = $this->module;
 		$data['crud'] = $this->crud;
 		$this->template->build('admin/form',$data);
 	}
 
-	public function permission_row($user_type_id)
+	public function permission_row($permission_id)
 	{
-		if($user_type_id)
+		if($permission_id)
 		{
 			//$perms = new Permission();
-			$perms = $this->detail->where("permission_id = ".$user_type_id)->get();
+			$perms = $this->detail->where("permission_id = ".$permission_id)->get();
 			foreach($perms as $item)
 			{
 				$perm[$item['module']] = array(
@@ -103,13 +101,13 @@ class Permission extends Admin_Controller
 			}
 			set_notify('success', SAVE_DATA_COMPLETE);
 		}
-		redirect("permissions/admin/permissions/index");
+		redirect("permission/admin/permission/index");
 	}
 
 	public function delete($id){
 		if($id){
 			$this->detail->delete("permission_id",$id);
-			$this->permission->delete("lid",$id);
+			$this->permission->delete("id",$id);
 			set_notify('success', DELETE_DATA_COMPLETE);
 		}
 		redirect($_SERVER['HTTP_REFERER']);
@@ -119,7 +117,7 @@ class Permission extends Admin_Controller
 	public function chkPermission(){
 		//$this->db->debug=true;
 		if(!empty($_GET['lid'])){
-			$rs = $this->db->GetOne("select id from f_permission where name = ?  and id <> ? ",array($_GET['name'],$_GET['id']));
+			$rs = $this->db->GetOne("select id from f_permission where name = ?  and id <> ? ",array($_GET['name'],$_GET['permission_id']));
 		}else{
 			$rs = $this->level->get_one("id","name",$_GET['name']);
 

@@ -1,55 +1,71 @@
-<style>
-	.perm{margin-right:10px;}
-</style>
 
-<h1>สิทธิ์การใช้งาน</h1>
-<form action="permissions/admin/permissions/save" method="post" id="form" name="form" class="form-horizontal">
-			  <div class="form-group">
-			   <label for="name" class="col-sm-2 control-label"><label class="alertred">*</label>ชื่อ</label>
-			    <div class="col-sm-4">
-			      <input type="text" class="form-control" name="name"  placeholder="ชื่อ" value="<?php echo $rs['name'] ?>">
-			    </div>
-			  </div>
-
-
-<?php foreach($module as $key => $item): ?>
-			  <div class="form-group">
-			   <label for="name" class="col-sm-2 control-label"><label class="alertred">*</label><?php echo $item['label'] ?></label>
-			    <div class="col-sm-4">
-			   <label class="checkbox" for="<?php echo 'checkbox['.$key.']['.$perm.']'; ?>">
-			   	<input id="<?php echo 'checkbox['.$key.']['.$perm.']'; ?>" type="checkbox" name="<?php echo 'checkbox['.$key.']['.$perm.']'; ?>" value="1" <?php echo (@$rs_perm[$key][$perm]) ? 'checked' : ''; ?> >
-			   	<?php echo @$crud[$perm]; ?></label>
-
-			    </div>
-			  </div>
-<?php endforeach; ?>
-</table>
-<br>
-<input type="hidden" name="lid" id="lid" value="<?php echo $level['lid']?>">
-<input type="hidden" name="level_code" value="<?php echo $level['level_code']?>">
-<div id="boxadd" style="text-align: center;">
-  	<input  type="submit" value="บันทึก" class="btn_save"/>
-  	<?php echo form_back('btn_back'); ?>
+<div>
+	<hr>
+	<ul class="breadcrumb">
+		<li><a href="admin">หน้าแรก</a></li>
+		 <li><a href="permission/admin/permission">สิทธิ์การใช้งาน</a></li>
+		 <li class="active"><?php echo $permission['name']?></li>
+	</ul>
+	<hr>
 </div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="box">
+			<div class="box-header">
+				<h2><i class="fa fa-align-justify"></i><span class="break"></span>สิทธิ์การใช้งาน</h2>
+			</div>
+			<div class="box-content">
+			<form action="permission/admin/permission/save" method="post" id="form" name="form" class="form-horizontal">
+				  <div class="form-group">
+				   <label for="name" class="col-sm-2 control-label"><label class="alertred">*</label>ชื่อ</label>
+				    <div class="col-sm-3">
+				      <input type="text" class="form-control" name="name"  placeholder="ชื่อ" value="<?php echo $permission['name'] ?>">
+				    </div>
+				  </div>
+				<?php foreach($module as $key => $item): ?>
+					  <div class="form-group">
+					   <label for="name" class="col-sm-2 control-label"><?php echo $item['label'] ?></label>
+					    <div class="col-sm-4">
+						<?php foreach($item['permission'] as $perm): ?>
+						   <label class="checkbox-inline " for="<?php echo 'checkbox['.$key.']['.$perm.']'; ?>" >
+						   		<input id="<?php echo 'checkbox['.$key.']['.$perm.']'; ?>" type="checkbox" name="<?php echo 'checkbox['.$key.']['.$perm.']'; ?>" value="1" <?php echo (!empty($rs_perm[$key][$perm])) ? 'checked' : ''; ?> >
+						   	<?php echo @$crud[$perm]; ?>
+						   </label>
 
-</form>
+						<?php endforeach; ?>
+						<span class="pull-right">
+						   	<button class="btn btn-sm check" type="button" >เลือกทั้งหมด</button> <button class="btn btn-sm uncheck" type="button" >ไม่เลือกทั้งหมด</button>
+						 </span>
+					    </div>
+					  </div>
+				<?php endforeach; ?>
+				<div class="form-group">
+				    <div class="col-sm-offset-2 col-sm-12">
+				      <button type="submit" class="btn btn-primary btn-sm">บันทึก</button>
+				      <button type="submit" class="btn btn-default btn-sm">ย้อนกลับ</button>
+				      <input type="hidden" name="id" id="permission_id" value="<?php echo @$permission['id']?>">
+				      <?php echo (!empty($permission['id'])) ? form_hidden('updated',date('Y-m-d H:i:s')) : form_hidden('created',date('Y-m-d H:i:s'))?>
+				    </div>
+				  </div>
+
+			</form>
+			</div>
+		</div>
+	</div>
+</div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("table.list tr:not(:first)").each(function(){
-			var btn = "<span style='float:right;'><input class='check' type='button' value='เลือกทั้งหมด'><input class='uncheck' type='button' value='ไม่เลือกทั้งหมด'></span>";
-			$(this).find("td:eq(1)").append(btn);
-		});
 
 		$(".check").live("click",function(){
-			$(this).closest("td").find("input[type=checkbox]").attr('checked',true);
+			$(this).closest(".form-group").find("input[type=checkbox]").attr('checked',true);
 		});
 
 		$(".uncheck").live("click",function(){
-			$(this).closest("td").find("input[type=checkbox]").removeAttr('checked',true);
+			$(this).closest(".form-group").find("input[type=checkbox]").removeAttr('checked',true);
 		});
 		$( "#form" ).validate({
   			rules: {
-  				level_name:{required:true,remote:{url:'<?php echo base_url()?>permissions/admin/permissions/chkPermission',data:{lid:function(){return $('#lid').val();}}}}
+  				level_name:{required:true,remote:{url:'permissions/admin/permissions/chkPermission',data:{id:function(){return $('#permission_id').val();}}}}
 				   },
     		messages:{
 				level_name:{required:"กรุณาระบุสิทธิ์การใช้งาน",remote:"มีสิทธิการใช้งานนี้เเล้วในระบบ"}

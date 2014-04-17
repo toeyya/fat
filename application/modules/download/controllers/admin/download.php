@@ -15,6 +15,7 @@ class Download extends Admin_Controller{
 		$data['result'] = $this->download->select("f_download_detail.*,agency_name")
 										 ->join("LEFT JOIN f_users ON f_users.id = user_id")
 										 ->where("type_id =".$_GET['type_id'])->sort("")->order("f_download_detail.id desc")->get();
+		$data['count'] = $this->db->GetArray("select count(id) as type_id from f_download_detail group by type_id");
 		$data['pagination'] = $this->download->pagination();
 		$this->template->build('download/admin/index',$data);
 	}
