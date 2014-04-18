@@ -26,7 +26,8 @@ class Report extends  Flat_Controller{
 		$data['bmi_mean'] = $this->bmi_mean;
 		$data['bmi_mean_export'] = $this->bmi_mean_export;
 		$year = date('Y');$yy = $year-1;$yy_end = $year;
-		$data['yearth']= $year+543;
+		$data['yearth']=(empty($_GET['year'])) ? $year+543:$_GET['year'];
+		$data['permission'] = $this->session->userdata('permission_id');
 		/*if(!empty($_GET['year'])){
 			$yy = $_GET['year']-1;
 			$yy_end = $_GET['year'];
@@ -38,6 +39,7 @@ class Report extends  Flat_Controller{
 		$wh = (empty($_GET['year'])) ?  " and year=".$data['yearth']: " and year =".$_GET['year'];
 		$user_id = (!empty($_GET['user_id'])) ? $_GET['user_id'] :$this->session->userdata('id');
 		$wh.=" and user_id=".$user_id;
+		$permission = " and permission_id=".$this->session->userdata('permission_id');
 		$data['user_name'] = (!empty($user_id)) ? $this->user->get_one("agency_name","f_users.id",$user_id):"ทุกองค์กร";
 		$data['user'] = $this->user->get_row($user_id);
 		$data['gender']  = array('1'=>'ชาย','2'=>'หญิง');
@@ -89,12 +91,12 @@ class Report extends  Flat_Controller{
 			for($i=1;$i<=20;$i++){
 				$sql="select score_$i,count(score_$i)as cnt from f_behavior
 					  left join f_behavior_detail on f_behavior.id = behavior_id
-					  where score_$i is not null and time=1 group by score_$i";
+					  where score_$i is not null and time=1 $wh group by score_$i";
 				$data['score1'][$i] = $this->db->GetArray($sql);
 
 				$sql="select score_$i,count(score_$i)as cnt from f_behavior
 					  left join f_behavior_detail on f_behavior.id = behavior_id
-					  where score_$i is not null and time=2 group by score_$i";
+					  where score_$i is not null and time=2 $wh group by score_$i";
 				$data['score2'][$i] = $this->db->GetArray($sql);
 			}
 		}else{
@@ -150,14 +152,14 @@ class Report extends  Flat_Controller{
 			 left join f_weight_detail ON f_weight.id = f_weight_detail.weight_id
 			 left join f_users ON f_weight.user_id = f_users.id
 			 left join f_agency_type ON f_users.agency_type = f_agency_type.id
-			 where user_type='1' and time=1 and (waistline<>'' or waistline <> null) $wh
+			 where  time=1 and (waistline<>'' or waistline <> null) $wh
 			 group by user_id order by user_id";
 		//echo $sql;
 		$data['result'] = $this->db->GetArray($sql);
 		$data['pagination'] = $this->weight->pagination();
 	   // ทั้งหมด
 		$sql ="select user_id,count(user_id) as total ,f_agency_type.name as agency_type_name,agency_name
-			  ,people_fiveteen_male2+people_fiveteen_female2 as user_total
+			  ,people_fiveteen_male1+people_fiveteen_female1 as user_total
 			 from f_weight
 			 left join f_weight_detail ON f_weight.id = f_weight_detail.weight_id
 			 left join f_users ON f_weight.user_id = f_users.id
@@ -501,7 +503,9 @@ class Report extends  Flat_Controller{
 		foreach($result as $item){
 			$data['waist'][$item['gender']][$item['bmi_mean']] = $item['cnt'];
 		}
-		$data['user_total'] = array_sum($data['waist']);
+		if(!empty($result)){
+			$data['user_total'] = array_sum($data['waist']);
+		}
 		if($data['print']=="preview"){
 			$this->template->set_layout('report');
 			$this->template->build('weight/bmi/report',$data);

@@ -2,7 +2,8 @@
 <div id="Breadcrumbs">
 <ol id="path-breadcrumb">
   <li><a href="home">หน้าแรก</a></li>
-  <li><a href="">ระบบเฝ้าระวังโรคอ้วนลงพุง</a></li>
+   <li><a href="f_weight/ebelly">ระบบสารสนเทส e-flat belly</a></li>
+  <li><a href="f_weight/index/1">ระบบเฝ้าระวังโรคอ้วนลงพุง</a></li>
   <li class="active">รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง (Ht/2)</li>
 </ol>
 </div>

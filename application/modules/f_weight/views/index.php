@@ -1,6 +1,3 @@
-
-
-<div class="contentBlank">
 <div id="Breadcrumbs">
   	<ol id="path-breadcrumb">
       <li><a href="home">หน้าแรก</a></li>
@@ -8,6 +5,8 @@
       <li class="active">รอบเอวและน้ำหนักตัว  ครั้งที่ <?php echo $time ?></li>
     </ol>
 </div>
+
+<div class="contentBlank">
 <div id="search">
 	<form action="f_weight/index/<?php echo $time ?>" class="form-search">
 		<span>ปีงบประมาณ </span>
@@ -16,7 +15,8 @@
 	</form>
 </div>
 <div class="right" style="margin-bottom: 10px;">
-	<a href="f_weight/import" class="btn btn-default"><i class="fa fa-arrow-up"></i>นำเข้า  excel</a>
+	<a href="f_weight/example/<?php echo $time ?>" class="btn btn-default">ตัวอย่างไฟล์ excel ครั้งที่ 1</a>
+	<a href="f_weight/import/<?php echo $time ?>" class="btn btn-default"><i class="fa fa-arrow-up"></i>นำเข้า  excel</a>
 	<a href="f_weight/index/<?php echo $time ?>/export<?=GetCurrentUrlGetParameter();?>"  class="btn btn-default"><i class="fa fa-arrow-down"></i>ดาวน์โหลด  excel</a>
 	<a href="f_weight/index/<?php echo $time ?>/preview<?=GetCurrentUrlGetParameter();?>" class="btn btn-default" target="_blank">พิมพ์ข้อมูล</a>
  	<?php if($time=="1"): ?>
@@ -69,10 +69,11 @@
 				<span class="show"><?php echo $item['bmi_value'] ?></span>
 			</td>
 			<td><input type="text" name="bmi_mean[]" value="<?php echo $item['bmi_mean'] ?>" class="bmi-mean noborder aligncenter w100 <?php if(!empty($bmi_mean[$item['bmi_mean']])){ echo $bmi_mean[$item['bmi_mean']];} ?>"  readonly="readonly"></td>
-			<td><p><button type="button" class="btn  btn-info  btn_edit btn-mini"><i class="fa  fa-pencil"></i></button></p>
+			<td><input type="hidden" name="year_data[]" value="<?php echo $item['year']?>">
+				<p><button type="button" class="btn  btn-info  btn_edit btn-mini"><i class="fa  fa-pencil"></i></button></p>
 				<button type="button" class="btn btn-danger btn_delete btn-mini"><i class="fa fa-times"></i></button>
-			    <input type="hidden" name="main_id[]" value="<?php echo $item['main_id'] ?>">
-			    <input type="hidden" name="detail_id[]" value="<?php echo $item['detail_id'] ?>">
+			    <input type="hidden" name="main_id[]"    value="<?php echo $item['main_id'] ?>">
+			    <input type="hidden" name="detail_id[]"  value="<?php echo $item['detail_id'] ?>">
 			   <?php echo ($item['main_id']) ? form_hidden("updated[$key]",date('Y-m-d H:i:s')) : form_hidden("created[$key]",date('Y-m-d H:i:s'))?></td>
 		</tr>
 		<?php $i = $key;endforeach; $i=$i+1; ?>
@@ -86,7 +87,8 @@
 			<td><input type="text" name="fat[]"  	  value="" class="noborder aligncenter w100"           readonly="readonly"></td>
 			<td><input type="text" name="bmi_value[]" value="" class="bmi-value noborder aligncenter w40"            readonly="readonly"></td>
 			<td><input type="text" name="bmi_mean[]"  value="" class="bmi-mean noborder aligncenter w100"  readonly="readonly"></td>
-			<td><button type="button" class="btn btn-danger btn_clear btn-mini"><i class="fa  fa-minus"></i></button>
+			<td><input type="hidden" name="year_data[]" value="">
+				<button type="button" class="btn btn-danger btn_clear btn-mini"><i class="fa  fa-minus"></i></button>
 				<?php echo form_hidden("created[$i]",date('Y-m-d H:i:s'))?></td>
 
 		</tr>
@@ -106,12 +108,12 @@ $(document).ready(function(){
 	$('.table-bordered').rowCount();
 	$('.btn_delete').live('click',function(){
 		if(confirm('คุณต้องการลบข้อมูล?')){
-		   	var id = $(this).closest('td').next().val();
+		   	var id = $(this).next().val();
 		   	var tr = $(this).closest('tr');
 		   	if(id!=undefined)
 		   	{
 			   	$.ajax({
-			   		url:'f_weight/delete',
+			   		url:'<?php echo base_url(); ?>f_weight/delete',
 			   		data:'id='+id,
 			   		success:function(){
 			   			tr.remove();

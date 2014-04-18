@@ -50,8 +50,8 @@
 <tbody>
 <tr>
 	<td><?php echo number_format($total); ?></td>
-	<td><?php echo number_format($cnt[1]); ?></td>
-	<td><?php echo ($cnt[1]!=0 && $total !=0) ? number_format(($cnt[1]*100)/$total,1): 0 ?></td>
+	<td><?php echo (empty($cnt)) ? 0 :number_format($cnt[1]); ?></td>
+	<td><?php echo (empty($cnt) && empty($total)) ? 0:number_format(($cnt[1]*100)/$total,1) ?></td>
 </tr>
 </tbody>
 </table>
@@ -87,20 +87,20 @@
 </thead>
 <tbody>
 <tr>
-	<td><?php echo number_format($sum_weight[1]); ?></td>
-	<td><?php echo $avg_weight1 = number_format($avg_weight[1]) ?></td>
-	<td><?php echo number_format($sum_weight[2]) ?></td>
-	<td><?php echo $avg_weight2 = number_format($avg_weight[2]) ?></td>
-	<td><?php echo number_format(abs($sum_weight[1]-$sum_weight[2])); ?></td>
-	<td><?php echo $diff1 = number_format(abs($avg_weight[1]-$avg_weight[2])); ?></td>
-	<td><?php echo number_format($sum_waist[1]) ?></td>
-	<td><?php echo $avg_waist1 = number_format($avg_waist[1]) ?></td>
-	<td><?php echo number_format($sum_waist[2]) ?></td>
-	<td><?php echo $avg_waist2 = number_format($avg_waist[2]) ?></td>
-	<td><?php echo number_format(abs($sum_waist[1]-$sum_waist[2])); ?></td>
-	<td><?php echo $diff2 = number_format(abs($avg_waist[1]-$avg_waist[2]));
-		$per_weight = number_format(($diff1*100)/$avg_weight1);
-		$per_waist  = number_format(($diff2*100/$avg_waist1));
+	<td><?php echo (empty($sum_weight)) ? 0: number_format($sum_weight[1]); ?></td>
+	<td><?php echo $avg_weight1 = (empty($avg_weight)) ? 0: number_format($avg_weight[1]) ?></td>
+	<td><?php echo (empty($sum_weight)) ? 0: number_format($sum_weight[2]) ?></td>
+	<td><?php echo $avg_weight2 = (empty($avg_weight)) ? 0: number_format($avg_weight[2]) ?></td>
+	<td><?php echo (empty($sum_weight[1]) || empty($sum_weight[2])) ? 0 :number_format(abs($sum_weight[1]-$sum_weight[2])); ?></td>
+	<td><?php echo $diff1 = (empty($avg_weight[1]) || empty($avg_weight[2])) ? 0 :number_format(abs($avg_weight[1]-$avg_weight[2])); ?></td>
+	<td><?php echo (empty($sum_waist)) ? 0 :number_format($sum_waist[1]) ?></td>
+	<td><?php echo $avg_waist1 = (empty($avg_waist)) ? 0 :number_format($avg_waist[1]) ?></td>
+	<td><?php echo (empty($sum_waist)) ? 0 :number_format($sum_waist[2]) ?></td>
+	<td><?php echo $avg_waist2 = (empty($avg_waist)) ? 0 :number_format($avg_waist[2]) ?></td>
+	<td><?php echo (empty($sum_waist[1]) || empty($sum_waist[2])) ? 0 : number_format(abs($sum_waist[1]-$sum_waist[2])); ?></td>
+	<td><?php echo $diff2 = (empty($avg_waist[1]) || empty($avg_waist[2])) ? 0 : number_format(abs($avg_waist[1]-$avg_waist[2]));
+		$per_weight = (empty($diff1) && empty($avg_weight1)) ? 0 :number_format(($diff1*100)/$avg_weight1);
+		$per_waist  = (empty($diff2) && empty($avg_waist1)) ? 0 :number_format(($diff2*100/$avg_waist1));
 		$arr = array($avg_weight1, $avg_weight2,$per_weight,$avg_waist1,$avg_waist2,$per_waist);?></td>
 </tr>
 </tbody>
@@ -127,7 +127,7 @@
 <tr>
 	<td><?php echo number_format($total); ?></td>
 	<td><?php echo (empty($cnt[1])) ? 0 :number_format($cnt[1]); ?></td>
-	<td><?php echo (!empty($cnt[1]) || !empty($total)) ? number_format(($cnt[1]*100)/$total,1): 0 ?></td>
+	<td><?php echo (!empty($cnt) &&  $cnt[1]!=0 && $total!=0 ) ? number_format(($cnt[1]*100)/$total,1): 0 ?></td>
 	<td><?php echo (empty($sum_weight[1])) ? 0 :number_format($sum_weight[1]) ?></td>
 	<td><?php echo (empty($avg_weight[1])) ? 0 :number_format($avg_weight[1]) ?></td>
 	<td><?php echo (empty($sum_waist[1])) ? 0 :number_format($sum_waist[1]); ?></td>

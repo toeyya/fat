@@ -39,10 +39,10 @@
 						  	<td><?php echo $value['email']?></td>
 						  	<td><?php echo $value["view"]."/".$value["comment"]?></td>
 						  	<td>
-								<a class="btn btn-info btn-sm" href="forum/admin/form/<?php echo $value['id']?>">
+								<a class="btn btn-info btn-sm" href="webboard/admin/form/<?php echo $value['id']?>">
 									<i class="fa fa-edit "></i>
 								</a>
-								<a class="btn btn-danger btn-sm" href="forum/admin/delete/<?php echo $value['id'] ?>">
+								<a class="btn btn-danger btn-sm" href="webboard/admin/delete/<?php echo $value['id'] ?>">
 									<i class="fa fa-trash-o "></i>
 								</a></td>
 						  </tr>

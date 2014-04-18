@@ -27,7 +27,7 @@ class F_weight extends Flat_Controller
 	}
 	function index($time,$print=FALSE)
 	{//$this->db->debug = true;
-		$data['year'] = date('Y')+543;
+		$data['year'] = (empty($_GET['year'])) ?  date('Y')+543 :$_GET['year'];
 		$data['bmi_mean'] = $this->bmi_mean;
 		$data['fat_mean'] = $this->fat_mean;
 		$data['gender']  = array('1'=>'ชาย','2'=>'หญิง');
@@ -78,10 +78,10 @@ class F_weight extends Flat_Controller
 	{//var_dump($_POST);exit;
 		if($_POST){
 			$data['time'] = $time;
-			$data['year'] = $_POST['year'];
 			$data['user_id'] = $this->session->userdata('id');
 			$cnt = count(array_filter($_POST['fullname']));
 			for($i=0;$i<$cnt;$i++){
+					$data['year'] = (empty($_POST['year_data'][$i])) ? $_POST['year']:$_POST['year_data'][$i];
 					$data['fullname'] = $_POST['fullname'][$i];
 					$data['gender']=$_POST['gender'][$i];
 					$data['age'] = $_POST['age'][$i];
@@ -97,6 +97,7 @@ class F_weight extends Flat_Controller
 					$data['bmi_value'] = $_POST['bmi_value'][$i];
 					$data['bmi_mean'] = $_POST['bmi_mean'][$i];
 					$data['id'] = (!empty($_POST['detail_id'][$i])) ? $_POST['detail_id'][$i]:'';
+
 					$this->detail->save($data);
 			}
 			set_notify('success',SAVE_DATA_COMPLETE);
@@ -105,7 +106,8 @@ class F_weight extends Flat_Controller
 	}
 	function delete(){
 		if(!empty($_GET['id'])){
-			$this->weight->delete($_GET['id']);
+			$this->detail->delete("weight_id",$_GET['id']);
+			$this->weight->delete("f_weight.id",$_GET['id']);
 		}
 	}
 	function ReadData($filepath)
@@ -126,27 +128,42 @@ class F_weight extends Flat_Controller
 	}
 	function upload()
 	{
-		$this->f_weight->delete('YEAR',$_POST['year_data']);
-		$ext = pathinfo($_FILES['fl_import']['name'], PATHINFO_EXTENSION);
-		$file_name = 'olderfund_'.date("Y_m_d_H_i_s").'.'.$ext;	$uploaddir = 'import_file/elder/olderfund/';
-		move_uploaded_file($_FILES['fl_import']['tmp_name'], $uploaddir.$file_name);
+		$this->db->Execute("DELETE FROM f_weight_detail WHERE year = ?  and time = ? ",array($_POST['year'],$_POST['time']));
+		$ext = pathinfo($_FILES['files']['name'], PATHINFO_EXTENSION);
+		$file_name = 'weight_'.date("Y_m_d_H_i_s").'.'.$ext;	$uploaddir = 'import_file/weight/';
+		move_uploaded_file($_FILES['files']['tmp_name'], $uploaddir.$file_name);
 		$data = $this->ReadData($uploaddir.$file_name);
-		$num = count($data)-1;
+		$num = count($data);
 		unlink($uploaddir.$file_name);
-		$_POST['YEAR'] = $_POST['year_data'];
-		for($i=2; $i<$num; $i++)
+		//$_POST['YEAR'] = $_POST['year_data'];
+		for($i=1; $i<$num; $i++)
 		{
-			$_POST['PROVINCE'] = trim($data[$i][0]);
-			$_POST['TOTAL_PERSON'] = $data[$i][1];
-			$_POST['TOTAL_MONEY_PERSON'] = $data[$i][2];
-			$_POST['TOTAL_PROJECT'] = $data[$i][3];
-			$_POST['TOTAL_MONEY_PROJECT'] = $data[$i][4];
-			$this->older->save($_POST);
+			$_POST['fullname'] = trim($data[$i][0]);
+			$_POST['gender']   = $data[$i][1];
+			$_POST['age']      = $data[$i][2];
+			$_POST['user_id']  = $this->session->userdata('id');
+			$_POST['created'] = date('Y-m-d H:i:s');
+			$weight_id=$this->weight->save($_POST);
+			$_POST['weight_id'] = $weight_id;
+			$_POST['weight'] = $data[$i][3];
+			$_POST['height'] = $data[$i][4];
+			$fat = fat_cal($_POST['weight'],$_POST['gender']);
+			$_POST['fat'] = $fat[0];
+			$_POST['waistline'] = $data[$i][5];
+			$bmi = bmi_cal($_POST['weight'],$_POST['height']);
+			$_POST['bmi_value'] = number_format($bmi[0],1);
+			$_POST['bmi_mean'] = $bmi[1];
+			$this->detail->save($_POST);
 		}
-		$this->template->build('olderfund/upload');
+		redirect('f_weight/index/'.$_POST['time']);
 	}
-	function import(){
-		$this->template->build('import');
+	function import($time){
+		$data['time'] = $time;
+		$this->template->build('import',$data);
+	}
+	function example($time){
+		$data['time'] = $time;
+		$this->template->build('example',$data);
 	}
 
 

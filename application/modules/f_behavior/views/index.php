@@ -16,7 +16,8 @@
 	</form>
 </div>
 <div class="right" style="margin-bottom: 10px;">
-	<a href="#" class="btn btn-default"><i class="fa fa-arrow-up"></i>นำเข้า  excel</a>
+	<a href="f_behavior/example/<?php echo $time ?>" class="btn btn-default">ตัวอย่างไฟล์ excel ครั้งที่ 1</a>
+	<a href="f_behavior/import/<?php echo $time ?>" class="btn btn-default"><i class="fa fa-arrow-up"></i>นำเข้า  excel</a>
 	<a href="f_behavior/index/<?php echo $time ?>/export<?=GetCurrentUrlGetParameter();?>" class="btn btn-default"><i class="fa fa-arrow-down"></i>ดาวน์โหลด  excel</a>
 	<a href="f_behavior/index/<?php echo $time ?>/preview<?=GetCurrentUrlGetParameter();?>" class="btn btn-default" target="_blank">พิมพ์งาน</a>
  	<?php if($time=="1"): ?>
@@ -83,11 +84,11 @@
 			<span class="show"><?php echo ($item['score_'.$m]=="3" || $item['score_'.$m]=="5"|| $item['score_'.$m]=="0") ? $item['score_'.$m]:"-"; ?></span>
 		</td>
 		<?php } ?>
-		<td>
+		<td><input type="hidden" name="year_data[]" value="<?php echo $item['year']?>">
 			<p><button type="button" class="btn  btn-info  btn_edit btn-mini"><i class="fa  fa-pencil"></i></button></p>
 			<button type="button" class="btn btn-danger btn_delete btn-mini"><i class="fa fa-times"></i></button>
-			<input type="hidden" name="main_id[]"   value="<?php echo $item['main_id'] ?>">
-			<input type="hidden" name="detail_id[]" value="<?php echo $item['detail_id'] ?>" >
+			<input type="hidden" name="main_id[]"   class="main_id" value="<?php echo $item['main_id'] ?>">
+			<input type="hidden" name="detail_id[]" class="detail_id" value="<?php echo $item['detail_id'] ?>" >
 			<?php
 			$updated = array('name'=>'updated','class'=>'updated','value'=>date('Y-m-d H:i:s'),'type'=>'hidden');
 			$created = array('name'=>'created','class'=>'created','value'=>date('Y-m-d H:i:s'),'type'=>'hidden');
@@ -114,7 +115,7 @@
 
 		</td>
 		<?php }?>
-		<td>
+		<td><input type="hidden" name="year_data[]" value="">
 			<button type="button" class="btn btn-danger btn_clear btn-mini"><i class="fa  fa-minus"></i></button>
 			<?php echo form_hidden("created[$i]",date('Y-m-d H:i:s'))?>
 		</td>
@@ -165,13 +166,12 @@ $(document).ready(function(){
 			   		success:function(){
 			   			tr.remove();
 			   			$('.table-bordered').rowCount();
-			   			alert('ลบข้อมูลเรียบร้อยแล้วค่ะ');
 			   		}
 			   	});
 		   	}else{
 				tr.remove();
 				$('.table-bordered').rowCount();
-				alert('ลบข้อมูลเรียบร้อยแล้วค่ะ');
+
 		   	}
 		}
 	});

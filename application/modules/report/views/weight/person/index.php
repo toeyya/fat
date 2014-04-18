@@ -11,8 +11,10 @@
 	<form action="report/index/person" class="form-search">
 		<span>ชื่อ - นามสกุล</span>
 		<input type="text" name="fullname" value="<?php echo @$_GET['fullname'] ?>" class="input-medium search-query">
+		<?php if($permission=="1"): ?>
 		<span>องค์กร</span>
 		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'class="search-query"'); ?>
+		<?php endif; ?>
 		<span>ปีงบประมาณ </span>
 		<?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="search-query"',''); ?>
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>

@@ -2,13 +2,13 @@
   	<ol id="path-breadcrumb">
       <li><a href="home">หน้าแรก</a></li>
       <li><a href="f_weight/ebelly">ระบบสารสนเทศ e-flat belly</a></li>
-      <li class="active">รอบเอวและน้ำหนักตัว  ครั้งที่ <?php echo $time ?></li>
+      <li class="active">ประเมินพฤติกรรม  ครั้งที่ <?php echo $time ?></li>
     </ol>
 </div>
-<div class="titleGroup2">นำเข้าไฟล์ excel รอบเอวและน้ำหนักตัวของประชาชนในหน่วยงาน/องค์กรต้นแบบ</div>
+<div class="titleGroup2">นำเข้าไฟล์ excel ประเมินพฤติกรรม</div>
 <div class="contentBlank">
 
-	<form action="f_weight/upload" enctype="multipart/form-data" class="form-horizontal" method="post">
+	<form action="f_behavior/upload" enctype="multipart/form-data" class="form-horizontal" method="post">
 	<div class="control-group">
 	    <label class="control-label" for="inputYear">ปีลงบประมาณ</label>
 	    <div class="controls">

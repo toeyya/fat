@@ -10,9 +10,9 @@
 <div class="contentGroup">
 <div class="search" style="border-right:1px solid #DAD8D9;padding:20px; text-align:center;background-color:#F5F3F4">
 	<form class="form-search" method="get" action="criteria/index">
-    <span>องค์กร</span>
-    <input type="text" class="search-query">
-	<span>ปีงบประมาณ </span>
+		<span>องค์กร</span>
+		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร'); ?>
+		<span>ปีงบประมาณ </span>
 		<?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="search-query"',''); ?>
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>

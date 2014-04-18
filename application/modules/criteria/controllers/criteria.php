@@ -13,7 +13,9 @@ class Criteria extends  Flat_Controller{
 	}
 	function index()
 	{//$this->db->debug = true;
-		$user_id   			= $this->session->userdata('id');
+		$data['year'] = (empty($_GET['year'])) ?  date('Y')+543 :$_GET['year'];
+		$wh   			   = (empty($_GET['user_id'])) ? $this->session->userdata('id') :$_GET['user_id'];
+
 		$data['user'] 		= $this->user->get_row("f_users.id",$user_id);
 		$data['province'] 	= $this->province->get_one("province_name",'id',$data['user']['province_id']);
 		$data['amphur'] 	= $this->amphur->get_one('amphur_name','id',$data['user']['amphur_id']);
@@ -53,7 +55,7 @@ class Criteria extends  Flat_Controller{
 		$this->template->build('index2',$data);
 	}
 	function save()
-	{$this->db->debug = true;
+	{//$this->db->debug = true;
 
 		if($_POST){
 			$_POST['user_id'] = $this->session->userdata('id');
@@ -73,9 +75,9 @@ class Criteria extends  Flat_Controller{
 					}
 				}
 			}
-			//set_notify('success',SAVE_DATA_COMPLETE);
+			set_notify('success',SAVE_DATA_COMPLETE);
 		}
-		//redirect('criteria/index');
+		redirect('criteria/index');
 	}
 	function save2()
 	{

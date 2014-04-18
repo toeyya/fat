@@ -10,6 +10,7 @@ function login($username=FALSE,$password=FALSE)
 	{
 		$CI->session->set_userdata('id',$rs['user_id']);
 		$CI->session->set_userdata('user_type',$rs['user_type']);
+		$CI->session->set_userdata('permission_id',$rs['permission_id']);
 		if($rs['user_type']==1){
 			$CI->session->set_userdata('name',$rs['agency_name']);
 		}else{

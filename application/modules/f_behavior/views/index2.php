@@ -15,6 +15,7 @@
 
 		</td>
 		<?php } ?>
+			<input type="hidden" name="year_data[]" value="<?php echo $item['year']?>">
 			<input type="hidden" name="main_id[]"   value="<?php echo $item['main_id'] ?>">
 			<input type="hidden" name="detail_id[]" value="<?php echo ($item['time']=="2") ? $item['detail_id']:''; ?>" >
 			<?php echo ($item['time']=="2" && !empty($item['detail_id'])) ? form_hidden("updated[$key]",date('Y-m-d H:i:s')) : form_hidden("created[$key]",date('Y-m-d H:i:s'))?>

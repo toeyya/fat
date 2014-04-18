@@ -5,7 +5,7 @@
   	<ol id="path-breadcrumb">
       <li><a href="home">หน้าแรก</a></li>
       <li><a href="f_weight/ebelly">ระบบสารสนเทศ e-flat belly</a></li>
-       <li><a href="f_behavior/index/1">รประเมินพฤติกรรม</a></li>
+       <li><a href="f_behavior/index/1">ประเมินพฤติกรรม</a></li>
       <li class="active">รายงานผลการประเมินพฤติกรรม</li>
     </ol>
 </div>

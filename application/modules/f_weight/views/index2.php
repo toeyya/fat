@@ -11,8 +11,9 @@ foreach($result as $key=>$item):
 	<td><input type="text" name="fat[]"  		value="<?php echo ($item['time']=="2") ? $item['fat']:'' ?>"	   class="noborder aligncenter w100  <?php if(!empty($fat_mean[$item['fat']])){ echo $fat_mean[$item['fat']];} ?>"  ></td>
 	<td><input type="text" name="bmi_value[]" 	value="<?php echo ($item['time']=="2") ? $item['bmi_value']:'' ?>" class="bmi-value noborder aligncenter w40" 			readonly="readonly" ></td>
 	<td><input type="text" name="bmi_mean[]"  	value="<?php echo ($item['time']=="2") ?  $item['bmi_mean']:'' ?>" class="bmi-mean noborder aligncenter w100 <?php if(!empty($bmi_mean[$item['bmi_mean']])){ echo $bmi_mean[$item['bmi_mean']];} ?>"  readonly="readonly">
-		<input type="hidden" name="main_id[]" value="<?php echo ($item['time']=="2") ? $item['main_id']:'' ?>">
+		<input type="hidden" name="main_id[]"   value="<?php echo ($item['time']=="2") ? $item['main_id']:'' ?>">
 		<input type="hidden" name="detail_id[]" value="<?php echo ($item['time']=="2") ? $item['detail_id']:''; ?>">
+	    <input type="hidden" name="year_data[]" value="<?php echo $item['year']?>">
 	    <?php echo ($item['time']=="2") ? form_hidden("updated[]",date('Y-m-d H:i:s')) : form_hidden("created[]",date('Y-m-d H:i:s'))?>
 	</td>
 </tr>

@@ -21,7 +21,7 @@ class Admin extends Admin_Controller {
 		$data["value"] = $this->topic->get_row($id);
 		
 		if($data["value"]["webboard_group_id"]==1) {
-			redirect("forum/admin/$id");
+			redirect("forum/admin/form/$id");
 		}
 		
 		$data["variable"] = $this->comment->where("webboard_topic_id",$id)->get();
