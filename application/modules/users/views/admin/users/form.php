@@ -8,6 +8,28 @@
 	</ul>
 	<hr>
 </div>
+
+<form>
+<div class="row">
+    <fieldset class="form-inline">
+        <label class="control-label">A</label>
+        <input type="text" class="input-medium">
+    </fieldset>
+</div><!-- end row -->
+<div class="row">
+    <fieldset class="form-inline">
+        <label class="control-label">B</label>
+        <input type="text" class="input-mini" >
+        <label class="control-label">C</label>
+        <input type="text" class="input-mini" >
+        <label class="control-label">D</label>
+        <input type="text" class="input-mini" >
+        <label class="control-label">E</label>
+        <input type="text" class="input-mini" >
+    </fieldset>
+</div><!-- end row -->
+</form>
+
 <div class="row">
 	<div class="col-lg-12">
 		<div class="box">
@@ -16,9 +38,11 @@
 			</div>
 			<div class="box-content">
 			<form class="form-horizontal" role="form" method="post" action="users/admin/users/save">
+
 			  <div class="form-group">
 			    <label for="email" class="col-sm-2 control-label">อีเมล์</label>
 			    <div class="col-sm-3">
+
 			      <input type="email" class="form-control" id="email" name="email" placeholder="อีเมล์" value="<?php echo $rs['email'] ?>">
 			    </div>
 			  </div>
@@ -35,10 +59,31 @@
 			    </div>
 			  </div>
 			  <hr>
+
+
+
 			  <div class="form-group">
-			    <label for="firstname" class="col-sm-2 control-label">ชื่อ</label>
+			    <label for="firstname" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้รับผิดชอบ</label>
+
+			    <div class="col-sm-3 controls">
+			      <input type="text" class="form-control" name="firstname" id="firstname" placeholder="ชื่อ" value="<?php echo $rs['firstname'] ?>">
+			      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="นามสกุล" value="<?php echo $rs['lastname'] ?>">
+
+			    </div>
+
+			  </div>
+			  <div class="form-group">
+			    <label for="firstname" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้ประสานงานระดับจังหวัด</label>
 			    <div class="col-sm-3">
 			      <input type="text" class="form-control" name="firstname" id="firstname" placeholder="ชื่อ" value="<?php echo $rs['firstname'] ?>">
+			      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="นามสกุล" value="<?php echo $rs['lastname'] ?>">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="firstname" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้ประสานงานระดับองค์กร</label>
+			    <div class="col-sm-3">
+			      <input type="text" class="form-control" name="firstname" id="firstname" placeholder="ชื่อ" value="<?php echo $rs['firstname'] ?>">
+			      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="นามสกุล" value="<?php echo $rs['lastname'] ?>">
 			    </div>
 			  </div>
 			  <div class="form-group">

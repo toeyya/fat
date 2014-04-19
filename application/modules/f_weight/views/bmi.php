@@ -17,11 +17,11 @@ $(document).ready(function(){
 	$('.btn-bmi').click(function(){
 		var weight = $('input[name=weight]').val();
 		var height = $('input[name=height]').val();
-		weight = parseInt(weight);
-		height = parseInt(height);
-		if(isNaN(weight) && isNaN(height)){
+		if(weight.length==0 && height.length==0){
 			$('.result').addClass('hide').removeClass('show');
 		}else{
+			weight = parseInt(weight);
+			height = parseInt(height);
 			var result = bmi_cal(weight,height);
 			$('.result').removeClass('hide').addClass('show').find('.ans').html(result[0].toFixed(2));
 		}

@@ -14,20 +14,20 @@ class Criteria extends  Flat_Controller{
 	function index()
 	{//$this->db->debug = true;
 		$data['year'] = (empty($_GET['year'])) ?  date('Y')+543 :$_GET['year'];
-		$wh   			   = (empty($_GET['user_id'])) ? $this->session->userdata('id') :$_GET['user_id'];
-
+		$user_id  			   = (empty($_GET['user_id'])) ? $this->session->userdata('id') :$_GET['user_id'];
+		$year = " and year ='".$data['year']."'";
 		$data['user'] 		= $this->user->get_row("f_users.id",$user_id);
 		$data['province'] 	= $this->province->get_one("province_name",'id',$data['user']['province_id']);
 		$data['amphur'] 	= $this->amphur->get_one('amphur_name','id',$data['user']['amphur_id']);
 		$data['district'] 	= $this->district->get_one('district_name','id',$data['user']['district_id']);
 		$data['agency_type']= $this->agency_type->get_one("name",'id',$data['user']['agency_type']);
-		$data['rs']			= $this->criteria->where("user_id = $user_id")->sort("title_id")->order("asc")->get();
+		$data['rs']			= $this->criteria->where("user_id = $user_id $year")->sort("title_id")->order("asc")->get();
 		$this->template->set_layout('blank');
 		$this->template->build('index',$data);
 
 	}
 	function form($id=FALSE)
-	{//$this->db->debug = true;
+	{$this->db->debug = true;
 		$m = (int)date('m');
 		$wh = (!empty($_GET['month'])) ? " and month=".$_GET['month']:' and month='.$m;
 		$user_id  = (empty($id)) ?'': $this->session->userdata('id');

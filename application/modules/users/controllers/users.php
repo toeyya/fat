@@ -80,6 +80,27 @@ class Users extends  Public_Controller{
 		$this->template->build('profile',$data);
 
 	}
+	function forgetPassword(){
+		$this->template->build('forgetpassword');
+	}
+	function sendPassword()
+	{
+		 if($_POST)
+		 {
+		 	$rs = $this->user->get_row("email",$_POST['email']);
+		 	$subject = "ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง - ลืมรหัสผ่าน";
+		 	$message='<div><img src="'.base_url().'media/img/name.png" width="500px" height="127px"></di>';
+			$message.='<p>เรียนคุณ'.$rs['firstname'].' '.$rs['lastname'].', </p>';
+			$message.='<p>รหัสผ่านของคุณ คือ '.$rs['password'].' </p>';
+		 	phpmail($subject,$_POST['email'],$message);
+			set_notify('success','ดำเนินการเรียบร้อย');
+		 }
+		redirect('users/forgetPassword');
+	}
+	function checkEmail()
+	{
+
+	}
 }
 
 ?>

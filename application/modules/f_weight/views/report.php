@@ -1,5 +1,5 @@
 <h1 style="margin:20px 0px" class="text-left"><small>แก้ไข /กรอก รอบเอวและน้ำหนักตัวของประชาชนในหน่วยงาน/องค์กรต้นแบบ ครั้งที่ <?php echo $time ?> ปีงบประมาณ <?php echo $year; ?></small></h1>
-	<table class="table table-bordered table-condensed">
+	<table class="table table-bordered table-condensed table-striped">
 		<tr class="success">
 			<th>ชื่อ-นามสกุล</th>
 			<th>เพศ</th>

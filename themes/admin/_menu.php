@@ -20,7 +20,7 @@
 			</li>
 
 			<li><a href="content/admin/content/index/1"><i class="fa fa-eye"></i><span class="hidden-sm">ข้อมูลโครงการ</span></a></li>
-			<li><a href="content/admin/content/index/2"><i class="fa  fa-folder-open"></i><span class="hidden-sm">ทำเนียบ</span></a></li>
+			<!--<li><a href="content/admin/content/index/2"><i class="fa  fa-folder-open"></i><span class="hidden-sm">ทำเนียบ</span></a></li>-->
 			<li><a href="content/admin/content/index/3"><i class="fa fa-eye"></i><span class="hidden-sm">เกณฑ์ประเมิน</span></a></li>
 			<li><a href="hilights/admin/hilights"><i class="fa fa-edit"></i><span class="hidden-sm"> ไฮไลท์</span></a></li>
 			<li><a href="download/admin/type/index"><i class="fa fa-bar-chart-o"></i><span class="hidden-sm"> สื่อสิ่งพิมพ์</span></a></li>

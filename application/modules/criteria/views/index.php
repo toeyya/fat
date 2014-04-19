@@ -1,9 +1,10 @@
 <div id="blank">
-<div class="titleGroup"><img src="media/img/title-group.png" width="394" height="92" /></div>
+
 <div class="titleGroup2">ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง ปี 2557</div>
 <div id="Breadcrumbs">
 <ol id="path-breadcrumb">
   <li><a href="home">หน้าแรก</a></li>
+  <li><a href="f_weight/ebelly">ระบบสารสนเทศ e-flat belly</a></li>
   <li class="active">องค์กรต้นแบบไร้พุง</li>
 </ol>
 </div>

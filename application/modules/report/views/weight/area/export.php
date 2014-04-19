@@ -2,7 +2,7 @@
 <?php if(!empty($_GET)){ ?>
 <div id="Rform">
 	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
-	<h3>รายงานสรุปผลการประเมินรอบเอวในศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h3>
+	<h3>รายงานแบบฟอร์มการบันทึก รอบเอง น้ำหนัก ส่วนสูง (รายจังหวัด)</h3>
 	<div style="text-align: center">
 	<span style="margin-left:5px;">ปีงบประมาณ</span> <?php echo $yearth ?><span style="margin-left:5px;">ศูนย์อนามัยที่</span><?php echo $hpc; ?>
 	</div>

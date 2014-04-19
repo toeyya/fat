@@ -29,7 +29,7 @@
 <div id="Rform">
 
 	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
-	<h3>รายงานสรุปผลการประเมินรอบเอวในศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h3>
+	<h3>รายงานสรุปผลการประเมินรอบเอวในศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง (รายเขต)</h3>
 	<div style="text-align: center">
 	<label class="caption">ปีงบประมาณ</label> <?php echo $yearth; ?>
 	</div>
@@ -87,7 +87,7 @@
 	<td><?php  $t4 = (empty($area[$item['area_no']]['ภาครัฐ'])) ? 0 : $area[$item['area_no']]['ภาครัฐ'];echo number_format($t4);$type4[$key] = $t4; ?></td>
 	<td><?php  $t5 = (empty($area[$item['area_no']]['สธ.']))  ? 0 : $area[$item['area_no']]['สธ.'];echo number_format($t5);$type5[$key] = $t5; ?></td>
 	<td><?php  $t6 = (empty($area[$item['area_no']]['ชุมชน'])) ? 0 : $area[$item['area_no']]['ชุมชน'];echo number_format($t6); $type6[$key] = $t6; ?></td>
-	<td><?php $type_sum[$key] = $t1+$t2+$t3+$t4+$t5+$t6 ; echo number_format($t1+$t2+$t3+$t4+$t5+$t6); ?></td>s
+	<td><?php $type_sum[$key] = $t1+$t2+$t3+$t4+$t5+$t6 ; echo number_format($t1+$t2+$t3+$t4+$t5+$t6); ?></td>
 	<td><?php $t = $total[$item['area_no']][1]; echo number_format($t); $total1[] = $t ?></td>
 	<td><?php $u = $user_total[$item['area_no']][1]; echo number_format($u);$user_total1[] =$u; ?></td>
 	<td><?php echo (empty($t) || empty($u)) ? 0 : round(($u*100)/$t) ?></td>

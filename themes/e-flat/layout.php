@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title><?php echo $template['title'] ?></title>
 	<?php include("themes/default/_css.php");?>
-		<?php include("_css.php");?>
+	<?php include("_css.php");?>
 	<script type="text/javascript" src="media/js/jquery-1.6.4.min.js"></script>
     <?php echo $template['metadata'] ?>
 </head>
@@ -16,20 +16,20 @@
 	<?php include('themes/default/_menu.php'); ?>
 	 <div id="row5">
 		<div id="blank">
-		<div class="titleGroup"><img src="media/img/title-person.png" width="397" height="96"></div>
+		<div class="titleGroup"><img src="media/img/title-person.png" width="393" height="96"></div>
 		<div id="topmenuPerson">
 			<ul>
-		    	<li class="topmenuPerson1"><a href="f_weight/index/1" style="display:inline-block;width:150px;">&nbsp;</a></li>
-		        <li class="topmenuPerson2"><a href="f_weight/index/2" style="display:inline-block;width:150px;">&nbsp;</a></li>
-		        <li class="topmenuPerson7"><a href="#">&nbsp;</a>
+		    	<li class="topmenuPerson1"><a href="f_weight/index/1"></a></li>
+		        <li class="topmenuPerson2"><a href="f_weight/index/2"></a></li>
+		        <li class="topmenuPerson7"><a href="#"></a>
 		        	<ul class="sub-topmenuPerson7">
-		                <li style="width:400px;"><a href="report/index/person/1">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายบุคคล)</a></li>
-		                <li style="width:400px;"><a href="report/index/province">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายองค์กร)</a></li>
-		                <li style="width:400px;"><a href="report/index/area">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายจังหวัด)</a></li>
-		                <li style="width:400px;"><a href="report/index/overview">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายเขต)</a></li>
-		                <li style="width:400px;"><a href="report/index/height">รายงานภาวะโรคอ้วนลงพุง (Ht/2)</a></li>
-		                <li style="width:400px;"><a href="report/index/bmi">รายงานภาวะโรคอ้วนลงพุง (BMI)</a></li>
-		                 <li style="width:400px;"><a href="report/index/waist">รายงานภาวะโรคอ้วนลงพุง (รอบเอว)</a></li>
+		                <li><a href="report/index/person/1">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายบุคคล)</a></li>
+		                <li><a href="report/index/province">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายองค์กร)</a></li>
+		                <li><a href="report/index/area">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายจังหวัด)</a></li>
+		                <li><a href="report/index/overview">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายเขต)</a></li>
+		                <li><a href="report/index/height">รายงานภาวะโรคอ้วนลงพุง (Ht/2)</a></li>
+		                <li><a href="report/index/bmi">รายงานภาวะโรคอ้วนลงพุง (BMI)</a></li>
+		                <li><a href="report/index/waist">รายงานภาวะโรคอ้วนลงพุง (รอบเอว)</a></li>
 		            </ul>
 		        </li>
 		    </ul>

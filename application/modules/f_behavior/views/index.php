@@ -1,5 +1,3 @@
-<div class="titleGroup2">แบบประเมินพฤติกรรม ครั้งที่ <?php echo $time ?></div>
-<div class="contentBlank">
 <div id="Breadcrumbs">
   	<ol id="path-breadcrumb">
       <li><a href="home">หน้าแรก</a></li>
@@ -7,6 +5,8 @@
       <li class="active">แบบประเมินพฤติกรรม ครั้งที่ <?php echo $time ?></li>
     </ol>
 </div>
+<div class="titleGroup2">แบบประเมินพฤติกรรม ครั้งที่ <?php echo $time ?></div>
+<div class="contentBlank">
 <div id="search">
 	<form action="f_behavior/index/<?php echo $time ?>" class="form-search">
 		<span>ปีงบประมาณ </span>
@@ -29,8 +29,8 @@
 <div id="span7">
 <form action="f_behavior/save/<?php echo $time?>" method="post" >
 <div><span class="alertred">*</span><span>ปีงบประมาณ </span> <?php echo form_dropdown('year',get_year_option("2556"),$year,'',''); ?></div>
-	<table class="table table-bordered table-condensed">
-	<tr>
+	<table class="table table-bordered  table-striped table-condensed">
+	<tr class="success">
 		<th>ชื่อ - นามสกุล</th>
 		<th>เพศ</th>
 		<th>อายุ</th>

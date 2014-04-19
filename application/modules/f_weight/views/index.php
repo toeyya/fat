@@ -5,7 +5,7 @@
       <li class="active">รอบเอวและน้ำหนักตัว  ครั้งที่ <?php echo $time ?></li>
     </ol>
 </div>
-
+<div class="titleGroup2">รอบเอวและน้ำหนักตัว  ครั้งที่ <?php echo $time ?></div>
 <div class="contentBlank">
 <div id="search">
 	<form action="f_weight/index/<?php echo $time ?>" class="form-search">
@@ -26,7 +26,7 @@
 <div id="span7">
 	<form action="f_weight/save/<?php echo $time; ?>"  method="post">
 	<div><span class="alertred">*</span><span>ปีงบประมาณ </span> <?php echo form_dropdown('year',get_year_option("2556"),$year,'',''); ?></div>
-	<table class="table table-bordered table-condensed">
+	<table class="table table-bordered table-condensed table-striped">
 		<tr class="success">
 			<th>ชื่อ-นามสกุล</th>
 			<th>เพศ</th>
@@ -64,7 +64,7 @@
 			<td><span class="hide"><input type="text" name="waistline[]" value="<?php echo $item['waistline'] ?>" class="waistline noborder aligncenter  w40" maxlength="3"></span>
 				<span class="show"><?php echo $item['waistline'] ?></span>
 			</td>
-			<td><input type="text" name="fat[]" class="noborder aligncenter w100 <?php if(!empty($fat_mean[$item['fat']])){ echo $fat_mean[$item['fat']];} ?>" value="<?php echo $item['fat'] ?>"></td>
+			<td><input type="text" name="fat[]" class="noborder aligncenter w100 <?php if(!empty($fat_mean[$item['fat']])){ echo $fat_mean[$item['fat']];} ?>" value="<?php echo $item['fat'] ?>" readonly="readonly"></td>
 			<td><span class="hide"><input type="text" name="bmi_value[]" value="<?php echo $item['bmi_value'] ?>" class="bmi-value noborder aligncenter w40" readonly="readonly" ></span>
 				<span class="show"><?php echo $item['bmi_value'] ?></span>
 			</td>
@@ -153,17 +153,18 @@ $(document).ready(function(){
 			var bmi=0.00;
 			var tr = $(this).closest('tr');
 			var weight = $(this).closest('td').prev().find('input').val();
-			weight = parseInt(weight);
 			var height = $(this).val();
-			height = parseInt(height);
-			if(weight>0 && height>0){
+			if(weight.length>0 && height.length>0){
+				height = parseInt(height);
+				weight = parseInt(weight);
 				result =bmi_cal(weight,height);
 				tr.find('.bmi-value').val(result[0].toFixed(1));
 				tr.find('.bmi-mean').removeClass('red green orange yellow grey');
 				tr.find('.bmi-mean').val(result[1]).addClass(result[2]);
-			}else{
+			}else if(weight.length==0 || height.length==0){
 				tr.find('.bmi-value').val('');
 				tr.find('.bmi-mean').val('');
+				tr.find('.bmi-mean').removeClass('red green orange yellow grey');
 			}
 	});
 	$('.waistline').live('blur',function(){
@@ -175,10 +176,14 @@ $(document).ready(function(){
 		var tr =  $(this).closest('tr');
 		var gender = tr.find('td').eq(2).find('.gender option:selected').val();
 		var waist = $(this).val();
-		if(waist>0 && gender>0){
+		if(waist.length>0 && gender>0){
+			waist = parseInt(waist);
 			result = fat_cal(waist,gender);
 			tr.find('td').eq(7).find('input').removeClass('red green orange yellow grey');
 			tr.find('td').eq(7).find('input').val(result[0]).addClass(result[1]);
+		}else if(waist.length==0 || gender.length==0){
+			tr.find('td').eq(7).find('input').removeClass('red green orange yellow grey');
+			tr.find('td').eq(7).find('input').val('');
 		}
 	});
 

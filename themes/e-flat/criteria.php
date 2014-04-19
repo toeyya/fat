@@ -14,16 +14,16 @@
     <div class="container">
 	<?php include('themes/default/_header.php'); ?>
 	<?php include('themes/default/_menu.php'); ?>
-	 <div id="row5">
+	 <div id="row4">
 		<div id="blank">
-			<div class="titleGroup"><img src="media/img/title-poll.png" width="393" height="79" /></div>
+			<div class="titleGroup"><img src="media/img/title-group.png" width="394" height="92" /></div>
 			<div id="menuPoll">
 				<ul>
-			    <li class="btn-poll1"><a href="f_behavior/index/1"></a></li>
-				<li class="btn-poll2"><a href="f_behavior/index/2"></a></li>
-			    <li class="menuPoll1"><a href="#"></a>
+			    <li class="btn-poll1"><a href="f_behavior/index/1"  style="display:inline-block;width:212px;">&nbsp;</a></li>
+				<li class="btn-poll2"><a href="f_behavior/index/2"  style="display:inline-block;width:212px;">&nbsp;</a></li>
+			    <li class="menuPoll1"><a href="#">&nbsp;</a>
 			        <ul class="ReportPoll">
-			            <li><a href="report/index/behavior">รายงานผลการประเมินพฤติกรรม</a></li>
+			            <li style="width:400px;"><a href="report/index/behavior">รายงานผลการประเมินพฤติกรรม</a></li>
 			        </ul>
 			       </li>
 			     </ul>

@@ -18,7 +18,8 @@
     <label class="control-label" for="inputPassword">Password</label>
     <div class="controls">
       <input type="password" id="inputPassword" placeholder="Password" name="password">
-      <div style="margin-top:20px;"><button type="submit" class="btn btn-primary btn-large">ตกลง</button></div>
+       <div style="margin-top:10px;"><a href="users/forgetPassword">ลืมรหัสผ่าน</a></div>
+      <div style="margin-top:10px;"><button type="submit" class="btn btn-primary">ตกลง</button></div>
     </div>
 
   </div>

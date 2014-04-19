@@ -111,7 +111,7 @@ $(function () {
             text: 'หน่วยงาน <?php echo $user_name ?> ครั้งที่ <?php echo $time; ?>'
         },
         xAxis: {
-            categories: ['ปกติ (รอบเอวน้อยกว่า ht/2)', 'อ้วน (รอบเอวมากกว่า ht/2)'],
+            categories: ['ชาย', 'หญิง','รวม'],
             title: {
                 text: 'ความสูงหารสอง',
                 offset: '30'
@@ -155,14 +155,13 @@ $(function () {
 
         },
         series: [{
-            name: 'ชาย',
-            data: [<?php echo $ab_m1.",".$ab_m2 ?>]
+            name: 'ปกติ ',
+            data: [<?php echo $ab_m1.",".$ab_f1.",".$sum_per1 ?>],
+            color:'#BDFBC5'
         }, {
-            name: 'หญิง',
-            data: [<?php echo $ab_f1.",".$ab_f2 ?>]
-        }, {
-            name: 'รวม',
-            data: [<?php echo $sum_per1.",".$sum_per2 ?>]
+            name: 'อ้วน',
+            data: [<?php echo $ab_m2.",".$ab_f2.",".$sum_per2 ?>],
+            color:'#FFA29B'
         }]
     });
 });
