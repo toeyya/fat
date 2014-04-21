@@ -15,6 +15,8 @@
 		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร'); ?>
 		<span>ปีงบประมาณ </span>
 		<?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="search-query"',''); ?>
+		<span>ครั้งที่</span>
+		<?php echo form_dropdown('time',array('1'=>'1','2'=>'2'),@$_GET['time'],'class="search-query"','') ?>
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>
 </div>

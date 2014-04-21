@@ -1,10 +1,13 @@
-
+<style>
+	.form-horizontal .control-label{width:250px;padding-right:5px;text-align:right}
+	.line5{margin-top:0px;margin-left:0px;margin-bottom: 20px;}
+</style>
 	<div class="span9" style="margin-top:20px;">
 		<form  method="post" action="users/save" class="form-horizontal">
 		  <div class="control-group">
 		    <label class="control-label"  for="inputEmail">อีเมล์</label>
 		    <div class="controls">
-		      <input type="text" id="inputEmail" placeholder="อีเมล์" name="email" class="xlarge">
+		      <input type="text" id="inputEmail" placeholder="อีเมล์" name="email" class="input-xlarge">
 		    </div>
 		  </div>
 		  <div class="control-group">
@@ -19,38 +22,24 @@
 		      <input type="password" id="inputReassword" placeholder="ยืนยันรหัสผ่่าน" name="repassword"  class="xlarge">
 		    </div>
 		  </div>
-		 <div class="line5" style="margin-top:0px;margin-left:0px;margin-bottom: 20px"> </div>
+		 <div class="line5"> </div>
 		   <div class="control-group">
-		    <label class="control-label" for="inputFirstname">ชื่อ ผู้ประสานงาน</label>
+		    <label class="control-label" for="inputFullname1">ชื่อ - นามสกุล ผู้ประสานงาน(องค์กร)</label>
 		    <div class="controls" >
-		      <input type="text" id="inputFirstname" placeholder="ชื่อ" name="firstname"  class="xlarge">
+		      <input type="text" id="inputFullname1" placeholder="ชื่อ - นามสกุล ผู้ประสานงาน(องค์กร)" name="fullname-agency"  class="input-xlarge">
 		    </div>
 		  </div>
 
 		   <div class="control-group">
-		    <label class="control-label" for="inputLastname">นามสกุล ผู้ประสานงาน</label>
+		    <label class="control-label" for="inputFullname2">ชื่อ - นามสกุล ผู้ประสานงาน(จังหวัด)</label>
 		    <div class="controls" >
-		      <input type="text" id="inputLastname" placeholder="นามสกุล" name="lastname"  class="xlarge">
+		      <input type="text" id="inputFullname2" placeholder="ชื่อ - นามสกุล ผู้ประสานงาน(จังหวัด)" name="fullname-province"  class="input-xlarge">
 		    </div>
 		  </div>
-
 		   <div class="control-group">
-		    <label class="control-label" >เพศ</label>
-		    <div class="controls">
-		        <?php echo form_dropdown('gender',array('1'=>'ชาย','2'=>'หญิง'),'','','โปรดระบุ') ?>
-		    </div>
-		  </div>
-		    <div class="control-group">
-		    <label class="control-label" for="inputAge">อายุ</label>
-		    <div class="controls">
-		      <input type="text" id="inputAge" placeholder="อายุ" name="age"  class="input-mini">
-		    </div>
-		  </div>
-		     <div class="control-group">
-		    <label class="control-label" for="inputPhone">เบอร์ติดต่อ</label>
-		    <div class="controls">
-		      <input type="text" id="inputPhone" placeholder="เบอร์โทรศัพท์" name="phone">
-		      <span class="label label-default">ตัวอย่าง  </span> 0123456789
+		    <label class="control-label" for="inputFullname3">ชื่อ - นามสกุล ผู้รับผิดชอบ</label>
+		    <div class="controls" >
+		      <input type="text" id="inputFullname3" placeholder="ชื่อ - นามสกุล ผู้รับผิดชอบ" name="fullname-respone"  class="input-xlarge">
 		    </div>
 		  </div>
 		   <div class="control-group">
@@ -59,6 +48,21 @@
 		      <input type="text" id="inputPosition" placeholder="ตำแหน่ง" name="position">
 		    </div>
 		  </div>
+		  <div class="control-group">
+		    <label class="control-label" for="inputPhone">โทรศัพท์สำนักงาน</label>
+		    <div class="controls">
+		      <input type="text" id="inputPhone" placeholder="โทรศัพท์สำนักงาน" name="phone">
+		      <span class="label label-default">ตัวอย่าง</span> 0221234567
+		    </div>
+		  </div>
+		  <div class="control-group">
+		    <label class="control-label" for="inputMobile">มือถือ</label>
+		    <div class="controls">
+		      <input type="text" id="inputMobile" placeholder="มือถือ" name="mobile">
+		      <span class="label label-default">ตัวอย่าง</span> 08123456789
+		    </div>
+		  </div>
+		   <div class="line5"> </div>
 		   <div class="control-group">
 		    <label class="control-label" for="inputAgency">ประเภทหน่วยงาน</label>
 		    <div class="controls">
@@ -66,15 +70,15 @@
 		    </div>
 		  </div>
 		   <div class="control-group">
-		    <label class="control-label" for="inputAgency">หน่วยงาน</label>
+		    <label class="control-label" for="inputAgency">องค์กร</label>
 		    <div class="controls">
-		      <input type="text" id="inputAgency" placeholder="หน่วยงาน" name="agency_name">
+		      <input type="text" id="inputAgency" placeholder="องค์กร" name="agency_name"  class="input-xlarge">
 		    </div>
 		  </div>
 		     <div class="control-group">
 		    <label class="control-label" for="inputAddress">ที่อยู่</label>
 		    <div class="controls">
-		      <input type="text" id="inputAddress" placeholder="ที่อยู่" name="address">
+		      <input type="text" id="inputAddress" placeholder="ที่อยู่" name="address"  class="input-xlarge">
 		    </div>
 		  </div>
 		   <div class="control-group">

@@ -151,6 +151,9 @@ class Criteria extends  Flat_Controller{
 			$this->db->Execute("UPDATE f_criteria_month SET $field ='' WHERE id = ? ",$_GET['id']);
 		}
 	}
+	function report($print=FALSE){
+		$this->template->build('report/index');
+	}
 
 }
 ?>

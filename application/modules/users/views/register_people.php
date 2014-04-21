@@ -4,7 +4,7 @@
 		  <div class="control-group">
 		    <label class="control-label" for="inputEmail">อีเมล์</label>
 		    <div class="controls">
-		      <input type="text" id="inputEmail" placeholder="อีเมล์" name="email" value="<?php echo @$user['email']?>">
+		      <input type="text" id="inputEmail" placeholder="อีเมล์" name="email" value="<?php echo @$user['email']?>"  class="input-xlarge">
 		    </div>
 		  </div>
 		  <div class="control-group">
@@ -23,14 +23,14 @@
 		   <div class="control-group">
 		    <label class="control-label" for="inputFirstname">ชื่อ</label>
 		    <div class="controls">
-		      <input type="text" id="inputFirstname" placeholder="ชื่อ" name="firstname" value="<?php echo  @$user['firstname']?>">
+		      <input type="text" id="inputFirstname" placeholder="ชื่อ" name="firstname" value="<?php echo  @$user['firstname']?>"  class="input-xlarge">
 		    </div>
 		  </div>
 
 		   <div class="control-group">
 		    <label class="control-label" for="inputLastname">นามสกุล </label>
 		    <div class="controls">
-		      <input type="text" id="inputLastname" placeholder="นามสกุล" name="lastname" value="<?php echo  @$user['lastname']?>">
+		      <input type="text" id="inputLastname" placeholder="นามสกุล" name="lastname" value="<?php echo  @$user['lastname']?>"  class="input-xlarge">
 		    </div>
 		  </div>
 
