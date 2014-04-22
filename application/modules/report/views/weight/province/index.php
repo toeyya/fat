@@ -12,7 +12,15 @@
 		<span>จังหวัด</span>
 		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
 		<span>องค์กร</span>
-		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร'); ?>
+		<span id="agency">
+			<?php
+			if(!empty($_GET['user_id'])){
+				echo form_dropdown('user_id',get_option('id','agency_name','f_users','province_id = '.$_GET['province_id'],'agency_name'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร');
+			}else{
+			?>
+				<select name="user_id" class="search-query"><option value="">เลือกองค์กร</option></select>
+			<?php }  ?>
+		</span>
 		<span>ปีงบประมาณ </span>
 		<?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="search-query"',''); ?>
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
@@ -104,27 +112,27 @@
 </tr>
 <?php $i++; endforeach; ?>
 <tr><td colspan="3">รวม</td>
-	<td><?php echo number_format(array_sum($user_total)); ?></td>
-	<td><?php echo number_format(array_sum($total)) ?></td>
-	<td></td>
-	<td><?php echo number_format(array_sum($f));?></td>
-	<td></td>
-	<td><?php echo number_format(array_sum($w))?></td>
-	<td><?php echo number_format(array_sum($b)) ?></td>
-	<td><?php echo number_format(array_sum($b_percent),1) ?></td>
-	<td><?php echo number_format(array_sum($sd1),1) ?></td>
-	<td><?php echo number_format(array_sum($user_total2)) ?></td>
-	<td><?php echo number_format(array_sum($total2)) ?></td>
-	<td></td>
-	<td><?php echo number_format(array_sum($f2)) ?></td>
-	<td></td>
-	<td><?php echo number_format(array_sum($w2))?></td>
-	<td><?php echo number_format(array_sum($b2))?></td>
-	<td><?php echo number_format(array_sum($b_percent2),1) ?></td>
-	<td><?php echo number_format(array_sum($sd2),1) ?></td>
-	<td><?php echo number_format(array_sum($fat_avg)) ?></td>
-	<td></td>
-	<td><?php echo number_format(array_sum($bmi_avg)) ?></td>
+	<td><?php echo $sum1 = (empty($user_total)) ? 0 : number_format(array_sum($user_total)); ?></td>
+	<td><?php echo $sum2 = (empty($total)) ? 0 : number_format(array_sum($total)) ?></td>
+	<td><?php echo (empty($sum1) || empty($sum2)) ? 0.0: number_format(($sum2*100)/$sum1,1); ?></td>
+	<td><?php echo $sum3 = (empty($f)) ? 0 :number_format(array_sum($f));?></td>
+	<td><?php echo $per_f1= (empty($sum2) && empty($sum3)) ? 0.0 :number_format(($sum3*100)/$sum2,1); ?></td>
+	<td><?php echo (empty($w))? 0 : number_format(array_sum($w))?></td>
+	<td><?php echo (empty($b))? 0 : number_format(array_sum($b)) ?></td>
+	<td><?php echo $diff1 = (empty($b_percent))? 0.0 :number_format(array_sum($b_percent),1) ?></td>
+	<td><?php echo (empty($sd1))? 0.0 :number_format(array_sum($sd1),1) ?></td>
+	<td><?php echo $sum4 = (empty($user_total2)) ? 0: number_format(array_sum($user_total2)) ?></td>
+	<td><?php echo $sum5 = (empty($total2))? 0 :number_format(array_sum($total2)) ?></td>
+	<td><?php echo (empty($sum5) || empty($sum4)) ? 0.0: number_format(($sum5*100)/$sum4,1); ?></td>
+	<td><?php echo $sum6 = (empty($f2)) ? 0 :number_format(array_sum($f2)) ?></td>
+	<td><?php echo $per_f2= (empty($sum5) || empty($sum6)) ? 0.0 :number_format(($sum6*100)/$sum5,1); ?></td>
+	<td><?php echo (empty($w2)) ? 0 : number_format(array_sum($w2))?></td>
+	<td><?php echo (empty($b2)) ? 0 : number_format(array_sum($b2))?></td>
+	<td><?php echo $diff2 = (empty($b_percent2)) ? 0 :number_format(array_sum($b_percent2),1) ?></td>
+	<td><?php echo (empty($sd2)) ? 0 : number_format(array_sum($sd2),1) ?></td>
+	<td><?php echo (empty($fat_avg)) ? 0 : number_format(array_sum($fat_avg)) ?></td>
+	<td><?php echo (empty($per_f1) && empty($per_f2)) ? 0.0 :number_format(abs($per_f1 - $per_f2),1); ?></td>
+	<td><?php echo (empty($diff1) && empty($diff2))? 0.0 :number_format(abs($diff1-$diff2),1);?></td>
 	<td></td>
 
 </tr>
@@ -133,7 +141,26 @@
 </div>
 <!--</div>-->
 <?php }  // $_GET?>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('select[name=province_id]').change(function(){
+		var province_id = $(this).val();
+		if(province_id.length>0){
+			$.ajax({
+				url:'setting/getAgency',
+				data:'province_id='+province_id,
+				success:function(data){
+					$('#agency').html(data);
+				}
+			});
+		}else{
+			$('#agency').html('<select name="user_id" class="search-query"><option value="">เลือกองค์กร</option></select>');
+		}
 
+
+	});
+});
+</script>
 
 
 

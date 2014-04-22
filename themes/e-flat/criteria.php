@@ -17,17 +17,17 @@
 	 <div id="row4">
 		<div id="blank">
 			<div class="titleGroup"><img src="media/img/title-group.png" width="394" height="92" /></div>
-			<div id="menuPoll">
-				<ul>
-			    <li class="btn-poll1"><a href="f_behavior/index/1"  style="display:inline-block;width:212px;">&nbsp;</a></li>
-				<li class="btn-poll2"><a href="f_behavior/index/2"  style="display:inline-block;width:212px;">&nbsp;</a></li>
-			    <li class="menuPoll1"><a href="#">&nbsp;</a>
-			        <ul class="ReportPoll">
-			            <li style="width:400px;"><a href="report/index/behavior">รายงานผลการประเมินพฤติกรรม</a></li>
-			        </ul>
-			       </li>
-			     </ul>
-			</div>
+			 <div id="topmenuGroup">
+                	<ul>
+                    	<li class="topmenuGroup1"><a href="criteria/index"></a></li>
+                        <li class="topmenuGroup2"><a href="criteria/form"></a></li>
+                        <li class="topmenuGroup3">
+                        	<ul class="sub-topmenuGroup3">
+                                <li><a href="criteria/report">รายงานตามตัวชี้วัด กพร.</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+               </div>
 		<?php echo $template['body']; ?>
 	  </div>
 	 </div>

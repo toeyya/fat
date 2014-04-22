@@ -79,7 +79,7 @@ behavior: url(pie/PIE.htc);
 .line1{border-top:2px solid #b7d27c; margin-top:-11px;}
 .btn-viewAll{float:right; margin-top:13px; background:url(../img/btn-viewall.png) no-repeat;width:78px; height:22px; display:block; border:0; cursor:pointer;}
 .btn-viewAll:hover{ background:url(../img/btn-viewall-hot.png) no-repeat;}
-.pic-news{margin-right:10px;margin-left:-10px;}
+.pic-news{margin-right:10px;margin-left:-2px;}
 #boxnews{width:50%; float:left; height:118px; overflow:hidden; margin-top:20px;}
 #titlenews{font-size:15px;margin-top:10px;  font-weight:bold;color:#00793e;}
 .linknews{color:black; text-decoration:none;  font-size:14px;}
@@ -139,7 +139,7 @@ behavior: url(pie/PIE.htc);
 .copyright{color:#868484; font-size:11px; }
 
 /*BREADCRUMB*/
-#Breadcrumbs{text-align:right;  margin-right:33px;width:50%;float:right;}
+#Breadcrumbs{text-align:right;  margin-right:33px;width:100%;float:right;}
 #path-breadcrumb li{font-size:12px; color:#646363;font-weight:bold; background:none; list-style:none; display:inline-block;}
 #path-breadcrumb > li + li:before { padding: 0 5px; color:black; content: "/\00a0";}
 #path-breadcrumb li a{color:black;}
@@ -193,9 +193,31 @@ behavior: url(pie/PIE.htc);
 #topmenuPerson ul {	position: relative;	 display: block;}
 #topmenuPerson ul:after {content: ""; clear: both; display: block;}
 
-.sub-topmenuPerson7 li {z-index:100;position:relative; float: left; color:white;font-weight:bold; display: block; line-height:32px; text-indent:8px; width:400px; background:#fe43b5; border-radius:6px; margin-left:5px;}
+.sub-topmenuPerson7 li {z-index:100;position:relative; float: left; color:white;font-weight:bold; display: block; line-height:32px; text-indent:8px; width:400px;background:#fe43b5;border-radius:6px;margin-left:5px;}
 .sub-topmenuPerson7 li a{color:white; font-weight:bold; border-radius:6px;}
 .sub-topmenuPerson7 li a:hover{display: block; text-decoration:none; color:white; font-weight:bold;  background:#fc87c1; border-radius:6px;}
+
+
+
+/* องค์กรต้นแบบไร้พุง */
+	#topmenuGroup ul {margin-left:5px;margin-top:10px;}
+	#topmenuGroup ul li{list-style:none; display:inline-block; margin-right:0px;}
+	.topmenuGroup1 a{ display:block;background:url(../img/btn-criteria.png) no-repeat; width:136px; height:32px; cursor:pointer;}
+	.topmenuGroup1 a:hover{background:url(../img/btn-criteria-hot.png) no-repeat;}
+	.topmenuGroup2 a{ display:block;background:url(../img/btn-MonthlyReport.png) no-repeat; width:263px; height:32px; cursor:pointer;}
+	.topmenuGroup2 a:hover{background:url(../img/btn-MonthlyReport-hot.png) no-repeat;}
+	.topmenuGroup3 { display:block;background:url(../img/btn-report.png) no-repeat; width:96px; height:32px; cursor:pointer;}
+	.topmenuGroup3 :hover{background:url(../img/btn-report-hot.png) no-repeat;}
+	#topmenuGroup ul ul {	display: none; margin:0; padding:0;}
+	#topmenuGroup ul li:hover > ul {display: block; margin-top:32px; margin-left:-5px;  padding:0; }
+	#topmenuGroup ul {	position: relative;	 display: block;}
+	#topmenuGroup ul:after {content: ""; clear: both; display: block;}
+	.sub-topmenuGroup3 li {z-index:100;position:relative;float: left; color:white; font-weight:bold; display: block; line-height:32px; text-indent:8px; background:#fe43b5; width:400px;border-radius:6px;margin-left:5px;}
+	.sub-topmenuGroup3 li a{color:white; font-weight:bold; border-radius:6px;}
+	.sub-topmenuGroup3 li a:hover{display: block; text-decoration:none; color:white; font-weight:bold;  background:#fc87c1; border-radius:6px;}
+
+
+
 
 
 .contentPerson{margin-top:20px;padding:20px; border-top:0px solid #3ec5bd; border-bottom:4px solid #3ec5bd; border-left:1px solid #3ec5bd;border-right:1px solid #3ec5bd; border-radius:20px; background:white; }
@@ -256,4 +278,6 @@ behavior: url(pie/PIE.htc);
 .km_content ul li a{vertical-align:top;padding:30px 0px;}
 #download ul{list-style:none;}
 #download ul li{float:left;border:1px solid #C5C2C2;padding:4px;margin:10px;}
-.border-img{background:url(../img/border.png) no-repeat;width:152px;height: 118px;display:inline-block;}
+.border-img{background:url(../img/border.png) no-repeat;width:152px;height: 118px;display:inline-block;margin-right:10px;}
+
+

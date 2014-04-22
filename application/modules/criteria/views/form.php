@@ -1,5 +1,3 @@
-<div id="blank">
-<div class="titleGroup"><img src="media/img/title-group.png" width="394" height="92" /></div>
 <div class="titleGroup2">รายงานความก้าวหน้าประจำเดือน </div>
 <div id="Breadcrumbs">
 <ol id="path-breadcrumb">
@@ -39,7 +37,7 @@
 </tr>
 
 <?php  $i++; }}else{  ?>
-<?php  foreach($result as $item){?>
+<?php  foreach($result as $key=>$item){?>
 <tr>
 	<td class="title"><?php echo $title[$i] ?></td>
 	<td><textarea rows="4" class="span2" name="activity<?php echo $i ?>"><?php echo $item['activity'] ?></textarea></td>
@@ -49,7 +47,7 @@
 	<td>
     	<?php if(!empty($item['image1'])): ?>
     	<p>
-    	<a href="uploads/criteria/image/<?php echo $item['image1'] ?>" rel="lightbox">
+    	<a href="uploads/criteria/image/<?php echo $item['image1'] ?>" class="gallery" rel="gal<?php echo $key ?>">
 			<img style="width:50px; vertical-align:middle;" src="uploads/criteria/image/thumbnail/<?php echo $item['image1'] ?>">
 		</a>
 		<a href="#" name="btn_del" rel="image1"  class="btn btn-default btn-mini" onclick="return confirm('ยืนยันการลบ ?')">ลบ</a>
@@ -58,7 +56,7 @@
 		<input type="file" name="image1_<?php echo $i ?>"><br/>
 	    <?php if(!empty($item['image2'])): ?>
     	<p>
-    	<a href="uploads/criteria/image/<?php echo $item['image2'] ?>" rel="lightbox">
+    	<a href="uploads/criteria/image/<?php echo $item['image2'] ?>" class="gallery" rel="gal<?php echo $key ?>">
 			<img style="width:50px; vertical-align:middle;" src="uploads/criteria/image/thumbnail/<?php echo $item['image2'] ?>">
 		</a>
 		<a href="#" name="btn_del" rel="image2"  class="btn btn-default btn-mini" onclick="return confirm('ยืนยันการลบ ?')">ลบ</a>
@@ -67,7 +65,7 @@
 		<input type="file" name="image2_<?php echo $i ?>"><br/>
 	    <?php if(!empty($item['image3'])): ?>
     	<p>
-    	<a href="uploads/criteria/image/<?php echo $item['image3'] ?>" rel="lightbox">
+    	<a href="uploads/criteria/image/<?php echo $item['image3'] ?>" class="gallery" rel="gal<?php echo $key ?>">
 			<img style="width:50px; vertical-align:middle;" src="uploads/criteria/image/thumbnail/<?php echo $item['image3'] ?>">
 		</a>
 		<a href="#" name="btn_del"  rel="image3"  class="btn btn-default btn-mini" onclick="return confirm('ยืนยันการลบ ?')">ลบ</a>
@@ -87,7 +85,7 @@
 <div class="aligncenter"><button class="btnSave" style="width:300px;" name="btn_save" type="submit">ยืนยัน</button></div>
 </form>
 </div>
-</div>
+
 <script type="text/javascript">
 $(document).ready(function(){
 	$('[name=btn_del]').click(function(event){
@@ -103,6 +101,7 @@ $(document).ready(function(){
 		});
 		event.preventDefault();
 	});
+	$('a.gallery').colorbox();
 });
 </script>
 

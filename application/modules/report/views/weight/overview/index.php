@@ -12,20 +12,20 @@
 <div id="search" class="form-search">
 	<form action="report/index/overview" class="form-search">
 		<span>ศูนย์อนามัย</span>
-		<?php echo form_dropdown('hpc',get_option('id','area_no','f_area_detail where area_id=2 group by area_no'),@$_GEt['hpc'],'class="search-query"','เลือกศูนย์อนามัย'); ?>
+		<?php echo form_dropdown('area',get_option('area_no as id','area_no','f_area_detail where area_id=2 group by area_no'),@$_GET['area'],'class="search-query"','เลือกศูนย์อนามัย'); ?>
 		<span>ปีงบประมาณ </span>
 		<?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="search-query"',''); ?>
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>
 </div>
-<div class="right" style="margin-bottom: 10px;">
+<?php if(!empty($_GET)){ ?>
 <div class="right" style="margin-bottom: 10px;">
 	<a href="report/index/overview/export<?=GetCurrentUrlGetParameter();?>"  class="btn btn-default"><i class="fa fa-arrow-down"></i>ดาวน์โหลด excel</a>
 	<a href="report/index/overview/preview<?=GetCurrentUrlGetParameter();?>" class="btn btn-default" target="_blank">พิมพ์ข้อมูล</a>
 </div>
-</div>
+
 <div class="clearfix"></div>
-<?php if(!empty($_GET)){ ?>
+
 <div id="Rform">
 
 	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
@@ -90,7 +90,7 @@
 	<td><?php $type_sum[$key] = $t1+$t2+$t3+$t4+$t5+$t6 ; echo number_format($t1+$t2+$t3+$t4+$t5+$t6); ?></td>
 	<td><?php $t = $total[$item['area_no']][1]; echo number_format($t); $total1[] = $t ?></td>
 	<td><?php $u = $user_total[$item['area_no']][1]; echo number_format($u);$user_total1[] =$u; ?></td>
-	<td><?php echo (empty($t) || empty($u)) ? 0 : round(($u*100)/$t) ?></td>
+	<td><?php echo (empty($t) || empty($u)) ? 0 : number_format(($u*100)/$t,1) ?></td>
 	<td><?php $f = (empty($fat[$item['area_no']]['อ้วนลงพุง'][1])) ? 0 : $fat[$item['area_no']]['อ้วนลงพุง'][1]; echo number_format($f); $f1[]=$f; ?></td>
 	<td><?php echo $f_percnet[$key] =(empty($f) || empty($u)) ? 0 : number_format(($f*100)/$u,1) ?></td>
 	<td><?php $w[$key]  =(empty($waistline[$item['area_no']][1])) ? 0 : $waistline[$item['area_no']][1]; echo number_format($w[$key],1); $waist1[] = $w[$key]; ?></td>
@@ -101,9 +101,9 @@
 
 	<td><?php $t = $total[$item['area_no']][2]; echo number_format($t); $total2[] = $t ?></td>
 	<td><?php $u = (empty($user_total[$item['area_no']][2])) ? 0 : $user_total[$item['area_no']][2]; echo number_format($u);$user_total2[] =$u; ?></td>
-	<td><?php echo (empty($t) || empty($u)) ? 0 : round(($u*100)/$t) ?></td>
+	<td><?php echo (empty($t) || empty($u)) ? 0 : number_format(($u*100)/$t,1) ?></td>
 	<td><?php $f = (empty($fat[$item['area_no']]['อ้วนลงพุง'][2])) ? 0 : $fat[$item['area_no']]['อ้วนลงพุง'][2]; echo number_format($f); $f2[]=$f; ?></td>
-	<td><?php echo $f2_percent[$key] = (empty($f) || empty($u)) ? 0 : round(($f*100)/$u) ?></td>
+	<td><?php echo $f2_percent[$key] = (empty($f) || empty($u)) ? 0 : number_format(($f*100)/$u,1) ?></td>
 	<td><?php $w2[$key]  =(empty($waistline[$item['area_no']][2])) ? 0 : $waistline[$item['area_no']][2]; echo number_format($w2[$key],1); $waist2[] = $w2[$key]; ?></td>
 	<td><?php $we2[$key] = (empty($weight[$item['area_no']]['sum'][2])) ? 0 : $weight[$item['area_no']]['sum'][2]; echo number_format($we2[$key],1); $w_sum2[] = $we2[$key]; ?></td>
 	<td><?php $we_avg2[$key] = (empty($weight[$item['area_no']]['avg'][2])) ? 0 : $weight[$item['area_no']]['avg'][2]; echo number_format($we_avg2[$key],1); $w_avg2[] = $we_avg2[$key]; ?></td>
@@ -115,37 +115,36 @@
 </tr>
 <?php endforeach; ?>
 <tr><td colspan="2">รวมทั้งสิ้น ศูนย์ 1+12+กทม.</td>
-	<td><?php echo number_format(array_sum($type1)); ?></td>
-	<td><?php echo number_format(array_sum($type2)); ?></td>
-	<td><?php echo number_format(array_sum($type3)); ?></td>
-	<td><?php echo number_format(array_sum($type4)); ?></td>
-	<td><?php echo number_format(array_sum($type5)); ?></td>
-	<td><?php echo number_format(array_sum($type6)); ?></td>
-	<td><?php echo number_format(array_sum($type_sum));?></td>
-	<td><?php echo number_format(array_sum($total1));?></td>
-	<td><?php echo number_format(array_sum($user_total1));?></td>
-	<td></td>
-	<td><?php echo number_format(array_sum($f1));?></td>
-	<td></td>
-	<td><?php echo number_format(array_sum($waist1),1);?></td>
-	<td><?php echo number_format(array_sum($w_sum1),1);?></td>
-	<td><?php echo number_format(array_sum($w_avg1),1) ?></td>
-	<td><?php echo number_format(array_sum($sd1),1);?></td>
-	<td><?php echo number_format(array_sum($total2));?></td>
-	<td><?php echo number_format(array_sum($user_total2));?></td>
-	<td></td>
-	<td><?php echo number_format(array_sum($f2));?></td>
-	<td></td>
-	<td><?php echo number_format(array_sum($waist2),1);?></td>
-	<td><?php echo number_format(array_sum($w_sum2),1);?></td>
-	<td><?php echo number_format(array_sum($w_avg2),1) ?></td>
-	<td><?php echo number_format(array_sum($sd2),1);?></td>
-	<td><?php echo number_format(array_sum($diff1),1);?></td>
-	<td><?php echo number_format(array_sum($diff2),1);?></td>
-	<td><?php echo number_format(array_sum($diff3),1) ?></td>
-	<td><?php echo number_format(array_sum($diff4),1);?></td>
+	<td><?php echo (empty($type1)) ? 0: number_format(array_sum($type1)); ?></td>
+	<td><?php echo (empty($type2)) ? 0: number_format(array_sum($type2)); ?></td>
+	<td><?php echo (empty($type3)) ? 0: number_format(array_sum($type3)); ?></td>
+	<td><?php echo (empty($type4)) ? 0: number_format(array_sum($type4)); ?></td>
+	<td><?php echo (empty($type5)) ? 0: number_format(array_sum($type5)); ?></td>
+	<td><?php echo (empty($type6)) ? 0: number_format(array_sum($type6)); ?></td>
+	<td><?php echo (empty($type_sum)) ? 0 :number_format(array_sum($type_sum));?></td>
+	<td><?php echo $sum1 = (empty($total1)) ? 0 :number_format(array_sum($total1));?></td>
+	<td><?php echo $sum2 = (empty($user_total)) ? 0 :number_format(array_sum($user_total1));?></td>
+	<td><?php echo (empty($sum1) || empty($sum2))? 0.0 :number_format(($sum2*100)/$sum1,1);?></td>
+	<td><?php echo $sum3 = (empty($f1)) ? 0 :number_format(array_sum($f1));?></td>
+	<td><?php echo (empty($sum3) || empty($sum2)) ? 0.0 :number_format(($sum3*100/$sum2),1);?></td>
+	<td><?php echo (empty($waist1)) ? 0.0 : number_format(array_sum($waist1),1);?></td>
+	<td><?php echo (empty($w_sum1)) ? 0.0 : number_format(array_sum($w_sum1),1);?></td>
+	<td><?php echo (empty($w_avg1)) ? 0.0 : number_format(array_sum($w_avg1),1) ?></td>
+	<td><?php echo (empty($sd1)) ? 0.0 : number_format(array_sum($sd1),1);?></td>
+	<td><?php echo $sum4 = (empty($total2)) ? 0 :number_format(array_sum($total2));?></td>
+	<td><?php echo $sum5 = (empty($user_total2)) ? 0 :number_format(array_sum($user_total2));?></td>
+	<td><?php echo (empty($sum4) || empty($sum5)) ? 0.0 :number_format(($sum5*100)/$sum4,1); ?></td>
+	<td><?php echo $sum6 = (empty($f2)) ? 0 : number_format(array_sum($f2));?></td>
+	<td><?php echo (empty($sum5) || empty($sum6)) ? 0 :number_format(($sum6*100)/$sum5,1); ?></td>
+	<td><?php echo (empty($waist2)) ? 0.0 :number_format(array_sum($waist2),1);?></td>
+	<td><?php echo (empty($w_sum2)) ? 0.0 :number_format(array_sum($w_sum2),1);?></td>
+	<td><?php echo (empty($w_avg2)) ? 0.0 :number_format(array_sum($w_avg2),1) ?></td>
+	<td><?php echo (empty($sd2))   ? 0.0 :number_format(array_sum($sd2),1);?></td>
+	<td><?php echo (empty($diff1)) ? 0.0 :number_format(array_sum($diff1),1);?></td>
+	<td><?php echo (empty($diff2)) ? 0.0 :number_format(array_sum($diff2),1);?></td>
+	<td><?php echo (empty($diff3)) ? 0.0 :number_format(array_sum($diff3),1) ?></td>
+	<td><?php echo (empty($diff4)) ? 0.0 :number_format(array_sum($diff4),1);?></td>
 </tr>
-</table>
 </table>
 <p class="text-right">ออกรายงาน ณ วันที่ <?php echo db_to_th(date('Y-m-d')); ?></p>
 <!--</div>-->

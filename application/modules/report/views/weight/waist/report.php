@@ -247,10 +247,12 @@ $(function () {
         },
         series: [{
             name: 'ปกติ',
-            data: [<?php echo implode(",",$n_percent); ?>]
+            data: [<?php echo implode(",",$n_percent); ?>],
+            color:'#BDFBC5'
         }, {
             name: 'อ้วนลงพุง',
-            data: [<?php echo implode(",",$ab_percent); ?>]
+            data: [<?php echo implode(",",$ab_percent); ?>],
+            color:'#FFA29B'
         }]
     });
 <?php if($time==2): ?>

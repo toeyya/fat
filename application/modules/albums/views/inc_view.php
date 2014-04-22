@@ -8,8 +8,15 @@
 
 <div class="titleBlank">รูปภาพกิจกรรม<div class="line5"> </div> </div>
 <div class="contentBlank">
-<?php foreach($result as $item): ?>
-<img src="uploads/albums/<?php echo $item['album_id'] ?>/thumbnail/<?php echo $item['image'] ?>" width="75px" height="75px" />
+<?php foreach($result as $key=>$item): ?>
+<a href="uploads/albums/<?php echo $item['album_id'] ?>/<?php echo $item['image'] ?>" class="gallery" rel="gal<?php echo $item['album_id'] ?>">
+	<img src="uploads/albums/<?php echo $item['album_id'] ?>/thumbnail/<?php echo $item['image'] ?>" width="75px" height="75px" />
+</a>
 <?php endforeach; ?>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('a.gallery').colorbox();
+});
+</script>
 

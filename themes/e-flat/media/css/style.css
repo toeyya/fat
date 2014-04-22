@@ -72,5 +72,8 @@ ul .info{
 #Rform .floatL,#Rform .floatL { float:left; width:50%}
 .caption{margin:0 15px;}
 input[type=text]{height: 28px;}
-
+.banner{width:298px;height:229px;display:inline-block;position:relative;border:0;cursor:pointer;}
+.banner1{background:url(../img/banner1.png) no-repeat;margin-left:20px;}
+.banner2{background:url(../img/banner2.png) no-repeat;margin-top:-73px;margin-left:352px;}
+.banner3{background:url(../img/banner3.png) no-repeat;margin-top:-62px;margin-left:684px;}
 

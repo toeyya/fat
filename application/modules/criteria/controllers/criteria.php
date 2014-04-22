@@ -22,12 +22,12 @@ class Criteria extends  Flat_Controller{
 		$data['district'] 	= $this->district->get_one('district_name','id',$data['user']['district_id']);
 		$data['agency_type']= $this->agency_type->get_one("name",'id',$data['user']['agency_type']);
 		$data['rs']			= $this->criteria->where("user_id = $user_id $year")->sort("title_id")->order("asc")->get();
-		$this->template->set_layout('blank');
+		$this->template->set_layout('criteria');
 		$this->template->build('index',$data);
 
 	}
 	function form($id=FALSE)
-	{$this->db->debug = true;
+	{//$this->db->debug = true;
 		$m = (int)date('m');
 		$wh = (!empty($_GET['month'])) ? " and month=".$_GET['month']:' and month='.$m;
 		$user_id  = (empty($id)) ?'': $this->session->userdata('id');
@@ -36,7 +36,7 @@ class Criteria extends  Flat_Controller{
 					   ,'4'=>'4. ตรวจสุขภาพ วัดเอว น้ำหนัก ส่วนสูง และพฤติกรรมการบริโภค','5'=>'5.อบรมสมาชิกองค์กร/แกนนำพี่เลี้ยง','6'=>'6.ถ่ายทอดองค์ความรู้แก่องค์กรเพครือข่าย/การศึกษาดูงาน'
 					   ,'7'=>'7.การจัดสภาพแวดล้อมที่เอื้อต่อ 3อ.','8'=>'8.การจัดเวทีชาวบ้าน/การถอดบทเรียน','9'=>'9.นวัตกรรมที่เกิดขึ้นในองค์กร','10'=>'10. นโยบายสาธารณสะที่เกิดขึ้นในองค์กร');
 		$data['result']   = $this->cmonth->where("user_id = $user_id $wh")->sort("title_id")->order("asc")->get();
-		$this->template->set_layout('blank');
+		$this->template->set_layout('criteria');
 		$this->template->build('form',$data);
 	}
 	function index2()
@@ -152,6 +152,7 @@ class Criteria extends  Flat_Controller{
 		}
 	}
 	function report($print=FALSE){
+		$this->template->set_layout('criteria');
 		$this->template->build('report/index');
 	}
 

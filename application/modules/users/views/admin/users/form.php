@@ -9,27 +9,6 @@
 	<hr>
 </div>
 
-<form>
-<div class="row">
-    <fieldset class="form-inline">
-        <label class="control-label">A</label>
-        <input type="text" class="input-medium">
-    </fieldset>
-</div><!-- end row -->
-<div class="row">
-    <fieldset class="form-inline">
-        <label class="control-label">B</label>
-        <input type="text" class="input-mini" >
-        <label class="control-label">C</label>
-        <input type="text" class="input-mini" >
-        <label class="control-label">D</label>
-        <input type="text" class="input-mini" >
-        <label class="control-label">E</label>
-        <input type="text" class="input-mini" >
-    </fieldset>
-</div><!-- end row -->
-</form>
-
 <div class="row">
 	<div class="col-lg-12">
 		<div class="box">
@@ -60,36 +39,32 @@
 			  </div>
 			  <hr>
 
-
+			  <div class="form-group">
+			    <label for="firstname" class="col-sm-2 control-label">สิทธิ์การใช้งาน</label>
+			    <div class="col-sm-3 controls">
+			    	<?php echo form_dropdown('permission_id',get_option('id','name','f_permission'),@$rs['permission_id'],'class="form-control"','กรุณาระบุสิทธิ์การใช้งาน'); ?>
+			    </div>
+			  </div>
 
 			  <div class="form-group">
-			    <label for="firstname" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้รับผิดชอบ</label>
+			    <label for="respone_name" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้รับผิดชอบ</label>
 
 			    <div class="col-sm-3 controls">
-			      <input type="text" class="form-control" name="firstname" id="firstname" placeholder="ชื่อ" value="<?php echo $rs['firstname'] ?>">
-			      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="นามสกุล" value="<?php echo $rs['lastname'] ?>">
-
+			      <input type="text" class="form-control" name="respone_name" id="response_man" placeholder="ชื่อ" value="<?php echo $rs['firstname'] ?>">
 			    </div>
 
 			  </div>
 			  <div class="form-group">
-			    <label for="firstname" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้ประสานงานระดับจังหวัด</label>
+			    <label for="co_province_name" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้ประสานงานระดับจังหวัด</label>
 			    <div class="col-sm-3">
-			      <input type="text" class="form-control" name="firstname" id="firstname" placeholder="ชื่อ" value="<?php echo $rs['firstname'] ?>">
-			      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="นามสกุล" value="<?php echo $rs['lastname'] ?>">
+			      <input type="text" class="form-control" name="co_province_name" id="co_province_man" placeholder="ชื่อ" value="<?php echo $rs['firstname'] ?>">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="firstname" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้ประสานงานระดับองค์กร</label>
+			    <label for="co_agency_name" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้ประสานงานระดับองค์กร</label>
 			    <div class="col-sm-3">
-			      <input type="text" class="form-control" name="firstname" id="firstname" placeholder="ชื่อ" value="<?php echo $rs['firstname'] ?>">
-			      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="นามสกุล" value="<?php echo $rs['lastname'] ?>">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="surname" class="col-sm-2 control-label">นามสกุล</label>
-			    <div class="col-sm-3">
-			      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="นามสกุล" value="<?php echo $rs['lastname'] ?>">
+			      <input type="text" class="form-control" name="co_agency_name" id="co_agency_man" placeholder="ชื่อ" value="<?php echo $rs['firstname'] ?>">
+
 			    </div>
 			  </div>
 			  <div class="form-group">
@@ -107,7 +82,7 @@
 			  </div>
 
 			  <div class="form-group">
-			    <label for="address" class="col-sm-2 control-label">ที่อยู่</label>
+			    <label for="address" class="col-sm-2 control-label">สถานที่(หมู่บ้าน)</label>
 			    <div class="col-sm-3">
 			      <textarea  class="form-control" id="address" name="address" rows="3"><?php echo $rs['address'] ?></textarea>
 			    </div>

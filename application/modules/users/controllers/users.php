@@ -101,6 +101,16 @@ class Users extends  Public_Controller{
 	{
 
 	}
+	function user_list()
+	{	$wh="";
+		if(!empty($_GET['area'])){
+			$wh= " and f_users.province_id IN(select province_id from f_area_detail where area_id=2 and area_no=".$_GET['area'].")";
+		}
+		$data['result'] = $this->user->sort('id')->order('desc')->where("permission_id=2 ".$wh)->get();
+		$data['pagination'] = $this->user->pagination();
+		$this->template->set_layout('_document');
+		$this->template->build('user_list',$data);
+	}
 }
 
 ?>
