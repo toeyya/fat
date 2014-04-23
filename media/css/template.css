@@ -279,5 +279,5 @@ behavior: url(pie/PIE.htc);
 #download ul{list-style:none;}
 #download ul li{float:left;border:1px solid #C5C2C2;padding:4px;margin:10px;}
 .border-img{background:url(../img/border.png) no-repeat;width:152px;height: 118px;display:inline-block;margin-right:10px;}
-
+.result ol li{padding:5px;}
 

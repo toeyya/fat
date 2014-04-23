@@ -34,6 +34,7 @@ class F_weight extends Flat_Controller
 		$data['time'] = $time;
 		$user_id = $this->session->userdata('id');
 		$data['user_id'] = $user_id;
+		$data['permission'] = $this->session->userdata('permission_id');
 		/*$year = date('Y');$yy = $year-1;$yy_end = $year;
 		if(!empty($_GET['year'])){
 			$yy = $_GET['year']-1;
@@ -159,6 +160,7 @@ class F_weight extends Flat_Controller
 	}
 	function import($time){
 		$data['time'] = $time;
+		$data['permission'] = $this->session->userdata('permission_id');
 		$this->template->build('import',$data);
 	}
 	function example($time){

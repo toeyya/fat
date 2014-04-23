@@ -89,6 +89,8 @@
     <label style="display: inline-block">คิดเป็นร้อยละ :</label>
 	<span><?php echo (empty($sum)) ? 0:100 ?></span>
     <label style="display: inline-block">%</label>
+
+    <?php echo form_hidden('people_id',@$people['id']); ?>
  </div>
 </td>
 <td valign="top" bgcolor="#EFFEDD" style="border-right:1px solid #CEE6B2;padding:10px;"><strong><font color="#478302">จำนวนประชากร</font> อายุ 15 ปีขึ้นไปที่วัดเส้นรอบเอว</strong>

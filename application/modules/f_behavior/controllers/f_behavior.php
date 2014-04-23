@@ -14,6 +14,7 @@ class F_behavior extends Flat_Controller
 		$data['user_id'] = $user_id;
 		$data['year'] = (empty($_GET['year'])) ?  date('Y')+543 :$_GET['year'];
 		$data['gender']  = array('1'=>'ชาย','2'=>'หญิง');
+		$data['permission'] = $this->session->userdata('permission_id');
 		$wh ="";
 		/*$year = date('Y');$yy = $year-1;$yy_end = $year;
 		if(!empty($_GET['year'])){
@@ -136,6 +137,7 @@ class F_behavior extends Flat_Controller
 	}
 	function import($time){
 		$data['time'] = $time;
+		$data['permission'] = $this->session->userdata('permission_id');
 		$this->template->build('import',$data);
 	}
 	function example($time){

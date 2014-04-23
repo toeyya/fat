@@ -1,6 +1,6 @@
 <div id="Rform">
 
-	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
+	<h1>โครงการ ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
 	<h3>รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง (Ht/2)</h3>
 	<div style="text-align: center">
 	<span style="margin-left:5px;">หน่วยงาน : </span>  <?php echo $user_name ?>  <span style="margin:0px 5px;">ครั้งที่  : </span> <?php echo $time; ?>

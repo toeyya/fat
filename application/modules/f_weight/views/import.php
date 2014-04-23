@@ -9,8 +9,31 @@
 <div class="contentBlank">
 
 	<form action="f_weight/upload" enctype="multipart/form-data" class="form-horizontal" method="post">
+	<?php if($permission=="1"): ?>
 	<div class="control-group">
-	    <label class="control-label" for="inputYear">ปีลงบประมาณ</label>
+	    <label class="control-label" for="inputYear">จังหวัด</label>
+	    <div class="controls">
+	    <?php echo form_dropdown('province_id',get_option('id','province_name','f_province'),@$_GET['province_id'],'','เลือกจังหวัด'); ?>
+	    </div>
+	 </div>
+	<div class="control-group">
+	    <label class="control-label" for="inputYear">องค์กร</label>
+	    <div class="controls">
+	    <span id="agency">
+			<?php
+			if(!empty($_GET['user_id'])){
+				echo form_dropdown('user_id',get_option('id','agency_name','f_users','province_id = '.$_GET['province_id'],'agency_name'),@$_GET['user_id'],'','เลือกองค์กร');
+			}else{
+			?>
+				<select name="user_id"><option value="">เลือกองค์กร</option></select>
+			<?php }  ?>
+		</span>
+	    </div>
+	  </div>
+	 <?php endif; ?>
+
+	<div class="control-group">
+	    <label class="control-label" for="inputYear">ปีงบประมาณ</label>
 	    <div class="controls">
 	     <?php echo form_dropdown('year',get_year_option("2556"),'class="search-query"','',''); ?>
 	    </div>

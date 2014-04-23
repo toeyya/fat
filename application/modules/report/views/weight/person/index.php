@@ -1,9 +1,9 @@
-<div class="titleGroup2">รายงานแบบฟอร์มการบันทึก รอบเอง น้ำหนัก ส่วนสูง (รายบุคคล)</div>
+<div class="titleGroup2">รายงานแบบฟอร์มการบันทึก รอบเอว น้ำหนัก ส่วนสูง (รายบุคคล)</div>
 <div id="Breadcrumbs">
 <ol id="path-breadcrumb">
   <li><a href="home">หน้าแรก</a></li>
   <li><a href="">ระบบเฝ้าระวังโรคอ้วนลงพุง</a></li>
-  <li class="active">รายงานแบบฟอร์มการบันทึก รอบเอง น้ำหนัก ส่วนสูง (รายบุคคล)</li>
+  <li class="active">รายงานแบบฟอร์มการบันทึก รอบเอว น้ำหนัก ส่วนสูง (รายบุคคล)</li>
 </ol>
 </div>
 <div class="contentBlank">
@@ -12,9 +12,18 @@
 		<span>ชื่อ - นามสกุล</span>
 		<input type="text" name="fullname" value="<?php echo @$_GET['fullname'] ?>" class="input-medium search-query">
 		<?php if($permission=="1"): ?>
+		<span>จังหวัด</span>
+		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
 		<span>องค์กร</span>
-		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'class="search-query"'); ?>
-		<?php endif; ?>
+		<span id="agency">
+			<?php
+			if(!empty($_GET['user_id'])){
+				echo form_dropdown('user_id',get_option('id','agency_name','f_users','province_id = '.$_GET['province_id'],'agency_name'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร');
+			}else{
+			?>
+				<select name="user_id" class="search-query"><option value="">เลือกองค์กร</option></select>
+			<?php }  ?>
+		</span>		<?php endif; ?>
 		<span>ปีงบประมาณ </span>
 		<?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="search-query"',''); ?>
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
@@ -28,8 +37,8 @@
 <div class="clearfix"></div>
 
 <div id="Rform">
-	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
-	<h3>รายงานแบบฟอร์มการบันทึก รอบเอง น้ำหนัก ส่วนสูง (รายบุคคล)</h3>
+	<h1>โครงการ ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
+	<h3>รายงานแบบฟอร์มการบันทึก รอบเอว น้ำหนัก ส่วนสูง (รายบุคคล)</h3>
 	<div style="text-align: center">
 	<p><label class="caption">ชื่อศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง  </label><?php echo $user['agency_name'] ?>
 	<label class="caption">ศูนย์อนามัยที่</label> <?php echo $user['hpc'] ?>
@@ -135,3 +144,21 @@
 <div class="clearfix"></div>
 
 <?} //$_GET?>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('select[name=province_id]').change(function(){
+		var province_id = $(this).val();
+		if(province_id.length>0){
+			$.ajax({
+				url:'setting/getAgency',
+				data:'province_id='+province_id,
+				success:function(data){
+					$('#agency').html(data);
+				}
+			});
+		}else{
+			$('#agency').html('<select name="user_id" class="search-query"><option value="">เลือกองค์กร</option></select>');
+		}
+	});
+});
+</script>

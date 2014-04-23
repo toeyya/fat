@@ -122,6 +122,7 @@ class Criteria extends  Flat_Controller{
 			}else{
 				$_POST['user_id'] = $this->session->userdata('id');
 			}
+			$_POST['id'] = $_POST['people_id'];
 			$this->people->save($_POST);
 			$_POST['time'] = $time;
 			for($i=1;$i<15;$i++){

@@ -10,8 +10,18 @@
 <div class="contentBlank">
 <div id="search" class="form-search">
 	<form action="report/index/height" class="form-search">
+		<span>จังหวัด</span>
+		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
 		<span>องค์กร</span>
-		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร'); ?>
+		<span id="agency">
+			<?php
+			if(!empty($_GET['user_id'])){
+				echo form_dropdown('user_id',get_option('id','agency_name','f_users','province_id = '.$_GET['province_id'],'agency_name'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร');
+			}else{
+			?>
+				<select name="user_id" class="search-query"><option value="">เลือกองค์กร</option></select>
+			<?php }  ?>
+		</span>
 		<span>ครั้งที่</span>
 		<?php  $arr = array("1"=>'1',"2"=>'2');
 			echo form_dropdown('time',$arr,@$_GET['time'],'class="search-query input-mini"');
@@ -28,7 +38,7 @@
 
 <div id="Rform">
 
-	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
+	<h1>โครงการ ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
 	<h3>รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง (Ht/2)</h3>
 	<div style="text-align: center">
 	<label class="caption">หน่วยงาน</label><?php echo $user_name ?><label class="caption">ครั้งที่</label><?php echo $time; ?>
@@ -93,7 +103,20 @@
 <div id="container_grp"  style="height:500px;margin-left:20px;margin-top:10px;margin-bottom: 20px;" class="hide"></div>
 </div>
 <script type="text/javascript">
-$(function () {
+$(document).ready(function(){
+	$('select[name=province_id]').change(function(){
+		if( $(this).val().length>0){
+			$.ajax({
+				url:'setting/getAgency',
+				data:'province_id='+$(this).val(),
+				success:function(data){
+					$('#agency').html(data);
+				}
+			});
+		}else{
+			$('#agency').html('<select name="user_id" class="search-query"><option value="">เลือกองค์กร</option></select>');
+		}
+	});
 	$('#btn-show').click(function(){
 			$('#container_grp').toggleClass("hide show");
 	});
@@ -165,6 +188,5 @@ $(function () {
         }]
     });
 });
-
 </script>
 <?php } ?>

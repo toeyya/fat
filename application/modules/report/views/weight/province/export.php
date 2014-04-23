@@ -1,7 +1,7 @@
 <div class="contentBlank">
 <div id="Rform">
-	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
-	<h3>รายงานสรุปผลการประเมินรอบเอวในศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h3>
+	<h1>โครงการ ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
+	<h3>รายงานแบบฟอร์มการบันทึก รอบเอว น้ำหนัก ส่วนสูง (รายองค์กร)</h3>
 	<div style="text-align: center">
 	<span style="margin-left:5px;">ปีงบประมาณ</span> <?php echo $yearth; ?>
 	<span style="margin-left:5px;">จังหวัด</span> <?php echo $province ?><span style="margin-left:5px;">ศูนย์อนามัยที่</span> <?php echo $hpc; ?>
@@ -51,9 +51,9 @@
 	<td><?php echo $item['agency_type_name'] ?></td>
 	<td><?php echo $user_total[] = $item['user_total'] ?></td>
 	<td><?php $t = $item['total']; echo number_format($t); $total[$key] = $t; ?></td>
-	<td><?php echo number_format(($item['total']*100)/$item['user_total'],1) ?>%</td>
+	<td><?php echo number_format(($item['total']*100)/$item['user_total'],1) ?></td>
 	<td><?php echo $f[$key] = (empty($fat[$item['user_id']]['อ้วนลงพุง'][1])) ? 0 :$fat[$item['user_id']]['อ้วนลงพุง'][1] ?></td>
-	<td><?php echo $f_percent =(empty($f) || empty($total[$key])) ? 0 :number_format(($f[$key]*100)/$item['total'],1)."%"?></td>
+	<td><?php echo $f_percent =(empty($f) || empty($total[$key])) ? 0 :number_format(($f[$key]*100)/$item['total'],1) ?></td>
 	<td><?php echo $w[$key] = (empty($waistline[$item['user_id']][1])) ? 0 :$waistline[$item['user_id']][1] ?></td>
 	<td><?php echo $b[$key] = (empty($weight[$item['user_id']]['sum'][1])) ? 0:$weight[$item['user_id']]['sum'][1]?></td>
 	<td><?php echo $b_percent[$key] = (empty($weight[$item['user_id']]['avg'][1])) ? 0 :number_format($weight[$item['user_id']]['avg'][1],1)?></td>
@@ -61,17 +61,18 @@
 
 	<td><?php echo $user_total2[$key] = (empty($user_total[$item['user_id']][2])) ? 0 :$user_total[$item['user_id']][2] ?></td>
 	<td><?php echo $total2[$key] = (empty($total[$item['user_id']][2])) ? 0 : $total[$item['user_id']][2]?></td>
-	<td><?php echo ($user_total2[$key]==0 || $total2[$key]==0) ? 0 : number_format(($total2[$key]*100)/$user_total2[$key],1)."%"?></td>
+	<td><?php echo ($user_total2[$key]==0 || $total2[$key]==0) ? 0 : number_format(($total2[$key]*100)/$user_total2[$key],1)?></td>
 	<td><?php echo $f2[$key] = (empty($fat[$item['user_id']]['อ้วนลงพุง'][2])) ? 0 :$fat[$item['user_id']]['อ้วนลงพุง'][2] ?></td>
-	<td><?php echo $f_percent2 = ($f2[$key]==0 || $total2[$key]==0) ? 0 :number_format(($f2[$key]*100)/ $total2[$key],1)."%"?></td>
+	<td><?php echo $f_percent2 = ($f2[$key]==0 || $total2[$key]==0) ? 0 :number_format(($f2[$key]*100)/ $total2[$key],1)?></td>
 	<td><?php echo $w2[$key] = (empty($waistline[$item['user_id']][2])) ? 0 :$waistline[$item['user_id']][2] ?></td>
 	<td><?php echo $b2[$key] = (empty($weight[$item['user_id']]['sum'][2])) ? 0:$weight[$item['user_id']]['sum'][2]?></td>
 	<td><?php echo $b_percent2[$key] = (empty($weight[$item['user_id']]['avg'][2])) ? 0 :number_format($weight[$item['user_id']]['avg'][2],1)?></td>
 	<td><?php echo $sd2[$key]=(empty($sd[$item['user_id']][2])) ? 0 :number_format($sd[$item['user_id']][2],1)?></td>
+
 	<td><?php echo $fat_avg[] =abs($f[$key]-$f2[$key]);?></td>
-	<td><?php echo ($f_percent-$f_percent2==0) ? 0 :abs($f_percent-$f_percent2)."%"?></td>
+	<td><?php echo ($f_percent-$f_percent2==0) ? 0 :abs($f_percent-$f_percent2)?></td>
 	<td><?php echo $bmi_avg[] = number_format(abs($b[$key]-$b2[$key]),1);?></td>
-	<td><?php echo ($b_percent[$key]-$b_percent2[$key]==0) ? 0 :number_format(abs($b_percent[$key]-$b_percent2[$key]),1)."%"?></td>
+	<td><?php echo ($b_percent[$key]-$b_percent2[$key]==0) ? 0 :number_format(abs($b_percent[$key]-$b_percent2[$key]),1)?></td>
 </tr>
 <?php $i++; endforeach; ?>
 <tr><td colspan="3">รวม</td>
@@ -97,7 +98,6 @@
 	<td><?php echo (empty($per_f1) && empty($per_f2)) ? 0.0 :number_format(abs($per_f1 - $per_f2),1); ?></td>
 	<td><?php echo (empty($diff1) && empty($diff2))? 0.0 :number_format(abs($diff1-$diff2),1);?></td>
 	<td></td>
-
 </tr>
 </table>
 <div style="text-align: right">ออกรายงาน ณ วันที่ <?php echo db_to_th(date('Y-m-d')) ?></div>

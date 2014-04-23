@@ -29,18 +29,11 @@ class Report extends  Flat_Controller{
 		$year = date('Y');$yy = $year-1;$yy_end = $year;
 		$data['yearth']=(empty($_GET['year'])) ? $year+543:$_GET['year'];
 		$data['permission'] = $this->session->userdata('permission_id');
-		/*if(!empty($_GET['year'])){
-			$yy = $_GET['year']-1;
-			$yy_end = $_GET['year'];
-			$data['yearth'] = $_GET['year']+543;
-		}
-		$table = ($report=="behavior")? "behavior": "weight";
-		$wh =" and date(f_".$table."_detail.created) between '$yy-10-01' and '$yy_end-09-30'";
-		*/
+
 		$wh = (empty($_GET['year'])) ?  " and year=".$data['yearth']: " and year =".$_GET['year'];
 		$user_id = (!empty($_GET['user_id'])) ? $_GET['user_id'] :$this->session->userdata('id');
 		$wh.=" and user_id=".$user_id;
-		$permission = " and permission_id=".$this->session->userdata('permission_id');
+		$permission = " and permission_id=".$data['permission'];
 
 		$data['user_name'] = (!empty($user_id)) ? $this->user->get_one("agency_name","f_users.id",$user_id):"ทุกองค์กร";
 		$data['user'] = $this->user->get_row($user_id);
