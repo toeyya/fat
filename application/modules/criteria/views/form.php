@@ -2,14 +2,24 @@
 <div id="Breadcrumbs">
 <ol id="path-breadcrumb">
   <li><a href="home">หน้าแรก</a></li>
+  <li><a href="f_weight/ebelly">ระบบสารสนเทศ e-flat belly</a></li>
   <li><a href="criteria/index">องค์กรต้นแบบไร้พุง</a></li>
   <li class="active">รายงานความก้าวหน้าประจำเดือน</li>
 </ol>
 </div>
 <div class="contentGroup">
-<form method="post" action="criteria/save2" enctype="multipart/form-data">
+<form method="post" action="criteria/save2" enctype="multipart/form-data" class="form-inline">
+  <div style="margin-bottom: 20px;">
+	  <div class="form-group">
+	    <label><label class="alertred">*</label>เดือน</label>
+	    <?php echo form_dropdown('month',get_month(),@$result[0]['month'],'class="input-medium"')?>
+	  </div>
+	   <div class="form-group">
+	    <label><label class="alertred">*</label>ปีงบประมาณ</label>
+	    <?php echo form_dropdown('year',get_year_option("2556"),@$result[0]['year'],'class="span1"',''); ?>
+	  </div>
+  </div>
 <table class="table table-bordered table-condensed">
-<tr><th colspan="6"><span>*</span> <span>เดือน </span><?php echo form_dropdown('month',get_month(),@$result[0]['month'],'class="input-medium"')?></th></tr>
 <tr class="success">
 	<th>กิจกรรม</th>
 	<th>รายละเอียดกิจกรรม</th>
@@ -23,11 +33,11 @@
 <?php	 foreach($title as $t){?>
 <tr>
 	<td class="title"><?php echo $t ?></td>
-	<td class="text-center"><textarea rows="4"  name="activity<?php echo $i ?>"></textarea></td>
-	<td><textarea rows="5"  name="product<?php echo $i ?>"></textarea></td>
-	<td><textarea rows="5"  name="problem<?php echo $i ?>"></textarea></td>
-	<td><textarea rows="5"  name="recommand<?php echo $i ?>"></textarea></td>
-	<td>
+	<td><textarea rows="4" class="span2" name="activity<?php echo $i ?>"></textarea></td>
+	<td><textarea rows="4" class="span2" name="product<?php echo $i ?>"></textarea></td>
+	<td><textarea rows="4" class="span2" name="problem<?php echo $i ?>"></textarea></td>
+	<td><textarea rows="4" class="span2" name="recommand<?php echo $i ?>"></textarea></td>
+	<td class="span1">
 		<input type="file" name="image1_<?php echo $i ?>"><br/>
 		<input type="file" name="image2_<?php echo $i ?>"><br/>
 		<input type="file" name="image3_<?php echo $i ?>">
@@ -44,7 +54,7 @@
 	<td><textarea rows="4" class="span2" name="product<?php echo $i ?>"><?php echo $item['product'] ?></textarea></td>
 	<td><textarea rows="4" class="span2" name="problem<?php echo $i ?>"><?php echo $item['problem']?></textarea></td>
 	<td><textarea rows="4" class="span2" name="recommand<?php echo $i ?>"><?php echo $item['recommand'] ?></textarea></td>
-	<td>
+	<td class="span1">
     	<?php if(!empty($item['image1'])): ?>
     	<p>
     	<a href="uploads/criteria/image/<?php echo $item['image1'] ?>" class="gallery" rel="gal<?php echo $key ?>">
@@ -54,7 +64,7 @@
 		<a href="#" name="btn_del" rel="image1"  class="btn btn-danger btn-mini" onclick="return confirm('ยืนยันการลบ ?')">ลบ</a>
 		</p>
 		<?php endif;?>
-		<input type="file" name="image1_<?php echo $i ?>"><br/>
+		<input type="file" name="image1_<?php echo $i ?>">
 	    <?php if(!empty($item['image2'])): ?>
     	<p>
     	<a href="uploads/criteria/image/<?php echo $item['image2'] ?>" class="gallery" rel="gal<?php echo $key ?>">
@@ -64,7 +74,7 @@
 		<a href="#" name="btn_del" rel="image2"  class="btn  btn-danger btn-mini" onclick="return confirm('ยืนยันการลบ ?')">ลบ</a>
 		</p>
 		<?php endif;?>
-		<input type="file" name="image2_<?php echo $i ?>"><br/>
+		<input type="file" name="image2_<?php echo $i ?>">
 	    <?php if(!empty($item['image3'])): ?>
     	<p>
     	<a href="uploads/criteria/image/<?php echo $item['image3'] ?>" class="gallery" rel="gal<?php echo $key ?>">
@@ -83,7 +93,7 @@
 <?php } ?>
 
 </table>
-<div class="pull-right"><span class='caption'>ผู้รายงาน</span><?php echo $user['agency_name'] ?><span class="caption">วันที่</span><?php echo db_to_th(date('Y-m-d')); ?></div>
+<div class="pull-right"><span class='caption'>ผู้รายงาน</span><?php echo $user['agency_name'] ?><span class="caption">วันที่</span><?php echo (empty($result[0]['created'])) ? db_to_th(date('Y-m-d')) : db_to_th($result[0]['created']); ?></div>
 <div class="clearfix"></div>
 <div class="aligncenter"><button class="btnSave" style="width:300px;" name="btn_save" type="submit">ยืนยัน</button></div>
 </form>

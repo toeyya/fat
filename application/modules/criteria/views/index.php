@@ -1,27 +1,28 @@
-<div id="blank">
 
-<div class="titleGroup2">เกณฑ์ประเมินครั้งที่ <?php echo $time; ?> ปีงบประมาณ <?php echo $year;  ?></div>
+<div class="titleGroup2">องค์กรต้นแบบไร้พุง เกณฑ์ประเมิน  ปีงบประมาณ <?php echo $year;  ?></div>
 <div id="Breadcrumbs">
 <ol id="path-breadcrumb">
   <li><a href="home">หน้าแรก</a></li>
   <li><a href="f_weight/ebelly">ระบบสารสนเทศ e-flat belly</a></li>
-  <li>องค์กรต้นแบบไร้พุง </li>
-  <li class="active">เกณฑ์ประเมินครั้งที่ <?php echo $time; ?> ปีงบประมาณ <?php echo $year;  ?></li>
+  <li class="active">องค์กรต้นแบบไร้พุง </li>
 </ol>
 </div>
 <div class="contentGroup">
 <div id="search">
 	<form class="form-search" method="get" action="criteria/index/<?php echo $time; ?>">
+		<?php if($permission=="1"): ?>
 		<span>จังหวัด</span>
 		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
 		<span>องค์กร</span>
 		<span id="agency">
 		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร'); ?></span>
+		<?php endif; ?>
 		<span>ปีงบประมาณ </span>
 		<?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="search-query"',''); ?>
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>
 </div>
+<?php if($_GET){ ?>
 <table width="100%" cellpadding="1" cellspacing="1">
   <tr>
     <td colspan="3" bgcolor="#f2f8fd" style="border-top:10px solid white; padding:10px;">
@@ -123,6 +124,13 @@
 </tr>
 </table>
 <br/>
+<div class="alert alert-warning">
+	<span class="label label-warning">การอัพโหลดไฟล์</span>
+	<ul style="margin-top:10px;">
+		<ol style="padding:5px;">1. ไฟล์เอกสาร อนุญาติเฉพาะ .xlsx .pdf .xls .doc .docx .ppt .pptx .rar .zip</ol>
+      	<ol style="padding:5px;">2. อัพโหลดไฟล์ไม่เกิน 2 MB</ol>
+	</ul>
+</div>
 
 <table class="table table-bordered table-condensed">
 <thead>
@@ -153,8 +161,8 @@
 		<?php endif ?>
 		</td>
 	<td width="130">
-		<label class="radio inline"><input type="radio" name="result1" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result1" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result1" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} echo $disable; ?>>ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result1" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} echo $disable; ?>>ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id1" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>
@@ -173,15 +181,15 @@
 		</p>
 		<?php endif ?>
 		</td>
-	<td><label class="radio inline"><input type="radio" name="result2" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result2" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+	<td><label class="radio inline"><input type="radio" name="result2" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} echo $disable;?>>ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result2" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} echo $disable;?>>ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id2" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>
 <tr><?php $i=2; ?>
 	<td class="title">3.มีแผนงาน และการจัดสรรงบประมาณสนับสนุนในโครงการฯ ที่เข้าร่วม </td>
-	<td><label class="radio inline"><input type="radio" name="evidence3" value="1" <?php if(@$rs[$i]['evidence']=="1"){echo 'checked="checked"';} ?>>มี</label>
-		<label class="radio inline"><input type="radio" name="evidence3" value="2" <?php if(@$rs[$i]['evidence']=="2"){echo 'checked="checked"';} ?>>ไม่มี</label></td>
+	<td><label class="radio inline"><input type="radio" name="evidence3" value="1" <?php if(@$rs[$i]['evidence']=="1"){echo 'checked="checked"';}?>>มี</label>
+		<label class="radio inline"><input type="radio" name="evidence3" value="2" <?php if(@$rs[$i]['evidence']=="2"){echo 'checked="checked"';}?>>ไม่มี</label></td>
 	<td style="text-align: left"><input type="text" name="file_name3"  value="<?php echo @$rs[$i]['file_name'] ?>" class="input-medium">
 		<input type="file" name="file3" >
 
@@ -193,8 +201,8 @@
 		<?php endif ?>
 
 		</td>
-	<td><label class="radio inline"><input type="radio" name="result3" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result3" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+	<td><label class="radio inline"><input type="radio" name="result3" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} echo $disable;?>>ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result3" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} echo $disable;?>>ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id3" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>
@@ -214,8 +222,8 @@
 		<?php endif ?>
 
 		</td>
-	<td><label class="radio inline"><input type="radio" name="result4" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result4" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+	<td><label class="radio inline"><input type="radio" name="result4" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} echo $disable;?>>ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result4" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} echo $disable;?>>ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id4" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>
@@ -233,15 +241,15 @@
 		<?php endif ?>
 
 		</td>
-	<td><label class="radio inline"><input type="radio" name="result5" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result5" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+	<td><label class="radio inline"><input type="radio" name="result5" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} echo $disable;?>>ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result5" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} echo $disable;?>>ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id5" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>
 <tr><?php $i=5;?>
 	<td class="title"> 6.มีการสื่อสารประชาสัมพันธ์  เพื่อสร้างความตระหนักและแรงขับเคลื่อนในองค์กร/ชุมชน</td>
-	<td><label class="radio inline"><input type="radio" name="evidence6" value="1" <?php if(@$rs[$i]['evidence']=="1"){echo 'checked="checked"';} ?>>มี</label>
-		<label class="radio inline"><input type="radio" name="evidence6" value="2" <?php if(@$rs[$i]['evidence']=="2"){echo 'checked="checked"';} ?>>ไม่มี</label></td>
+	<td><label class="radio inline"><input type="radio" name="evidence6" value="1" <?php if(@$rs[$i]['evidence']=="1"){echo 'checked="checked"';}?>>มี</label>
+		<label class="radio inline"><input type="radio" name="evidence6" value="2" <?php if(@$rs[$i]['evidence']=="2"){echo 'checked="checked"';}?>>ไม่มี</label></td>
 	<td style="text-align: left">
 		<input type="text" name="file_name6" value="<?php echo @$rs[$i]['file_name'] ?>" class="input-medium">
 		<input type="file" name="file6" >
@@ -254,8 +262,8 @@
 		<?php endif ?>
 
 		</td>
-	<td><label class="radio inline"><input type="radio" name="result6" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result6" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+	<td><label class="radio inline"><input type="radio" name="result6" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} echo $disable;?>>ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result6" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} echo $disable;?>>ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id6" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>
@@ -277,14 +285,14 @@
 		<?php endif ?>
 
 		</td>
-	<td><label class="radio inline"><input type="radio" name="result7" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result7" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+	<td><label class="radio inline"><input type="radio" name="result7" value="1" <?php if(@$auto_result3=="1"){echo 'checked="checked"';} ?> disabled="disabled">ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result7" value="2" <?php if(@$auto_result3=="2"){echo 'checked="checked"';} ?> disabled="disabled">ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id7" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>
 <tr><?php $i=7;?>
-	<td class="title"><span style="margin-left:15px;"> 7.2 มีการประเมินภาวะโภชนาการเกิน โดยการวัดก่อนและหลังในบุคคลคนเดียวกัน</span></td>
-	<td><label class="radio inline"><input type="radio" name="evidence8" value="1" <?php if(@$rs[$i]['evidence']=="1"){echo 'checked="checked"';} ?>>มี</label>
+	<td class="title"><span style="margin-left:15px;"> 7.2 มีการประเมินภาวะโภชนาการกิน โดยการวัดก่อนและหลังในบุคคลคนเดียวกัน</span></td>
+	<td><label class="radio inline"><input type="radio" name="evidence8" value="1" <?php if(@$rs[$i]['evidence']=="1"){echo 'checked="checked"';} ?> >มี</label>
 		<label class="radio inline"><input type="radio" name="evidence8" value="2" <?php if(@$rs[$i]['evidence']=="2"){echo 'checked="checked"';} ?>>ไม่มี</label></td>
 	<td style="text-align: left">
 		<input type="text" name="file_name8" value="<?php echo @$rs[$i]['file_name'] ?>" class="input-medium">
@@ -296,8 +304,8 @@
 		</p>
 		<?php endif ?>
 	</td>
-	<td><label class="radio inline"><input type="radio" name="result8" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result8" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+	<td><label class="radio inline"><input type="radio" name="result8" value="1" <?php if(@$auto_result4=="1"){echo 'checked="checked"';}?> disabled="disabled">ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result8" value="2" <?php if(@$auto_result4=="2"){echo 'checked="checked"';}?> disabled="disabled">ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id8" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>
@@ -316,8 +324,10 @@
 		<?php endif ?>
 
 	</td>
-	<td><label class="radio inline"><input type="radio" name="result9" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result9" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+	<td><?php if(!empty($time2)): ?>
+		<label class="radio inline"><input type="radio" name="result9" value="1" <?php if($auto_result1=="1"){echo 'checked="checked"';} ?>  disabled="disabled">ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result9" value="2" <?php if($auto_result1=="2"){echo 'checked="checked"';} ?>  disabled="disabled">ไม่ผ่าน</label>
+		<?php endif; ?>
 	</td>
 	<input type="hidden" name="id9" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>
@@ -335,13 +345,15 @@
 		</p>
 		<?php endif ?>
 	</td>
-	<td><label class="radio inline"><input type="radio" name="result10" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result10" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+	<td><?php if(!empty($time2)): ?>
+		<label class="radio inline"><input type="radio" name="result10" value="1" <?php if($auto_result2=="1"){echo 'checked="checked"';} ?> disabled="disabled">ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result10" value="2" <?php if($auto_result2=="2"){echo 'checked="checked"';} ?> disabled="disabled">ไม่ผ่าน</label>
+		<?php endif; ?>
 	</td>
 	<input type="hidden" name="id10" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>
 <tr><?php $i=10; ?>
-	<td class="title"><span style="margin-left:15px;"> 7.3ผลลัพธ์ในองค์กรและชุมชน ภายหลัง 4 เดือน </span></td>
+	<td class="title"><span style="margin-left:15px;"> 7.3 สมาชิกองค์กรมีการเปลี่ยนแปลงพฤติกรรมการบริโภคและออกกำลังกายในทิศทางที่พึงประสงค์  </span></td>
 	<td><label class="radio inline"><input type="radio" name="evidence11" value="1" <?php if(@$rs[$i]['evidence']=="1"){echo 'checked="checked"';} ?>>มี</label>
 		<label class="radio inline"><input type="radio" name="evidence11" value="2" <?php if(@$rs[$i]['evidence']=="2"){echo 'checked="checked"';} ?>>ไม่มี</label></td>
 	<td style="text-align: left">
@@ -354,8 +366,8 @@
 		</p>
 		<?php endif ?>
 	</td>
-	<td><label class="radio inline"><input type="radio" name="result11" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result11" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+	<td><label class="radio inline"><input type="radio" name="result11" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} echo $disable;?>>ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result11" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} echo $disable;?>>ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id11" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>
@@ -375,8 +387,9 @@
 		<?php endif ?>
 
 	</td>
-	<td><label class="radio inline"><input type="radio" name="result12" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result12" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+	<td>
+		<label class="radio inline"><input type="radio" name="result12" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} echo $disable;?>>ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result12" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} echo $disable;?>>ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id12" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>
@@ -395,8 +408,8 @@
 		<?php endif ?>
 
 	</td>
-	<td><label class="radio inline"><input type="radio" name="result13" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result13" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+	<td><label class="radio inline"><input type="radio" name="result13" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} echo $disable;?>>ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result13" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} echo $disable;?>>ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id13" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>
@@ -411,23 +424,25 @@
 		<?php if(@$rs[$i]['files']): ?>
 		<p>
 			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>"  class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 
 	</td>
-	<td><label class="radio inline"><input type="radio" name="result14" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio inline"><input type="radio" name="result14" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+	<td><label class="radio inline"><input type="radio" name="result14" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} echo $disable;?>>ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result14" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} echo $disable;?>>ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id14" value="<?php echo @$rs[$i]['id'] ?>">
-	<input type="hidden" name="user_id" value="<?php echo @$rs['user_id'] ?>">
+	<input type="hidden" name="user_id" value="<?php echo @$rs[$i]['user_id'] ?>">
+	<input type="hidden" name="user_admin" value="<?php echo @$rs[$i]['user_admin'] ?>">
+	<?php echo (!empty($rs['user_id'])) ? form_hidden('updated',date('Y-m-d H:i:s')):form_hidden('created',date('Y-m-d H:i:s')); ?>
 </tr>
 <tr rowspan="2">
 	<td colspan="3"><p>สรุปผลการประเมิน </p>
 		<p>ผ่านข้อ 1 ถึง ข้อ 7 หมายถึงองค์กรต้นแบบไร้พุง</p>
 		<p>ผ่านข้อ 1 ถึง ข้อ 10 หมายถึง ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</p>
 	</td>
-	<td></td>
+	<td>ผ่าน  <span><?php echo $pass; ?></span> ข้อ</td>
 </tr>
 </table>
 <div class="alert alert-warning">
@@ -440,10 +455,10 @@
 </div>
 <div class="aligncenter"><button class="btnSave" style="width:300px;" name="btn_save" type="submit">ยืนยัน</button></div>
 </form>
+<?php } //$_GET ?>
+</div>
+</div>
 
-</div>
-</div>
-</div>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('select[name=province_id]').change(function(){
@@ -457,6 +472,9 @@ $(document).ready(function(){
 				}
 			});
 		}
+	});
+	$('.btnSave').click(function(e){
+		$(':disabled').removeAttr('disabled');
 	});
 });
 </script>

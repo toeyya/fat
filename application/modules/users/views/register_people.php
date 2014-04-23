@@ -46,8 +46,7 @@
 		      <input type="text" id="inputAge" placeholder="อายุ" name="age" value="<?php echo  @$user['age']?>">
 		    </div>
 		  </div>
-                  <input type="hidden"  name="user_type"     value="2">
-                  <input type="hidden" name="permission_id" value="3">
+                  <input type="hidden"  name="permission_id" value="3">
 				  <?php echo (!empty($rs['id'])) ? form_hidden('updated',date('Y-m-d H:i:s')) : form_hidden('created',date('Y-m-d H:i:s'))?>
 				   <input type="hidden" name="id" value="<?php echo @$rs['id'] ?>">
           <?php if(empty($profile)): ?>

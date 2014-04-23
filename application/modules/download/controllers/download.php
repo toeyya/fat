@@ -12,7 +12,6 @@ class Download extends Public_Controller{
 		//$data['type_id'] = $type_id;
 		//$data['result'] = $this->download->where("active=1")->limit(5)->sort('created')->order('desc')->get();
 		$this->load->view('inc_index',$data);
-		//$this->template->build('inc_index',$data);
 	}
 	function view_all($type_id){
 		$data['type'] = $data['type'] = $this->type->get_row($type_id);

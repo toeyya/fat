@@ -17,11 +17,11 @@ class F_weight extends Flat_Controller
 	public $fat_mean_export = array('ปกติ'=>'background-color:#BDFBC5;color:#626262;','อ้วนลงพุง'=>'background-color:#FFA29B;color:#626262;');
 	function ebelly()
 	{
-		if($this->session->userdata('user_type')=="1"){
+		if($this->session->userdata('permission_id')=="3" ){
+			redirect('f_behavior/person/index');
+		}else{
 			$this->template->set_layout('home');
 			$this->template->build('e-belly');
-		}else if($this->session->userdata('user_type')=="2"){
-			redirect('f_behavior/person/index');
 		}
 
 	}

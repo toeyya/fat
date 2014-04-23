@@ -28,13 +28,13 @@
 			  <div class="form-group">
 			    <label for="password" class="col-sm-2 control-label">รหัสผ่าน</label>
 			    <div class="col-sm-3">
-			      <input type="password" class="form-control" id="password" name="password" placeholder="รหัสผ่าน">
+			      <input type="password" class="form-control" id="password" name="password" placeholder="รหัสผ่าน" value="<?php echo $rs['password'] ?>">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="repassword" class="col-sm-2 control-label">ยืนยันรหัสผ่าน</label>
 			    <div class="col-sm-3">
-			      <input type="password" class="form-control" id="repassword" name="repassword" placeholder="ยืนยันรหัสผ่าน">
+			      <input type="password" class="form-control" id="repassword" name="repassword" placeholder="ยืนยันรหัสผ่าน" value="<?php echo $rs['password'] ?>">
 			    </div>
 			  </div>
 			  <hr>
@@ -47,23 +47,23 @@
 			  </div>
 
 			  <div class="form-group">
-			    <label for="respone_name" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้รับผิดชอบ</label>
+			    <label for="response_man" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้รับผิดชอบ</label>
 
 			    <div class="col-sm-3 controls">
-			      <input type="text" class="form-control" name="respone_name" id="response_man" placeholder="ชื่อ" value="<?php echo $rs['firstname'] ?>">
+			      <input type="text" class="form-control" name="response_man" id="response_man" placeholder="ชื่อ-นามสกุลผู้รับผิดชอบ" value="<?php echo $rs['response_man'] ?>">
 			    </div>
 
 			  </div>
 			  <div class="form-group">
-			    <label for="co_province_name" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้ประสานงานระดับจังหวัด</label>
+			    <label for="co_province_man" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้ประสานงานระดับจังหวัด</label>
 			    <div class="col-sm-3">
-			      <input type="text" class="form-control" name="co_province_name" id="co_province_man" placeholder="ชื่อ" value="<?php echo $rs['firstname'] ?>">
+			      <input type="text" class="form-control" name="co_province_man" id="co_province_man" placeholder="ชื่อ-นามสกุลผู้ประสานงานระดับจังหวัด" value="<?php echo $rs['co_province_man'] ?>">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="co_agency_name" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้ประสานงานระดับองค์กร</label>
+			    <label for="co_agency_man" class="col-sm-2 control-label">ชื่อ-นามสกุลผู้ประสานงานระดับองค์กร</label>
 			    <div class="col-sm-3">
-			      <input type="text" class="form-control" name="co_agency_name" id="co_agency_man" placeholder="ชื่อ" value="<?php echo $rs['firstname'] ?>">
+			      <input type="text" class="form-control" name="co_agency_man" id="co_agency_man" placeholder="ชื่อ-นามสกุลผู้ประสานงานระดับองค์กร" value="<?php echo $rs['co_agency_man'] ?>">
 
 			    </div>
 			  </div>

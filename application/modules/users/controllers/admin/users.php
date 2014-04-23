@@ -25,6 +25,7 @@ class Users extends Admin_Controller
 	function save()
 	{
 		if($_POST){
+			$_POST['confirm_email']="1";
 			$user_id = $this->user->save($_POST);
 			if($_POST['active']==""){$_POST['active']=="1";}
 			$_POST['user_id'] = $user_id;

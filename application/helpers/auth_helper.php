@@ -3,19 +3,20 @@
 function login($username=FALSE,$password=FALSE)
 {
 	$CI =& get_instance();
-	$sql="SELECT user_id,user_type,agency_name,firstname,lastname,confirm_email FROM f_users
+	$sql="SELECT user_id,permission_id,agency_name,firstname,lastname,confirm_email,response_man FROM f_users
 		  LEFT JOIN f_profiles ON f_users.id = f_profiles.user_id WHERE email= ?  AND password= ? and active='1'";
 	$rs = $CI->db->GetRow($sql,array($username,$password));
 	if($rs)
 	{
 		$CI->session->set_userdata('id',$rs['user_id']);
-		$CI->session->set_userdata('user_type',$rs['user_type']);
 		$CI->session->set_userdata('permission_id',$rs['permission_id']);
-		if($rs['user_type']==1){
+		if($rs['permission_id']=="2"){
 			$CI->session->set_userdata('name',$rs['agency_name']);
-		}else{
+		}else if($rs['permission_id']=="3"){
 			$fullname = $rs['firstname']." ".$rs['lastname'];
 			$CI->session->set_userdata('name',$fullname);
+		}else if($rs['permission_id']=="1"){
+			$CI->session->set_userdata('name',$rs['response_man']);
 		}
 		$confirm_email = $CI->db->GetOne("select confirm_email from f_users where id = ? ",$rs['user_id']);
 		if($confirm_email){

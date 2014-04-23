@@ -20,13 +20,14 @@
 			 <div id="topmenuGroup">
                 	<ul>
                     	<li class="topmenuGroup1"><a href="criteria/index/1"></a></li>
-                    	<li class="topmenuGroup4"><a href="criteria/index/2"></a></li>
-                        <li class="topmenuGroup2"><a href="criteria/form"></a></li>
-                        <li class="topmenuGroup3">
+                        <li class="topmenuGroup2"><a href="criteria/index2"></a></li>
+                        <?php if($this->session->userdata('permission_id')=="1"):  ?>
+                        <li class="topmenuGroup3"><a href="javascript:void"></a>
                         	<ul class="sub-topmenuGroup3">
                                 <li><a href="criteria/report">รายงานตามตัวชี้วัด กพร.</a></li>
                             </ul>
                         </li>
+                        <?php endif; ?>
                     </ul>
                </div>
 		<?php echo $template['body']; ?>

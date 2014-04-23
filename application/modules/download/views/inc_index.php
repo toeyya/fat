@@ -22,7 +22,7 @@
 	 					<div class="slider" >
 	                  		<ul class="slides">
 	                  	<?php
-	                  	$download = $this->db->GetArray("select * from f_download_detail where type_id =  ".$tp['id']);
+	                  	$download = $this->db->GetArray("select * from f_download_detail where active='1' and type_id =  ".$tp['id']);
 	                  	foreach($download as $key =>$item): ?>
 		                    <li class="<?php if($key==0){ echo 'flex-active-slide';} ?>">
 								<?php $link="javascript:void";
