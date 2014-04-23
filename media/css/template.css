@@ -202,8 +202,10 @@ behavior: url(pie/PIE.htc);
 /* องค์กรต้นแบบไร้พุง */
 	#topmenuGroup ul {margin-left:5px;margin-top:10px;}
 	#topmenuGroup ul li{list-style:none; display:inline-block; margin-right:0px;}
-	.topmenuGroup1 a{ display:block;background:url(../img/btn-criteria.png) no-repeat; width:136px; height:32px; cursor:pointer;}
+	.topmenuGroup1 a{ display:block;background:url(../img/btn-criteria.png) no-repeat; width:190px; height:32px; cursor:pointer;}
 	.topmenuGroup1 a:hover{background:url(../img/btn-criteria-hot.png) no-repeat;}
+	.topmenuGroup4 a{ display:block;background:url(../img/btn-criteria2.png) no-repeat; width:190px; height:32px; cursor:pointer;}
+	.topmenuGroup4 a:hover{background:url(../img/btn-criteria2-hot.png) no-repeat;}
 	.topmenuGroup2 a{ display:block;background:url(../img/btn-MonthlyReport.png) no-repeat; width:263px; height:32px; cursor:pointer;}
 	.topmenuGroup2 a:hover{background:url(../img/btn-MonthlyReport-hot.png) no-repeat;}
 	.topmenuGroup3 { display:block;background:url(../img/btn-report.png) no-repeat; width:96px; height:32px; cursor:pointer;}
@@ -272,7 +274,7 @@ behavior: url(pie/PIE.htc);
 .calender{background:url(../img/calendar.png) no-repeat;width:16px; height:16px;display:inline-block;vertical-align: middle;}
 .counter{background:url(../img/users16.png) no-repeat;width:16px; height:16px;display:inline-block;vertical-align: middle;}
 .attach{margin:10px;font-size:14px;}
-.alertred{color:red;}
+.alertred{color:red;font-size:1.4em;}
 .km_content ul{list-style-image: url(../img/bullet_blue.png);margin-top:17px;}
 .km_contett ul li{display:inline-block;background:#00793E;}
 .km_content ul li a{vertical-align:top;padding:30px 0px;}

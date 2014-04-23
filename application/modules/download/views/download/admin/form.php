@@ -26,7 +26,7 @@
  				<label for="name" class="col-sm-2 control-label">รูป</label>
  				 <div class="col-sm-3">
 
-			    	<a href="uploads/download/<?php echo $rs['type_id'] ?>/<?php echo $rs['image'] ?>" rel="lightbox">
+			    	<a href="uploads/download/<?php echo $rs['type_id'] ?>/<?php echo $rs['image'] ?>" rel="gal">
 						<img style="width:71px;height:100px; vertical-align:middle;" src="uploads/download/<?php echo $rs['type_id'] ?>/thumbnail/<?php echo $rs['image'] ?>">
 					</a>
 			 </div>
@@ -36,6 +36,7 @@
 			    <label for="name" class="col-sm-2 control-label">รูปภาพ</label>
 			    <div class="col-sm-3">
 			     	<input type="file" class="form-control"  name="image">
+			     	<small>อนุญาติเฉพาะ .gif .jpg .jpeg .png</small>
 			    </div>
 			  </div>
 			  <div class="form-group">
@@ -48,9 +49,14 @@
 			    <label for="name" class="col-sm-2 control-label">ไฟล์</label>
 			    <div class="col-sm-3">
 			      <input type="file" class="form-control" name="files">
+			      <small>อนุญาติเฉพาะ .xlsx .pdf .xls .doc .docx .ppt .pptx .rar .zip</small>
 			    </div>
 			    	<?php if(!empty($rs['files'])): ?>
-			    	<span style="float: left"><a href="uploads/download/<?php echo $rs['id'] ?>/file/<?php echo $rs['files'] ?>" class="btn btn-default btn-sm">ดาวน์โหลด</a></span>
+			    	<span style="float: left">
+			    		<a href="download/download_file/<?php echo $rs['type_id'] ?>/<?php echo $rs['id'] ?>" class="btn btn-default btn-sm">ดาวน์โหลด</a>
+			    		<a href="#" rel="<?php echo $rs['type_id'] ?>" class="btn btn-danger btn-sm btn_del" >ลบ</a>
+			    	</span>
+
 					<?php endif;?>
 			  </div>
 
@@ -68,3 +74,24 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('[rel=gal]').colorbox();
+	$('.btn_del').click(function(){
+		var span = $(this).closest('span');
+		if(confirm('ยืนยันการลบ ?')){
+			var type_id = $(this).attr('rel');
+			var id = $('input[name=id]').val();
+			$.ajax({
+				url:'download/admin/download/delete_file',
+				type:'get',
+				data:'field=files&type_id='+type_id+'&id='+id,
+				success:function(){
+					span.fadeOut('slow');
+				}
+			})
+		}
+	});
+});
+</script>
+

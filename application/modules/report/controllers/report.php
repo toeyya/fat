@@ -156,7 +156,7 @@ class Report extends  Flat_Controller{
 
 		// ทั้งหมด
 		$sql="select f_weight.user_id,count(f_weight.user_id) as total ,f_agency_type.name as agency_type_name,agency_name
-			  ,people_fiveteen_male1+people_fiveteen_female1 as user_total
+			  ,people_male1+people_female1 as user_total
 			 from f_weight
 			 left join f_weight_detail ON f_weight.id = f_weight_detail.weight_id
 			 left join f_users ON f_weight.user_id = f_users.id
@@ -168,7 +168,7 @@ class Report extends  Flat_Controller{
 		$data['pagination'] = $this->weight->pagination();
 	   // ทั้งหมด
 		$sql ="select f_weight.user_id,count(f_weight.user_id) as total ,f_agency_type.name as agency_type_name,agency_name
-			  ,people_fiveteen_male2+people_fiveteen_female2 as user_total
+			  ,people_male2+people_female2 as user_total
 			 from f_weight
 			 left join f_weight_detail ON f_weight.id = f_weight_detail.weight_id
 			 left join f_users ON f_weight.user_id = f_users.id
@@ -284,11 +284,11 @@ class Report extends  Flat_Controller{
 		}
 		$data['result'] = $result;
 		// ทั้งหมดครั้งที่ 1 และ ครั้งที่ 2
-		/*$sql = "select province_id,sum(people_fiveteen_female1+people_fiveteen_male1) as total1
-					  ,sum(people_fiveteen_female2+people_fiveteen_male2) as total2
+		/*$sql = "select province_id,sum(people_female1+people_male1) as total1
+					  ,sum(people_female2+people_male2) as total2
 		 		from f_users group by province_id ";*/
-		$sql ="select f_users.province_id,sum(f_people.people_fiveteen_male1+f_people.people_fiveteen_female1) as total1,
-				sum(f_people.people_fiveteen_male2+f_people.people_fiveteen_female2) as total2
+		$sql ="select f_users.province_id,sum(f_people.people_male1+f_people.people_female1) as total1,
+				sum(f_people.people_male2+f_people.people_female2) as total2
 				from f_people
 				left join f_users ON f_users.id = f_people.user_id
 				where 1=1 $wh
@@ -400,8 +400,8 @@ class Report extends  Flat_Controller{
 		$wh =(!empty($_GET['year'])) ? "and year =".$_GET['year']: " and year=".$data['yearth'];
 		$wh.=(!empty($_GET['area'])) ? " and area_no=".$_GET['area']:'';
 		$sql="select area_no
-			 ,sum(f_people.people_fiveteen_male1+f_people.people_fiveteen_female1) as total1
-			 ,sum(f_people.people_fiveteen_male2+f_people.people_fiveteen_female2) as total2
+			 ,sum(f_people.people_male1+f_people.people_female1) as total1
+			 ,sum(f_people.people_male2+f_people.people_female2) as total2
 			  from f_people
 			  left join f_users ON f_users.id = f_people.user_id and f_people.year = ".$data['yearth']."
 		  	  left join f_area_detail  ON f_users.province_id = f_area_detail.province_id
@@ -611,7 +611,7 @@ class Report extends  Flat_Controller{
 			$time ="and time= ".$_GET['time'];
 			$data['time'] = $_GET['time'];
 		}
-		$sql  = "select people_fiveteen_male1 + people_fiveteen_female1 as total from f_people where 1=1 $wh ";
+		$sql  = "select people_male1 + people_female1 as total from f_people where 1=1 $wh ";
 		$data['total'] = $this->db->GetOne($sql);
 		$sql = "select count(user_id)as cnt,sum(weight) as sum_weight
 					  ,avg(weight) as avg_weight,time,avg(waistline) as avg_waist,sum(waistline) as sum_waist

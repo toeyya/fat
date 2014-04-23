@@ -10,18 +10,35 @@ class Criteria extends  Flat_Controller{
 		$this->load->model('setting/district_model','district');
 		$this->load->model('criteria_month_model','cmonth');
 		$this->load->model('setting/agency_type_model','agency_type');
+		$this->load->model('criteria/people_model','people');
 	}
-	function index()
+	function index($time)
 	{//$this->db->debug = true;
 		$data['year'] = (empty($_GET['year'])) ?  date('Y')+543 :$_GET['year'];
-		$user_id  			   = (empty($_GET['user_id'])) ? $this->session->userdata('id') :$_GET['user_id'];
+		$data['time'] = $time;
+		$user_id  = (empty($_GET['user_id'])) ? $this->session->userdata('id') :$_GET['user_id'];
 		$year = " and year ='".$data['year']."'";
 		$data['user'] 		= $this->user->get_row("f_users.id",$user_id);
-		$data['province'] 	= $this->province->get_one("province_name",'id',$data['user']['province_id']);
-		$data['amphur'] 	= $this->amphur->get_one('amphur_name','id',$data['user']['amphur_id']);
-		$data['district'] 	= $this->district->get_one('district_name','id',$data['user']['district_id']);
+		$data['people']     = $this->people->get_row("user_id = $user_id  and year",$data['year']);
 		$data['agency_type']= $this->agency_type->get_one("name",'id',$data['user']['agency_type']);
-		$data['rs']			= $this->criteria->where("user_id = $user_id $year")->sort("title_id")->order("asc")->get();
+		$data['rs']			= $this->criteria->where("user_id = $user_id $year and time = $time")->sort("title_id")->order("asc")->get();
+
+		// มากกว่า 15 วัดเส็นรอบเอว
+		$sql = "select count(*) as cnt,gender,time from f_weight left join f_weight_detail on f_weight.id = f_weight_detail.weight_id
+				where age>=15 and user_id= $user_id  $year
+				group by gender,time";
+		$result = $this->db->GetArray($sql);
+		foreach($result as $item){
+			$data['p1'][$item['gender']][$item['time']] = $item['cnt'];
+		}
+		// มากกว่า 15 ปกติ
+		$sql = "select count(*) as cnt,gender,time from f_weight left join f_weight_detail on f_weight.id = f_weight_detail.weight_id
+				where age>=15 and fat='ปกติ' and user_id= $user_id $year
+				group by gender,time";
+		$result = $this->db->GetArray($sql);
+		foreach($result as $item){
+			$data['p2'][$item['gender']][$item['time']] = $item['cnt'];
+		}
 		$this->template->set_layout('criteria');
 		$this->template->build('index',$data);
 
@@ -32,6 +49,7 @@ class Criteria extends  Flat_Controller{
 		$wh = (!empty($_GET['month'])) ? " and month=".$_GET['month']:' and month='.$m;
 		$user_id  = (empty($id)) ?'': $this->session->userdata('id');
 		$user_id = $this->session->userdata('id');
+		$data['user'] = $this->user->get_row("f_users.id",$user_id);
 		$data['title'] = array('1'=>'1.การประชุมต่างๆในองค์กร ','2'=>'2. การแถลงนโยบายองค์กร','3'=>'3.รณรงค์ประชาสัมพันธ์ในองค์กร/สื่อท้องถิ่นต่างๆ'
 					   ,'4'=>'4. ตรวจสุขภาพ วัดเอว น้ำหนัก ส่วนสูง และพฤติกรรมการบริโภค','5'=>'5.อบรมสมาชิกองค์กร/แกนนำพี่เลี้ยง','6'=>'6.ถ่ายทอดองค์ความรู้แก่องค์กรเพครือข่าย/การศึกษาดูงาน'
 					   ,'7'=>'7.การจัดสภาพแวดล้อมที่เอื้อต่อ 3อ.','8'=>'8.การจัดเวทีชาวบ้าน/การถอดบทเรียน','9'=>'9.นวัตกรรมที่เกิดขึ้นในองค์กร','10'=>'10. นโยบายสาธารณสะที่เกิดขึ้นในองค์กร');
@@ -54,11 +72,12 @@ class Criteria extends  Flat_Controller{
 		$this->template->set_layout('blank');
 		$this->template->build('index2',$data);
 	}
-	function save()
+	function save($time)
 	{//$this->db->debug = true;
-
 		if($_POST){
 			$_POST['user_id'] = $this->session->userdata('id');
+			$this->people->save($_POST);
+			$_POST['time'] = $time;
 			for($i=1;$i<15;$i++){
 				$_POST['id']       = (empty($_POST['id'.$i])) ? '':$_POST['id'.$i];
 				$_POST['title_id'] = $i;
@@ -77,7 +96,7 @@ class Criteria extends  Flat_Controller{
 			}
 			set_notify('success',SAVE_DATA_COMPLETE);
 		}
-		redirect('criteria/index');
+		redirect('criteria/index/'.$time);
 	}
 	function save2()
 	{
@@ -130,13 +149,20 @@ class Criteria extends  Flat_Controller{
 		$name = basename($file);
 		force_download($name, $data);
 	}
+	function download_image($id,$field="image"){
+		$file = $this->cmonth->get_one($field,"id",$id);
+		$this->load->helper('download');
+		$data = file_get_contents("uploads/criteria/image/".basename($file));
+		$name = basename($file);
+		force_download($name, $data);
+	}
 	function delete($id)
 	{
 		if($id){
 			$this->db->Execute("UPDATE f_criteria SET files='',file_name='' WHERE id = ? ",$id);
 			set_notify('success',DELETE_DATA_COMPLETE);
 		}
-		redirect('criteria/index');
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 	function delete_row($id){
 		if($id){

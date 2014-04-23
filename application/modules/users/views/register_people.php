@@ -54,7 +54,7 @@
           <div class="control-group">
             <label class="control-label" for="inputCaptcha"><label class="alertred">*</label>รหัสลับ</label>
                 <div class="controls" >
-                  <img src="users/captcha"></br/>
+                   <img src="img.php" />
                   <input class="input-small" type="text" name="captcha" id="inputCaptcha" placeholder="รหัสลับ">
                 </div>
             </div>

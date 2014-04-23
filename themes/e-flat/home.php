@@ -25,8 +25,8 @@
 
               	<div style="margin-top:27px;padding-top:31px;">
               		<div class="title-eflat" style="padding:20px;">ระบบสารสนเทศ e-flat belly<div class="line7"></div></div>
-              		<a href="criteria/index" 		class="banner banner1"></a>
-              		<a href="criteria/index"><span class="title-news" style="display:inline-block;float:right;position:absolute;top:139px;left:400px;font-size:40px;">ขั้นตอนที่ 1</span></a>
+              		<a href="criteria/index/1" 		class="banner banner1"></a>
+              		<a href="criteria/index/1"><span class="title-news" style="display:inline-block;float:right;position:absolute;top:139px;left:400px;font-size:40px;">ขั้นตอนที่ 1</span></a>
               	</div>
               	<div style="height:229px;">
 	            	<a href="f_weight/index/1" 		class="banner banner2"></a>

@@ -50,7 +50,8 @@
     	<a href="uploads/criteria/image/<?php echo $item['image1'] ?>" class="gallery" rel="gal<?php echo $key ?>">
 			<img style="width:50px; vertical-align:middle;" src="uploads/criteria/image/thumbnail/<?php echo $item['image1'] ?>">
 		</a>
-		<a href="#" name="btn_del" rel="image1"  class="btn btn-default btn-mini" onclick="return confirm('ยืนยันการลบ ?')">ลบ</a>
+		<a href="criteria/download_image/<?php echo $item['id']?>/image1" class="btn btn-default btn-mini">ดาวน์โหลด</a>
+		<a href="#" name="btn_del" rel="image1"  class="btn btn-danger btn-mini" onclick="return confirm('ยืนยันการลบ ?')">ลบ</a>
 		</p>
 		<?php endif;?>
 		<input type="file" name="image1_<?php echo $i ?>"><br/>
@@ -59,7 +60,8 @@
     	<a href="uploads/criteria/image/<?php echo $item['image2'] ?>" class="gallery" rel="gal<?php echo $key ?>">
 			<img style="width:50px; vertical-align:middle;" src="uploads/criteria/image/thumbnail/<?php echo $item['image2'] ?>">
 		</a>
-		<a href="#" name="btn_del" rel="image2"  class="btn btn-default btn-mini" onclick="return confirm('ยืนยันการลบ ?')">ลบ</a>
+		<a href="criteria/download_image/<?php echo $item['id']?>/image2" class="btn btn-default btn-mini">ดาวน์โหลด</a>
+		<a href="#" name="btn_del" rel="image2"  class="btn  btn-danger btn-mini" onclick="return confirm('ยืนยันการลบ ?')">ลบ</a>
 		</p>
 		<?php endif;?>
 		<input type="file" name="image2_<?php echo $i ?>"><br/>
@@ -68,7 +70,8 @@
     	<a href="uploads/criteria/image/<?php echo $item['image3'] ?>" class="gallery" rel="gal<?php echo $key ?>">
 			<img style="width:50px; vertical-align:middle;" src="uploads/criteria/image/thumbnail/<?php echo $item['image3'] ?>">
 		</a>
-		<a href="#" name="btn_del"  rel="image3"  class="btn btn-default btn-mini" onclick="return confirm('ยืนยันการลบ ?')">ลบ</a>
+		<a href="criteria/download_image/<?php echo $item['id']?>/image3" class="btn btn-default btn-mini">ดาวน์โหลด</a>
+		<a href="#" name="btn_del"  rel="image3"  class="btn  btn-danger btn-mini" onclick="return confirm('ยืนยันการลบ ?')">ลบ</a>
 		</p>
 		<?php endif;?>
 		<input type="file" name="image3_<?php echo $i ?>">
@@ -80,7 +83,7 @@
 <?php } ?>
 
 </table>
-<div class="pull-right"><span class='caption'>ผู้รายงาน</span>.............<span class="caption">วันที่</span>...........</div>
+<div class="pull-right"><span class='caption'>ผู้รายงาน</span><?php echo $user['agency_name'] ?><span class="caption">วันที่</span><?php echo db_to_th(date('Y-m-d')); ?></div>
 <div class="clearfix"></div>
 <div class="aligncenter"><button class="btnSave" style="width:300px;" name="btn_save" type="submit">ยืนยัน</button></div>
 </form>

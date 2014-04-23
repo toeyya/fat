@@ -1,22 +1,24 @@
 <div id="blank">
 
-<div class="titleGroup2">ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง ปี 2557</div>
+<div class="titleGroup2">เกณฑ์ประเมินครั้งที่ <?php echo $time; ?> ปีงบประมาณ <?php echo $year;  ?></div>
 <div id="Breadcrumbs">
 <ol id="path-breadcrumb">
   <li><a href="home">หน้าแรก</a></li>
   <li><a href="f_weight/ebelly">ระบบสารสนเทศ e-flat belly</a></li>
-  <li class="active">องค์กรต้นแบบไร้พุง</li>
+  <li>องค์กรต้นแบบไร้พุง </li>
+  <li class="active">เกณฑ์ประเมินครั้งที่ <?php echo $time; ?> ปีงบประมาณ <?php echo $year;  ?></li>
 </ol>
 </div>
 <div class="contentGroup">
-<div class="search" style="border-right:1px solid #DAD8D9;padding:20px; text-align:center;background-color:#F5F3F4">
-	<form class="form-search" method="get" action="criteria/index">
+<div id="search">
+	<form class="form-search" method="get" action="criteria/index/<?php echo $time; ?>">
+		<span>จังหวัด</span>
+		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
 		<span>องค์กร</span>
-		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร'); ?>
+		<span id="agency">
+		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร'); ?></span>
 		<span>ปีงบประมาณ </span>
 		<?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="search-query"',''); ?>
-		<span>ครั้งที่</span>
-		<?php echo form_dropdown('time',array('1'=>'1','2'=>'2'),@$_GET['time'],'class="search-query"','') ?>
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>
 </div>
@@ -35,7 +37,7 @@
           </tr>
           <tr>
             <td width="24%" align="right"><label> เลขที่โครงการย่อย :</label></td>
-            <td colspan="3">&nbsp;</td>
+            <td colspan="3"><?php echo $user['project'] ?></td>
           </tr>
   		  <tr>
   		  	<td width="20%" align="right"><label>งบประมาณที่ได้รับ:</label></td>
@@ -45,11 +47,11 @@
             <td align="right"> <label>ที่ตั้ง:</label></td>
             <td width="19%"><span class="titleName"><?php echo $user['address'] ?></span></td>
             <td width="50px"><label>ตำบล :</label></td>
-            <td><span class="titleName"><?php echo $district ?></span></td>
+            <td><span class="titleName"><?php echo $user['district_name'] ?></span></td>
             <td width="50px"><label>อำเภอ :</label></td>
-            <td><span class="titleName"><?php echo $amphur ?></span></td>
+            <td><span class="titleName"><?php echo $user['amphur_name'] ?></span></td>
             <td width="50px"><label>จังหวัด :</label></td>
-            <td><span class="titleName"><?php echo $province ?></span></td>
+            <td><span class="titleName"><?php echo $user['province_name'] ?></span></td>
           </tr>
           <tr>
             <td align="right"><label>ผู้ประสานงานโครงการ :</label></td>
@@ -62,66 +64,70 @@
             <td><span class="titleName"><?php echo $user['email'] ?></span></td>
           </tr>
         </table>
-        <div class="line6"></div>
+		 <div class="line6"></div>
     </td>
   </tr>
 </table>
 <div id="span7">
-<form method="post" action="criteria/save" enctype="multipart/form-data">
-
+<form method="post" action="criteria/save/<?php echo $time ?>" enctype="multipart/form-data" class="form-inline">
 <table width="100%" cellpadding="1" cellspacing="1">
 <tr>
 <td valign="top" bgcolor="#EFFEDD" style="border-right:1px solid #CEE6B2;padding:10px;"><strong><font color="#478302">จำนวนประชากร</font> อายุ 15 ปีขึ้นไป ทั้งหมด</strong>
 <div id="formGroup" style="line-height: 25px;">
-    <label style="margin-left:55px;display:inline-block"> ชาย  : </label>
-    <input type="text" name="people_fiveteen_male" value="">
-    <label style="display: inline-block">คน <span style="color:#F00;">*</span></label><br>
-    <label style="margin-left:51px;display:inline-block">หญิง :  </label>
-    <input type="text" name="people_fiveteen_female" value="">
-    <label style="display: inline-block">คน <span style="color:#F00;">*</span></label><br>
+    <label style="margin-left:41px;display:inline-block"><label class="alertred">*</label> ชาย  : </label>
+    <?php  $male =  (empty($people['people_male'.$time])) ? '': $people['people_male'.$time]?>
+    <input type="text" name="people_male<?php echo $time ?>" value="<?php echo $male; ?>">
+    <label style="display: inline-block">คน </label><br>
+    <label style="margin-left:39px;display:inline-block"><label class="alertred">*</label> หญิง :  </label>
+     <?php  $female =  (empty($people['people_female'.$time])) ? '': $people['people_female'.$time]?>
+    <input type="text" name="people_female<?php echo $time ?>" value="<?php echo $female; ?>">
+    <label style="display: inline-block">คน </label><br>
     <label style="margin-left:57px;display:inline-block">รวม :  </label>
-    <input type="text" name="people_total">
+	<span><?php  $sum = $male + $female; echo number_format($sum); ?></span>
     <label style="display: inline-block">คน</label><br>
     <label style="display: inline-block">คิดเป็นร้อยละ :</label>
-    <input type="text" name="people_percent">
+	<span><?php echo (empty($sum)) ? 0:100 ?></span>
     <label style="display: inline-block">%</label>
  </div>
 </td>
 <td valign="top" bgcolor="#EFFEDD" style="border-right:1px solid #CEE6B2;padding:10px;"><strong><font color="#478302">จำนวนประชากร</font> อายุ 15 ปีขึ้นไปที่วัดเส้นรอบเอว</strong>
   <div id="formGroup">
     <label style="margin-left:55px;display:inline-block"> ชาย  : </label>
-    <input type="text">
-    <label style="display: inline-block">คน <span style="color:#F00;">*</span></label><br>
+    <span><?php $m_waist = (empty($p1[1][$time])) ? 0 :$p1[1][$time]; echo number_format($m_waist); ?></span>
+    <label style="display: inline-block">คน </label><br>
     <label style="margin-left:51px;display:inline-block">หญิง :  </label>
-    <input type="text">
-    <label style="display: inline-block">คน <span style="color:#F00;">*</span></label><br>
+    <span><?php  $f_waist = (empty($p1[2][$time])) ? 0 :$p1[2][$time]; echo number_format($f_waist); ?></span>
+    <label style="display: inline-block">คน</label><br>
     <label style="margin-left:57px;display:inline-block">รวม :  </label>
-    <input type="text">
+    <span><?php $sum2 =$m_waist+$f_waist; echo number_format($sum2); ?></span>
     <label style="display: inline-block">คน</label><br>
     <label style="display: inline-block">คิดเป็นร้อยละ :</label>
-    <input type="text">
+	<span><?php  echo (empty($sum2) || empty($sum)) ? 0.0 :number_format(($sum2*100)/$sum,1);  ?></span>
     <label style="display: inline-block">%</label>
   </div></td>
 <td valign="top" bgcolor="#EFFEDD" style="padding:10px;"><strong><font color="#478302">จำนวนประชากร</font> อายุ 15 ปีขึ้นไปที่วัดเส้นรอบเอวปกติ</strong>
   <div id="formGroup">
     <label style="margin-left:55px;display:inline-block"> ชาย  : </label>
-    <input type="text">
-    <label style="display: inline-block">คน <span style="color:#F00;">*</span></label><br>
+ 	<span><?php $m_waist = (empty($p2[1][$time])) ? 0 :$p2[1][$time]; echo number_format($m_waist); ?></span>
+    <label style="display: inline-block">คน </label><br>
     <label style="margin-left:51px;display:inline-block">หญิง :  </label>
-    <input type="text">
-    <label style="display: inline-block">คน <span style="color:#F00;">*</span></label><br>
+    <span><?php $f_waist = (empty($p2[2][$time])) ? 0 :$p2[2][$time]; echo number_format($f_waist); ?></span>
+    <label style="display: inline-block">คน </label><br>
     <label style="margin-left:57px;display:inline-block">รวม :  </label>
-    <input type="text">
+    <span><?php $sum3 =$m_waist+$f_waist; echo number_format($sum3); ?></span>
     <label style="display: inline-block">คน</label><br>
     <label style="display: inline-block">คิดเป็นร้อยละ :</label>
-    <input type="text">
+    <span><?php  echo (empty($sum2) || empty($sum3)) ? 0.0 :number_format(($sum3*100)/$sum2,1);  ?></span>
     <label style="display: inline-block">%</label>
   </div></td>
 </tr>
 </table>
 <br/>
+
 <table class="table table-bordered table-condensed">
 <thead>
+<tr><th colspan="4"><label class="alertred">*</label><span>ระบุปีงบประมาณ  <?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'',''); ?></span></th></tr>
+
 <tr class="success">
 	<th>เกณฑ์การประเมิน</th>
 	<th>หลักฐาน</th>
@@ -132,8 +138,8 @@
 <tr><?php $i=0; ?>
 	<?php echo (!empty($rs['id'])) ? form_hidden("updated",date('Y-m-d H:i:s')) : form_hidden("created",date('Y-m-d H:i:s'))?>
 
-	<td class="title" width="620">1.มีคณะกรรมการการบริหารจัดการองค์กรและชุมชน</td>
-	<td width="100" valign="top">
+	<td class="title" width="600">1.มีคณะกรรมการการบริหารจัดการองค์กรและชุมชน</td>
+	<td width="100">
 		<label class="radio-inline"><input type="radio" name="evidence1" value="1" <?php if(@$rs[$i]['evidence']=="1"){echo 'checked="checked"';} ?>>มี</label>
 		<label class="radio-inline"><input type="radio" name="evidence1" value="2" <?php if(@$rs[$i]['evidence']=="2"){echo 'checked="checked"';} ?>>ไม่มี</label></td>
 	<td style="text-align: left"><input type="text" name="file_name1" value="<?php echo @$rs[$i]['file_name'] ?>" class="input-medium">
@@ -141,14 +147,14 @@
 		<input type="file" name="file1" >
 		<?php if(@$rs[$i]['files']): ?>
 		<p>
-			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-info">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-default" onclick="return confirm('ยืนยันการลบข้อมูล ?')">ลบไฟล์</a>
+			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?')">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 		</td>
 	<td width="130">
-		<label class="radio-inline"><input type="radio" name="result1" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
-		<label class="radio-inline"><input type="radio" name="result1" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result1" value="1" <?php if(@$rs[$i]['result']=="1"){echo 'checked="checked"';} ?>>ผ่าน</label>
+		<label class="radio inline"><input type="radio" name="result1" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id1" value="<?php echo @$rs[$i]['id'] ?>">
 </tr>
@@ -162,8 +168,8 @@
 
 		<?php if(!empty($rs[$i]['files'])): ?>
 		<p>
-			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-info">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-default" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
+			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 		</td>
@@ -181,8 +187,8 @@
 
 		<?php if(@$rs[$i]['files']): ?>
 		<p>
-			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-info">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-default" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
+			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?')">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 
@@ -202,8 +208,8 @@
 
 		<?php if(@$rs[$i]['files']): ?>
 		<p>
-			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-info">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-default" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
+			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 
@@ -221,8 +227,8 @@
 		<input type="file" name="file5" >
 		<?php if(@$rs[$i]['files']): ?>
 		<p>
-			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-info">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-default" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
+			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 
@@ -242,8 +248,8 @@
 
 		<?php if(@$rs[$i]['files']): ?>
 		<p>
-			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-info">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-default" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
+			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 
@@ -265,8 +271,8 @@
 		<input type="file" name="file7" >
 		<?php if(@$rs[$i]['files']): ?>
 		<p>
-			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-info">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-default" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
+			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 
@@ -285,8 +291,8 @@
 		<input type="file" name="file8" >
 		<?php if(@$rs[$i]['files']): ?>
 		<p>
-			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-info">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-default" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
+			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 	</td>
@@ -304,8 +310,8 @@
 		<input type="file" name="file9" >
 		<?php if(@$rs[$i]['files']): ?>
 		<p>
-			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-info">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-default" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
+			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 
@@ -324,8 +330,8 @@
 		<input type="file" name="file10" >
 		<?php if(@$rs[$i]['files']): ?>
 		<p>
-			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-info">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-default" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
+			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 	</td>
@@ -343,8 +349,8 @@
 		<input type="file" name="file11" >
 		<?php if(@$rs[$i]['files']): ?>
 		<p>
-			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-info">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-default" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
+			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 	</td>
@@ -363,8 +369,8 @@
 
 		<?php if(@$rs[$i]['files']): ?>
 		<p>
-			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-info">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-default" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
+			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 
@@ -383,8 +389,8 @@
 		<input type="file" name="file13" >
 		<?php if(@$rs[$i]['files']): ?>
 		<p>
-			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-info">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-default" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
+			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 
@@ -404,8 +410,8 @@
 
 		<?php if(@$rs[$i]['files']): ?>
 		<p>
-			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-info">ดาวน์โหลด</a>
-			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-default" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
+			<a href="criteria/download/<?php echo @$rs[$i]['id']?>" class="btn btn-mini btn-default">ดาวน์โหลด</a>
+			<a href="criteria/delete/<?php echo @$rs[$i]['id'] ?>" class="btn btn-mini btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?');">ลบไฟล์</a>
 		</p>
 		<?php endif ?>
 
@@ -414,6 +420,7 @@
 		<label class="radio inline"><input type="radio" name="result14" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} ?>>ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id14" value="<?php echo @$rs[$i]['id'] ?>">
+	<input type="hidden" name="user_id" value="<?php echo @$rs['user_id'] ?>">
 </tr>
 <tr rowspan="2">
 	<td colspan="3"><p>สรุปผลการประเมิน </p>
@@ -423,9 +430,33 @@
 	<td></td>
 </tr>
 </table>
+<div class="alert alert-warning">
+	<span class="label label-warning">คุณลักษณะขององค์กรภาครัฐ หรือเอกชน ที่สมัครเข้าร่วมเป็นศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง มีดังนี้คือ</span>
+	<ul style="margin-top:10px;">
+		<ol style="padding:5px;">1. องค์กร หมายถึง หน่วยงาน โรงเรียน ท้องถิ่น ชุมชน หรือ ชมรม</ol>
+      	<ol style="padding:5px;">2. องค์กรมีบุคลากรหรือพนักงาน 30 คนขึ้นไป</ol>
+     	<ol style="padding:5px;">3. หัวหน้าผู้นำองค์กรสมัครใจที่จะเข้าร่วม และยินดีที่จะร่วมมือในการขับเคลื่อน ศูนย์การเรียนรู้องค์กรต้นแบบ ไร้พุงและชุมชนไร้พุงต้นแบบกับกรมอนามัย  และสำนักงานสาธารณสุขจังหวัด</ol>
+	</ul>
+</div>
 <div class="aligncenter"><button class="btnSave" style="width:300px;" name="btn_save" type="submit">ยืนยัน</button></div>
 </form>
 
 </div>
 </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('select[name=province_id]').change(function(){
+		var province_id = $(this).val();
+		if(province_id.length>0){
+			$.ajax({
+				url:'setting/getAgency',
+				data:'province_id='+province_id,
+				success:function(data){
+					$('#agency').html(data);
+				}
+			});
+		}
+	});
+});
+</script>

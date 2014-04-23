@@ -2,6 +2,7 @@
 .shelf .flex-direction-nav .flex-next{right:186px;background: url(../../../fat/media/img/arrowbook-right.png) no-repeat;width:21px; height:39px;}
 .shelf .flex-direction-nav .flex-prev{left:186px;background: url(../../../fat/media/img/arrowbook-left.png)no-repeat;width:21px; height:39px;}
 .nav-tabs{border:0}
+.shelf .slides ul li{width:120px;}
 </style>
        <div id="books">
             <div class="tomatoes"></div>
@@ -47,16 +48,17 @@
    		 </div><!-- tab-content-->
       </div><!-- book -->
 <script type="text/javascript">
+
 $(window).load(function() {
 
   $('.slider').flexslider({
     slideshow: false,animation: "slide",animationLoop: false,itemWidth: 120,itemMargin:50,minItems: 3,maxItems: 5,reverse: false,controlNav: false,prevText: "",nextText: "",slideshowSpeed: 3000,
   });
-
-
-  	$('#myTab1 a').click(function(e){
+	$('#myTab1 a').click(function(e){
 		e.preventDefault();
 		$(this).tab('show');
+
 	});
+
 });
 </script>

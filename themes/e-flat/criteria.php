@@ -19,7 +19,8 @@
 			<div class="titleGroup"><img src="media/img/title-group.png" width="394" height="92" /></div>
 			 <div id="topmenuGroup">
                 	<ul>
-                    	<li class="topmenuGroup1"><a href="criteria/index"></a></li>
+                    	<li class="topmenuGroup1"><a href="criteria/index/1"></a></li>
+                    	<li class="topmenuGroup4"><a href="criteria/index/2"></a></li>
                         <li class="topmenuGroup2"><a href="criteria/form"></a></li>
                         <li class="topmenuGroup3">
                         	<ul class="sub-topmenuGroup3">

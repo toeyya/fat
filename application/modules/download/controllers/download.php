@@ -23,7 +23,7 @@ class Download extends Public_Controller{
 	{
 		$file=$this->download->get_one("files","id",$id);
 		$this->load->helper('download');
-		$data = file_get_contents("uploads/download/1/file/".basename($file));
+		$data = file_get_contents("uploads/download/$type_id/file/".basename($file));
 		$name = basename($file);
 		force_download($name, $data);
 	}

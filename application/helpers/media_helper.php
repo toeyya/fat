@@ -84,7 +84,6 @@ function js_checkbox($module='admin')
 			$(function(){
 				$("input:checkbox").click(function(){
 					var value = $(this).is(":checked") ? 1 : 0;
-					console.log(value);
 					$.post("'.$CI->router->fetch_module().'/'.$module.'/'.$CI->router->fetch_class().'/save",{id:this.value ,active:value},
 						  function(){
 						  	'.$js.'

@@ -58,13 +58,18 @@ class Download extends Admin_Controller{
 		redirect('download/admin/download/index?type_id='.$_POST['type_id']);
 	}
 	function delete($id,$type_id)
-	{$this->db->debug = true;
+	{
 		if($id){
 			$this->download->delete($id);
 			set_notify('success', SAVE_DATA_COMPLETE);
 		}
 		redirect('download/admin/download/index/'.$type_id);
 
+	}
+	function delete_file()
+	{
+		$this->download->delete_file($_GET['id'],'uploads/download/'.$_GET['type_id'].'/file',$_GET['field']);
+		$this->download->save(array('id'=>$_GET['id'],$_GET['field']=>''));
 	}
 }
 ?>
