@@ -1,16 +1,17 @@
 <div>
 	<hr>
 	<ul class="breadcrumb">
-		<li>
-			<a href="admin">หน้าแรก</a>
-		</li>
-		<li>
-			<a href="users/admin/users/index">สมาชิก</a>
-		</li>
+		<li><a href="admin">หน้าแรก</a></li>
+		<li><a href="users/admin/users/index">สมาชิก</a></li>
 	</ul>
 	<hr>
 </div>
-
+<div id="search">
+	<form class="form-inline" action="users/admin/users/index">
+	<span class="control-label">องค์กร</span><input type="text" name="agency_name" class="form-control" value="<?php echo @$_GET['agency_name'] ?>">
+	<button name="search" class="btn btn-sm btn-success">ค้นหา</button>
+	</form>
+</div>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="box">
@@ -35,7 +36,7 @@
 						  </tr>
 					  </thead>
 					  <tbody>
-					  	 <?php $i=(@$_GET['page'] > 1)? (((@$_GET['page'])* 20)-20)+1:1;?>
+					  	<?php $i=(@$_GET['page'] > 1)? (((@$_GET['page'])* 20)-20)+1:1;?>
 					  	<?php foreach($result as $item): ?>
 						<tr>
 						  	<td><label class="switch switch-primary">

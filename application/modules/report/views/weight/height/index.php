@@ -11,7 +11,7 @@
 <div id="search" class="form-search">
 	<form action="report/index/height" class="form-search">
 		<span>จังหวัด</span>
-		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
+		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province','','province_name'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
 		<span>องค์กร</span>
 		<span id="agency">
 			<?php
@@ -29,7 +29,10 @@
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>
 </div>
-<?php if(!empty($_GET)){ ?>
+<?php
+$ab_m1 =0 ;$ab_f1=0;$sum_per1=0;$ab_m2 =0 ;$ab_f2=0;$sum_per2=0;
+
+if(!empty($_GET)){ ?>
 <div class="right" style="margin-bottom: 10px;">
 	<a href="report/index/height/export<?=GetCurrentUrlGetParameter();?>"  class="btn btn-default"><i class="fa fa-arrow-down"></i>ดาวน์โหลด excel</a>
 	<a href="report/index/height/preview<?=GetCurrentUrlGetParameter();?>" class="btn btn-default" target="_blank">พิมพ์ข้อมูล</a>
@@ -101,7 +104,9 @@
 </table>
 <div class="aligncenter"><button type="button" name="show" class="btn btn-info btn-large " id="btn-show" >เปิด - ปิด กราฟ</button></div>
 <div id="container_grp"  style="height:500px;margin-left:20px;margin-top:10px;margin-bottom: 20px;" class="hide"></div>
+<?php } ?>
 </div>
+
 <script type="text/javascript">
 $(document).ready(function(){
 	$('select[name=province_id]').change(function(){
@@ -189,4 +194,4 @@ $(document).ready(function(){
     });
 });
 </script>
-<?php } ?>
+

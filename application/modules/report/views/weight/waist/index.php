@@ -9,10 +9,20 @@
 <div class="contentBlank">
 <div id="search" class="form-search">
 	<form action="report/index/waist" class="form-search">
+		<span>จังหวัด</span>
+		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province','','province_name'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
+		<span>องค์กร</span>
+		<span id="agency">
+			<?php
+			if(!empty($_GET['user_id'])){
+				echo form_dropdown('user_id',get_option('id','agency_name','f_users','province_id = '.$_GET['province_id'],'agency_name'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร');
+			}else{
+			?>
+				<select name="user_id" class="search-query"><option value="">เลือกองค์กร</option></select>
+			<?php }  ?>
+		</span>
 		<span>ปีงบประมาณ </span>
 		<?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="search-query"',''); ?>
-		<span>องค์กร</span>
-		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร'); ?>
 		<span>ครั้งที่</span>
 		<?php  $arr = array("1"=>'1',"2"=>'2');
 			echo form_dropdown('time',$arr,@$_GET['time'],'class="search-query input-mini"');
@@ -20,7 +30,11 @@
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>
 </div>
-<?php if(!empty($_GET)){ ?>
+<?php
+$n_percent = array(1=>0,2=>0,3=>0);
+$ab_percent = array(1=>0,2=>0,3=>0);
+
+if(!empty($_GET)){ ?>
 <div class="right" style="margin-bottom: 10px;">
 	<a href="report/index/waist/export<?=GetCurrentUrlGetParameter();?>"  class="btn btn-default"><i class="fa fa-arrow-down"></i>ดาวน์โหลด excel</a>
 	<a href="report/index/waist/preview<?=GetCurrentUrlGetParameter();?>" class="btn btn-default" target="_blank">พิมพ์ข้อมูล</a>
@@ -51,7 +65,7 @@
 <tr>
 	<td><?php echo number_format($total); ?></td>
 	<td><?php echo (empty($cnt)) ? 0 :number_format($cnt[1]); ?></td>
-	<td><?php echo (empty($cnt) && empty($total)) ? 0:number_format(($cnt[1]*100)/$total,1) ?></td>
+	<td><?php echo (empty($cnt) || empty($total)) ? 0:number_format(($cnt[1]*100)/$total,1) ?></td>
 </tr>
 </tbody>
 </table>
@@ -88,17 +102,17 @@
 <tbody>
 <tr>
 	<td><?php echo (empty($sum_weight)) ? 0: number_format($sum_weight[1]); ?></td>
-	<td><?php echo $avg_weight1 = (empty($avg_weight)) ? 0: number_format($avg_weight[1]) ?></td>
+	<td><?php echo $avg_weight1 = (empty($avg_weight)) ? 0: number_format($avg_weight[1],1) ?></td>
 	<td><?php echo (empty($sum_weight)) ? 0: number_format($sum_weight[2]) ?></td>
-	<td><?php echo $avg_weight2 = (empty($avg_weight)) ? 0: number_format($avg_weight[2]) ?></td>
+	<td><?php echo $avg_weight2 = (empty($avg_weight)) ? 0: number_format($avg_weight[2],1) ?></td>
 	<td><?php echo (empty($sum_weight[1]) || empty($sum_weight[2])) ? 0 :number_format(abs($sum_weight[1]-$sum_weight[2])); ?></td>
-	<td><?php echo $diff1 = (empty($avg_weight[1]) || empty($avg_weight[2])) ? 0 :number_format(abs($avg_weight[1]-$avg_weight[2])); ?></td>
+	<td><?php echo $diff1 = (empty($avg_weight[1]) || empty($avg_weight[2])) ? 0 :number_format(abs($avg_weight[1]-$avg_weight[2]),1); ?></td>
 	<td><?php echo (empty($sum_waist)) ? 0 :number_format($sum_waist[1]) ?></td>
-	<td><?php echo $avg_waist1 = (empty($avg_waist)) ? 0 :number_format($avg_waist[1]) ?></td>
+	<td><?php echo $avg_waist1 = (empty($avg_waist)) ? 0 :number_format($avg_waist[1],1) ?></td>
 	<td><?php echo (empty($sum_waist)) ? 0 :number_format($sum_waist[2]) ?></td>
-	<td><?php echo $avg_waist2 = (empty($avg_waist)) ? 0 :number_format($avg_waist[2]) ?></td>
+	<td><?php echo $avg_waist2 = (empty($avg_waist)) ? 0 :number_format($avg_waist[2],1) ?></td>
 	<td><?php echo (empty($sum_waist[1]) || empty($sum_waist[2])) ? 0 : number_format(abs($sum_waist[1]-$sum_waist[2])); ?></td>
-	<td><?php echo $diff2 = (empty($avg_waist[1]) || empty($avg_waist[2])) ? 0 : number_format(abs($avg_waist[1]-$avg_waist[2]));
+	<td><?php echo $diff2 = (empty($avg_waist[1]) || empty($avg_waist[2])) ? 0 : number_format(abs($avg_waist[1]-$avg_waist[2]),1);
 		$per_weight = (empty($diff1) && empty($avg_weight1)) ? 0 :number_format(($diff1*100)/$avg_weight1);
 		$per_waist  = (empty($diff2) && empty($avg_waist1)) ? 0 :number_format(($diff2*100/$avg_waist1));
 		$arr = array($avg_weight1, $avg_weight2,$per_weight,$avg_waist1,$avg_waist2,$per_waist);?></td>
@@ -129,9 +143,9 @@
 	<td><?php echo (empty($cnt[1])) ? 0 :number_format($cnt[1]); ?></td>
 	<td><?php echo (!empty($cnt) &&  $cnt[1]!=0 && $total!=0 ) ? number_format(($cnt[1]*100)/$total,1): 0 ?></td>
 	<td><?php echo (empty($sum_weight[1])) ? 0 :number_format($sum_weight[1]) ?></td>
-	<td><?php echo (empty($avg_weight[1])) ? 0 :number_format($avg_weight[1]) ?></td>
+	<td><?php echo (empty($avg_weight[1])) ? 0 :number_format($avg_weight[1],1) ?></td>
 	<td><?php echo (empty($sum_waist[1])) ? 0 :number_format($sum_waist[1]); ?></td>
-	<td><?php echo (empty($avg_waist[1])) ? 0 :number_format($avg_waist[1]); ?></td>
+	<td><?php echo (empty($avg_waist[1])) ? 0 :number_format($avg_waist[1],1); ?></td>
 </tr>
 </tbody>
 
@@ -148,7 +162,7 @@
 	<th colspan="2">หญิง</th>
 	<th colspan="2">รวม</th>
 </tr>
-<tr>
+<tr class="success">
 	<th>จำวน</th>
 	<th>%ชาย</th>
 	<th>จำนวน</th>
@@ -160,29 +174,29 @@
 <tbody>
 <tr>
 	<td>ปกติ</td>
-	<td><?php echo $normal1 = (empty($fat['ปกติ'][1][1])) ? 0 : number_format($fat['ปกติ'][1][1]) ?></td>
-	<td><?php $normal=  (empty($fat['อ้วนลงพุง'][1][1])) ? 0 : $fat['อ้วนลงพุง'][1][1];
+	<td><?php $normal1 = (empty($fat['ปกติ'][1][$time])) ? 0 : $fat['ปกติ'][1][$time]; echo number_format($fat['ปกติ'][1][$time]) ?></td>
+	<td><?php $normal=  (empty($fat['อ้วนลงพุง'][1][$time])) ? 0 : $fat['อ้วนลงพุง'][1][$time];
 			  $normal = $normal1 + $normal;
-			  echo $n_percent[1]=($normal==0 && $normal1==0) ? 0 :number_format(($normal1*100)/$normal,1);	?></td>
-	<td><?php echo $normal2 = (empty($fat['ปกติ'][2][1])) ? 0 : number_format($fat['ปกติ'][2][1]) ?></td>
-	<td><?php $normal=  (empty($fat['อ้วนลงพุง'][2][1])) ? 0 : $fat['อ้วนลงพุง'][2][1];
+			  echo $n_percent[1]=($normal==0 && $normal1==0) ? 0 :number_format(($normal1*100)/$normal,1); 	?></td>
+	<td><?php $normal2 = (empty($fat['ปกติ'][2][$time])) ? 0 : $fat['ปกติ'][2][$time]; echo number_format($fat['ปกติ'][2][$time]) ?></td>
+	<td><?php $normal=  (empty($fat['อ้วนลงพุง'][2][$time])) ? 0 : $fat['อ้วนลงพุง'][2][$time];
 			  $normal = $normal2 + $normal;
 			  echo $n_percent[2]= ($normal==0 && $normal2==0) ? 0 :number_format(($normal2*100)/$normal,1);	?></td>
 	<td><?php echo number_format($normal1+$normal2);$sum[1] = $normal1+$normal2 ?></td>
 	<td><?php
-	$abnormal1 = (empty($fat['อ้วนลงพุง'][1][1])) ? 0 : number_format($fat['อ้วนลงพุง'][1][1]);
-	$abnormal2 = (empty($fat['อ้วนลงพุง'][2][1])) ? 0 :number_format($fat['อ้วนลงพุง'][2][1]);
+	$abnormal1 = (empty($fat['อ้วนลงพุง'][1][$time])) ? 0 : number_format($fat['อ้วนลงพุง'][1][$time]);
+	$abnormal2 = (empty($fat['อ้วนลงพุง'][2][$time])) ? 0 :number_format($fat['อ้วนลงพุง'][2][$time]);
 	$normal = $normal1 + $normal2 + $abnormal1 + $abnormal2;
 	echo $n_percent[3] = ($sum[1]==0 || $normal==0) ? 0 :number_format(($sum[1]*100)/$normal,1) ?></td>
 </tr>
 <tr>
 	<td>อ้วนลงพุง</td>
-	<td><?php echo $abnormal1 = (empty($fat['อ้วนลงพุง'][1][1])) ? 0 : number_format($fat['อ้วนลงพุง'][1][1]) ?></td>
-	<td><?php $normal=  (empty($fat['ปกติ'][1][1])) ? 0 : $fat['ปกติ'][1][1];
-			  $normal = $normal1 + $normal;
+	<td><?php $abnormal1 = (empty($fat['อ้วนลงพุง'][1][$time])) ? 0 : $fat['อ้วนลงพุง'][1][$time]; echo number_format($fat['อ้วนลงพุง'][1][$time]) ?></td>
+	<td><?php $normal=  (empty($fat['ปกติ'][1][$time])) ? 0 : $fat['ปกติ'][1][$time];
+			  $normal = $abnormal1  + $normal;
 			  echo $ab_percent[1] =($normal==0 || $abnormal1==0) ? 0 :number_format(($abnormal1*100)/$normal,1);	?></td>
-	<td><?php echo $abnormal2 = (empty($fat['อ้วนลงพุง'][2][1])) ? 0 :number_format($fat['อ้วนลงพุง'][2][1]) ?></td>
-	<td><?php $normal=  (empty($fat['ปกติ'][2][1])) ? 0 : $fat['ปกติ'][2][1];
+	<td><?php $abnormal2 = (empty($fat['อ้วนลงพุง'][2][$time])) ? 0 :$fat['อ้วนลงพุง'][2][$time]; echo number_format($fat['อ้วนลงพุง'][2][$time]) ?></td>
+	<td><?php $normal=  (empty($fat['ปกติ'][2][$time])) ? 0 : $fat['ปกติ'][2][$time];
 			  $normal = $abnormal2 + $normal;
 			  echo $ab_percent[2] = ($normal==0 || $abnormal2==0) ? 0 :number_format(($abnormal2*100)/$normal,1);	?></td>
 	<td><?php echo number_format($abnormal1+$abnormal2);$sum[2]=$abnormal1+$abnormal2 ?></td>
@@ -206,9 +220,24 @@
 <div class="aligncenter"><button type="button" name="show" class="btn btn-info btn-large " id="btn-show" >เปิด - ปิด กราฟ</button></div>
 <div id="container_grp"  style="height:500px;margin-left:20px;margin-top:10px;margin-bottom: 20px;" class="hide"></div>
 <div id="container_diff"  style="height:500px;margin-left:20px;margin-top:10px;margin-bottom: 20px;" class="hide"></div>
+<?php } ?>
 </div>
 <script type="text/javascript">
 $(function () {
+	$('select[name=province_id]').change(function(){
+		if( $(this).val().length>0){
+			$.ajax({
+				url:'setting/getAgency',
+				data:'province_id='+$(this).val(),
+				success:function(data){
+					$('#agency').html(data);
+				}
+			});
+		}else{
+			$('#agency').html('<select name="user_id" class="search-query"><option value="">เลือกองค์กร</option></select>');
+		}
+	});
+
 	$('#btn-show').click(function(){
 			$('#container_grp').toggleClass("hide show");
 			<?php if($time=="2"): ?>
@@ -353,4 +382,4 @@ $(function () {
 });
 
 </script>
-<?php } ?>
+

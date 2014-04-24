@@ -11,15 +11,17 @@
 <div id="search" class="form-search">
 	<form action="criteria/report" class="form-search">
 		<span>ศูนย์อนามัย</span>
-		<?php echo form_dropdown('area',get_option('area_no as id','area_no','f_area_detail where area_id=2 group by area_no'),@$_GET['area'],'class="search-query"','เลือกศูนย์อนามัย'); ?>
+		<?php echo form_dropdown('area',get_option('area_no as id','area_no','f_area_detail where area_id=2 group by area_no'),@$_GET['area'],'class="search-query span1"','เลือกศูนย์อนามัย'); ?>
 		<span>จังหวัด</span>
+		<span id="province">
 		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
+		</span>
 		<span>องค์กร</span>
 		<span id="agency">
 		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร'); ?>
 		</span>
 		<span>ปีงบประมาณ </span>
-		<?php echo form_dropdown('year',get_year_option("2557"),@$_GET['year'],'class="search-query"',''); ?>
+		<?php echo form_dropdown('year',get_year_option("2557"),@$_GET['year'],'class="search-query w100"',''); ?>
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>
 </div>
@@ -62,17 +64,16 @@
 		<?php foreach($result as $item): ?>
 		<tr>
 			<td><?php echo $i; ?></td>
-			<td><?php echo $item['area_no']?></td>
-			<td><?php echo $item['province_name']?></td>
-			<td><?php echo $item['agency_name'] ?></td>
-			<td><?php echo $item['cnt']?></td>
-			<td><?php echo $user[$item['user_id']];?></td>
-			<td><?php echo $fat[$item['user_id']]?></td>
+			<td style="text-align: center"><?php echo $item['area_no']?></td>
+			<td class="title"><?php echo $item['province_name']?></td>
+			<td class="title"><?php echo $item['agency_name'] ?></td>
+			<td><?php echo (empty($item['cnt'])) ? 0 : number_format($item['cnt'])?></td>
+			<td><?php echo (empty($user[$item['user_id']])) ? 0 :number_format($user[$item['user_id']]);?></td>
+			<td><?php echo (empty($fat[$item['user_id']])) ?  0 :number_format($fat[$item['user_id']])?></td>
 			<td><?php echo (empty($user[$item['user_id']]) || empty($fat[$item['user_id']])) ? 0 : number_format(($fat[$item['user_id']]*100)/$user[$item['user_id']],1)?></td>
 			<?php for($j=1;$j<15;$j++): ?>
-			<td><?php echo $res[@$criteria[$item['user_id']][$j]] ?></td>
+			<td class="title"><?php echo $res[@$criteria[$item['user_id']][$j]] ?></td>
 			<?php endfor; ?>
-
 		</tr>
 		<?php $i++;endforeach; ?>
 	</tbody>
@@ -84,12 +85,22 @@
 <?php } ?>
 <script type="text/javascript">
 $(document).ready(function(){
-	$('select[name=province_id]').change(function(){
-		var province_id = $(this).val();
-		if(province_id.length>0){
+	$('select[name=area]').change(function(){
+		if($(this).val().length>0){
+			$.ajax({
+				url:'setting/getProvince',
+				data:'area_no='+$(this).val(),
+				success:function(data){
+					$('#province').html(data);
+				}
+			});
+		}
+	});
+	$('select[name=province_id]').live('change',function(){
+		if($(this).val().length>0){
 			$.ajax({
 				url:'setting/getAgency',
-				data:'province_id='+province_id,
+				data:'province_id='+$(this).val(),
 				success:function(data){
 					$('#agency').html(data);
 				}

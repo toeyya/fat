@@ -14,6 +14,10 @@
 		<button name="btn_search" type="submit" class="btn btn-success btn-sm">ค้นหา</button>
 	</form>
 </div>
+<div class="pull-right" style="margin-bottom: 10px;">
+	<a href="users/user_list/export<?=GetCurrentUrlGetParameter();?>" class="btn btn-default btn-sm"><i class="fa fa-arrow-down"></i>ดาวน์โหลด excel</a>
+	<a href="users/user_list/preview<?=GetCurrentUrlGetParameter();?>" class="btn btn-default btn-sm" target="_blank">พิมพ์ข้อมูล</a>
+</div>
 <table class="table table-bordered table-condensed table-striped">
 <thead>
 <tr class="success">

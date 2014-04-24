@@ -6,20 +6,18 @@ function checkNum(element){
 		}
 	});
 }
-
 function bmi_cal(weight,height)
 {
 	height = height/100;
 	height = height * height;
 	bmi = weight/(height);
 	if(bmi<=18.49){color='yellow';title='ผอม';}
-	else if(bmi==18.50 || bmi<=22.9){color='green';title='ปกติ';}
-	else if(bmi==23.00 || bmi<=24.9){color='orange';title='ท้วม';}
-	else if(bmi==25.00 || bmi<=29.9){color='red';title='อ้วน';}
+	else if(bmi>=18.50 && bmi<=22.9){color='green';title='ปกติ';}
+	else if(bmi>=23.00 && bmi<=24.9){color='orange';title='ท้วม';}
+	else if(bmi>=25.00 && bmi<=29.9){color='red';title='อ้วน';}
 	else if(bmi>=30.00){color='grey';title='อ้วนมาก';}
 	var result = new Array(bmi,title,color);
 	return result;
-
 }
 function fat_cal(waist,gender)
 {

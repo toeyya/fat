@@ -252,7 +252,7 @@ behavior: url(pie/PIE.htc);
 .btn-poll2 a{float:left;display:block;background:url(../img/btn-poll2.png) no-repeat; width:212px; height:32px; cursor:pointer;}
 .btn-poll2 a:hover{background:url(../img/btn-poll2-hot.png) no-repeat;}
 
-#menuPoll ul {position: relative;	 display: block; margin-bottom:-30px;margin-left:20px;margin-top:20px;}
+#menuPoll ul {position: relative;	 display: block;margin-left:20px;margin-top:20px;}
 #menuPoll ul li{list-style:none; display:inline-block;}
 #menuPoll ul ul {display: none; margin:0; padding:0;}
 #menuPoll ul li:hover > ul {display: block; margin-top:26px; margin-left:-5px;  padding:0; }
@@ -272,7 +272,7 @@ behavior: url(pie/PIE.htc);
 .calender{background:url(../img/calendar.png) no-repeat;width:16px; height:16px;display:inline-block;vertical-align: middle;}
 .counter{background:url(../img/users16.png) no-repeat;width:16px; height:16px;display:inline-block;vertical-align: middle;}
 .attach{margin:10px;font-size:14px;}
-.alertred{color:red;font-size:1.4em;}
+.alertred{color:red;font-size:1.4em;display:inline-block;}
 .km_content ul{list-style-image: url(../img/bullet_blue.png);margin-top:17px;}
 .km_contett ul li{display:inline-block;background:#00793E;}
 .km_content ul li a{vertical-align:top;padding:30px 0px;}
@@ -280,4 +280,5 @@ behavior: url(pie/PIE.htc);
 #download ul li{float:left;border:1px solid #C5C2C2;padding:4px;margin:10px;}
 .border-img{background:url(../img/border.png) no-repeat;width:152px;height: 118px;display:inline-block;margin-right:10px;}
 .result ol li{padding:5px;}
+
 

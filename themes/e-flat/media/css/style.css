@@ -76,4 +76,4 @@ input[type=text]{height: 28px;}
 .banner1{background:url(../img/banner1.png) no-repeat;margin-left:20px;}
 .banner2{background:url(../img/banner2.png) no-repeat;margin-top:-73px;margin-left:352px;}
 .banner3{background:url(../img/banner3.png) no-repeat;margin-top:-62px;margin-left:684px;}
-
+.loading{background:url(../../../../media/img/loadingmove.gif) no-repeat;width:78px;height:20px;}

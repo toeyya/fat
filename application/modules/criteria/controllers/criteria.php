@@ -269,9 +269,9 @@ class Criteria extends  Flat_Controller{
 			$this->template->set_layout('report');
 			$this->template->build('report/report',$data);
 		}else if($print=="export"){
-			$filename= "รายงานตามตัวชี้วัด  กพร._".date("Y-m-d_H_i_s").".xls";
 			$this->template->set_layout('report');
 			$this->template->build('report/export',$data);
+			$filename= "รายงานตามตัวชี้วัด  กพร._".date("Y-m-d_H_i_s").".xls";
 			header("Content-Disposition: attachment; filename=".$filename);
 			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
 		}else{

@@ -3,7 +3,7 @@
 function login($username=FALSE,$password=FALSE)
 {
 	$CI =& get_instance();
-	$sql="SELECT user_id,permission_id,agency_name,firstname,lastname,confirm_email,response_man FROM f_users
+	$sql="SELECT f_users.id as user_id,permission_id,agency_name,firstname,lastname,confirm_email,response_man FROM f_users
 		  LEFT JOIN f_profiles ON f_users.id = f_profiles.user_id WHERE email= ?  AND password= ? and active='1'";
 	$rs = $CI->db->GetRow($sql,array($username,$password));
 	if($rs)

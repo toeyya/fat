@@ -33,19 +33,18 @@
 		<?php foreach($result as $item): ?>
 		<tr>
 			<td><?php echo $i; ?></td>
-			<td><?php echo $item['area_no']?></td>
-			<td><?php echo $item['province_name']?></td>
-			<td><?php echo $item['agency_name'] ?></td>
-			<td><?php echo $item['cnt']?></td>
-			<td><?php echo $user[$item['user_id']];?></td>
-			<td><?php echo $fat[$item['user_id']]?></td>
+			<td style="text-align: center"><?php echo $item['area_no']?></td>
+			<td class="title"><?php echo $item['province_name']?></td>
+			<td class="title"><?php echo $item['agency_name'] ?></td>
+			<td><?php echo (empty($item['cnt'])) ? 0 : number_format($item['cnt'])?></td>
+			<td><?php echo (empty($user[$item['user_id']])) ? 0 :number_format($user[$item['user_id']]);?></td>
+			<td><?php echo (empty($fat[$item['user_id']])) ?  0 :number_format($fat[$item['user_id']])?></td>
 			<td><?php echo (empty($user[$item['user_id']]) || empty($fat[$item['user_id']])) ? 0 : number_format(($fat[$item['user_id']]*100)/$user[$item['user_id']],1)?></td>
 			<?php for($j=1;$j<15;$j++): ?>
-			<td><?php echo $res[@$criteria[$item['user_id']][$j]] ?></td>
+			<td class="title"><?php echo $res[@$criteria[$item['user_id']][$j]] ?></td>
 			<?php endfor; ?>
-
 		</tr>
-		<?php $i++;endforeach; ?>
+	   <?php $i++;endforeach; ?>
 	</tbody>
 	</table>
 <div class="aligncenter"><button name="btn_print" onclick="window.print();" class="btn btn-default btn-large">พิมพ์งาน</button></div>

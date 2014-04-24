@@ -32,21 +32,14 @@ class F_weight extends Flat_Controller
 		$data['fat_mean'] = $this->fat_mean;
 		$data['gender']  = array('1'=>'ชาย','2'=>'หญิง');
 		$data['time'] = $time;
-		$user_id = $this->session->userdata('id');
-		$data['user_id'] = $user_id;
+		$user_id =  (!empty($_GET['user_id'])) ? $_GET['user_id'] : $this->session->userdata('id');
+		$data['user_id'] =$user_id;
 		$data['permission'] = $this->session->userdata('permission_id');
-		/*$year = date('Y');$yy = $year-1;$yy_end = $year;
-		if(!empty($_GET['year'])){
-			$yy = $_GET['year']-1;
-			$yy_end = $_GET['year'];
-			$data['year_search'] = $_GET['year']+543;
-		}
-		$data['year_search'] = $year+543;
-		$wh =" and date(f_weight_detail.created) between '$yy-10-01' and '$yy_end-09-30'"; */
 		$wh = (empty($_GET['year'])) ?  " and year=".$data['year']: " and year =".$_GET['year'];
 
 		if(empty($print)){
 			$result = $this->weight->where("user_id=$user_id and time=$time $wh")->get();
+			$data['pagination'] = $this->weight->pagination();
 		}else{
 			$result = $this->weight->where("user_id=$user_id and time=$time $wh")->get('',true);
 		}
@@ -117,7 +110,6 @@ class F_weight extends Flat_Controller
 		$data = new Spreadsheet_Excel_Reader();
 		$data -> setOutputEncoding('UTF-8');
 		$data -> read($filepath);
-
 		error_reporting(E_ALL ^ E_NOTICE);
 		$index = 0;
 		for($i = 1; $i <= $data -> sheets[0]['numRows']; $i++) {
@@ -129,32 +121,43 @@ class F_weight extends Flat_Controller
 	}
 	function upload()
 	{
-		$this->db->Execute("DELETE FROM f_weight_detail WHERE year = ?  and time = ? ",array($_POST['year'],$_POST['time']));
+		$user_id =  (!empty($_POST['user_id'])) ? $_POST['user_id'] : $this->session->userdata('id');
+		$arr =  array($_POST['year'],$_POST['time'],$user_id);
+		$this->db->Execute("DELETE FROM f_weight_detail WHERE  year = ?  and time = ?  and weight_id IN(select id from f_weight where user_id = ? )",$arr);
 		$ext = pathinfo($_FILES['files']['name'], PATHINFO_EXTENSION);
 		$file_name = 'weight_'.date("Y_m_d_H_i_s").'.'.$ext;	$uploaddir = 'import_file/weight/';
 		move_uploaded_file($_FILES['files']['tmp_name'], $uploaddir.$file_name);
 		$data = $this->ReadData($uploaddir.$file_name);
 		$num = count($data);
 		unlink($uploaddir.$file_name);
-		//$_POST['YEAR'] = $_POST['year_data'];
-		for($i=1; $i<$num; $i++)
+		if($num>0)
 		{
-			$_POST['fullname'] = trim($data[$i][0]);
-			$_POST['gender']   = $data[$i][1];
-			$_POST['age']      = $data[$i][2];
-			$_POST['user_id']  = $this->session->userdata('id');
-			$_POST['created'] = date('Y-m-d H:i:s');
-			$weight_id=$this->weight->save($_POST);
-			$_POST['weight_id'] = $weight_id;
-			$_POST['weight'] = $data[$i][3];
-			$_POST['height'] = $data[$i][4];
-			$fat = fat_cal($_POST['weight'],$_POST['gender']);
-			$_POST['fat'] = $fat[0];
-			$_POST['waistline'] = $data[$i][5];
-			$bmi = bmi_cal($_POST['weight'],$_POST['height']);
-			$_POST['bmi_value'] = number_format($bmi[0],1);
-			$_POST['bmi_mean'] = $bmi[1];
-			$this->detail->save($_POST);
+			for($i=1; $i<$num; $i++)
+			{
+				$_POST['created'] = date('Y-m-d H:i:s');
+				$rs = $this->db->GetRow("select id,fullname from f_weight where fullname = ? ",trim($data[$i][0]));
+				if(empty($rs['fullname']))
+				{
+					$_POST['fullname'] = trim($data[$i][0]);
+					$_POST['gender']   = $data[$i][1];
+					$_POST['age']      = $data[$i][2];
+					$_POST['user_id']  = $user_id;
+					$weight_id=$this->weight->save($_POST);
+					$_POST['weight_id'] = $weight_id;
+				}else{
+					$_POST['weight_id'] = $rs['id'];
+				}
+					$_POST['weight'] = $data[$i][3];
+					$_POST['height'] = $data[$i][4];
+					$_POST['waistline'] = $data[$i][5];
+					$fat = fat_cal($_POST['waistline'],$data[$i][1]);
+					$_POST['fat'] = $fat[0];
+					$bmi = bmi_cal($_POST['weight'],$_POST['height']);
+					$_POST['bmi_value'] = number_format($bmi[0],1);
+					$_POST['bmi_mean'] = $bmi[1];
+					$this->detail->save($_POST);
+			}
+			set_notify('success',SAVE_DATA_COMPLETE);
 		}
 		redirect('f_weight/index/'.$_POST['time']);
 	}
@@ -165,7 +168,7 @@ class F_weight extends Flat_Controller
 	}
 	function example($time){
 		$data['time'] = $time;
-		$this->template->build('example',$data);
+		$this->template->build('example'.$time,$data);
 	}
 
 

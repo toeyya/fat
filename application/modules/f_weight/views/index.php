@@ -9,13 +9,27 @@
 <div class="contentBlank">
 <div id="search">
 	<form action="f_weight/index/<?php echo $time ?>" class="form-search">
+		<?php if($permission=="1"): ?>
+		<span>จังหวัด</span>
+		<span id="province">
+		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province','','province_name'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
+		</span>
+		<span>องค์กร</span>
+		<span id="agency">
+		<?php if(!empty($_GET['province_id'])){  ?>
+			<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users','province_id='.$_GET['province_id']),@$_GET['user_id'],'class="search-query"','เลือกองค์กร'); ?>
+		<?php }else{ ?>
+			<select name="user_id" class="search-query"><option value="">เลือกองค์กร</option></select>
+		<?php } ?>
+		</span>
+		<?php endif; ?>
 		<span>ปีงบประมาณ </span>
-		<?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="search-query"',''); ?>
+		<?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="search-query w100"',''); ?>
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>
 </div>
 <div class="right" style="margin-bottom: 10px;">
-	<a href="f_weight/example/<?php echo $time ?>" class="btn btn-default">ตัวอย่างไฟล์ excel ครั้งที่ 1</a>
+	<a href="f_weight/example/<?php echo $time ?>" class="btn btn-default">ตัวอย่างไฟล์ excel ครั้งที่  <?php echo $time; ?></a>
 	<a href="f_weight/import/<?php echo $time ?>" class="btn btn-default"><i class="fa fa-arrow-up"></i>นำเข้า  excel</a>
 	<a href="f_weight/index/<?php echo $time ?>/export<?=GetCurrentUrlGetParameter();?>"  class="btn btn-default"><i class="fa fa-arrow-down"></i>ดาวน์โหลด  excel</a>
 	<a href="f_weight/index/<?php echo $time ?>/preview<?=GetCurrentUrlGetParameter();?>" class="btn btn-default" target="_blank">พิมพ์ข้อมูล</a>
@@ -26,7 +40,7 @@
 <div id="span7">
 	<form action="f_weight/save/<?php echo $time; ?>"  method="post">
 	<div><span class="alertred">*</span><span>ปีงบประมาณ </span> <?php echo form_dropdown('year',get_year_option("2556"),$year,'',''); ?></div>
-	<table class="table table-bordered table-condensed table-striped">
+	<table class="table table-bordered table-striped table-condensed">
 		<tr class="success">
 			<th>ชื่อ-นามสกุล</th>
 			<th>เพศ</th>
@@ -42,6 +56,7 @@
 			<?php endif; ?>
 		</tr>
 		<?php
+
 		if($time=="1"){
 			$i = 0;
 			foreach($result as $key=>$item): ?>
@@ -98,7 +113,13 @@
 
 	</table>
 	<div class="alert alert-warning"><span class="label label-warning">หมายเหตุ</span> หากไม่ระบุชื่อ-นามสกุล ข้อมูลแถวดังกล่าวจะไม่ถูกบันทึก</div>
-	<div class="aligncenter"><button class="btnSave" style="width:300px;">ยืนยัน</button></div>
+
+	<div class="aligncenter"><?php echo $pagination; ?><br/>
+		<?php if($permission=="2"): ?>
+		<button class="btnSave" style="width:300px;">ยืนยัน</button>
+		<?php endif; ?>
+	</div>
+
 	</form>
 </div>
 </div>
@@ -187,5 +208,16 @@ $(document).ready(function(){
 		}
 	});
 
+	$('select[name=province_id]').change(function(){
+		if($(this).val().length>0){
+			$.ajax({
+				url:'setting/getAgency',
+				data:'province_id='+$(this).val(),
+				success:function(data){
+					$('#agency').html(data);
+				}
+			});
+		}
+	});
 });
 </script>

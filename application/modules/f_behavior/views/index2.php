@@ -1,7 +1,7 @@
 	<?php $i = 0;
 	foreach($result as $key =>$item):?>
 	<tr>
-		<td><input type="text" name="fullname[]" value="<?php echo $item['fullname'] ?>" class="noborder input-medium"></td>
+		<td class="title"><input type="text" name="fullname[]" value="<?php echo $item['fullname'] ?>" class="noborder input-medium"></td>
 		<td><?php echo form_dropdown('gender[]',$gender,@$item['gender'],'class="noborder w60"','เลือก','0'); ?></td>
 		<td><input type="text" name="age[]" value="<?php echo $item['age'] ?>"  class="age noborder" style="width:35px;" maxlength="2"></td>
 		<?php for($j=0;$j<20;$j++){

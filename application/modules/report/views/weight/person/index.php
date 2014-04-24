@@ -13,7 +13,7 @@
 		<input type="text" name="fullname" value="<?php echo @$_GET['fullname'] ?>" class="input-medium search-query">
 		<?php if($permission=="1"): ?>
 		<span>จังหวัด</span>
-		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
+		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province','','province_name'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
 		<span>องค์กร</span>
 		<span id="agency">
 			<?php
@@ -75,10 +75,11 @@
 	<th>รอบเอว</th>
 	<th>น้ำหนัก</th>
 </tr>
+<?php $j=(@$_GET['page'] > 1)? (((@$_GET['page'])* 20)-20)+1:1;?>
 <?php foreach($res1 as $key=>$item):
 	$i= $key;?>
 <tr>
-	<td><?php echo ++$i; ?></td>
+	<td><?php echo $j; ?></td>
 	<td class="title"><?php echo  $item['fullname']?></td>
 	<td><?php echo (!empty($item['gender'])) ? $gender[$item['gender']]:''?></td>
 	<td><?php echo $item['age']; ?></td>
@@ -97,9 +98,9 @@
 	<td><?php echo (!empty($res2[$key]['weight'])) ? abs($item['weight'] - $res2[$key]['weight']):'' ?></td>
 
 </tr>
-<?php endforeach; ?>
-
+<?php $j++;endforeach; ?>
 </table>
+<div class="text-center"><?php echo $pagination; ?></div>
 
 <div style="margin:0 auto;width:500px;">
 <div class="span6">

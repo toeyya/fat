@@ -7,6 +7,6 @@
 <script type="text/javascript" src="media/js/jquery.colorbox-min.js"></script>
 <script type="text/javascript">
 	Cufon.replace('h1, h3, h4, h5,.caption');
-	checkNum('.age,.weight,.height,.waistline');
+	checkNum('.age,.weight,.height,.waistline,.people_male,.people_female');
 </script>
 

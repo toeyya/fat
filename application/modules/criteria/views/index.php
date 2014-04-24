@@ -12,9 +12,9 @@
 	<form class="form-search" method="get" action="criteria/index/<?php echo $time; ?>">
 		<?php if($permission=="1"): ?>
 		<span>จังหวัด</span>
-		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
+		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province','','province_name'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
 		<span>องค์กร</span>
-		<span id="agency">
+		<span class="agency">
 		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร'); ?></span>
 		<?php endif; ?>
 		<span>ปีงบประมาณ </span>
@@ -77,11 +77,11 @@
 <div id="formGroup" style="line-height: 25px;">
     <label style="margin-left:41px;display:inline-block"><label class="alertred">*</label> ชาย  : </label>
     <?php  $male =  (empty($people['people_male'.$time])) ? '': $people['people_male'.$time]?>
-    <input type="text" name="people_male<?php echo $time ?>" value="<?php echo $male; ?>">
+    <input type="text" name="people_male<?php echo $time ?>" value="<?php echo $male; ?>" class="people_male">
     <label style="display: inline-block">คน </label><br>
     <label style="margin-left:39px;display:inline-block"><label class="alertred">*</label> หญิง :  </label>
      <?php  $female =  (empty($people['people_female'.$time])) ? '': $people['people_female'.$time]?>
-    <input type="text" name="people_female<?php echo $time ?>" value="<?php echo $female; ?>">
+    <input type="text" name="people_female<?php echo $time ?>" value="<?php echo $female; ?>" class="people_female">
     <label style="display: inline-block">คน </label><br>
     <label style="margin-left:57px;display:inline-block">รวม :  </label>
 	<span><?php  $sum = $male + $female; echo number_format($sum); ?></span>
@@ -136,8 +136,15 @@
 
 <table class="table table-bordered table-condensed">
 <thead>
-<tr><th colspan="4"><label class="alertred">*</label><span>ระบุปีงบประมาณ  <?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'',''); ?></span></th></tr>
-
+<tr><th colspan="4">
+	<?php if($permission=="1"): ?>
+		<label class="alertred">*</label><span>จังหวัด</span>
+		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province','','province_name'),@$_GET['province_id'],'','เลือกจังหวัด'); ?>
+		<label class="alertred">*</label><span>องค์กร</span>
+		<span class="agency">
+		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'','เลือกองค์กร'); ?></span>
+	<?php endif; ?>
+	<label class="alertred">*</label><span>ระบุปีงบประมาณ  <?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'',''); ?></span></th></tr>
 <tr class="success">
 	<th>เกณฑ์การประเมิน</th>
 	<th>หลักฐาน</th>
@@ -435,7 +442,7 @@
 		<label class="radio inline"><input type="radio" name="result14" value="2" <?php if(@$rs[$i]['result']=="2"){echo 'checked="checked"';} echo $disable;?>>ไม่ผ่าน</label>
 	</td>
 	<input type="hidden" name="id14" value="<?php echo @$rs[$i]['id'] ?>">
-	<input type="hidden" name="user_id" value="<?php echo @$rs[$i]['user_id'] ?>">
+
 	<input type="hidden" name="user_admin" value="<?php echo @$rs[$i]['user_admin'] ?>">
 	<?php echo (!empty($rs['user_id'])) ? form_hidden('updated',date('Y-m-d H:i:s')):form_hidden('created',date('Y-m-d H:i:s')); ?>
 </tr>
@@ -463,6 +470,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+
 	$('select[name=province_id]').change(function(){
 		var province_id = $(this).val();
 		if(province_id.length>0){
@@ -470,7 +478,7 @@ $(document).ready(function(){
 				url:'setting/getAgency',
 				data:'province_id='+province_id,
 				success:function(data){
-					$('#agency').html(data);
+					$('.agency').html(data);
 				}
 			});
 		}

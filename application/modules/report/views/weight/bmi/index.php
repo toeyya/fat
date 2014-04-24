@@ -1,16 +1,28 @@
-<div class="titleGroup2">รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง (BMI)</div>
 <div id="Breadcrumbs">
 <ol id="path-breadcrumb">
   <li><a href="home">หน้าแรก</a></li>
-  <li><a href="">ระบบเฝ้าระวังโรคอ้วนลงพุง</a></li>
+  <li><a href="f_weight/ebelly">ระบบสารสนเทศ e-flat belly</a></li>
+  <li><a href="f_weight/index/1">ระบบเฝ้าระวังโรคอ้วนลงพุง</a></li>
   <li class="active">รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง (BMI)</li>
 </ol>
 </div>
+<div class="titleGroup2">รายงานภาวะโรคอ้วนลงพุงของศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง (BMI)</div>
+
 <div class="contentBlank">
 <div id="search" class="form-search">
 	<form action="report/index/bmi" class="form-search">
+		<span>จังหวัด</span>
+		<?php echo form_dropdown('province_id',get_option('id','province_name','f_province','','province_name'),@$_GET['province_id'],'class="search-query"','เลือกจังหวัด'); ?>
 		<span>องค์กร</span>
-		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร'); ?>
+		<span id="agency">
+			<?php
+			if(!empty($_GET['user_id'])){
+				echo form_dropdown('user_id',get_option('id','agency_name','f_users','province_id = '.$_GET['province_id'],'agency_name'),@$_GET['user_id'],'class="search-query"','เลือกองค์กร');
+			}else{
+			?>
+				<select name="user_id" class="search-query"><option value="">เลือกองค์กร</option></select>
+			<?php }  ?>
+		</span>
 		<span>ครั้งที่</span>
 		<?php  $arr = array("1"=>'1',"2"=>'2');
 			echo form_dropdown('time',$arr,@$_GET['time'],'class="search-query input-mini"');
@@ -18,7 +30,9 @@
 		<button name="btn_search" class="btn btn-success">ค้นหา</button>
 	</form>
 </div>
-<?php if(!empty($_GET)){ ?>
+<?php
+$percent1= array(1=>0,2=>0);$percent2= array(1=>0,2=>0);$percent3= array(1=>0,2=>0);$percent4= array(1=>0,2=>0);$percent5= array(1=>0,2=>0);$sum_percent = array(1=>0,2=>0,3=>0,4=>0,5=>0);
+if(!empty($_GET)){ ?>
 <div class="right" style="margin-bottom: 10px;">
 	<a href="report/index/bmi/export<?=GetCurrentUrlGetParameter();?>"  class="btn btn-default"><i class="fa fa-arrow-down"></i>ดาวน์โหลด excel</a>
 	<a href="report/index/bmi/preview<?=GetCurrentUrlGetParameter();?>" class="btn btn-default" target="_blank">พิมพ์ข้อมูล</a>
@@ -115,9 +129,24 @@
 </table>
 <div class="aligncenter"><button type="button" name="show" class="btn btn-info btn-large " id="btn-show" >เปิด - ปิด กราฟ</button></div>
 <div id="container_grp"  style="height:500px;margin-left:20px;margin-top:10px;margin-bottom: 20px;" class="hide"></div>
+<?php } ?>
 </div>
 <script type="text/javascript">
 $(function () {
+	$('select[name=province_id]').change(function(){
+		if( $(this).val().length>0){
+			$.ajax({
+				url:'setting/getAgency',
+				data:'province_id='+$(this).val(),
+				success:function(data){
+					$('#agency').html(data);
+				}
+			});
+		}else{
+			$('#agency').html('<select name="user_id" class="search-query"><option value="">เลือกองค์กร</option></select>');
+		}
+	});
+
 	$('#btn-show').click(function(){
 			$('#container_grp').toggleClass("hide show");
 	});
@@ -203,6 +232,5 @@ $(function () {
         }]
     });
 });
-
 </script>
-<?php } ?>
+

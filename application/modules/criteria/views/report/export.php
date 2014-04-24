@@ -3,9 +3,9 @@
 </div>
 <table border="1" style="width:1000px">
 <thead>
-	<tr class"success">
+	<tr>
 		<th>#</th>
-		<th>ศูนย์อนามัย</th>
+		<th align="center">ศูนย์อนามัย</th>
 		<th>จังหวัด</th>
 		<th>ชื่อองค์กรต้นแบบ</th>
 		<th>จน.ประชากรทั้งหมด<br/>(คน)</th>
@@ -33,18 +33,17 @@
 		<?php foreach($result as $item): ?>
 		<tr>
 			<td><?php echo $i; ?></td>
-			<td><?php echo $item['area_no']?></td>
+			<td style="text-align: center"><?php echo $item['area_no']?></td>
 			<td><?php echo $item['province_name']?></td>
 			<td><?php echo $item['agency_name'] ?></td>
-			<td><?php echo $item['cnt']?></td>
-			<td><?php echo $user[$item['user_id']];?></td>
-			<td><?php echo $fat[$item['user_id']]?></td>
+			<td><?php echo (empty($item['cnt'])) ? 0 : number_format($item['cnt'])?></td>
+			<td><?php echo (empty($user[$item['user_id']])) ? 0 :number_format($user[$item['user_id']]);?></td>
+			<td><?php echo (empty($fat[$item['user_id']])) ?  0 :number_format($fat[$item['user_id']])?></td>
 			<td><?php echo (empty($user[$item['user_id']]) || empty($fat[$item['user_id']])) ? 0 : number_format(($fat[$item['user_id']]*100)/$user[$item['user_id']],1)?></td>
 			<?php for($j=1;$j<15;$j++): ?>
 			<td><?php echo $res[@$criteria[$item['user_id']][$j]] ?></td>
 			<?php endfor; ?>
-
 		</tr>
 		<?php $i++;endforeach; ?>
 	</tbody>
-	</table>
+</table>

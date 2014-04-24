@@ -68,7 +68,7 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="organization_type" class="col-sm-2 control-label">ประเภหน่วยงาน</label>
+			    <label for="organization_type" class="col-sm-2 control-label">ประเภทหน่วยงาน</label>
 			    <div class="col-sm-3">
 			     	<?php echo form_dropdown('agency_type',get_option('id','name','f_agency_type','','queue'),$rs['agency_type'],'class="form-control"','') ?>
 			    </div>

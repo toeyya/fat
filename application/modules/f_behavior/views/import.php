@@ -11,13 +11,13 @@
 	<form action="f_behavior/upload" enctype="multipart/form-data" class="form-horizontal" method="post">
 	<?php if($permission=="1"): ?>
 	<div class="control-group">
-	    <label class="control-label" for="inputYear">จังหวัด</label>
+	    <label class="control-label" for="inputYear"><label class="alertred">*</label>จังหวัด</label>
 	    <div class="controls">
-	    <?php echo form_dropdown('province_id',get_option('id','province_name','f_province'),@$_GET['province_id'],'c','เลือกจังหวัด'); ?>
+	    <?php echo form_dropdown('province_id',get_option('id','province_name','f_province','','province_name'),@$_GET['province_id'],'','เลือกจังหวัด'); ?>
 	    </div>
 	 </div>
 	<div class="control-group">
-	    <label class="control-label" for="inputYear">องค์กร</label>
+	    <label class="control-label" for="inputYear"><label class="alertred">*</label>องค์กร</label>
 	    <div class="controls">
 	    <span id="agency">
 			<?php
@@ -25,7 +25,7 @@
 				echo form_dropdown('user_id',get_option('id','agency_name','f_users','province_id = '.$_GET['province_id'],'agency_name'),@$_GET['user_id'],'','เลือกองค์กร');
 			}else{
 			?>
-				<select name="user_id" ><option value="">เลือกองค์กร</option></select>
+				<select name="user_id"><option value="">เลือกองค์กร</option></select>
 			<?php }  ?>
 		</span>
 	    </div>
@@ -34,7 +34,7 @@
 	<div class="control-group">
 	    <label class="control-label" for="inputYear">ปีงบประมาณ</label>
 	    <div class="controls">
-	     <?php echo form_dropdown('year',get_year_option("2556"),'class="search-query"','',''); ?>
+	     <?php echo form_dropdown('year',get_year_option("2556"),'','',''); ?>
 	    </div>
 	  </div>
 	<div class="control-group">
@@ -47,7 +47,7 @@
 	    </div>
 	  </div>
 	<div class="control-group">
-	    <label class="control-label" for="inputYear">ไฟล์ </label>
+	    <label class="control-label" for="inputYear"><label class="alertred">*</label>ไฟล์ </label>
 	    <div class="controls">
 	    	<input type="file" name="files">
 	 		<small>excel เท่านั้น</small>
@@ -61,3 +61,24 @@
 	    </div>
 	  </div>
 	</form>
+	<div style="display: none">
+		<div id="load"><img src="media/img/loadingmove.gif" width="78px" height="20px"></div>
+	</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('select[name=province_id]').change(function(){
+		if($(this).val().length>0){
+			$.ajax({
+				url:'setting/getAgency',
+				data:'province_id='+$(this).val(),
+				success:function(data){
+					$('#agency').html(data).find('select').removeClass('search-query');
+				}
+			});
+		}
+	});
+	$('[name=btn_save]').click(function(){
+		$.colorbox({href:'#load',innerWidth:'300px',innerHight:'300px',height:'300px',width:'300px'});
+	});
+});
+</script>

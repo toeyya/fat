@@ -101,15 +101,33 @@ class Users extends  Public_Controller{
 	{
 
 	}
-	function user_list()
+	function user_list($print=FALSE)
 	{	$wh="";
 		if(!empty($_GET['area'])){
 			$wh= " and f_users.province_id IN(select province_id from f_area_detail where area_id=2 and area_no=".$_GET['area'].")";
 		}
-		$data['result'] = $this->user->sort('id')->order('desc')->where("permission_id=2 ".$wh)->get();
-		$data['pagination'] = $this->user->pagination();
-		$this->template->set_layout('_document');
-		$this->template->build('user_list',$data);
+		$data['area'] =(!empty($_GET['area'])) ? $_GET['area'] : 'ทั้งหมด';
+
+		if($print){
+			$data['result'] = $this->user->sort('id')->order('desc')->where("permission_id=2 $wh")->get('',true);
+		}else{
+			$data['result'] = $this->user->sort('id')->order('desc')->where("permission_id=2 $wh")->get();
+			$data['pagination'] = $this->user->pagination();
+		}
+		if($print=="preview"){
+			$this->template->set_layout('report');
+			$this->template->build('user_list/report',$data);
+		}else if($print=="export"){
+			$filename= "ทำเนียบศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง_".date("Y-m-d_H_i_s").".xls";
+			$this->template->set_layout('report');
+			$this->template->build('user_list/export',$data);
+			header("Content-Disposition: attachment; filename=".$filename);
+			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
+		}else{
+			$this->template->set_layout('_document');
+			$this->template->build('user_list',$data);
+		}
+
 	}
 }
 

@@ -88,36 +88,36 @@
 <tr>
 
 	<td class="title"><?php echo $item['province_name']?></td>
-	<td><?php  $t1 = (empty($agency[$item['province_id']]['อปท.'])) ? 0 : $agency[$item['province_id']]['อปท.'];	echo number_format($t1); 	$type1[$key]=$t1 ?></td>
-	<td><?php  $t2 = (empty($agency[$item['province_id']]['รร']))   ? 0 : $agency[$item['province_id']]['รร'];	echo number_format($t2); 	$type2[$key] = $t2 ?></td>
-	<td><?php  $t3 = (empty($agency[$item['province_id']]['เอกชน'])) ? 0 : $agency[$item['province_id']]['เอกชน'];	echo number_format($t3);	$type3[$key] = $t3 ?></td>
-	<td><?php  $t4 = (empty($agency[$item['province_id']]['ภาครัฐ'])) ? 0 : $agency[$item['province_id']]['ภาครัฐ'];	echo number_format($t4);	$type4[$key] = $t4; ?></td>
-	<td><?php  $t5 = (empty($agency[$item['province_id']]['สธ.']))  ? 0 : $agency[$item['province_id']]['สธ.'];	echo number_format($t5);	$type5[$key] = $t5; ?></td>
-	<td><?php  $t6 = (empty($agency[$item['province_id']]['ชุมชน'])) ? 0 : $agency[$item['province_id']]['ชุมชน'];	echo number_format($t6); 	$type6[$key] = $t6; ?></td>
+	<td><?php  $t1 = (empty($agency[$item['province_id']]['อปท.'])) ? 0 : $agency[$item['province_id']]['อปท.'];echo number_format($t1);   	$type1[$key] = $t1 ?></td>
+	<td><?php  $t2 = (empty($agency[$item['province_id']]['รร']))   ? 0 : $agency[$item['province_id']]['รร'];echo number_format($t2);    	$type2[$key] = $t2 ?></td>
+	<td><?php  $t3 = (empty($agency[$item['province_id']]['เอกชน'])) ? 0 : $agency[$item['province_id']]['เอกชน'];echo number_format($t3);  	$type3[$key] = $t3 ?></td>
+	<td><?php  $t4 = (empty($agency[$item['province_id']]['ภาครัฐ'])) ? 0 : $agency[$item['province_id']]['ภาครัฐ'];echo number_format($t4);  	$type4[$key] = $t4; ?></td>
+	<td><?php  $t5 = (empty($agency[$item['province_id']]['สธ.']))  ? 0 : $agency[$item['province_id']]['สธ.'];echo number_format($t5);   	$type5[$key] = $t5; ?></td>
+	<td><?php  $t6 = (empty($agency[$item['province_id']]['ชุมชน'])) ? 0 : $agency[$item['province_id']]['ชุมชน'];echo number_format($t6); 		$type6[$key] = $t6; ?></td>
 	<td><?php $type_sum[$key] = $t1+$t2+$t3+$t4+$t5+$t6 ; echo number_format($t1+$t2+$t3+$t4+$t5+$t6); ?></td>
-	<td><?php $td8 = $total[$item['province_id']][1]; echo number_format($td8); 			$t8[] = $td8 ?></td>
-	<td><?php $td9 = $user_total[$item['province_id']][1]; echo number_format($td9);		$t9[] = $td9; ?></td>
-	<td><?php echo (empty($td8) || empty($td9)) ? 0 : number_format(($td9*100)/$td8,1) ?></td>
-	<td><?php $td11 = (empty($fat[$item['province_id']]['อ้วนลงพุง'][1])) ? 0 : $fat[$item['province_id']]['อ้วนลงพุง'][1]; echo number_format($td11); $t11[]=$td11; ?></td>
-	<td><?php echo $td12[$key] =(empty($td11) || empty($td9)) ? 0 : number_format(($td11*100)/$td9,1) ?></td>
-	<td><?php $td13[$key]  =(empty($waistline[$item['province_id']][1])) ? 0 : $waistline[$item['province_id']][1]; echo number_format($td13[$key],1); $t13[] = $td13[$key]; ?></td>
-	<td><?php $td14[$key] = (empty($weight[$item['province_id']]['sum'][1])) ? 0 : $weight[$item['province_id']]['sum'][1]; echo number_format($td14[$key]); $t14[] = $td14[$key]; ?></td>
-	<td><?php $td15[$key] = (empty($weight[$item['province_id']]['avg'][1])) ? 0 : $weight[$item['province_id']]['avg'][1]; echo number_format($td15[$key],1); $t15[] = $td15[$key]; ?></td>
-	<td><?php $td16 = (empty($sd[$item['province_id']][1])) ? 0 : $sd[$item['province_id']][1]; echo number_format($td16,1);$t16[] = $td16; ?></td>
+	<td><?php $t = $total[$item['province_id']][1]; echo number_format($t); $total1[] = $t ?></td>
+	<td><?php $u = $user_total[$item['province_id']][1]; echo number_format($u);$user_total1[] =$u; ?></td>
+	<td><?php echo (empty($t) || empty($u)) ? 0 : number_format(($u*100)/$t,1) ?></td>
+	<td><?php $f = (empty($fat[$item['province_id']]['อ้วนลงพุง'][1])) ? 0 : $fat[$item['province_id']]['อ้วนลงพุง'][1]; echo number_format($f); $f1[]=$f; ?></td>
+	<td><?php echo $f_percnet[$key] =(empty($f) || empty($u)) ? 0 : number_format(($f*100)/$u,1) ?></td>
+	<td><?php $w[$key]  =(empty($waistline[$item['province_id']][1])) ? 0 : $waistline[$item['province_id']][1]; echo number_format($w[$key],1); $waist1[] = $w[$key]; ?></td>
+	<td><?php $we1[$key] = (empty($weight[$item['province_id']]['sum'][1])) ? 0 : $weight[$item['province_id']]['sum'][1]; echo number_format($we1[$key]); $w_sum1[] = $we1[$key]; ?></td>
+	<td><?php $we_avg[$key] = (empty($weight[$item['province_id']]['avg'][1])) ? 0 : $weight[$item['province_id']]['avg'][1]; echo number_format($we_avg[$key],1); //$w_avg1[] = $we_avg[$key]; ?></td>
+	<td><?php $s = (empty($sd[$item['province_id']][1])) ? 0 : $sd[$item['province_id']][1]; echo number_format($s,1);$sd1[] = $s; ?></td>
 
-	<td><?php $td17 = $total[$item['province_id']][2]; echo number_format($td17); $t17[] = $td17 ?></td>
-	<td><?php $td18 = (empty($user_total[$item['province_id']][2])) ? 0 : $user_total[$item['province_id']][2]; echo number_format($td18);$t18[] =$td18; ?></td>
-	<td><?php echo (empty($td17) || empty($td18)) ? 0 : number_format(($td18*100)/$td17,1) ?></td>
-	<td><?php $td20 = (empty($fat[$item['province_id']]['อ้วนลงพุง'][2])) ? 0 : $fat[$item['province_id']]['อ้วนลงพุง'][2]; echo number_format($td20); $t20[]=$td20; ?></td>
-	<td><?php echo $td21[$key] = (empty($td20) || empty($td18)) ? 0 : number_format(($td20*100)/$td18,1) ?></td>
-	<td><?php $td22[$key]  =(empty($waistline[$item['province_id']][2])) ? 0 : $waistline[$item['province_id']][2]; echo number_format($td22[$key],1); $t22[] = $td22[$key]; ?></td>
-	<td><?php $td23[$key] = (empty($weight[$item['province_id']]['sum'][2])) ? 0 : $weight[$item['province_id']]['sum'][2]; echo number_format($td23[$key]); $t23[] = $td23[$key]; ?></td>
-	<td><?php $td24[$key] = (empty($weight[$item['province_id']]['avg'][2])) ? 0 : $weight[$item['province_id']]['avg'][2]; echo number_format($td24[$key],1); $t24[] = $td24[$key]; ?></td>
-	<td><?php $td25 = (empty($sd[$item['province_id']][2])) ? 0 : $sd[$item['province_id']][2]; echo number_format($td25,1);$t25[] = $td25; ?></td>
-	<td><?php echo $diff1[$key] = abs($td13[$key]-$td22[$key]); ?></td>
-	<td><?php echo $diff2[$key] = abs($td12[$key] - $td21[$key]) ?></td>
-	<td><?php echo $diff3[$key] = number_format(abs($td15[$key] - $td24[$key]),1);?></td>
-	<td><?php //echo $diff4[$key] = abs($we_avg[$key] - $we_avg2[$key]);?></td>
+	<td><?php $t = $total[$item['province_id']][2]; echo number_format($t); $total2[] = $t ?></td>
+	<td><?php $u = (empty($user_total[$item['province_id']][2])) ? 0 : $user_total[$item['province_id']][2]; echo number_format($u);$user_total2[] =$u; ?></td>
+	<td><?php echo (empty($t) || empty($u)) ? 0 : number_format(($u*100)/$t,1) ?></td>
+	<td><?php $f = (empty($fat[$item['province_id']]['อ้วนลงพุง'][2])) ? 0 : $fat[$item['province_id']]['อ้วนลงพุง'][2]; echo number_format($f); $f2[]=$f; ?></td>
+	<td><?php echo $f2_percent[$key] = (empty($f) || empty($u)) ? 0 : number_format(($f*100)/$u,1) ?></td>
+	<td><?php $w2[$key]  =(empty($waistline[$item['province_id']][2])) ? 0 : $waistline[$item['province_id']][2]; echo number_format($w2[$key],1); $waist2[] = $w2[$key]; ?></td>
+	<td><?php $we2[$key] = (empty($weight[$item['province_id']]['sum'][2])) ? 0 : $weight[$item['province_id']]['sum'][2]; echo number_format($we2[$key]); $w_sum2[] = $we2[$key]; ?></td>
+	<td><?php $we_avg2[$key] = (empty($weight[$item['province_id']]['avg'][2])) ? 0 : $weight[$item['province_id']]['avg'][2]; echo number_format($we_avg2[$key],1); //$w_avg2[] = $we_avg2[$key]; ?></td>
+	<td><?php $s = (empty($sd[$item['province_id']][2])) ? 0 : $sd[$item['province_id']][2]; echo number_format($s,1);$sd2[] = $s; ?></td>
+	<td><?php echo $diff1[$key] = abs($w[$key]-$w2[$key]); ?></td>
+	<td><?php echo $diff2[$key] = abs($f_percnet[$key] - $f2_percent[$key]) ?></td>
+	<td><?php echo $diff3[$key] = abs($we_avg[$key] - $we_avg2[$key]);?></td>
+	<td><?php echo $diff4[$key] = abs($we_avg[$key] - $we_avg2[$key]);?></td>
 
 </tr>
 <?php $i++; endforeach; ?>
@@ -129,24 +129,24 @@
 	<td><?php echo (empty($type5)) ? 0 :number_format(array_sum($type5)); ?></td>
 	<td><?php echo (empty($type6)) ? 0 :number_format(array_sum($type6)); ?></td>
 	<td><?php echo (empty($type_sum)) ? 0 :number_format(array_sum($type_sum));?></td>
-	<td><?php $sum8 =(empty($t8)) ? 0 :array_sum($t8); 	 echo number_format(array_sum($t8));?></td>
-	<td><?php $sum9 =(empty($t9)) ? 0 :array_sum($t9); 	echo number_format(array_sum($t9))?></td>
-	<td><?php echo (empty($sum8) || empty($sum9)) ? 0.0 : number_format(($sum9*100)/$sum8,1);?></td>
-	<td><?php echo $sum11 = (empty($t11)) ? 0 :number_format(array_sum($t11));?></td>
-	<td><?php echo (empty($sum9) || empty($sum11)) ? 0.0 : number_format(($sum11*100)/$sum9,1);?></td>
-	<td><?php echo (empty($t13)) ? 0 :number_format(array_sum($t13),1);?></td>
-	<td><?php echo (empty($t14)) ? 0 :number_format(array_sum($t14));?></td>
-	<td><?php echo (empty($t15)) ? 0 :number_format(array_sum($t15),1) ?></td>
-	<td><?php echo (empty($t16)) ? 0 :number_format(array_sum($t16),1);?></td>
-	<td><?php $sum17 = (empty($t17)) ? 0 :array_sum($t17); 		    echo number_format(array_sum($t17));?></td>
-	<td><?php $sum18 = (empty($t18)) ? 0 :array_sum($t18); 			echo number_format(array_sum($t18))?></td>
-	<td><?php echo (empty($sum17) || empty($sum18)) ? 0.0 :number_format(($sum18*100)/$sum17,1);?></td>
-	<td><?php $sum20 = (empty($t20)) ? 0 :number_format(array_sum($t20)); echo number_format(array_sum($t20));?></td>
-	<td><?php echo (empty($sum20) || empty($sum18))? 0.0 :number_format(($sum20*100)/$sum18,1);?></td>
-	<td><?php echo (empty($t22)) ? 0 :number_format(array_sum($t22),1);?></td>
-	<td><?php echo (empty($t23)) ? 0 :number_format(array_sum($t23));?></td>
-	<td><?php echo (empty($t24)) ? 0 :number_format(array_sum($t24),1) ?></td>
-	<td><?php echo (empty($t25)) ? 0 :number_format(array_sum($t25),1);?></td>
+	<td><?php $sum1 =(empty($total1)) ? 0 :array_sum($total1); 			 echo number_format(array_sum($total1));?></td>
+	<td><?php $sum2 =(empty($user_total1)) ? 0 :array_sum($user_total1); echo number_format(array_sum($user_total1))?></td>
+	<td><?php echo (empty($sum1) || empty($sum2)) ? 0.0 : number_format(($sum2*100)/$sum1,1);?></td>
+	<td><?php echo $sum3 = (empty($f1)) ? 0 :number_format(array_sum($f1));?></td>
+	<td><?php echo (empty($sum2) || empty($sum3)) ? 0.0 : number_format(($sum3*100)/$sum2,1);?></td>
+	<td><?php echo (empty($waist1)) ? 0 :number_format(array_sum($waist1),1);?></td>
+	<td><?php echo (empty($w_sum1)) ? 0 :number_format(array_sum($w_sum1));?></td>
+	<td><?php echo (empty($w_avg1)) ? 0 :number_format(array_sum($w_avg1),1) ?></td>
+	<td><?php echo (empty($sd1)) ? 0 :number_format(array_sum($sd1),1);?></td>
+	<td><?php $sum4 = (empty($total2)) ? 0 :array_sum($total2); 		  echo number_format(array_sum($total2));?></td>
+	<td><?php $sum5 = (empty($user_total2)) ? 0 :array_sum($user_total2); echo number_format(array_sum($user_total2))?></td>
+	<td><?php echo (empty($sum4) || empty($sum5)) ? 0.0 :number_format(($sum5*100)/$sum4,1);?></td>
+	<td><?php $sum6 = (empty($f)) ? 0 :number_format(array_sum($f2)); echo number_format(array_sum($f2));?></td>
+	<td><?php echo (empty($sum5) || empty($sum6))? 0.0 :number_format(($sum6*100)/$sum5,1);?></td>
+	<td><?php echo (empty($waist2)) ? 0 :number_format(array_sum($waist2),1);?></td>
+	<td><?php echo (empty($w_sum2)) ? 0 :number_format(array_sum($w_sum2));?></td>
+	<td><?php echo (empty($w_avg2)) ? 0 :number_format(array_sum($w_avg2),1) ?></td>
+	<td><?php echo (empty($sd2)) ? 0 :number_format(array_sum($sd2),1);?></td>
 	<td><?php echo (empty($diff1)) ? 0 :number_format(array_sum($diff1),1);?></td>
 	<td><?php echo (empty($diff2)) ? 0 :number_format(array_sum($diff2),1);?></td>
 	<td><?php echo (empty($diff3)) ? 0 :number_format(array_sum($diff3),1) ?></td>

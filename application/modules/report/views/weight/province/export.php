@@ -69,15 +69,15 @@
 	<td><?php echo $b_percent2[$key] = (empty($weight[$item['user_id']]['avg'][2])) ? 0 :number_format($weight[$item['user_id']]['avg'][2],1)?></td>
 	<td><?php echo $sd2[$key]=(empty($sd[$item['user_id']][2])) ? 0 :number_format($sd[$item['user_id']][2],1)?></td>
 
-	<td><?php echo $fat_avg[] =abs($f[$key]-$f2[$key]);?></td>
+	<td><?php echo $fat_avg[] =abs($w[$key]-$w2[$key]);?></td>
 	<td><?php echo ($f_percent-$f_percent2==0) ? 0 :abs($f_percent-$f_percent2)?></td>
-	<td><?php echo $bmi_avg[] = number_format(abs($b[$key]-$b2[$key]),1);?></td>
-	<td><?php echo ($b_percent[$key]-$b_percent2[$key]==0) ? 0 :number_format(abs($b_percent[$key]-$b_percent2[$key]),1)?></td>
+	<td><?php echo $bmi_avg[] = abs($b_percent[$key]-$b_percent2[$key]);?></td>
+	<td><?php //echo ($b_percent[$key]-$b_percent2[$key]==0) ? 0 :number_format(abs($b_percent[$key]-$b_percent2[$key]),1)?></td>
 </tr>
 <?php $i++; endforeach; ?>
 <tr><td colspan="3">รวม</td>
-	<td><?php echo $sum1 = (empty($user_total)) ? 0 : number_format(array_sum($user_total)); ?></td>
-	<td><?php echo $sum2 = (empty($total)) ? 0 : number_format(array_sum($total)) ?></td>
+	<td><?php $sum1 = (empty($user_total)) ? 0 : array_sum($user_total); echo number_format(array_sum($user_total)); ?></td>
+	<td><?php $sum2 = (empty($total)) ? 0 : array_sum($total); echo number_format(array_sum($total))  ?></td>
 	<td><?php echo (empty($sum1) || empty($sum2)) ? 0.0: number_format(($sum2*100)/$sum1,1); ?></td>
 	<td><?php echo $sum3 = (empty($f)) ? 0 :number_format(array_sum($f));?></td>
 	<td><?php echo $per_f1= (empty($sum2) && empty($sum3)) ? 0.0 :number_format(($sum3*100)/$sum2,1); ?></td>
@@ -85,8 +85,9 @@
 	<td><?php echo (empty($b))? 0 : number_format(array_sum($b)) ?></td>
 	<td><?php echo $diff1 = (empty($b_percent))? 0.0 :number_format(array_sum($b_percent),1) ?></td>
 	<td><?php echo (empty($sd1))? 0.0 :number_format(array_sum($sd1),1) ?></td>
-	<td><?php echo $sum4 = (empty($user_total2)) ? 0: number_format(array_sum($user_total2)) ?></td>
-	<td><?php echo $sum5 = (empty($total2))? 0 :number_format(array_sum($total2)) ?></td>
+
+	<td><?php $sum4 = (empty($user_total2)) ? 0: array_sum($user_total2); echo number_format(array_sum($user_total2)) ?></td>
+	<td><?php $sum5 = (empty($total2))? 0 :array_sum($total2); echo number_format(array_sum($total2)); ?></td>
 	<td><?php echo (empty($sum5) || empty($sum4)) ? 0.0: number_format(($sum5*100)/$sum4,1); ?></td>
 	<td><?php echo $sum6 = (empty($f2)) ? 0 :number_format(array_sum($f2)) ?></td>
 	<td><?php echo $per_f2= (empty($sum5) || empty($sum6)) ? 0.0 :number_format(($sum6*100)/$sum5,1); ?></td>
@@ -98,6 +99,7 @@
 	<td><?php echo (empty($per_f1) && empty($per_f2)) ? 0.0 :number_format(abs($per_f1 - $per_f2),1); ?></td>
 	<td><?php echo (empty($diff1) && empty($diff2))? 0.0 :number_format(abs($diff1-$diff2),1);?></td>
 	<td></td>
+
 </tr>
 </table>
 <div style="text-align: right">ออกรายงาน ณ วันที่ <?php echo db_to_th(date('Y-m-d')) ?></div>

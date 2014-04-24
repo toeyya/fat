@@ -10,23 +10,16 @@ class F_behavior extends Flat_Controller
 	function index($time,$print=FALSE)
 	{//$this->db->debug=true;
 		$data['time'] = $time;
-		$user_id = $this->session->userdata('id');
+		$user_id =  (!empty($_GET['user_id'])) ? $_GET['user_id'] : $this->session->userdata('id');
 		$data['user_id'] = $user_id;
 		$data['year'] = (empty($_GET['year'])) ?  date('Y')+543 :$_GET['year'];
 		$data['gender']  = array('1'=>'ชาย','2'=>'หญิง');
 		$data['permission'] = $this->session->userdata('permission_id');
 		$wh ="";
-		/*$year = date('Y');$yy = $year-1;$yy_end = $year;
-		if(!empty($_GET['year'])){
-			$yy = $_GET['year']-1;
-			$yy_end = $_GET['year'];
-			$data['year_search'] = $_GET['year']+543;
-		}
-		$data['year_search'] = $year+543;
-		$wh =" and date(f_behavior_detail.created) between '$yy-10-01' and '$yy_end-09-30'";*/
 		$wh = (empty($_GET['year'])) ?  " and year=".$data['year']: " and year =".$_GET['year'];
 		if(empty($print)){
 			$result = $this->behavior->where("user_id = $user_id and time= $time $wh")->get();
+			$data['pagination'] = $this->behavior->pagination();
 		}else{
 			$result = $this->behavior->where("user_id = $user_id and time= $time $wh")->get('',true);
 		}
@@ -110,39 +103,55 @@ class F_behavior extends Flat_Controller
 	}
 	function upload()
 	{
-		$this->db->Execute("DELETE FROM f_behavior_detail WHERE year = ?  and time = ? ",array($_POST['year'],$_POST['time']));
+		$user_id =  (!empty($_POST['user_id'])) ? $_POST['user_id'] : $this->session->userdata('id');
+		$arr =  array($_POST['year'],$_POST['time'],$user_id);
+		$this->db->Execute("DELETE FROM f_behavior_detail WHERE  year = ?  and time = ?  and behaivor_id IN(select id from f_behavior where user_id = ? )",$arr);
 		$ext = pathinfo($_FILES['files']['name'], PATHINFO_EXTENSION);
 		$file_name = 'behavior_'.date("Y_m_d_H_i_s").'.'.$ext;	$uploaddir = 'import_file/behavior/';
 		move_uploaded_file($_FILES['files']['tmp_name'], $uploaddir.$file_name);
 		$data = $this->ReadData($uploaddir.$file_name);
 		$num = count($data);
 		unlink($uploaddir.$file_name);
-		for($i=1; $i<$num; $i++)
+		if($num>0)
 		{
-			$_POST['fullname'] = trim($data[$i][0]);
-			$_POST['gender']   = $data[$i][1];
-			$_POST['age']      = $data[$i][2];
-			$_POST['user_id']  = $this->session->userdata('id');
-			$_POST['created'] = date('Y-m-d H:i:s');
-			$id=$this->behavior->save($_POST);
-			$_POST['behavior_id'] = $id;
-			$k=3;
-			for($j=1;$j<21;$j++){
-				$_POST['score_'.$j] = $data[$i][$k];
-				$k++;
+			for($i=1; $i<$num; $i++)
+			{
+				$_POST['created'] = date('Y-m-d H:i:s');
+				$rs = $this->db->GetRow("select id,fullname from f_weight where fullname = ? ",trim($data[$i][0]));
+				if(empty($rs['fullname']))
+				{
+					$_POST['fullname'] = trim($data[$i][0]);
+					$_POST['gender']   = $data[$i][1];
+					$_POST['age']      = $data[$i][2];
+					$_POST['user_id']  = $user_id;
+
+					$id=$this->behavior->save($_POST);
+					$_POST['behavior_id'] = $id;
+				}else{
+					$_POST['behavior_id'] = $rs['id'];
+				}
+					$k=3;
+					for($j=1;$j<21;$j++){
+						$_POST['score_'.$j] = $data[$i][$k];
+						$k++;
+					}
+					$this->detail->save($_POST);
+
 			}
-			$this->detail->save($_POST);
+			set_notify('success',SAVE_DATA_COMPLETE);
 		}
 		redirect('f_behavior/index/'.$_POST['time']);
 	}
 	function import($time){
 		$data['time'] = $time;
 		$data['permission'] = $this->session->userdata('permission_id');
+		$this->template->set_layout('e-belly');
 		$this->template->build('import',$data);
 	}
 	function example($time){
 		$data['time'] = $time;
-		$this->template->build('example',$data);
+		$this->template->set_layout('e-belly');
+		$this->template->build('example'.$time,$data);
 	}
 }
 ?>
