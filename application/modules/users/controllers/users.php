@@ -64,21 +64,18 @@ class Users extends  Public_Controller{
 	}
     function check_captcha()
     {
-        if($this->session->userdata('captcha')==$_GET['captcha'])
-        {
-            echo "true";
-        }
-        else
-        {
-            echo "false";
-        }
+    	echo ( $_SESSION['captcha'] ==$_GET['captcha']) ? "true" : "false";
     }
+	function check_email()
+	{
+		$email = $this->user->get_one("email",$_GET['email']);
+		echo ($email) ? "true" :"false";
+	}
 	function profile($id)
 	{
 		$data['user'] = $this->user->get_row("f_users.id",$id);
 		$data['profile'] = "บันทึก";
 		$this->template->build('profile',$data);
-
 	}
 	function forgetPassword(){
 		$this->template->build('forgetpassword');
@@ -97,10 +94,7 @@ class Users extends  Public_Controller{
 		 }
 		redirect('users/forgetPassword');
 	}
-	function checkEmail()
-	{
 
-	}
 	function user_list($print=FALSE)
 	{	$wh="";
 		if(!empty($_GET['area'])){

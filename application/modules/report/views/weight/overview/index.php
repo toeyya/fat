@@ -108,10 +108,11 @@
 	<td><?php $td23[$key] = (empty($weight[$item['area_no']]['sum'][2])) ? 0 : $weight[$item['area_no']]['sum'][2]; echo number_format($td23[$key]); $t23[] = $td23[$key]; ?></td>
 	<td><?php $td24[$key] = (empty($weight[$item['area_no']]['avg'][2])) ? 0 : $weight[$item['area_no']]['avg'][2]; echo number_format($td24[$key],1); $t24[] = $td24[$key]; ?></td>
 	<td><?php $td25 = (empty($sd[$item['area_no']][2])) ? 0 : $sd[$item['area_no']][2]; echo number_format($td25,1);$t25[] = $td25; ?></td>
-	<td><?php echo $diff1[$key] = number_format(abs($td13[$key]-$td22[$key]),1); ?></td>
-	<td><?php echo $diff2[$key] = number_format(abs($td12[$key] - $td21[$key]),1) ?></td>
-	<td><?php echo $diff3[$key] = number_format(abs($td15[$key] - $td24[$key]),1);?></td>
-	<td><?php //echo $diff4[$key] = number_format(abs($we_avg[$key] - $we_avg2[$key]),1);?></td>
+	<!--เปรียบเทียบ 1-2 -->
+	<td><?php echo (empty($td13[$key]) && empty($td22[$key])) ? 0 :number_format(abs($td13[$key]-$td22[$key]),1); ?></td>
+	<td><?php echo number_format((abs($td13[$key] - $td22[$key])*100)/$td13[$key],1); ?></td>
+	<td><?php echo (empty($td15[$key]) && empty($td24[$key])) ? 0.0 :number_format(abs($td15[$key] - $td24[$key]),1);?></td>
+	<td><?php echo number_format((abs($td15[$key] - $td24[$key])*100)/$td15[$key],1);?></td>
 </tr>
 <?php endforeach; ?>
 <tr><td colspan="2">รวม</td>
@@ -127,23 +128,24 @@
 	<td><?php echo (empty($sum8) || empty($sum9))? 0.0 :number_format(($sum9*100)/$sum8,1);?></td>
 	<td><?php $sum11 = (empty($t11)) ? 0 :array_sum($t11); echo number_format(array_sum($t11));?></td>
 	<td><?php echo (empty($sum11) || empty($sum9)) ? 0.0 :number_format(($sum11*100/$sum9),1);?></td>
-	<td><?php echo (empty($t13)) ? 0.0 : number_format(array_sum($t13),1);?></td>
+	<td><?php $sum13 = (empty($t13)) ? 0.0 : array_sum($t13); echo number_format($sum13,1);?></td>
 	<td><?php echo (empty($t14)) ? 0 : number_format(array_sum($t14)) ?></td>
-	<td><?php echo (empty($t15)) ? 0.0 : number_format(array_sum($t15),1);?></td>
+	<td><?php $sum15= (empty($t15)) ? 0.0 :array_sum($t15); echo number_format($sum15,1);?></td>
 	<td><?php echo (empty($t16)) ? 0.0 : number_format(array_sum($t16),1);?></td>
 	<td><?php $sum17 = (empty($t17)) ? 0 :array_sum($t17); echo number_format(array_sum($t17))?></td>
 	<td><?php $sum18 = (empty($t18)) ? 0 :array_sum($t18); echo number_format(array_sum($t18));?></td>
 	<td><?php echo (empty($sum17) || empty($sum18)) ? 0.0 :number_format(($sum18*100)/$sum17,1); ?></td>
 	<td><?php $sum20 = (empty($t20)) ? 0 : array_sum($t20); echo number_format(array_sum($t20));?></td>
 	<td><?php echo (empty($sum20) || empty($sum18)) ? 0 :number_format(($sum20*100)/$sum18,1); ?></td>
-	<td><?php echo (empty($t22)) ? 0.0 :number_format(array_sum($t22),1);?></td>
+	<td><?php $sum22 = (empty($t22)) ? 0.0 :array_sum($t22); echo number_format($sum22,1);?></td>
 	<td><?php echo (empty($t23)) ? 0 :number_format(array_sum($t23));?></td>
-	<td><?php echo (empty($t24)) ? 0.0 :number_format(array_sum($t24),1) ?></td>
+	<td><?php $sum24 = (empty($t24)) ? 0.0 :array_sum($t24); echo number_format($sum24,1); ?></td>
 	<td><?php echo (empty($t25))   ? 0.0 :number_format(array_sum($t25),1);?></td>
-	<td><?php echo (empty($diff1)) ? 0.0 :number_format(array_sum($diff1),1);?></td>
-	<td><?php echo (empty($diff2)) ? 0.0 :number_format(array_sum($diff2),1);?></td>
-	<td><?php echo (empty($diff3)) ? 0.0 :number_format(array_sum($diff3),1) ?></td>
-	<td><?php echo (empty($diff4)) ? 0.0 :number_format(array_sum($diff4),1);?></td>
+	<!--เปรียบเทียบ 1-2 -->
+	<td><?php echo (empty($sum13) && empty($sum22)) ? 0: number_format(abs($sum13-$sum22),1); ?></td>
+	<td><?php echo number_format((abs($sum13-$sum22)*100)/$sum13,1);?></td>
+	<td><?php echo (empty($sum15) && empty($sum24)) ? 0 :number_format(abs($sum15-$sum24),1) ?></td>
+	<td><?php echo number_format((abs($sum15-$sum24)*100)/$sum15,1);?></td>
 </tr>
 </table>
 <p class="text-right">ออกรายงาน ณ วันที่ <?php echo db_to_th(date('Y-m-d')); ?></p>

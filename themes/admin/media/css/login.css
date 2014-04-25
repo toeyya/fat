@@ -82,3 +82,5 @@
     text-align: left;
   }
 }
+.confirm{background:url(../images/crossmark.png)  no-repeat;width:16px;height:16px;margin-top:10px;}
+.confirm1{background:url(../images/checkmark.png) no-repeat;width:16px;height:16px;margin-top:10px;}

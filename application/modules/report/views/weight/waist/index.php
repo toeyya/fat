@@ -174,11 +174,11 @@ if(!empty($_GET)){ ?>
 <tbody>
 <tr>
 	<td>ปกติ</td>
-	<td><?php $normal1 = (empty($fat['ปกติ'][1][$time])) ? 0 : $fat['ปกติ'][1][$time]; echo number_format($fat['ปกติ'][1][$time]) ?></td>
+	<td><?php $normal1 = (empty($fat['ปกติ'][1][$time])) ? 0 : $fat['ปกติ'][1][$time]; echo number_format(@$fat['ปกติ'][1][$time]) ?></td>
 	<td><?php $normal=  (empty($fat['อ้วนลงพุง'][1][$time])) ? 0 : $fat['อ้วนลงพุง'][1][$time];
 			  $normal = $normal1 + $normal;
 			  echo $n_percent[1]=($normal==0 && $normal1==0) ? 0 :number_format(($normal1*100)/$normal,1); 	?></td>
-	<td><?php $normal2 = (empty($fat['ปกติ'][2][$time])) ? 0 : $fat['ปกติ'][2][$time]; echo number_format($fat['ปกติ'][2][$time]) ?></td>
+	<td><?php $normal2 = (empty($fat['ปกติ'][2][$time])) ? 0 : $fat['ปกติ'][2][$time]; echo number_format(@$fat['ปกติ'][2][$time]) ?></td>
 	<td><?php $normal=  (empty($fat['อ้วนลงพุง'][2][$time])) ? 0 : $fat['อ้วนลงพุง'][2][$time];
 			  $normal = $normal2 + $normal;
 			  echo $n_percent[2]= ($normal==0 && $normal2==0) ? 0 :number_format(($normal2*100)/$normal,1);	?></td>
@@ -191,11 +191,11 @@ if(!empty($_GET)){ ?>
 </tr>
 <tr>
 	<td>อ้วนลงพุง</td>
-	<td><?php $abnormal1 = (empty($fat['อ้วนลงพุง'][1][$time])) ? 0 : $fat['อ้วนลงพุง'][1][$time]; echo number_format($fat['อ้วนลงพุง'][1][$time]) ?></td>
+	<td><?php $abnormal1 = (empty($fat['อ้วนลงพุง'][1][$time])) ? 0 : $fat['อ้วนลงพุง'][1][$time]; echo number_format(@$fat['อ้วนลงพุง'][1][$time]) ?></td>
 	<td><?php $normal=  (empty($fat['ปกติ'][1][$time])) ? 0 : $fat['ปกติ'][1][$time];
 			  $normal = $abnormal1  + $normal;
 			  echo $ab_percent[1] =($normal==0 || $abnormal1==0) ? 0 :number_format(($abnormal1*100)/$normal,1);	?></td>
-	<td><?php $abnormal2 = (empty($fat['อ้วนลงพุง'][2][$time])) ? 0 :$fat['อ้วนลงพุง'][2][$time]; echo number_format($fat['อ้วนลงพุง'][2][$time]) ?></td>
+	<td><?php $abnormal2 = (empty($fat['อ้วนลงพุง'][2][$time])) ? 0 :$fat['อ้วนลงพุง'][2][$time]; echo number_format(@$fat['อ้วนลงพุง'][2][$time]) ?></td>
 	<td><?php $normal=  (empty($fat['ปกติ'][2][$time])) ? 0 : $fat['ปกติ'][2][$time];
 			  $normal = $abnormal2 + $normal;
 			  echo $ab_percent[2] = ($normal==0 || $abnormal2==0) ? 0 :number_format(($abnormal2*100)/$normal,1);	?></td>

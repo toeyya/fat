@@ -20,7 +20,7 @@
 			<?php }else{ ?>
 	 		<ul class="unstyled">
 				 <?php foreach($km as $k):?>
-				 	<li><?php echo $k['title'] ?></li>
+				 	<li><a href="<?php echo (empty($k['link']))? 'km/view/'.$k['type_id'].'/'.$k['id']:$k['link'] ?>"><?php echo $k['title'] ?></a></li>
 				 <?php endforeach; ?>
 			</ul>
 			<?php } ?>

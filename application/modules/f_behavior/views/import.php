@@ -61,8 +61,8 @@
 	    </div>
 	  </div>
 	</form>
-	<div style="display: none">
-		<div id="load"><img src="media/img/loadingmove.gif" width="78px" height="20px"></div>
+	<div style="display: none;">
+		<div id="load" style="padding-left:85px;padding-top:40px;"><img src="media/img/loadingmove.gif" width="78px" height="20px"></div>
 	</div>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -78,7 +78,7 @@ $(document).ready(function(){
 		}
 	});
 	$('[name=btn_save]').click(function(){
-		$.colorbox({href:'#load',innerWidth:'300px',innerHight:'300px',height:'300px',width:'300px'});
+		$.colorbox({href:'#load',inline:true,innerWidth:'150px',innerHight:'150px',height:'150px',width:'300px',closeButton:false});
 	});
 });
 </script>

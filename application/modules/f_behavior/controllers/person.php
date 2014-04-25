@@ -10,7 +10,7 @@ class Person extends Flat_Controller
 		$this->load->model('f_weight/f_weight_detail_model','wdetail');
 		$this->load->model('users/profile_model','profile');
 	}
-	function index(){
+	function index($print=FALSE){
 		$data['title'] = title();
 		$user_id = $this->session->userdata('id');
 		//$user_id = 2665;
@@ -19,9 +19,16 @@ class Person extends Flat_Controller
 		//var_dump($data['behavior']);
 		$profile = $this->profile->get_row("user_id",$user_id);
 		$data['gender'] = $profile['gender'];
-		$this->template->set_layout('blank');
-		$this->template->build('person/index',$data);
+		if($print=="preview"){
+			$this->template->set_layout('report');
+			$this->template->build('person/report',$data);
+		}else{
+			$this->template->set_layout('blank');
+			$this->template->build('person/index',$data);
+		}
+
 	}
+
 	function save()
 	{ //$this->db->debug = true;
 		if($_POST)

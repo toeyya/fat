@@ -128,8 +128,18 @@
 			      <input type="text" class="form-control" id="fax"  name="fax" placeholder="เบอร์แฟกซ์" value="<?php echo $rs['fax'] ?>">
 			    </div>
 			  </div>
-
-
+			  <div class="form-group">
+			    <label  class="col-sm-2 control-label">สถานะการยืนยันอีเมล์</label>
+			    <div class="col-sm-3">
+					<div class="confirm<?php echo $rs['confirm_email'] ?>"></div>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="fax" class="col-sm-2 control-label">ระบบยืนยันอีเมล์ให้อัตโนมัติ</label>
+			    <div class="col-sm-3">
+					<input type="checkbox" name="confirm_email" value="1" <?php if($rs['confirm_email']=="1"){echo 'checked="checked"';} ?>>
+			    </div>
+			  </div>
 			  <div class="form-group">
 			    <div class="col-sm-offset-2 col-sm-10">
 			      <button type="submit" class="btn btn-primary btn-sm">บันทึก</button>

@@ -24,9 +24,11 @@
 		        <li class="topmenuPerson7"><a href="#"></a>
 		        	<ul class="sub-topmenuPerson7">
 		                <li><a href="report/index/person/1">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายบุคคล)</a></li>
+		                <?php if($this->session->userdata('permission_id')=="1"): ?>
 		                <li><a href="report/index/province">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายองค์กร)</a></li>
 		                <li><a href="report/index/area">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายจังหวัด)</a></li>
 		                <li><a href="report/index/overview">รายงานการบันทึกรอบเอว น้ำหนัก ส่วนสูง (รายเขต)</a></li>
+		                <?php endif; ?>
 		                <li><a href="report/index/height">รายงานภาวะโรคอ้วนลงพุง (Ht/2)</a></li>
 		                <li><a href="report/index/bmi">รายงานภาวะโรคอ้วนลงพุง (BMI)</a></li>
 		                <li><a href="report/index/waist">รายงานภาวะโรคอ้วนลงพุง (รอบเอว)</a></li>

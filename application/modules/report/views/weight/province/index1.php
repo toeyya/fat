@@ -34,7 +34,7 @@
 <div class="clearfix"></div>
 <div id="Rform">
 	<h1>โครงกร ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h1>
-	<h3>รายงานสรุปผลการประเมินรอบเอวในศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง</h3>
+	<h3>รายงานแบบฟอร์มการบันทึก รอบเอว น้ำหนัก ส่วนสูง (รายองค์กร)</h3>
 	<div style="text-align: center">
 	<label class="caption">ปีงบประมาณ</label> <?php echo $yearth; ?>
 	<label class="caption">จังหวัด</label> <?php echo $province ?><label class="caption">ศูนย์อนามัยที่</label> <?php echo $hpc; ?>

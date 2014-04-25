@@ -39,7 +39,7 @@
 			<li><a href="km/admin/type/index"><i class="fa fa-align-justify"></i><span class="hidden-sm"> KM</span></a></li>
 			<li><a href="content/admin/content/index/10"><i class="fa fa-calendar"></i><span class="hidden-sm"> M&E</span></a></li>
 			<li><a href="webboard/admin"><i class="fa fa-comment-o"></i><span class="hidden-sm"> เว็บบอร์ด</span></a></li>
-			<li><a href="content/admin/content/index/2"><i class="fa  fa-folder-open"></i><span class="hidden-sm">โลโก้ ท้ายกระดาษ</span></a></li>
+			<!--<li><a href="content/admin/content/index/2"><i class="fa  fa-folder-open"></i><span class="hidden-sm">โลโก้ ท้ายกระดาษ</span></a></li>-->
 			<li><a href="content/admin/content/index/5"><i class="fa  fa-info-circle"></i><span class="hidden-sm">ติดต่อเรา</span></a></li>
 		</ul>
 	</div><!--/.well -->

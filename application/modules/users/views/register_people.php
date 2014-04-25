@@ -1,47 +1,47 @@
   	<div class="span9" style="margin-top:20px;">
 
-		<form class="form-horizontal" method="post" action="users/save">
+		<form class="form-horizontal" method="post" action="users/save" id="form1">
 		  <div class="control-group">
-		    <label class="control-label" for="inputEmail">อีเมล์</label>
+		   <label class="control-label" for="inputEmail"><label class="alertred">*</label> อีเมล์</label>
 		    <div class="controls">
 		      <input type="text" id="inputEmail" placeholder="อีเมล์" name="email" value="<?php echo @$user['email']?>"  class="input-xlarge">
 		    </div>
 		  </div>
 		  <div class="control-group">
-		    <label class="control-label" for="inputPassword">รหัสผ่่าน</label>
+		    <label class="control-label" for="inputPassword"><label class="alertred">*</label> รหัสผ่่าน</label>
 		    <div class="controls">
-		      <input type="password" id="inputPassword" placeholder="รหัสผ่่าน" name="password">
+		      <input type="password" id="inputPassword" placeholder="รหัสผ่่าน" name="password" id="password">
 		    </div>
 		  </div>
 		  <div class="control-group">
-		    <label class="control-label" for="inputRePassword">ยืนยันรหัสผ่าน</label>
+		   <label class="control-label" for="inputRePassword"><label class="alertred">*</label> ยืนยันรหัสผ่าน</label>
 		    <div class="controls">
 		      <input type="password" id="inputRePassword" placeholder="ยืนยันรหัสผ่าน" name="repassword">
 		    </div>
 		  </div>
 		 <div class="line5" style="margin-top:0px;margin-left:0px;margin-bottom: 20px"> </div>
 		   <div class="control-group">
-		    <label class="control-label" for="inputFirstname">ชื่อ</label>
+		    <label class="control-label" for="inputFirstname"> <label class="alertred">*</label> ชื่อ</label>
 		    <div class="controls">
 		      <input type="text" id="inputFirstname" placeholder="ชื่อ" name="firstname" value="<?php echo  @$user['firstname']?>"  class="input-xlarge">
 		    </div>
 		  </div>
 
 		   <div class="control-group">
-		    <label class="control-label" for="inputLastname">นามสกุล </label>
+		    <label class="control-label" for="inputLastname"><label class="alertred">*</label> นามสกุล </label>
 		    <div class="controls">
 		      <input type="text" id="inputLastname" placeholder="นามสกุล" name="lastname" value="<?php echo  @$user['lastname']?>"  class="input-xlarge">
 		    </div>
 		  </div>
 
 		   <div class="control-group">
-		    <label class="control-label" >เพศ</label>
+		    <label class="control-label" > <label class="alertred">*</label>เพศ</label>
 		    <div class="controls">
 		     <?php echo form_dropdown('gender',array('1'=>'ชาย','2'=>'หญิง'),@$user['gender'],'','โปรดระบุ') ?>
 		    </div>
 		  </div>
 		    <div class="control-group">
-		    <label class="control-label" for="inputAge">อายุ</label>
+		    <label class="control-label" for="inputAge"> <label class="alertred">*</label>อายุ</label>
 		    <div class="controls">
 		      <input type="text" id="inputAge" placeholder="อายุ" name="age" value="<?php echo  @$user['age']?>">
 		    </div>
@@ -63,6 +63,7 @@
 			</div>
 			</div>
 			<?php endif; ?>
+
 		    <div class="text-center"><button class="btn btn-primary" type="submit"><?php echo (empty($profile))? 'ลงทะเบียน':'บันทึก'   ?></button></div>
 		</form>
 	</div>

@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="themes/admin/media/css/login.css">
-<link rel="stylesheet" href="themes/admin/media/css/stylesheet.css">
 <link rel="stylesheet" href="themes/admin/media/css/bootstrap.min.css" >
 <link rel="stylesheet" href="themes/admin/media/css/style.min.css">
 <link rel="stylesheet" href="themes/admin/media/css/font-awesome.min.css">
