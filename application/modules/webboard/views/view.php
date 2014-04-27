@@ -13,7 +13,11 @@
 	
 	<tbody>
 		<tr>
-			<td></td>
+			<td>
+				<strong><?php echo $value["email"]	?></strong>
+				<br />
+				<span style="font-size: 12px; font-weight: bold;"><?php echo mysql_to_th($value["created"],"F",TRUE)?></span>
+			</td>
 			<td><?php echo $value["detail"]?></td>
 		</tr>
 		<?php foreach ($variable as $key => $item):?>

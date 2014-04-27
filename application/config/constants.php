@@ -67,15 +67,7 @@ define('NOTICE_CONFIRM_DELETE', 'ยืนยันการลบ');
 
 define('SAVE_DATA_COMPLETE','บันทึกข้อมูลเรียบร้อย');
 define('DELETE_DATA_COMPLETE', 'ลบข้อมูลเรียบร้อยแล้ว');
-define('REMOVE_IMAGE_COMPLETE', 'ลบรูปภาพเรียบร้อยแล้ว');
-
-define('CAPTCHA', 'ใส่รหัสตามรูปภาพให้ถูกต้องด้วยค่ะ');
-define('LOGIN_NOT', 'คุณต้อง Login ก่อนค่ะ');
-define('LOGIN_FAIL', 'Username หรือ Password ไม่ถูกต้อง');
-define('CANCEL_RECEIVE','คุณต้องการยกเลิกรับข่าว-สาร ใช่หรือไม่ ?');
-define('CANNOT SEND EMAIL','CANNOT SEND EMAIL');
-define('NOTICE_ERROR_REGISTER','คุณได้ลงทะเบียนหลักสูตรนี้แล้ว !!! ');
-define('CODE_AUTOMATED','ระบบจะสร้างให้อัตโนมัติ');
+define('NO_PERMISSION','ไม่มีสิทธิ์การเข้าใช้');
 
 
 

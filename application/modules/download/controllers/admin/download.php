@@ -8,6 +8,9 @@ class Download extends Admin_Controller{
 	}
 	function index()
 	{
+		if(!permission('download','act_read')){
+			redirect('admin');
+		}
 		$this->template->append_metadata(js_lightbox());
 		$this->template->append_metadata(js_checkbox());
 		$data['type_id'] = $_GET['type_id'];
@@ -21,6 +24,9 @@ class Download extends Admin_Controller{
 	}
 	function form($id = FALSE)
 	{
+		if(!permission('download','act_update') && !permission('download','act_create')){
+			redirect('admin');
+		}
 		$data['type_id'] = $_GET['type_id'];
 		$data['type'] = $this->type->get_row($_GET['type_id']);
 		$data['rs'] = $this->download->get_row($id);
@@ -59,6 +65,9 @@ class Download extends Admin_Controller{
 	}
 	function delete($id,$type_id)
 	{
+		if(!permission('download','act_delete')){
+			redirect('admin');
+		}
 		if($id){
 			$this->download->delete($id);
 			set_notify('success', SAVE_DATA_COMPLETE);

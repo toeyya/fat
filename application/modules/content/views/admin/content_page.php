@@ -37,7 +37,9 @@
 
 			  <div class="form-group">
 			    <div class="col-sm-offset-2 col-sm-10">
+			      <?php if(permission($arr[$category_id],'act_update') || permission($arr[$category_id],'act_create')): ?>
 			      <button type="submit" class="btn btn-primary btn-sm">บันทึก</button>
+			      <?php endif; ?>
 			      <button type="submit" class="btn btn-default btn-sm" onclick="history.go(-1);">ย้อนกลับ</button>
 			      <input type="hidden" name="id" value="<?php echo @$result[0]['id'] ?>">
 			      <?php echo (!empty($result[0]['id'])) ? form_hidden('updated',date('Y-m-d H:i:s')) : form_hidden('created',date('Y-m-d H:i:s'))?>

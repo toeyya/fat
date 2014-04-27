@@ -8,6 +8,9 @@ class Type extends Admin_Controller{
 	}
 	function index()
 	{
+		if(!permission('km','act_read')){
+			redirect('admin');
+		}
 		$this->template->append_metadata(js_checkbox());
 		$data['result'] = $this->type->select("f_km.*,agency_name")
 									 ->join("LEFT JOIN f_users ON f_users.id = user_id")
@@ -17,6 +20,9 @@ class Type extends Admin_Controller{
 	}
 	function form($id = FALSE)
 	{
+		if(!permission('act_update') && !permission('act_create')){
+			redirect('admin');
+		}
 		$data['rs'] = $this->type->get_row($id);
 		$this->template->build('type/admin/form',$data);
 	}
@@ -31,6 +37,9 @@ class Type extends Admin_Controller{
 	}
 	function delete($id)
 	{
+		if(!permission('km','act_delete')){
+			redirect('admin');
+		}
 		if($id)
 		{
 			$this->km->delete("type_id",$id);

@@ -11,7 +11,8 @@ class Auth extends Public_Controller
 	public function index()
 	{
 		if(is_login()){
-			redirect('users/admin/users');
+			$id = $this->session->userdata('id');
+			redirect("users/admin/users/form/$id/profile");
 		}
 		$this->template->set_theme('admin');
 		$this->template->set_layout('blank');
@@ -25,7 +26,8 @@ class Auth extends Public_Controller
 			if($rtn =="normal")
 			{
 				set_notify('success', 'ยินดีต้อนรับเข้าสู่ระบบ');
-				redirect('users/admin/users');
+				$id = $this->session->userdata('id');
+				redirect("users/admin/users/form/$id/profile");
 			}else if($rtn =="wrong"){
 				set_notify('error', 'อีเมล์หรือรหัสผ่านผิดพลาด');
 				redirect('users/admin/auth');

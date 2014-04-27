@@ -48,7 +48,7 @@
 		<div class="box"  >
 			
 			<?php foreach ($variable as $key => $item):?>
-			<div class="box-content" style="height: 50px;" >
+			<div class="box-content" >
 				<div class="form-group">
 			    <label for="title" class="col-sm-2 control-label">
 			    	<?php echo $item["email"]?>
@@ -68,6 +68,7 @@
 				    </div>
 				    
 				</div>
+				<div class="clearfix"></div>
 			</div>
 			<?php endforeach?>
 		</div>

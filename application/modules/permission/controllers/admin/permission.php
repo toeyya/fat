@@ -3,23 +3,22 @@ class Permission extends Admin_Controller
 {
 
 	public $module = array(
-		'permissions' => array('label' => 'สิทธิ์การใช้งาน', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'users' => array('label' => 'สมาชิก', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'settings' => array('label' => 'ตั้งค่าระบบ', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'project' => array('label' => 'ข้อมูลโครงการ', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'place' => array('label' => 'ทำเนียบ', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'criteria' => array('label' => 'เกณฑ์ประเมิน', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'permission' => array('label' => 'สิทธิ์การใช้งาน', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'user' => array('label' => 'สมาชิก', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'setting' => array('label' => 'ตั้งค่าระบบ', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'project' => array('label' => 'ข้อมูลโครงการ', 'permission' => array('act_read','act_update')),
+		'criteria' => array('label' => 'เกณฑ์ประเมิน', 'permission' => array('act_read','act_update')),
 		'hilight' => array('label' => 'ไฮไลท์', 'permission' => array('act_read','act_create','act_update','act_delete')),
 		'download' => array('label' => 'สื่อสิ่งพิมพ์', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'informations' => array('label' => 'ข่าวประชาสัมพันธ์', 'permission' =>array('act_read','act_create','act_update','act_delete')),
+		'information' => array('label' => 'ข่าวประชาสัมพันธ์', 'permission' =>array('act_read','act_create','act_update','act_delete')),
 		'eatting' => array('label' => 'การวางแผนการกิน', 'permission' => array('act_read','act_create','act_update','act_delete')),
 		'weight' => array('label' => 'ลดน้ำหนัก ลดรอบเอว', 'permission' => array('act_read','act_create','act_update','act_delete')),
 		'exercise' => array('label' => 'การออกกำลังกาย', 'permission' => array('act_read','act_create','act_update','act_delete')),
 		'album' => array('label' => 'ภาพกิจกรรม', 'permission' => array('act_read','act_create','act_update','act_delete')),
 		'km' => array('label' => 'KM', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'M&E' => array('label' => 'M&E', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'ME' => array('label' => 'M&E', 'permission' => array('act_read','act_update')),
 		'webboard'=>array('label' => 'เว็บบอร์ด', 'permission' => array('act_read','act_create','act_update','act_delete')),
-		'contact'=>array('label' => 'ติดด่อเรา', 'permission' => array('act_read','act_create','act_update','act_delete')),
+		'contact'=>array('label' => 'ติดด่อเรา', 'permission' => array('act_read','act_update')),
 
 	);
 
@@ -41,6 +40,10 @@ class Permission extends Admin_Controller
 
 	public function index()
 	{
+		if(!permission('permission','act_read')){
+			redirect('admin');
+		}
+
 		$data['result'] = $this->permission->sort("")->order("id asc")->get();
 		$data['pagination'] = $this->permission->pagination();
 		/*$chk_delete = $this->user->select("permission_id")->groupby("userposition")->sort("")->order("userposition asc")->get();
@@ -53,7 +56,10 @@ class Permission extends Admin_Controller
 
 
 	public function form($id=FALSE)
-	{//$this->db->debug= true;
+	{
+		if(!permission('permission','act_update') && !permission('permission','act_created')){
+			redirect('admin');
+	  	}
 		$data['permission'] = $this->permission->get_row($id);
 		$data['rs_perm'] = $this->permission_row($id);
 		$data['module'] = $this->module;
@@ -106,6 +112,9 @@ class Permission extends Admin_Controller
 	}
 
 	public function delete($id){
+		if(!permission('permission','act_delete')){
+			redirect('admin');
+	  	}
 		if($id){
 			$this->detail->delete("permission_id",$id);
 			$this->permission->delete("id",$id);

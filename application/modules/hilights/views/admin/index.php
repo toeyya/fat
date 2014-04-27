@@ -21,7 +21,11 @@
 							  <th>รูปภาพ</th>
 							  <th>หัวข้อ</th>
 							  <th>ลิงค์ไปยัง</th>
-							  <th><a class="btn btn-success btn-sm" href="hilights/admin/hilights/form"> <i class="fa fa-plus "></i> เพิ่มรายการ</a> </th>
+							  <th>
+							  	<?php if(permission('hilight','act_create')): ?>
+							  	<a class="btn btn-success btn-sm" href="hilights/admin/hilights/form"> <i class="fa fa-plus "></i> เพิ่มรายการ</a>
+							  	<?php endif; ?>
+							  </th>
 						  </tr>
 						  <?php $i=(@$_GET['page'] > 1)? (((@$_GET['page'])* 20)-20)+1:1;?>
 						  <?php foreach($result as $item): ?>
@@ -35,12 +39,13 @@
 						  	<td><?php echo $item['title']?></td>
 						  	<td><?php echo $item['url']?></td>
 						  	<td>
-								<a class="btn btn-info btn-sm" href="hilights/admin/hilights/form/<?php echo $item['id']?>">
-									<i class="fa fa-edit "></i>
-								</a>
-								<a class="btn btn-danger btn-sm" href="hilights/admin/hilights/delete/<?php echo $item['id'] ?>" onclick="return confirm('<?php echo NOTICE_CONFIRM_DELETE ?>')">
-									<i class="fa fa-trash-o "></i>
-								</a></td>
+						  		<?php if(permission('hilight','act_update')): ?>
+								<a class="btn btn-info btn-sm" href="hilights/admin/hilights/form/<?php echo $item['id']?>"><i class="fa fa-edit "></i></a>
+								<?php endif; ?>
+								<?php if(permission('hilight','act_delete')): ?>
+								<a class="btn btn-danger btn-sm" href="hilights/admin/hilights/delete/<?php echo $item['id'] ?>" onclick="return confirm('<?php echo NOTICE_CONFIRM_DELETE ?>')"><i class="fa fa-trash-o "></i></a>
+								<?php endif; ?>
+								</td>
 						  </tr>
 						  <?php $i++; endforeach; ?>
 					  </thead>

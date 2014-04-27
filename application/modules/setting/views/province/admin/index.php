@@ -20,7 +20,11 @@
 							  <th>ลำดับ</th>
 							  <th>จังหวัด</th>
 							  <th>เขต / ผู้ตรวจ</th>
-							  <th></th>
+							  <th>
+							  	<?php if(permission('setting','act_create')): ?>
+							  	<a href="setting/province/form" class="btn btn-success btn-sm"><i class="fa fa-plus "></i>เพิ่มรายการ</a>
+							  	<?php endif; ?>
+							  </th>
 						  </tr>
 						  <?php $i=(@$_GET['page'] > 1)? (((@$_GET['page'])* 20)-20)+1:1;?>
 						  <?php foreach($result as $item): ?>
@@ -36,12 +40,13 @@
 						  	<?php } ?>
 						  	</td>
 						  	<td>
-								<a class="btn btn-info btn-sm" href="setting/admin/province/form/<?php echo $item['id']?>">
-									<i class="fa fa-edit "></i>
-								</a>
-								<a class="btn btn-danger btn-sm" href="setting/admin/province/delete/<?php echo $item['id'] ?>">
-									<i class="fa fa-trash-o "></i>
-								</a></td>
+								<?php if(permission('setting','act_update')): ?>
+									<a class="btn btn-info btn-sm" href="setting/admin/province/form/<?php echo $item['id']?>"><i class="fa fa-edit "></i></a>
+								<?php endif; ?>
+								<?php if(permission('setting','act_delete')): ?>
+									<a class="btn btn-danger btn-sm" href="setting/admin/province/delete/<?php echo $item['id'] ?>"><i class="fa fa-trash-o "></i></a>
+								<?php endif; ?>
+								</td>
 						  </tr>
 						  <?php $i++; endforeach; ?>
 					  </thead>

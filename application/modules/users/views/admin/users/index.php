@@ -31,7 +31,11 @@
 							  <th>ผู้ประสานงาน</th>
 							  <th>อีเมล์</th>
 							  <th>เบอร์ติดต่อ</th>
-							  <th><a class="btn btn-success btn-sm" href="users/admin/users/form"> <i class="fa fa-plus "></i> เพิ่มรายการ</a> </th>
+							  <th>
+							  	<?php if(permission('user','act_create')): ?>
+							  	<a class="btn btn-success btn-sm" href="users/admin/users/form"> <i class="fa fa-plus "></i> เพิ่มรายการ</a>
+							  	<?php endif; ?>
+							  </th>
 
 						  </tr>
 					  </thead>
@@ -54,9 +58,12 @@
 							<td><?php echo $item['email']?></td>
 							<td><?php echo $item['phone']?></td>
 							<td>
-
+								<?php if(permission('user','act_update')): ?>
 								<a class="btn btn-info btn-sm" href="users/admin/users/form/<?php echo $item['id']?>"><i class="fa fa-edit "></i></a>
+								<?php endif; ?>
+								<?php if(permission('user','act_delete')): ?>
 								<a class="btn btn-danger btn-sm" href="users/admin/users/delete/<?php echo $item['id'] ?>" onclick="return confirm('<?php echo NOTICE_CONFIRM_DELETE ?>')"><i class="fa fa-trash-o "></i></a>
+								<?php endif; ?>
 							</td>
 						</tr>
 						<?php $i++; endforeach; ?>

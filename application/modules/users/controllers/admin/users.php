@@ -10,7 +10,11 @@ class Users extends Admin_Controller
 	}
 
 	function index()
-	{  $this->template->append_metadata(js_checkbox());
+	{
+		if(!permission('user','act_read')){
+			redirect('admin');
+		}
+		$this->template->append_metadata(js_checkbox());
 		$data['result'] = $this->user->sort('id')->order('desc')->get();
 		$data['pagination'] = $this->user->pagination();
 		$this->template->build('admin/users/index',$data);
@@ -18,6 +22,9 @@ class Users extends Admin_Controller
 	}
 	function form($id=FALSE,$profiles=FALSE)
 	{
+		if(!permission('user','act_create') && !permission('user','act_update')){
+			redirect('admin');
+		}
 		$data['title'] =(empty($profiles)) ? "สมาชิก":"ประวัติส่วนตัว";
 		$data['rs'] = $this->user->get_row("f_users.id",$id);
 		$this->template->build('admin/users/form',$data);
@@ -35,6 +42,9 @@ class Users extends Admin_Controller
 		redirect('users/admin/users/index');
 	}
 	function delete($id){
+		if(!permission('user','act_delete')){
+			redirect('admin');
+		}
 		if($id){
 			$this->user->delete("f_users.id",$id);
 			$this->profile->delete("f_profiles.user_id",$id);

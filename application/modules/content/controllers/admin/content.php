@@ -9,9 +9,15 @@ class Content extends Admin_Controller
 		$this->load->model('categories_model','category');
 		$this->template->append_metadata(js_checkbox());
 	}
-
+	public $arr = array('1'=>'project','3'=>'criteria','4'=>'information','5'=>'contact','7'=>'eatting','8'=>'weight','9'=>'exercise');
 	function index($category_id=FALSE,$id=FALSE)
 	{//$this->db->debug=true;
+
+
+    	if(!permission($this->arr[$category_id],'act_read')){
+    		redirect('admin');
+    	}
+		$data['arr'] = $this->arr;
 		$title =(!empty($_GET['title'])) ? " and contents.title like '%".$_GET['title']."%'":'';
 		$data['result'] = $this->content->select('contents.*,firstname,lastname')
 										->join("LEFT JOIN f_profiles on f_profiles.user_id=contents.user_id")
@@ -36,7 +42,9 @@ class Content extends Admin_Controller
 	}
 	function form($category_id = FALSE,$id=FALSE)
 	{
-		//$this->db->debug = true;
+    	if(!permission($this->arr[$category_id],'act_update') && !permission($this->arr[$category_id],'act_create')){
+    		redirect('admin');
+    	}
 		$data['rs'] = $this->content->get_row($id);
 		$data['category_id']=$category_id;
 		$data['category_name']=$this->category->get_one("name","id",$category_id);
@@ -90,6 +98,10 @@ class Content extends Admin_Controller
 	}
 	function delete($id)
 	{
+    	if(!permission($this->arr[$category_id],'act_delete')){
+    		redirect('admin');
+    	}
+
 		if($id)
 		{
 			$this->content->delete($id);

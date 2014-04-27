@@ -19,7 +19,11 @@
 						  <tr>
 							  <th>แสดง</th>
 							  <th>ประเภทบุคคล</th>
-							  <th><a class="btn btn-success btn-sm" href="setting/admin/agency_type/form"> <i class="fa fa-plus "></i> เพิ่มรายการ</a> </th>
+							  <th>
+							  	<?php if(permission('setting','act_create')): ?>
+							  	<a class="btn btn-success btn-sm" href="setting/admin/agency_type/form"> <i class="fa fa-plus "></i> เพิ่มรายการ</a>
+							  	<?php endif; ?>
+							  </th>
 						  </tr>
 
 						  <?php foreach($result as $item): ?>
@@ -32,12 +36,13 @@
 							</td>
 						  	<td><?php echo $item['name']?></td>
 						  	<td>
-								<a class="btn btn-info btn-sm" href="setting/admin/agency_type/form/<?php echo $item['id']?>">
-									<i class="fa fa-edit "></i>
-								</a>
-								<a class="btn btn-danger btn-sm" href="setting/admin/agency_type/delete/<?php echo $item['id'] ?>">
-									<i class="fa fa-trash-o "></i>
-								</a></td>
+						  		<?php if(permission('setting','act_update')): ?>
+								<a class="btn btn-info btn-sm" href="setting/admin/agency_type/form/<?php echo $item['id']?>"><i class="fa fa-edit "></i></a>
+								<?php endif; ?>
+								<?php if(permission('setting','act_delete')): ?>
+								<a class="btn btn-danger btn-sm" href="setting/admin/agency_type/delete/<?php echo $item['id'] ?>"><i class="fa fa-trash-o "></i></a>
+								<?php endif; ?>
+								</td>
 						  </tr>
 						  <?php endforeach; ?>
 					  </thead>

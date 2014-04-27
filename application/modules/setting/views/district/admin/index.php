@@ -24,7 +24,11 @@
 							  <th>ตำบล</th>
 							  <th>อำเภอ /เขต</th>
 							  <th>จังหวัด</th>
-							  <th></th>
+							  <th>
+							  	<?php if(permission('setting','act_create')): ?>
+							  	<a href="setting/district/form" class="btn btn-success btn-sm"><i class="fa fa-plus "></i>เพิ่มรายการ</a>
+							  	<?php endif; ?>
+							  </th>
 						  </tr>
 						  <?php $i=(@$_GET['page'] > 1)? (((@$_GET['page'])* 20)-20)+1:1;?>
 						  <?php foreach($result as $item): ?>
@@ -34,12 +38,17 @@
 						  	<td><?php echo $item['amphur_name']?></td>
 						  	<td><?php echo $item['province_name']?></td>
 						  	<td>
+						  		<?php if(permission('setting','act_update')): ?>
 								<a class="btn btn-info btn-sm" href="setting/admin/district/form/<?php echo $item['id']?>">
 									<i class="fa fa-edit "></i>
 								</a>
+								<?php endif; ?>
+								<?php if(permission('setting','act_delete')): ?>
 								<a class="btn btn-danger btn-sm" href="setting/admin/district/delete/<?php echo $item['id'] ?>" onclick="return confirm('<?php echo NOTICE_CONFIRM_DELETE ?>')">
 									<i class="fa fa-trash-o "></i>
-								</a></td>
+								</a>
+								<?php endif; ?>s
+								</td>
 						  </tr>
 						  <?php $i++; endforeach; ?>
 					  </thead>

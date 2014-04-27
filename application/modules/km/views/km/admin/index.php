@@ -25,7 +25,11 @@
 							  <th>แสดง</th>
 							  <th>หัวข้อ</th>
 							  <th>โดย</th>
-							  <th><a class="btn btn-success btn-sm" href="km/admin/km/form/<?php echo $type_id ?>"> <i class="fa fa-plus "></i> เพิ่มรายการ</a> </th>
+							  <th>
+							  	<?php if(permission('km','act_create')): ?>
+							  	<a class="btn btn-success btn-sm" href="km/admin/km/form/<?php echo $type_id ?>"> <i class="fa fa-plus "></i> เพิ่มรายการ</a>
+							  	<?php endif; ?>
+							  </th>
 						  </tr>
 						  <?php $i=(@$_GET['page'] > 1)? (((@$_GET['page'])* 20)-20)+1:1;?>
 						  <?php foreach($result as $item): ?>
@@ -40,12 +44,13 @@
 						  	<td><?php echo $item['title']?></td>
 						  	<td><?php echo $item['agency_name']?></td>
 						  	<td>
-								<a class="btn btn-info btn-sm" href="km/admin/km/form/<?php echo $item['type_id']?>/<?php echo $item['id']?>">
-									<i class="fa fa-edit "></i>
-								</a>
-								<a class="btn btn-danger btn-sm" href="km/admin/km/delete/<?php echo $item['id'] ?>">
-									<i class="fa fa-trash-o "></i>
-								</a></td>
+						  		<?php if(permission('km','act_update')): ?>
+								<a class="btn btn-info btn-sm" href="km/admin/km/form/<?php echo $item['type_id']?>/<?php echo $item['id']?>"><i class="fa fa-edit "></i></a>
+								<?php endif; ?>
+								<?php if(permission('km','act_delete')): ?>
+								<a class="btn btn-danger btn-sm" href="km/admin/km/delete/<?php echo $item['id'] ?>"><i class="fa fa-trash-o "></i></a>
+								<?php endif; ?>
+								</td>
 						  </tr>
 						  <?php $i++; endforeach; ?>
 					  </thead>

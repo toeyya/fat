@@ -20,7 +20,11 @@
 							  <th>ลำดับ</th>
 							  <th>ชื่อ</th>
 							  <th>จำนวนเขต</th>
-							  <th><a class="btn btn-success btn-sm" href="setting/admin/area/form"> <i class="fa fa-plus "></i> เพิ่มรายการ</a> </th>
+							  <th>
+							  	<?php if(permission('setting','act_create')): ?>
+							  	<a class="btn btn-success btn-sm" href="setting/admin/area/form"> <i class="fa fa-plus "></i> เพิ่มรายการ</a>
+							  	<?php endif; ?>
+							  </th>
 						  </tr>
 						  <?php $i=(@$_GET['page'] > 1)? (((@$_GET['page'])* 20)-20)+1:1;?>
 						  <?php foreach($result as $item): ?>
@@ -29,9 +33,13 @@
 						  	<td><?php echo $item['name']?></td>
 						  	<td><?php echo $item['total']?></td>
 						  	<td>
+								<?php if(permission('setting','act_update')): ?>
 								<a class="btn btn-info btn-sm" href="setting/admin/area/form/<?php echo $item['id']?>"><i class="fa fa-edit "></i></a>
+								<?php endif; ?>
+								<?php if(permission('setting','act_delete')): ?>
 								<?php if($item['id']!="1" || $item['id']!="2") : ?>
 								<a class="btn btn-danger btn-sm" href="setting/admin/area/delete/<?php echo $item['id'] ?>" onclick="return confirm('<?php echo NOTICE_CONFIRM_DELETE ?>')"><i class="fa fa-trash-o "></i></a>
+								<?php endif; ?>
 								<?php endif; ?>
 								</td>
 						  </tr>

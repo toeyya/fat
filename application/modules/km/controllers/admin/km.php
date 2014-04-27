@@ -7,6 +7,9 @@ class Km extends Admin_Controller{
 	}
 	function index($type_id)
 	{
+		if(!permission('km','act_read')){
+			redirect('admin');
+		}
 		$this->template->append_metadata(js_checkbox());
 		$data['type_id'] = $type_id;
 		$data['type'] = $this->type->get_row("id",$type_id);
@@ -24,6 +27,9 @@ class Km extends Admin_Controller{
 	}
 	function form($type_id,$id = FALSE)
 	{
+		if(!permission('act_update') && !permission('act_create')){
+			redirect('admin');
+		}
 		$data['type_id'] = $type_id;
 		$data['type'] = $this->type->get_row("id",$type_id);
 		$data['rs'] = $this->km->get_row($id);
@@ -73,6 +79,18 @@ class Km extends Admin_Controller{
 		$data = file_get_contents("uploads/km/".basename($file));
 		$name = basename($file);
 		force_download($name, $data);
+	}
+	function delete($id)
+	{
+		if(!permission('km','act_delete')){
+			redirect('admin');
+		}
+		if($id)
+		{
+			$this->km->delete("type_id",$id);
+			set_notify('success',DELETE_DATA_COMPLETE);
+		}
+		redirect('km/admin/km/index');
 	}
 }
 ?>

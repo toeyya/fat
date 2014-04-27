@@ -7,6 +7,9 @@ class Hilights extends  Admin_Controller{
 	}
 	function index()
 	{
+		if(!permission('hilight','act_read')){
+			redirect('admin');
+		}
 		$this->template->append_metadata(js_checkbox());
 		$data['result'] = $this->hilight->get();
 		$data['pagination'] = $this->hilight->pagination();
@@ -14,6 +17,9 @@ class Hilights extends  Admin_Controller{
 	}
 	function form($id = FALSE)
 	{
+		if(!permission('hilight','act_update') && !permission('hilight','act_create')){
+			redirect('admin');
+		}
 		$data['rs'] = $this->hilight->get_row($id);
 		$this->template->build('admin/form',$data);
 	}
@@ -37,6 +43,9 @@ class Hilights extends  Admin_Controller{
 	}
 	function delete($id)
 	{
+		if(!permission('hilight','act_delete')){
+			redirect('admin');
+		}
 		if($id){
 			$this->hilight->delete($id);
 			set_notify('success',DELETE_DATA_COMPLETE);

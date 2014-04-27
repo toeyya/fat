@@ -39,12 +39,13 @@
 						  	<td><?php echo $value['email']?></td>
 						  	<td><?php echo $value["view"]."/".$value["comment"]?></td>
 						  	<td>
-								<a class="btn btn-info btn-sm" href="webboard/admin/form/<?php echo $value['id']?>">
-									<i class="fa fa-edit "></i>
-								</a>
-								<a class="btn btn-danger btn-sm" href="webboard/admin/delete/<?php echo $value['id'] ?>">
-									<i class="fa fa-trash-o "></i>
-								</a></td>
+						  		<?php if(permission('webboard','act_update')): ?>
+								<a class="btn btn-info btn-sm" href="webboard/admin/form/<?php echo $value['id']?>"><i class="fa fa-edit "></i></a>
+								<?php endif; ?>
+								<?php if(permission('webboard','act_delete')): ?>
+								<a class="btn btn-danger btn-sm" href="webboard/admin/delete/<?php echo $value['id'] ?>"><i class="fa fa-trash-o "></i></a>
+								<?php endif; ?>
+								</td>
 						  </tr>
 						  <?php endforeach; ?>
 					  </thead>

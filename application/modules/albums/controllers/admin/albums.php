@@ -10,6 +10,9 @@ class Albums extends Admin_Controller{
 	}
 	function index()
 	{
+		if(!permission('album','act_read')){
+			redirect('admin');
+		}
 		$this->template->append_metadata(js_lightbox());
 		$this->template->append_metadata(js_checkbox());
 		$data['result'] = $this->album->select("f_albums.id,f_albums.active,name,agency_name")
@@ -20,6 +23,9 @@ class Albums extends Admin_Controller{
 	}
 	function form($id=FALSE)
 	{
+		if(!permission('album','act_update') && !permission('album','act_create')){
+			redirect('admin');
+		}
 		$data['picture'] = $this->picture->where("album_id = '$id'")->get();
 		$data['rs']= $this->album->get_row($id);
 		$this->template->build('admin/form',$data);
@@ -58,6 +64,9 @@ class Albums extends Admin_Controller{
 		}
 	}
 	function delete($id){
+		if(!permission('album','act_delete')){
+			redirect('admin');
+		}
 		if($id){
 			$this->picture->delete("album_id",$id);
 			$this->album->delete($id);

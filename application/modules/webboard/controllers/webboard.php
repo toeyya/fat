@@ -46,6 +46,8 @@ class Webboard extends Public_Controller {
 	public function save() {
 		if(login_data("id")) {
 			if($_POST) {
+				$_POST["detail"] = nl2br($_POST["detail"]);	
+				
 				$_POST["webboard_group_id"] = 2;
 				$_POST["user_id"] = login_data("id");
 				$_POST["email"] = login_data("email");
@@ -54,13 +56,14 @@ class Webboard extends Public_Controller {
 				$_POST["updated"] = date("Y-m-d H:i:s");
 				$this->topic->save($_POST);
 			}
-		} else {
-			redirect("webboard");
 		}
+		redirect("webboard");
 	}
 	
 	public function comment($id) {
 		if($id) {
+			$_POST["detail"] = nl2br($_POST["detail"]);	
+			
 			$_POST["webboard_topic_id"] = $id;
 			$_POST["user_id"] = login_data("id");
 			$_POST["email"] = login_data("email");
@@ -68,6 +71,7 @@ class Webboard extends Public_Controller {
 			$_POST["created"] = date("Y-m-d H:i:s");
 			$_POST["updated"] = date("Y-m-d H:i:s");
 			$this->comment->save($_POST);
+			$this->topic->counter($id,"comment");
 			redirect("webboard/view/$id");
 		}
 	}
