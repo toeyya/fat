@@ -13,10 +13,10 @@
 				<h2><i class="fa fa-align-justify"></i><span class="break"></span>ประเภทสื่อสิ่งพิมพ์ </h2>
 			</div>
 			<div class="box-content">
-			<form class="form-horizontal" role="form" method="post" action="download/admin/type/save">
+			<form class="form-horizontal" role="form" method="post" action="download/admin/type/save" id="form1">
 
 			  <div class="form-group">
-			    <label for="name" class="col-sm-2 control-label">ประเภท</label>
+			    <label for="name" class="col-sm-2 control-label"><label class="alertred">*</label>ประเภท</label>
 			    <div class="col-sm-3">
 			     	<input type="text" class="form-control"  name="name" value="<?php echo $rs['name'] ?>">
 			    </div>
@@ -36,3 +36,8 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#form1').validate({rules:{name:"required"},messages:{name:"กรุณาระบุ"}});
+});
+</script>

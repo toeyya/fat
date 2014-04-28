@@ -12,6 +12,7 @@ class Area extends Admin_Controller{
 		if(!permission('setting','act_read')){
 			redirect('admin');
 		}
+
 		$data['result'] = $this->area->get();
 		$this->template->build('area/admin/index',$data);
 	}

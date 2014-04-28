@@ -14,8 +14,12 @@ class Users extends Admin_Controller
 		if(!permission('user','act_read')){
 			redirect('admin');
 		}
+		$wh = (empty($_GET['name'])) ? '' : " AND (response_man like '%".$_GET['name']."%' OR agency_name like '%".$_GET['name']."%' OR email like '%".$_GET['name']."%')";
+		$wh.= (empty($_GET['province_id'])) ? '' : " AND f_users.province_id = ".$_GET['province_id'];
+		$wh.= (empty($_GET['amphur_id'])) ? '' : " AND f_users.amphur_id =".$_GET['amphur_id'];
+		$wh.= (empty($_GET['district_id'])) ? '' : " AND f_users.district_id=".$_GET['district_id'];
 		$this->template->append_metadata(js_checkbox());
-		$data['result'] = $this->user->sort('id')->order('desc')->get();
+		$data['result'] = $this->user->sort('id')->order('desc')->where("1=1 $wh")->get();
 		$data['pagination'] = $this->user->pagination();
 		$this->template->build('admin/users/index',$data);
 

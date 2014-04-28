@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="themes/admin/media/js/tag/jquery.tag.css">
 <link rel="stylesheet" href="media/css/jquery.notifyBar.css" type="text/css"/>
 <link rel="stylesheet" href="media/css/colorbox.css">
+<link rel="stylesheet" href="media/css/validate.css">
 
 	<!--[if lt IE 9 ]>
 		<link href="assets/css/style-ie.css" rel="stylesheet">

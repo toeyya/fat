@@ -5,10 +5,11 @@ label.error {
 	padding-left: 16px;
 	margin-left: .3em;
 	color:red;font-size:12px;
+	display:inline-block;
 }
 label.valid {
 	background: url('../img/checked.gif') no-repeat;
-	display: block;
+	display: inline-block;
 	width: 16px;
 	height: 16px;
 }

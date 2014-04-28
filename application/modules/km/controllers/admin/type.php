@@ -20,7 +20,7 @@ class Type extends Admin_Controller{
 	}
 	function form($id = FALSE)
 	{
-		if(!permission('act_update') && !permission('act_create')){
+		if(!permission('km','act_update') && !permission('km','act_create')){
 			redirect('admin');
 		}
 		$data['rs'] = $this->type->get_row($id);

@@ -281,17 +281,3 @@ behavior: url(pie/PIE.htc);
 .border-img{background:url(../img/border.png) no-repeat;width:152px;height: 118px;display:inline-block;margin-right:10px;}
 .result ol li{padding:5px;}
 
-.alertred{color:red;font-size:1.4em;display:inline-block;}
-input.error,select.error { border: 1px solid red; }
-label.error {
-	background: url('../img/unchecked.gif') no-repeat;
-	padding-left: 16px;
-	margin-left: .3em;
-	color:red;font-size:12px;
-}
-label.valid {
-	background: url('../img/checked.gif') no-repeat;
-	display: block;
-	width: 16px;
-	height: 16px;
-}

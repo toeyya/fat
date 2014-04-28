@@ -70,7 +70,7 @@
   </tr>
 </table>
 <div id="span7">
-<form method="post" action="criteria/save/<?php echo $time ?>" enctype="multipart/form-data" class="form-inline">
+<form method="post" action="criteria/save/<?php echo $time ?>" enctype="multipart/form-data" class="form-inline" id="form1">
 <table width="100%" cellpadding="1" cellspacing="1">
 <tr>
 <td valign="top" bgcolor="#EFFEDD" style="border-right:1px solid #CEE6B2;padding:10px;"><strong><font color="#478302">จำนวนประชากร</font> อายุ 15 ปีขึ้นไป ทั้งหมด</strong>
@@ -144,7 +144,7 @@
 		<span class="agency">
 		<?php echo form_dropdown('user_id',get_option('id','agency_name','f_users'),@$_GET['user_id'],'','เลือกองค์กร'); ?></span>
 	<?php endif; ?>
-	<label class="alertred">*</label><span>ระบุปีงบประมาณ  <?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'',''); ?></span></th></tr>
+	<label class="alertred">*</label><span>ระบุปีงบประมาณ  <?php echo form_dropdown('year',get_year_option("2556"),@$_GET['year'],'class="w100"',''); ?></span></th></tr>
 <tr class="success">
 	<th>เกณฑ์การประเมิน</th>
 	<th>หลักฐาน</th>
@@ -485,6 +485,16 @@ $(document).ready(function(){
 	});
 	$('.btnSave').click(function(e){
 		$(':disabled').removeAttr('disabled');
+	});
+	 $.validator.setDefaults({
+		   	submitHandler: function(){
+		   	  $(":disabled").removeAttr('disabled');
+			  document.form1.submit();
+			}
+	});
+	$('#form1').validate({
+		rules:{people_male1:"required",people_female1:"required",province_id:"required",user_id:"required"},
+		messages:{people_male1:"กรุณาระบุ",people_female1:"กรุณาระบุ",province_id:"กรุณาระบุ",user_id:"กรุณาระบุ"}
 	});
 });
 </script>

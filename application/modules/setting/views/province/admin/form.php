@@ -15,11 +15,11 @@
 				<h2><i class="fa fa-align-justify"></i><span class="break"></span>จังหวัด </h2>
 			</div>
 			<div class="box-content">
-			<form class="form-horizontal" role="form" method="post" action="setting/admin/province/save">
+			<form class="form-horizontal" role="form" method="post" action="setting/admin/province/save" id="form1">
 			  <div class="form-group">
-			    <label for="province_name" class="col-sm-2 control-label">จังหวัด</label>
+			    <label for="province_name" class="col-sm-2 control-label"><label class="alertred">*</label>จังหวัด</label>
 			    <div class="col-sm-3">
-			      <input type="text" class="form-control" name="province_name"  placeholder="ชื่อองค์กร" value="<?php echo $rs['province_name'] ?>">
+			      <input type="text" class="form-control" name="province_name"  placeholder="จังหวัด" value="<?php echo $rs['province_name'] ?>">
 			    </div>
 			  </div>
 			  <?php foreach($area as $item): ?>
@@ -45,3 +45,11 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#form1').validate({
+		debug:true,
+		rules:{province_name:"required"},messages:{province_name:"กรุณาระบุ"}
+	});
+});
+</script>

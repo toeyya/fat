@@ -39,7 +39,7 @@
 </div>
 <div id="span7">
 	<form action="f_weight/save/<?php echo $time; ?>"  method="post">
-	<div><span class="alertred">*</span><span>ปีงบประมาณ </span> <?php echo form_dropdown('year',get_year_option("2556"),$year,'',''); ?></div>
+	<div><label class="alertred">*</label><span>ปีงบประมาณ </span> <?php echo form_dropdown('year',get_year_option("2556"),$year,'',''); ?></div>
 	<table class="table table-bordered table-striped table-condensed">
 		<tr class="success">
 			<th>ชื่อ-นามสกุล</th>

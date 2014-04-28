@@ -20,11 +20,7 @@
 							  <th>ลำดับ</th>
 							  <th>จังหวัด</th>
 							  <th>เขต / ผู้ตรวจ</th>
-							  <th>
-							  	<?php if(permission('setting','act_create')): ?>
-							  	<a href="setting/province/form" class="btn btn-success btn-sm"><i class="fa fa-plus "></i>เพิ่มรายการ</a>
-							  	<?php endif; ?>
-							  </th>
+							  <th></th>
 						  </tr>
 						  <?php $i=(@$_GET['page'] > 1)? (((@$_GET['page'])* 20)-20)+1:1;?>
 						  <?php foreach($result as $item): ?>

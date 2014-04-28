@@ -15,7 +15,7 @@ class Albums extends Admin_Controller{
 		}
 		$this->template->append_metadata(js_lightbox());
 		$this->template->append_metadata(js_checkbox());
-		$data['result'] = $this->album->select("f_albums.id,f_albums.active,name,agency_name")
+		$data['result'] = $this->album->select("f_albums.id,f_albums.active,name,agency_name,response_man")
 									  ->join("LEFT JOIN f_users ON f_users.id = user_id")
 									  ->sort("")->order("f_albums.id desc")->get();
 		$data['pagination'] = $this->album->pagination();

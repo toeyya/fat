@@ -1,6 +1,6 @@
 ﻿     	  <div id="Breadcrumbs">
           	<ol id="path-breadcrumb">
-              <li><a href="#">หน้าแรก</a></li>
+              <li><a href="home">หน้าแรก</a></li>
               <li class="active"><?php echo $category['name'] ?></li>
             </ol>
           </div>

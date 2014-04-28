@@ -27,7 +27,7 @@ class Km extends Admin_Controller{
 	}
 	function form($type_id,$id = FALSE)
 	{
-		if(!permission('act_update') && !permission('act_create')){
+		if(!permission('km','act_update') && !permission('km','act_create')){
 			redirect('admin');
 		}
 		$data['type_id'] = $type_id;

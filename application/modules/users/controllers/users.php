@@ -53,7 +53,7 @@ class Users extends  Public_Controller{
 	  		$subject = "ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง - ยืนยันการลงทะเบียน";
 		    $message='<div><img src="'.base_url().'media/img/name.png" width="500px" height="127px"></di>';
 		    $message.='<hr>';
-			$message.='<p>เรียนคุณ'.$_POST['firstname'].' '.$_POST['lastname'].', </p>';
+			$message.='<p>เรียนคุณ'.$_POST['response_man'].', </p>';
 			$message.='<p>ขอบคุณสำหรับการลงทะเบียนค่ะ  </p>';
 			$message.='<p>กรุณาคลิกลิงค์ด้านล่างเพื่อยืนยันการลงทะเบียน แล้วบัญชีผู้ใช้ของคุณจะสามารถใช้งานได้ค่ะ</p>';
 			$message.='<a href="'.base_url().'users/confirm_email/'.$_POST['user_id'].'/'.$_POST['gen_id'].'">'.base_url().'users/confirm_email/'.$_POST['user_id'].'/'.$_POST['gen_id'].'</a>';
@@ -87,7 +87,7 @@ class Users extends  Public_Controller{
 		 	$rs = $this->user->get_row("email",$_POST['email']);
 		 	$subject = "ศูนย์การเรียนรู้องค์กรต้นแบบไร้พุง - ลืมรหัสผ่าน";
 		 	$message='<div><img src="'.base_url().'media/img/name.png" width="500px" height="127px"></di>';
-			$message.='<p>เรียนคุณ'.$rs['firstname'].' '.$rs['lastname'].', </p>';
+			$message.='<p>เรียนคุณ'.$rs['response_man'].', </p>';
 			$message.='<p>รหัสผ่านของคุณ คือ '.$rs['password'].' </p>';
 		 	phpmail($subject,$_POST['email'],$message);
 			set_notify('success','ดำเนินการเรียบร้อย');

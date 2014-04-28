@@ -15,7 +15,7 @@
 				<h2><i class="fa fa-align-justify"></i><span class="break"></span>สิทธิ์การใช้งาน</h2>
 			</div>
 			<div class="box-content">
-			<form action="permission/admin/permission/save" method="post" id="form" name="form" class="form-horizontal">
+			<form action="permission/admin/permission/save" method="post" id="form1" name="form" class="form-horizontal">
 				  <div class="form-group">
 				   <label for="name" class="col-sm-2 control-label"><label class="alertred">*</label>ชื่อ</label>
 				    <div class="col-sm-3">
@@ -59,17 +59,9 @@
 		$(".check").live("click",function(){
 			$(this).closest(".form-group").find("input[type=checkbox]").attr('checked',true);
 		});
-
 		$(".uncheck").live("click",function(){
 			$(this).closest(".form-group").find("input[type=checkbox]").removeAttr('checked',true);
 		});
-		$( "#form" ).validate({
-  			rules: {
-  				level_name:{required:true,remote:{url:'permissions/admin/permissions/chkPermission',data:{id:function(){return $('#permission_id').val();}}}}
-				   },
-    		messages:{
-				level_name:{required:"กรุณาระบุสิทธิ์การใช้งาน",remote:"มีสิทธิการใช้งานนี้เเล้วในระบบ"}
-					}
-  		});
+		$("#form1").validate({rules:{name:"required"},messages:{name:"กรุณาระบุ"}});
 	});
 </script>

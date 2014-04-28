@@ -1,6 +1,3 @@
-<div id="search">
-
-</div>
 <div>
 	<hr>
 	<ul class="breadcrumb">
@@ -11,7 +8,6 @@
 </div>
 
 
-</div>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="box">
@@ -50,10 +46,12 @@
 					  </thead>
 					  <tbody>
 				</table>
+				<div class="text-center">
 				<div class="pagination pagination-centered">
 				  <ul class="pagination">
 					<?php echo $pagination; ?>
 				  </ul>
+				</div>
 				</div>
 			</div>
 </div>

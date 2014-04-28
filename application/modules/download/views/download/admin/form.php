@@ -14,7 +14,7 @@
 				<h2><i class="fa fa-align-justify"></i><span class="break"></span>สื่อสิ่งพิมพ์ </h2>
 			</div>
 			<div class="box-content">
-			<form class="form-horizontal" role="form" method="post" action="download/admin/download/save/<?php echo $type_id ?>" enctype="multipart/form-data">
+			<form class="form-horizontal" role="form" id="form1"  method="post" action="download/admin/download/save/<?php echo $type_id ?>" enctype="multipart/form-data">
 			  <div class="form-group">
 			    <label for="name" class="col-sm-2 control-label">ประเภท</label>
 			    <div class="col-sm-3">
@@ -33,14 +33,14 @@
 			</div>
 			<?php endif;?>
 			  <div class="form-group">
-			    <label for="name" class="col-sm-2 control-label">รูปภาพ</label>
+			    <label for="name" class="col-sm-2 control-label"><label class="alertred">*</label>รูปภาพ</label>
 			    <div class="col-sm-3">
 			     	<input type="file" class="form-control"  name="image">
 			     	<small>อนุญาติเฉพาะ .gif .jpg .jpeg .png</small>
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="name" class="col-sm-2 control-label">คำอธิบาย</label>
+			    <label for="name" class="col-sm-2 control-label">หัวข้อ</label>
 			    <div class="col-sm-3">
 			     	<input type="text" class="form-control"  name="title" value="<?php echo $rs['title'] ?>">
 			    </div>
@@ -92,6 +92,7 @@ $(document).ready(function(){
 			})
 		}
 	});
+	$('#form1').validate({rules:{image:"required"},messages:{image:"กรุณาระบุ"}});
 });
 </script>
 

@@ -31,24 +31,22 @@
 		$(this).tab('show');
 	});
 	$('#form1').validate({
-		onkeyup: false,
-   		onclick: false,
+		onkeyup: false, onclick: false,
 		rules:{
-			email:{required:true,email:true},password:"required",
+			email:{required:true,email:true,remote:{url:'users/check_email'}},password:"required",
 			repassword:{required:true,equalTo:'#password'},
-			firstname:"required",lastname:"required",gender:"required",age:{required:true,number:true},
+			response_man:"required",gender:"required",age:{required:true,number:true},
 			captcha:{required:true,remote:{url:'<?php echo base_url();?>users/check_captcha'}}
 		},
 		messages:{
 			email:{required:" กรุณาระบุ",email:" กรุณาระบุรูปแบบให้ถูกต้อง"},
 			password:" กรุณาระบุ",repassword:{required:" กรุณาระบุ",equalTo:" กรุณาให้ระบุให้ตรงกัน"},
-			firstname:" กรุณาระบุ",lastname:" กรุณาระบุ",gender:" กรุณาระบุ",age:{required:" กรุณาระบุ",number:" กรุณาระบุตัวเลขเท่านั้น"},
+			response_man:"required",gender:" กรุณาระบุ",age:{required:" กรุณาระบุ",number:" กรุณาระบุตัวเลขเท่านั้น"},
 			captcha:{required:" กรุณาระบุ",remote:" กรุณาระบุให้ตรงภาพ"}
 		}
 	});
 	$('#form2').validate({
-		onkeyup: false,
-   		onclick: false,
+		onkeyup: false,onclick: false,
 		rules:{
 			email:{required:true,email:true,remote:{url:'users/check_email'}},
 			password:"required",repassword:{required:true,equalTo:'#password'},

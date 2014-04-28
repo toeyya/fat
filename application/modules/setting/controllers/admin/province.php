@@ -19,10 +19,10 @@ class Province extends Admin_Controller{
 		if(!permission('setting','act_update') && !permission('setting','act_create')){
 			redirect('admin');
 		}
-		$data['rs'] = $this->province->get_row($id);
+		$data['rs'] =   $this->province->get_row($id);
 		$data['area'] = $this->area->select("f_area_detail.id,area_id,area_no,name")
 		                           ->join("LEFT JOIN f_area_detail ON f_area.id = f_area_detail.area_id")
-								   ->where("province_id =".$id)
+								   ->where("province_id ='".$id."'")
 								   ->sort("area_id")->order("asc")->get();
 		$this->template->build('province/admin/form',$data);
 	}

@@ -21,18 +21,12 @@
 		  </div>
 		 <div class="line5" style="margin-top:0px;margin-left:0px;margin-bottom: 20px"> </div>
 		   <div class="control-group">
-		    <label class="control-label" for="inputFirstname"> <label class="alertred">*</label> ชื่อ</label>
+		    <label class="control-label" for="inputFirstname"> <label class="alertred">*</label> ชื่อ-นามสกุล</label>
 		    <div class="controls">
-		      <input type="text" id="inputFirstname" placeholder="ชื่อ" name="firstname" value="<?php echo  @$user['firstname']?>"  class="input-xlarge">
+		      <input type="text" id="inputFirstname" placeholder=" ชื่อ-นามสกุล" name="response_man" value="<?php echo  @$user['response_man']?>"  class="input-xlarge">
 		    </div>
 		  </div>
 
-		   <div class="control-group">
-		    <label class="control-label" for="inputLastname"><label class="alertred">*</label> นามสกุล </label>
-		    <div class="controls">
-		      <input type="text" id="inputLastname" placeholder="นามสกุล" name="lastname" value="<?php echo  @$user['lastname']?>"  class="input-xlarge">
-		    </div>
-		  </div>
 
 		   <div class="control-group">
 		    <label class="control-label" > <label class="alertred">*</label>เพศ</label>

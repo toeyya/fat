@@ -12,10 +12,7 @@ function login($username=FALSE,$password=FALSE)
 		$CI->session->set_userdata('permission_id',$rs['permission_id']);
 		if($rs['permission_id']=="2"){
 			$CI->session->set_userdata('name',$rs['agency_name']);
-		}else if($rs['permission_id']=="3"){
-			$fullname = $rs['firstname']." ".$rs['lastname'];
-			$CI->session->set_userdata('name',$fullname);
-		}else if($rs['permission_id']=="1"){
+		}else{
 			$CI->session->set_userdata('name',$rs['response_man']);
 		}
 		$confirm_email = $CI->db->GetOne("select confirm_email from f_users where id = ? ",$rs['user_id']);
@@ -25,13 +22,11 @@ function login($username=FALSE,$password=FALSE)
 		}else{
 			return "email";
 		}
-		//save_log("login");
 	}
 	else
 	{
 		return "wrong";
 	}
-
 }
 function is_login()
 {

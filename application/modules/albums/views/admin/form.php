@@ -13,7 +13,7 @@
 				<h2><i class="fa fa-align-justify"></i><span class="break"></span>อัลบั้ม </h2>
 			</div>
 			<div class="box-content">
-			<form class="form-horizontal" role="form" method="post" action="albums/admin/albums/save" enctype="multipart/form-data">
+			<form class="form-horizontal" role="form" method="post" action="albums/admin/albums/save" enctype="multipart/form-data" id="form1">
 			  <div class="form-group">
 			    <label for="name" class="col-sm-2 control-label"><label class="alertred">*</label>อัลบั้ม</label>
 			    <div class="col-sm-4">
@@ -83,6 +83,6 @@ $(document).ready(function(){
 			});
 		}
 	});
-
+	$('#form1').validate({rules:{name:"required"},messages:{name:"กรุณาระบุ"}});
 });
 </script>

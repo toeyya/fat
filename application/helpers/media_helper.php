@@ -21,7 +21,7 @@ if(!function_exists('js_notify'))
 		$CI =& get_instance();
 		if($CI->session->flashdata('notify'))
 		{
-			$js = '<link rel="stylesheet" href="media/js/jquery.notifyBar.css" type="text/css" media="screen" />';
+			$js = '<link rel="stylesheet" href="media/css/jquery.notifyBar.css" type="text/css" media="screen" />';
 		    $js .= '<script type="text/javascript" src="media/js/jquery.notifyBar.js"></script>';
 		    $js .= '<script type="text/javascript">
 		    				$(function () {
@@ -78,7 +78,7 @@ function js_checkbox($module='admin')
 		  });
 		  ';
 	return '
-		<link rel="stylesheet" href="media/js/jquery.notifyBar.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="media/css/jquery.notifyBar.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="media/js/jquery.notifyBar.js"></script>
 		<script>
 			$(function(){

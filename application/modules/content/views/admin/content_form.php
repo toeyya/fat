@@ -1,4 +1,3 @@
-
 <div>
 	<hr>
 	<ul class="breadcrumb">
@@ -14,9 +13,7 @@
 				<h2><i class="fa fa-align-justify"></i><span class="break"></span><?php echo $category_name ?></h2>
 			</div>
 			<div class="box-content">
-			<form class="form-horizontal" role="form" method="post" action="content/admin/content/save/<?php echo $category_id ?>" enctype="multipart/form-data">
-
-
+			<form class="form-horizontal" id="form1" role="form" method="post" action="content/admin/content/save/<?php echo $category_id ?>" enctype="multipart/form-data">
 			 <div class="form-group">
 			    <label for="title" class="col-sm-2 control-label">รูปภาพ</label>
 			    <div class="col-sm-3">
@@ -33,7 +30,7 @@
 			  </div>
 
 			  <div class="form-group">
-			    <label for="title" class="col-sm-2 control-label">หัวข้อ</label>
+			    <label for="title" class="col-sm-2 control-label"><label class="alertred">*</label>หัวข้อ</label>
 			    <div class="col-sm-5">
 			     	 <input type="text" class="form-control" name="title" value="<?php echo $rs['title'] ?>">
 			    </div>
@@ -103,5 +100,6 @@
 				});
 			}
 		});
+	$('#form1').validate({rules:{title:"required"},messages:{title:"กรุณาระบุ"}});
 	});
 </script>

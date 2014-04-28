@@ -8,7 +8,7 @@
 <div class="titleGroup2">นำเข้าไฟล์ excel รอบเอวและน้ำหนักตัวของประชาชนในหน่วยงาน/องค์กรต้นแบบ</div>
 <div class="contentBlank">
 
-	<form action="f_weight/upload" enctype="multipart/form-data" class="form-horizontal" method="post">
+	<form action="f_weight/upload" enctype="multipart/form-data" class="form-horizontal" method="post" id="form1">
 	<?php if($permission=="1"): ?>
 	<div class="control-group">
 	    <label class="control-label" for="inputYear"><label class="alertred">*</label>จังหวัด</label>
@@ -72,8 +72,15 @@ $(document).ready(function(){
 			});
 		}
 	});
-	$('[name=btn_save]').click(function(){
-		$.colorbox({href:'#load',inline:true,innerWidth:'150px',innerHight:'150px',height:'150px',width:'300px',closeButton:false});
+	 $.validator.setDefaults({
+		   	submitHandler: function(){
+			  $.colorbox({href:'#load',inline:true,innerWidth:'150px',innerHight:'150px',height:'150px',width:'300px',closeButton:false});
+			  document.form1.submit();
+			}
+	});
+	$('#form1').validate({
+		rules:{province_id:"required",user_id:"required",files:"required"},
+		messages:{province_id:"กรุณาระบุ",user_id:"กรุณาระบุ",files:"กรุณาระบุ"}
 	});
 });
 </script>

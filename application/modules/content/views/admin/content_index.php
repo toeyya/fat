@@ -40,7 +40,7 @@
 							</td>
 
 						  	<td><?php echo $item['title']?></td>
-						  	<td><?php echo $item['firstname']." ".$item['lastname']; ?></td>
+						  	<td><?php echo $item['response_man'] ?></td>
 						  	<td>
 						  		<?php if(permission($arr[$category_id],'act_update')): ?>
 								<a class="btn btn-info btn-sm" href="content/admin/content/form/<?php echo $category_id ?>/<?php echo $item['id']?>"><i class="fa fa-edit "></i></a>

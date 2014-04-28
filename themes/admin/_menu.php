@@ -10,16 +10,13 @@
 			<?php endif; ?>
 			<?php if(permission('setting','act_read')): ?>
 			<li>
-				<a class="dropmenu" href="#"><i class="fa fa-cogs"></i><span class="hidden-sm">ตั้งค่าองค์กรต้นแบบไร้พุง</span></a>
+				<a class="dropmenu" href="javascript:void"><i class="fa fa-cogs"></i><span class="hidden-sm">ตั้งค่าองค์กรต้นแบบไร้พุง</span></a>
 				<ul>
 					<li><a class="submenu" href="setting/admin/area/index"><i class="fa fa-star"></i><span class="hidden-sm">เขต</span></a></li>
 					<li><a class="submenu" href="setting/admin/agency_type/index"><i class="fa fa-male"></i><span class="hidden-sm">ประเภทบุคคล</span></a></li>
-					<!--<li><a class="submenu" href="setting/admin/agency/index"><i class="fa fa-star"></i><span class="hidden-sm">ศูนย์องค์กรต้นแบบไร้พุง</span></a></li>
-					-->
 					<li><a class="submenu" href="setting/admin/province/index"><i class="fa fa-map-marker"></i><span class="hidden-sm">จังหวัด</span></a></li>
 					<li><a class="submenu" href="setting/admin/amphur/index"><i class="fa fa-map-marker"></i><span class="hidden-sm">อำเภอ</span></a></li>
 					<li><a class="submenu" href="setting/admin/district/index"><i class="fa fa-map-marker"></i><span class="hidden-sm">ตำบล</span></a></li>
-
 				</ul>
 			</li>
 			<?php endif; ?>

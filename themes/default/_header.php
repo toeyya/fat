@@ -24,8 +24,8 @@
           <div class="clearfix"></div>
 	          <?php if(login_data('confirm_email') && $this->session->userdata('id')){ ?>
 			  <div id="user_login" style="position:relative;width:300px;float:right;">
-			  	 ยืนดีต้อนรับ : <span style="padding-right:20px;"><?php echo $this->session->userdata('name'); ?></span>
-			  	<?php if($this->session->userdata('permission_id')==2): ?>
+			  	 ผู้ใช้ : <span style="padding-right:20px;"><?php echo $this->session->userdata('name'); ?></span>
+			  	<?php if($this->session->userdata('permission_id')==3): ?>
 			  		<br/>
 			  		<a href="users/profile/<?php echo  $this->session->userdata('id')?>" class="label label-primary">ประวัติส่วนตัว</a>
 			  	<?php endif; ?>

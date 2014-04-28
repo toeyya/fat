@@ -13,10 +13,10 @@
 				<h2><i class="fa fa-align-justify"></i><span class="break"></span>หมวดหมู่ KM </h2>
 			</div>
 			<div class="box-content">
-			<form class="form-horizontal" role="form" method="post" action="km/admin/type/save">
+			<form class="form-horizontal" role="form" method="post" action="km/admin/type/save" id="form1">
 
 			  <div class="form-group">
-			    <label for="name" class="col-sm-2 control-label">หมวดหมู่</label>
+			    <label for="name" class="col-sm-2 control-label"><label class="alertred">*</label>หมวดหมู่</label>
 			    <div class="col-sm-3">
 			     	<input type="text" class="form-control"  name="name" value="<?php echo $rs['name'] ?>">
 			    </div>
@@ -41,3 +41,8 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#form1').validate({rules:{name:"required"},messages:{name:"กรุณาระบุ"}});
+});
+</script>

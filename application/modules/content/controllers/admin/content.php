@@ -19,10 +19,10 @@ class Content extends Admin_Controller
     	}
 		$data['arr'] = $this->arr;
 		$title =(!empty($_GET['title'])) ? " and contents.title like '%".$_GET['title']."%'":'';
-		$data['result'] = $this->content->select('contents.*,firstname,lastname')
-										->join("LEFT JOIN f_profiles on f_profiles.user_id=contents.user_id")
+		$data['result'] = $this->content->select('contents.*,response_man')
+										->join("LEFT JOIN f_users on f_users.id=contents.user_id")
 										->where(" category_id='".$category_id."'".$title)
-										->sort("")->order("queue")->get();
+										->sort("")->order("id desc")->get();
 		$data['pagination']  = $this->content->pagination();
 		$data['category_id'] = $category_id;
 		$data['category']    = $this->category->get_row($category_id);
@@ -65,11 +65,10 @@ class Content extends Admin_Controller
 		}
 		if($_POST)
 		{
-
-			if(!empty($_POST['start_date']))$_POST['start_date'] = Date2DB($_POST['start_date']);	 else $_POST['start_date'] = date('Y-m-d');
-			if(!empty($_POST['end_date']))$_POST['end_date'] = Date2DB($_POST['end_date']);	else $_POST['end_date'] = null;
 			if(empty($_POST['user_id']))$_POST['user_id'] = $this->session->userdata('id');
-			$_POST['category_id'] = $category_id;
+			if($category_id){
+				$_POST['category_id'] = $category_id;
+			}
 			$id = $this->content->save($_POST);
 			if(@$_FILES['image']['name'])
 			{
