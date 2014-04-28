@@ -272,7 +272,7 @@ behavior: url(pie/PIE.htc);
 .calender{background:url(../img/calendar.png) no-repeat;width:16px; height:16px;display:inline-block;vertical-align: middle;}
 .counter{background:url(../img/users16.png) no-repeat;width:16px; height:16px;display:inline-block;vertical-align: middle;}
 .attach{margin:10px;font-size:14px;}
-.alertred{color:red;font-size:1.4em;display:inline-block;}
+
 .km_content ul{list-style-image: url(../img/bullet_blue.png);margin-top:17px;}
 .km_contett ul li{display:inline-block;background:#00793E;}
 .km_content ul li a{vertical-align:top;padding:30px 0px;}
@@ -281,6 +281,7 @@ behavior: url(pie/PIE.htc);
 .border-img{background:url(../img/border.png) no-repeat;width:152px;height: 118px;display:inline-block;margin-right:10px;}
 .result ol li{padding:5px;}
 
+.alertred{color:red;font-size:1.4em;display:inline-block;}
 input.error,select.error { border: 1px solid red; }
 label.error {
 	background: url('../img/unchecked.gif') no-repeat;

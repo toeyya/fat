@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="media/css/jquery.notifyBar.css" type="text/css"/>
 <link rel="stylesheet" href="media/css/flexslider.css" type="text/css" />
 <link rel="stylesheet" href="media/css/colorbox.css" type="text/css" />
+<link rel="stylesheet" href="media/css/validate.css">
 
 
 

@@ -25,7 +25,7 @@
 							  <th>โดย</th>
 
 							  <th>
-							  	<?php if(permission('permissions','act_create')): ?>
+							  	<?php if(permission('album','act_create')): ?>
 							  		<a class="btn btn-success btn-sm" href="albums/admin/albums/form"> <i class="fa fa-plus "></i> เพิ่มรายการ</a>
 							 	 <?php endif; ?>
 							  </th>
@@ -43,10 +43,10 @@
 						  	<td><?php echo $item['name']?></td>
 						  	<td><?php echo $item['agency_name']?></td>
 						  	<td>
-								<?php if(permission('permissions','act_update')): ?>
+								<?php if(permission('album','act_update')): ?>
 									<a class="btn btn-info btn-sm" href="albums/admin/albums/form/<?php echo $item['id']?>"><i class="fa fa-edit "></i></a>
 								<?php endif; ?>
-								<?php if(permission('permissions','act_delete')): ?>
+								<?php if(permission('album','act_delete')): ?>
 									<a class="btn btn-danger btn-sm" href="albums/admin/albums/delete/<?php echo $item['id'] ?>"><i class="fa fa-trash-o "></i></a>
 								<?php endif; ?>
 							</td>

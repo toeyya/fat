@@ -15,7 +15,7 @@
 			<div class="box-content">
 			<form class="form-horizontal" role="form" method="post" action="albums/admin/albums/save" enctype="multipart/form-data">
 			  <div class="form-group">
-			    <label for="name" class="col-sm-2 control-label">อัลบั้ม</label>
+			    <label for="name" class="col-sm-2 control-label"><label class="alertred">*</label>อัลบั้ม</label>
 			    <div class="col-sm-4">
 			      <input type="text" class="form-control" name="name"  placeholder="อัลบั้ม" value="<?php echo $rs['name'] ?>">
 			    </div>
