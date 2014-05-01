@@ -95,12 +95,11 @@ class Content extends Admin_Controller
 		redirect('content/admin/content/index/'.$category_id);
 
 	}
-	function delete($id)
+	function delete($category_id,$id)
 	{
     	if(!permission($this->arr[$category_id],'act_delete')){
     		redirect('admin');
     	}
-
 		if($id)
 		{
 			$this->content->delete($id);

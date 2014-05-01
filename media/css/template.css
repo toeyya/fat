@@ -277,7 +277,8 @@ behavior: url(pie/PIE.htc);
 .km_contett ul li{display:inline-block;background:#00793E;}
 .km_content ul li a{vertical-align:top;padding:30px 0px;}
 #download ul{list-style:none;}
-#download ul li{float:left;border:1px solid #C5C2C2;padding:4px;margin:10px;}
+#download ul li{float:left;border:1px solid #C5C2C2;padding:4px;margin:10px;width:100px;height:228px;}
+#download ul li p{width:90px;height:100px;text-align: center;overflow:hidden;display:block;}
 .border-img{background:url(../img/border.png) no-repeat;width:152px;height: 118px;display:inline-block;margin-right:10px;}
 .result ol li{padding:5px;}
 

@@ -50,7 +50,7 @@
 								<a class="btn btn-info btn-sm" href="km/admin/type/form/<?php echo $item['id']?>"><i class="fa fa-edit "></i></a>
 								<?php endif; ?>
 								<?php if(permission('km','act_delete')): ?>
-								<a class="btn btn-danger btn-sm" href="km/admin/type/delete/<?php echo $item['id'] ?>"><i class="fa fa-trash-o "></i></a>
+								<a class="btn btn-danger btn-sm" href="km/admin/type/delete/<?php echo $item['id'] ?>" onclick="return confirm('<?php echo NOTICE_CONFIRM_DELETE ?>')"><i class="fa fa-trash-o "></i></a>
 								<?php endif; ?>
 							</td>
 						  </tr>

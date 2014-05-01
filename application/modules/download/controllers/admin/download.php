@@ -72,7 +72,7 @@ class Download extends Admin_Controller{
 			$this->download->delete($id);
 			set_notify('success', SAVE_DATA_COMPLETE);
 		}
-		redirect('download/admin/download/index/'.$_GET['$type_id']);
+		redirect('download/admin/download/index?type_id='.$_GET['type_id']);
 
 	}
 	function delete_file()

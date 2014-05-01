@@ -42,7 +42,8 @@ class Albums extends Public_Controller{
 				where f_albums.active=1
 				group by album_id order by f_albums.created desc";
 		$data['result'] = $this->db->GetArray($sql);
-		$this->template->set_layout('blank');
+		$data['pagination'] = $this->album->pagination();
+  		$this->template->set_layout('blank');
 		$this->template->build('inc_all',$data);
 	}
 }

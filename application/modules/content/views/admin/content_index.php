@@ -42,11 +42,12 @@
 						  	<td><?php echo $item['title']?></td>
 						  	<td><?php echo $item['response_man'] ?></td>
 						  	<td>
-						  		<?php if(permission($arr[$category_id],'act_update')): ?>
+						  		<?php
+						  		if(permission($arr[$category_id],'act_update')): ?>
 								<a class="btn btn-info btn-sm" href="content/admin/content/form/<?php echo $category_id ?>/<?php echo $item['id']?>"><i class="fa fa-edit "></i></a>
 								<?php endif; ?>
 								<?php if(permission($arr[$category_id],'act_delete')): ?>
-								<a class="btn btn-danger btn-sm" href="content/admin/content/delete/<?php echo $item['id'] ?>"><i class="fa fa-trash-o "></i></a>
+								<a class="btn btn-danger btn-sm" href="content/admin/content/delete/<?php echo $category_id ?>/<?php echo $item['id']?>" onclick="return confirm('<?php echo NOTICE_CONFIRM_DELETE ?>')"><i class="fa fa-trash-o "></i></a>
 								<?php endif; ?>
 								</td>
 						  </tr>

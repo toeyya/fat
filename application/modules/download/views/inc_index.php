@@ -1,8 +1,9 @@
 <style>
+.shelf{width:600px;padding-left:32px;padding-right:32px;}
 .shelf .flex-direction-nav .flex-next{right:186px;background: url(../../../fat/media/img/arrowbook-right.png) no-repeat;width:21px; height:39px;}
 .shelf .flex-direction-nav .flex-prev{left:186px;background: url(../../../fat/media/img/arrowbook-left.png)no-repeat;width:21px; height:39px;}
 .nav-tabs{border:0}
-.shelf .slides ul li{width:120px;}
+ul.slides li{width:120px;}
 </style>
        <div id="books">
             <div class="tomatoes"></div>
@@ -18,11 +19,11 @@
     		<div class="tab-content">
     		<?php foreach($type as $key=>$tp){ ?>
 			<div class="tab-pane <?php if($key==0){ echo "active";} ?>" id="tab<?php echo $tp['id'] ?>">
-					<div class="shelf" style="width:600px;padding-left:32px;padding-right:32px;">
-	 					<div class="slider" >
+					<div class="shelf">
+	 					<div class="slider">
 	                  		<ul class="slides">
 	                  	<?php
-	                  	$download = $this->db->GetArray("select * from f_download_detail where active='1' and type_id =  ".$tp['id']);
+	                  	$download = $this->db->GetArray("select * from f_download_detail where active='1' and type_id =  ".$tp['id']." order by id desc");
 	                  	foreach($download as $key =>$item): ?>
 		                    <li class="<?php if($key==0){ echo 'flex-active-slide';} ?>">
 								<?php $link="javascript:void";
@@ -48,18 +49,18 @@
    		 </div><!-- tab-content-->
       </div><!-- book -->
 <script type="text/javascript">
-
 $(window).load(function() {
-
-  $('.slider').flexslider({
-    slideshow: false,animation: "slide",animationLoop: false,itemWidth: 120,itemMargin:50,minItems: 3,maxItems: 5,reverse: false,controlNav: false,prevText: "",nextText: "",slideshowSpeed: 3000,
-  });
-
 	$('#myTab1 a').click(function(e){
 		e.preventDefault();
 		$(this).tab('show');
-
+		var tab = $(this).attr('href');
+		$(tab+' .slider').flexslider({
+    		animation: "slide",move:1,itemWidth: 120,itemMargin:50,minItems: 3,maxItems: 5,controlNav: false,prevText: "",nextText: ""
+  		});
 	});
+  $('#tab1 .slider').flexslider({
+    animation: "slide",move:1,itemWidth: 120,itemMargin:50,minItems: 3,maxItems: 5,controlNav: false,prevText: "",nextText: ""
+  });
 
 });
 </script>
