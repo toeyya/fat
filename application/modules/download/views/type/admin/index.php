@@ -21,7 +21,6 @@
 					  <thead>
 						  <tr>
 							  <th>แสดง</th>
-							  <th>ลำดับ</th>
 							  <th>ประเภท</th>
 							  <th>โดย</th>
 							  <th>
@@ -39,7 +38,6 @@
 								      <span class="switch-handle"></span>
 								</label>
 							</td>
-						  	<td><?php echo $i;?></td>
 						  	<td><?php echo $item['name']?></td>
 						  	<td><?php echo $item['agency_name']?></td>
 						  	<td>

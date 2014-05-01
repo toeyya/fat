@@ -276,8 +276,8 @@ class MY_Model extends Model{
 		{
 			ini_set("max_execution_time","60000");
 			ini_set("memory_limit","100M");
-			//ini_set("post_max_size","64M");
-			//ini_set("upload_max_filesize","64M");
+			ini_set("post_max_size","64M");
+			ini_set("upload_max_filesize","64M");
 			$this->filename = uniqid();
 			$this->load->library('uploader');
 			$handle = new Uploader();

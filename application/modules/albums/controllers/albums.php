@@ -27,7 +27,7 @@ class Albums extends Public_Controller{
 				left join f_amphur ON f_users.amphur_id = f_amphur.id
 				left join f_district ON f_users.district_id = f_district.id where f_users.id=$user_id";
 		$data['user'] = $this->db->GetRow($sql);
-		$data['result'] = $this->picture->where("album_id = $album_id")->sort("created")->order("desc")->get();
+		$data['result'] = $this->picture->where("album_id = $album_id")->sort("created")->order("desc")->get('',true);
 		$this->template->set_layout('blank');
 		$this->template->build('inc_view',$data);
 	}

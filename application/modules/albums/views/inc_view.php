@@ -1,7 +1,7 @@
      	  <div id="Breadcrumbs">
           	<ol id="path-breadcrumb">
-              <li><a href="#">หน้าแรก</a></li>
-              <li><a href="#">รูปภาพกิจกรรม</a></li>
+              <li><a href="home">หน้าแรก</a></li>
+              <li><a href="albums/view_all">รูปภาพกิจกรรม</a></li>
               <li class="active">อัลบัม <?php echo $user['agency_name']." ต. ".$user['district_name']." อ. ".$user['amphur_name']." จ. ".$user['province_name'] ?></li>
             </ol>
           </div>

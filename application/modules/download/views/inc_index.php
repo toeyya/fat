@@ -54,6 +54,7 @@ $(window).load(function() {
   $('.slider').flexslider({
     slideshow: false,animation: "slide",animationLoop: false,itemWidth: 120,itemMargin:50,minItems: 3,maxItems: 5,reverse: false,controlNav: false,prevText: "",nextText: "",slideshowSpeed: 3000,
   });
+
 	$('#myTab1 a').click(function(e){
 		e.preventDefault();
 		$(this).tab('show');

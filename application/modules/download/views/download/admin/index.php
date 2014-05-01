@@ -24,7 +24,6 @@
 						  <tr>
 							  <th>แสดง</th>
 							  <th>หัวข้อ</th>
-							  <th>จำนวนรายการย่อย</th>
 							  <th>โดย</th>
 							  <th>
 							  	<?php if(permission('download','act_create')): ?>
@@ -42,7 +41,6 @@
 								</label>
 							</td>
 						  	<td><?php echo $item['title']?></td>
-						  	<td></td>
 						  	<td><?php echo $item['agency_name']?></td>
 						  	<td>
 						  		<?php if(permission('download','act_update')): ?>

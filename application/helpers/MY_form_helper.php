@@ -171,7 +171,8 @@
 	     }
 	 }
 
-
-
-
+function form_back($name = 'back')
+{
+	return form_button($name,'ย้อนกลับ','onclick="window.location = \''.$_SERVER['HTTP_REFERER'].'\'" class="btn btn-default btn-sm"');
+}
 ?>

@@ -30,8 +30,8 @@
 
 			  <div class="form-group">
 			    <div class="col-sm-offset-2 col-sm-10">
-			      <button type="submit" class="btn btn-primary">บันทึก</button>
-			      <button type="submit" class="btn btn-default">ย้อนกลับ</button>
+			      <button type="submit" class="btn btn-primary btn-sm">บันทึก</button>
+			      <button type="button" class="btn btn-default btn-sm" onclick="history.go(-1);">ย้อนกลับ</button>
 			      <input type="hidden" name="id" value="<?php echo $value['id']; ?>">
 			       <?php echo ($value['id']) ? form_hidden('updated',date('Y-m-d H:i:s')) : form_hidden('created',date('Y-m-d H:i:s'))?>
 			    </div>
@@ -41,38 +41,38 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<hr>
-	
+
 	<div class="col-lg-12">
 		<div class="box"  >
-			
+
 			<?php foreach ($variable as $key => $item):?>
 			<div class="box-content" >
 				<div class="form-group">
 			    <label for="title" class="col-sm-2 control-label">
 			    	<?php echo $item["email"]?>
 		    	</label>
-		    	
+
 				    <div class="col-sm-6">
 						<?php echo $item["detail"]?>
 				    </div>
-				    
+
 				    <div class="col-sm-2">
 						<?php echo mysql_to_th($item["created"],"F",TRUE)?>
 				    </div>
-				    
+
 				    <div class="col-sm-2">
 						<a href="webboard/admin/form_comment/<?php echo $item["id"]?>" class="btn btn-primary" >แก้ข้อความ</a>
 						<a href="webboard/admin/delete_comment/<?php echo $item["id"]?>" class="btn btn-danger" onclick="return confirm('ต้องการลบความคิดเห็น');" >ลบ</a>
 				    </div>
-				    
+
 				</div>
 				<div class="clearfix"></div>
 			</div>
 			<?php endforeach?>
 		</div>
 	</div>
-	
+
 </div>
 

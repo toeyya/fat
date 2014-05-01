@@ -26,7 +26,7 @@ class Albums extends Admin_Controller{
 		if(!permission('album','act_update') && !permission('album','act_create')){
 			redirect('admin');
 		}
-		$data['picture'] = $this->picture->where("album_id = '$id'")->get();
+		$data['picture'] = $this->picture->where("album_id = '$id'")->get('',true);
 		$data['rs']= $this->album->get_row($id);
 		$this->template->build('admin/form',$data);
 	}
@@ -43,15 +43,26 @@ class Albums extends Admin_Controller{
 				{
 					if(!empty($_POST['picture_id'][$key]))
 					{
-					$this->picture->delete_file('uploads/albums/'.$album_id,'image');
-					$this->picture->delete_file('uploads/albums/thumbnail/'.$album_id,'image');
+						$this->picture->delete_file('uploads/albums/'.$album_id,'image');
+						$this->picture->delete_file('uploads/albums/thumbnail/'.$album_id,'image');
 					}
 
 					$data['image'] = $this->picture->upload($image,'uploads/albums/'.$album_id);
 					$this->picture->thumb('uploads/albums/'.$album_id.'/thumbnail',275,180);
 					$data['album_id'] = $album_id;
 					$data['title'] = $_POST['title'][$key];
+					$data['created'] = @$_POST['created'];
+					$data['updated'] = @$_POST['updated'];
 					$this->picture->save($data);
+				}
+			}
+			if(!empty($_FILES['image'])){
+				foreach($_POST['picture_id'] as $key=>$item){
+					$data1['title'] = $_POST['title'][$key];
+					$data1['id'] = $item;
+					$data1['created'] = @$_POST['created'];
+					$data1['updated'] = @$_POST['updated'];
+					$this->picture->save($data1);
 				}
 			}
 			set_notify('success', SAVE_DATA_COMPLETE);

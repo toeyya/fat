@@ -14,7 +14,7 @@
 	<span class="counter"></span><span><?php echo number_format($result['counter']) ?> ครั้ง</span>
 </div>
 	<?php if($result['image']): ?>
-		<div style="text-align: center; margin:10px auto;"><img src="uploads/content/<?php echo $result['image'] ?>" width="200px" height="200px"></div>
+		<!--<div style="text-align: center; margin:10px auto;"><img src="uploads/content/<?php echo $result['image'] ?>" width="200px" height="200px"></div>-->
 	<?php endif; ?>
 	<?php echo $result['detail'];?>
 	<?php if($result['files']):  ?>
